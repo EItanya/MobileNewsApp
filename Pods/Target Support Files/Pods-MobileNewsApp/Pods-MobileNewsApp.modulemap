@@ -1,0 +1,6 @@
+framework module Pods_MobileNewsApp {
+  umbrella header "Pods-MobileNewsApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
