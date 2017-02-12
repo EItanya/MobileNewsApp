@@ -36,16 +36,38 @@ class RegistrationViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
     @IBAction func registerBtnClk(_ sender: UIButton) {
-        FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
+        // check to see if form is valid
+        guard let email = emailField.text, let password = passwordField.text else {
+            return
+        }
+        
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             
-            if error == nil {
-                print("Account Created")
-            }
-            else {
+            if error != nil {
+                print(error!)
                 print("Account Creation Failed")
             }
-        }
+            
+            guard let uid = user?.uid else {
+                return
+            }
+            
+            //successfully authenticated user
+            let ref = FIRDatabase.database().reference().child("users").child(uid)
+            let values = ["email": email]
+            ref.updateChildValues(values, withCompletionBlock: {(err, ref) in
+                
+                if err != nil {
+                    print(err)
+                    return
+                }
+                
+                print("Successfully saved to db")
+            })
+
+        })
     }
 
 }
