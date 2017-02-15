@@ -8,6 +8,8 @@
 
 import UIKit
 import FBSDKLoginKit
+import Parse
+import ParseFacebookUtilsV4
 
 class RegistrationViewController: UIViewController {
 
@@ -17,12 +19,6 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
-    
-    
-    //Calls when facebook logs out using button
-    public func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!){
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,4 +37,50 @@ class RegistrationViewController: UIViewController {
     }
     */
     
+    @IBAction func SignIn(_ sender: UIButton) {
+        
+//        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"], block: {
+//            (user: PFUserResultBlock?, error: NSError?) -> Void in
+//            if let user = user {
+//                if user.isNew {
+//                    print("User signed up and logged in through Facebook!")
+//                } else {
+//                    print("User logged in through Facebook!")
+//                }
+//            } else {
+//                print("Uh oh. The user cancelled the Facebook login.")
+//            }
+//        })
+        
+//        loginWithBackground(with: ["public_profile", "email"]){ user, error in
+//            guard let user = user as? User else {
+//                print(error)
+//                return
+//            }
+//            f user.isNew {
+//                print("User signed up and logged in through Facebook!")
+//            } else {
+//                print("User logged in through Facebook!")
+//            }
+//            
+//            
+//        }
+//        
+//        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]){
+//            (user: PFUserResultBlock?, error: NSError?) -> Void in
+//            if let user = user {
+//                if user.isNew {
+//                    print("User signed up and logged in through Facebook!")
+//                } else {
+//                    print("User logged in through Facebook!")
+//                }
+//            } else {
+//                print("Uh oh. The user cancelled the Facebook login.")
+//            }
+//        }
+
+    }
+    
+    @IBAction func registerBtnClk(_ sender: UIButton) {
+    }
 }

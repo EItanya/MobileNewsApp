@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Parse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ParseFacebookUtilsV4.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MobileNewsApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,6 +52,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2A52779AA0BD86BA0CEB8753126ED2FE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3FDBB88726ADBADE4FC4D9C2D297CB81</key>
 		<dict>
 			<key>primary</key>
@@ -52,7 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>51CB0AF616C6306147B99C320EB6D3ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>604812C3C9A517FBAEC9558B08FB868D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6E63831BCB47DF38F73F172B34738A3F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,11 +93,6 @@
 			<true/>
 		</dict>
 		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EC6F8E59509D12D3184D7561D905740B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
