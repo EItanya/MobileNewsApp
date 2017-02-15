@@ -6,9 +6,6 @@ target 'MobileNewsApp' do
   use_frameworks!
 
   # Pods for MobileNewsApp
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Database'
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
     pod 'FBSDKLoginKit'
