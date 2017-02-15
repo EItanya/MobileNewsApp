@@ -48,12 +48,42 @@ class RegistrationViewController: UIViewController {
                 } else {
                     print("User logged in through Facebook!")
                 }
+                
+                let requestParameters = ["fields": "id, email, first_name, last_name"]
+                let userDetails : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me", parameters: requestParameters)
+                
+                userDetails.start(completionHandler: { (connection, result, error) -> Void in
+                    if error != nil {
+                        print("Error getting Facebook Info", error ?? "")
+                        return
+                    } else if result != nil {
+                        //Turn result into Dictionary
+                        let data:[String:AnyObject] = result as! [String : AnyObject]
+                        //Gather Data
+                        let userId:String = data["id"] as! String
+                        let userFirstName:String? = data["first_name"] as? String
+                        let userLastName:String? = data["last_name"] as? String
+                        let userEmail:String? = data["email"] as? String
+                        
+                        //Get Current USer
+                        let myUser:PFUser = PFUser.current()!
+                        //print(myUser)
+                        //Set My User values to add data to parse user
+                        if(userFirstName != nil) { myUser.setValue(userFirstName, forKey: "first_name") }
+                        if(userLastName != nil) { myUser.setValue(userLastName, forKey: "last_name") }
+                        if(userEmail != nil) { myUser.setValue(userEmail, forKey: "email") }
+                        
+                        //Future to save to DB
+                            
+                    }
+                })
+                
+                
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
             }
  
         })
-
 
     }
     
