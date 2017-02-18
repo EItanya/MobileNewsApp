@@ -22,7 +22,6 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,5 +45,19 @@ class RegistrationViewController: UIViewController {
  
     
     @IBAction func registerBtnClk(_ sender: UIButton) {
+        let user = PFUser()
+        user.username = emailField.text! as String
+        user.password = passwordField.text! as String
+        user.email = emailField.text! as String
+        user["first_name"] = firstNameField
+        user["last_name"] = lastNameField
+        
+        user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
+            if error != nil {
+                print("Error is ", error ?? "")
+                return
+            }
+            print("User is added successfully")
+        })
     }
 }
