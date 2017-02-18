@@ -11,6 +11,7 @@
 		15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E721E58FECB002C9BD4 /* TabViewController.swift */; };
 		15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E741E58FFB1002C9BD4 /* HomeViewController.swift */; };
 		15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E761E590278002C9BD4 /* LoginViewController.swift */; };
+		15422E791E590A81002C9BD4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E781E590A81002C9BD4 /* SettingsViewController.swift */; };
 		15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E99A4F1E4E9F6100B736B4 /* RegistrationViewController.swift */; };
 		15FBA1F81E4E80FB00DDEEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FBA1F71E4E80FB00DDEEB7 /* AppDelegate.swift */; };
 		15FBA1FD1E4E80FB00DDEEB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FBA1FB1E4E80FB00DDEEB7 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		15422E721E58FECB002C9BD4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		15422E741E58FFB1002C9BD4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		15422E761E590278002C9BD4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		15422E781E590A81002C9BD4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15E99A4F1E4E9F6100B736B4 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		15FBA1F41E4E80FB00DDEEB7 /* MobileNewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileNewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FBA1F71E4E80FB00DDEEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		15422E711E58FEA3002C9BD4 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				15422E781E590A81002C9BD4 /* SettingsViewController.swift */,
 				15422E721E58FECB002C9BD4 /* TabViewController.swift */,
 				15422E741E58FFB1002C9BD4 /* HomeViewController.swift */,
 			);
@@ -476,6 +479,7 @@
 			files = (
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */,
+				15422E791E590A81002C9BD4 /* SettingsViewController.swift in Sources */,
 				15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */,
 				15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */,
 				15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */,
