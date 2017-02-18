@@ -125,6 +125,8 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="Zdv-6F-L51" id="jpT-xI-Hd6"/>
+                        <outlet property="firstNameField" destination="84i-2A-OVF" id="QZK-DV-Ep6"/>
+                        <outlet property="lastNameField" destination="o0z-IX-dsU" id="hif-8H-C1i"/>
                         <outlet property="passwordField" destination="w6s-78-qYw" id="GR8-9y-5ih"/>
                         <segue destination="iA9-Gd-LSC" kind="show" identifier="registrationSegue" id="DBF-ZB-yri"/>
                     </connections>

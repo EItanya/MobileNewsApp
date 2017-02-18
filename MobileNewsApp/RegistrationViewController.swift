@@ -17,6 +17,8 @@ class RegistrationViewController: UIViewController {
     
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
+    @IBOutlet var firstNameField: UITextField!
+    @IBOutlet var lastNameField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
