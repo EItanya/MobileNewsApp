@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PH3-hY-Oa6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PH3-hY-Oa6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -106,14 +106,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phg-zZ-7dI">
-                                <rect key="frame" x="164" y="489" width="47" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84i-2A-OVF">
+                                <rect key="frame" x="61" y="279" width="253" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign In"/>
-                                <connections>
-                                    <action selector="SignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hr5-VQ-QQg"/>
-                                </connections>
-                            </button>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lasr Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o0z-IX-dsU">
+                                <rect key="frame" x="61" y="334" width="253" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.42352941176470588" green="0.6588235294117647" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -125,9 +131,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-18" y="930"/>
+            <point key="canvasLocation" x="-18.399999999999999" y="929.68515742128943"/>
         </scene>
-        <!--Item 2-->
+        <!--Create-->
         <scene sceneID="MiP-TD-rYx">
             <objects>
                 <viewController id="yWn-tW-aVw" sceneMemberID="viewController">
@@ -140,13 +146,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="ffC-AU-EyS"/>
+                    <tabBarItem key="tabBarItem" title="Create" id="ffC-AU-EyS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4f-0a-zxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1852" y="151"/>
+            <point key="canvasLocation" x="1852" y="-199"/>
         </scene>
-        <!--Item 1-->
+        <!--Join-->
+        <scene sceneID="UgC-8h-AjP">
+            <objects>
+                <viewController id="ceO-Gi-aeK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZqU-z2-0Jc"/>
+                        <viewControllerLayoutGuide type="bottom" id="72v-oh-hHi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MVc-wN-7b5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Join" id="dIP-ic-dpK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EdT-0m-WSP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="473"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="hCd-ec-3Ik">
+            <objects>
+                <viewController id="KLA-KO-NcW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZGy-RV-OWl"/>
+                        <viewControllerLayoutGuide type="bottom" id="xJq-d7-zjF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5GE-tk-IaV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="t9H-Kq-0X9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RaI-Hr-nUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="1162"/>
+        </scene>
+        <!--Home-->
         <scene sceneID="jeo-AA-Mzd">
             <objects>
                 <viewController id="Coj-5i-c7h" customClass="HomeViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -159,11 +203,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.63529411759999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="v1Q-LR-Ove"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="v1Q-LR-Ove"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUR-YL-VVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1852" y="-501"/>
+            <point key="canvasLocation" x="1852" y="-865"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="O3O-jb-Cdl">
@@ -177,6 +221,8 @@
                     <connections>
                         <segue destination="Coj-5i-c7h" kind="relationship" relationship="viewControllers" id="KgO-w8-sHS"/>
                         <segue destination="yWn-tW-aVw" kind="relationship" relationship="viewControllers" id="bsz-BO-Vox"/>
+                        <segue destination="ceO-Gi-aeK" kind="relationship" relationship="viewControllers" id="uFe-cY-Qxg"/>
+                        <segue destination="KLA-KO-NcW" kind="relationship" relationship="viewControllers" id="GS5-AU-c8D"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k74-9S-E6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,6 +231,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Rf0-qC-Yyh"/>
+        <segue reference="DBF-ZB-yri"/>
     </inferredMetricsTieBreakers>
 </document>

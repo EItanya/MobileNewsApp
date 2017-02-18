@@ -43,11 +43,6 @@ class RegistrationViewController: UIViewController {
     }
  
     
-    @IBAction func SignIn(_ sender: UIButton) {
-
-
-    }
-    
     @IBAction func registerBtnClk(_ sender: UIButton) {
     }
 }
