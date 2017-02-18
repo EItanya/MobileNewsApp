@@ -13,6 +13,8 @@ import ParseFacebookUtilsV4
 
 class RegistrationViewController: UIViewController {
 
+    var userId: String?
+    
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
     
@@ -27,15 +29,19 @@ class RegistrationViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "registrationSegue" {
+            let tabViewController = segue.destination as! TabViewController
+            tabViewController.userId = self.userId
+        }
     }
-    */
+ 
     
     @IBAction func SignIn(_ sender: UIButton) {
         
@@ -66,6 +72,11 @@ class RegistrationViewController: UIViewController {
                         let userFirstName:String? = data["first_name"] as? String
                         let userLastName:String? = data["last_name"] as? String
                         let userEmail:String? = data["email"] as? String
+                        
+                        self.userId = userId
+                        
+                        self.performSegue(withIdentifier: "registrationSegue", sender: self)
+                        
 //                      //Grab image URL, JSON is tricky in swift 3
                         if let image = data["picture"] as? [String: Any] {
                             if let imageData = image["data"] as? [String:Any] {
