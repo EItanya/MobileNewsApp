@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Parse
 
 class SettingsViewController: UIViewController {
+    
+    var userId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,5 +34,10 @@ class SettingsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    @IBAction func signOutBtnClk(_ sender: UIButton) {
+        PFUser.logOut()
+        performSegue(withIdentifier: "signOutSegue", sender: self)
+    }
 
 }

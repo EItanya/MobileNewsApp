@@ -18,7 +18,9 @@ class TabViewController: UITabBarController {
         // Do any additional setup after loading the view.
         let tabBarController = self.viewControllers
         let homeViewController = tabBarController?[0] as! HomeViewController
+        let settingsViewController = tabBarController?[3] as! SettingsViewController
         homeViewController.userId = self.userId
+        settingsViewController.userId = self.userId
     }
 
     override func didReceiveMemoryWarning() {
