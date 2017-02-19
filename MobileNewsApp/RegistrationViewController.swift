@@ -42,15 +42,24 @@ class RegistrationViewController: UIViewController {
             tabViewController.userId = self.userId
         }
     }
- 
     
-    @IBAction func registerBtnClk(_ sender: UIButton) {
+//    func isValidEmail(testStr:String) -> Bool {
+//        print("validate calendar: \(testStr)")
+//        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+//        
+//        if let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx) {
+//            return emailTest.evaluateWithObject(testStr)
+//        }
+//        return false
+//    }
+ 
+    func signIn() {
         let user = PFUser()
         user.username = emailField.text! as String
         user.password = passwordField.text! as String
         user.email = emailField.text! as String
-        user["first_name"] = firstNameField
-        user["last_name"] = lastNameField
+        user["first_name"] = firstNameField.text! as String
+        user["last_name"] = lastNameField.text! as String
         
         user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
             if error != nil {
@@ -59,5 +68,9 @@ class RegistrationViewController: UIViewController {
             }
             print("User is added successfully")
         })
+    }
+    
+    @IBAction func registerBtnClk(_ sender: UIButton) {
+        signIn()
     }
 }
