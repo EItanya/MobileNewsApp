@@ -34,8 +34,14 @@ class LoginViewController: UIViewController {
         let email = emailField.text! as String
         let password = passwordField.text! as String
         
-        PFUser.logInWithUsername(inBackground: email, password: password, block: {(user: PFUser?, error: Error?) -> Void in
+        PFUser.logInWithUsername(inBackground: email, password: password, block: {
+            (user: PFUser?, error: Error?) -> Void in
+            if error != nil {
+                print("Error logging in with username:", error ?? "")
+                return
+            }
             
+            print("Logged in successfully with Username")
         })
         
     }
