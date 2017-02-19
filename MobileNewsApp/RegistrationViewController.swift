@@ -72,5 +72,6 @@ class RegistrationViewController: UIViewController {
     
     @IBAction func registerBtnClk(_ sender: UIButton) {
         signIn()
+        performSegue(withIdentifier: "registrationSegue", sender: self)
     }
 }
