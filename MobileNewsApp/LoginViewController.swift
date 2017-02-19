@@ -13,6 +13,8 @@ import ParseFacebookUtilsV4
 
 
 class LoginViewController: UIViewController {
+    
+    var userId: String?
 
     
     @IBOutlet var emailField: UITextField!
@@ -42,6 +44,7 @@ class LoginViewController: UIViewController {
             }
             
             print("Logged in successfully with Username")
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
         
     }
@@ -76,8 +79,11 @@ class LoginViewController: UIViewController {
                         let userLastName:String? = data["last_name"] as? String
                         let userEmail:String? = data["email"] as? String
                         
+                        self.userId = userId
+                        self.performSegue(withIdentifier: "loginSegue", sender: self)
                         
-                        //                      //Grab image URL, JSON is tricky in swift 3
+                        
+                        //Grab image URL, JSON is tricky in swift 3
                         if let image = data["picture"] as? [String: Any] {
                             if let imageData = image["data"] as? [String:Any] {
                                 let userImage:String? = imageData["url"] as! String?
@@ -112,14 +118,19 @@ class LoginViewController: UIViewController {
             
         })
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "loginSegue" {
+            let tabBarController = segue.destination as! TabViewController
+            tabBarController.userId = self.userId
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

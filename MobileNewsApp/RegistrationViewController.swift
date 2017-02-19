@@ -118,8 +118,8 @@ class RegistrationViewController: UIViewController {
             return
         }
         
-       
         signIn()
+        performSegue(withIdentifier: "registrationSegue", sender: self)
     }
     
 }
