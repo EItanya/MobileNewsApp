@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07452F3A1E595BAD00B187C3 /* CreateViewController.swift */; };
 		077CCCF472A0C5165376A82E /* Pods_MobileNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */; };
 		15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E721E58FECB002C9BD4 /* TabViewController.swift */; };
 		15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E741E58FFB1002C9BD4 /* HomeViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		0B0AC99EA3695AA18C3EF809 /* Pods-MobileNewsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsAppTests/Pods-MobileNewsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		15422E721E58FECB002C9BD4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		15422E741E58FFB1002C9BD4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				15422E781E590A81002C9BD4 /* SettingsViewController.swift */,
 				15422E721E58FECB002C9BD4 /* TabViewController.swift */,
 				15422E741E58FFB1002C9BD4 /* HomeViewController.swift */,
+				07452F3A1E595BAD00B187C3 /* CreateViewController.swift */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */,
 				15422E791E590A81002C9BD4 /* SettingsViewController.swift in Sources */,

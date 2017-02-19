@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PH3-hY-Oa6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PH3-hY-Oa6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -138,7 +138,7 @@
         <!--Create-->
         <scene sceneID="MiP-TD-rYx">
             <objects>
-                <viewController id="yWn-tW-aVw" sceneMemberID="viewController">
+                <viewController id="yWn-tW-aVw" customClass="CreateViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gfl-r5-nQ2"/>
                         <viewControllerLayoutGuide type="bottom" id="a1R-f9-e0Q"/>
@@ -146,6 +146,25 @@
                     <view key="view" contentMode="scaleToFill" id="qT4-kC-ZhN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJb-q1-1TW">
+                                <rect key="frame" x="162" y="147" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Prompt"/>
+                                <connections>
+                                    <action selector="createPrompt:" destination="yWn-tW-aVw" eventType="touchUpInside" id="PWj-1t-Qfa"/>
+                                    <segue destination="uEl-6a-MYM" kind="presentation" id="tsW-Dn-2mM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWr-ze-igW">
+                                <rect key="frame" x="149" y="388" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Characters"/>
+                                <connections>
+                                    <action selector="createCharcter:" destination="yWn-tW-aVw" eventType="touchUpInside" id="TDt-Bb-IZb"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Create" id="ffC-AU-EyS"/>
@@ -153,6 +172,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4f-0a-zxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1852" y="-199"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ene-yJ-Xvr">
+            <objects>
+                <viewController id="N0a-zl-GRO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="11K-E1-FKK"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uxm-eg-HOK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8yi-MD-oZ7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ewu-AN-a7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2814" y="95"/>
         </scene>
         <!--Join-->
         <scene sceneID="UgC-8h-AjP">
@@ -210,6 +247,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUR-YL-VVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1852" y="-865"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1DN-0G-kz3">
+            <objects>
+                <viewController id="uEl-6a-MYM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aOo-AJ-wNZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="9L1-Ao-wLg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CPE-3S-MdD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9X8-h3-WOH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2814" y="-677"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="O3O-jb-Cdl">

@@ -43,15 +43,35 @@ class RegistrationViewController: UIViewController {
         }
     }
     
-//    func isValidEmail(testStr:String) -> Bool {
-//        print("validate calendar: \(testStr)")
-//        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-//        
-//        if let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx) {
-//            return emailTest.evaluateWithObject(testStr)
-//        }
-//        return false
-//    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        print("validate emilId: \(testStr)")
+        let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: testStr)
+        return result
+    }
+    
+    func isValidPassword(testStr:String) -> Bool {
+        if testStr.characters.count < 7 {
+            //TODO: COde to tell user their password is insufficient
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func checkEmpty(textField:UITextField) -> Bool {
+        if let text = textField.text, !text.isEmpty
+        {
+            //do something if it's not empty
+            return false
+        } else {
+            //TODO: Code to tell user field is empty
+            //Return true if empty
+            return true
+        }
+    }
  
     func signIn() {
         let user = PFUser()
@@ -70,7 +90,36 @@ class RegistrationViewController: UIViewController {
         })
     }
     
+    
     @IBAction func registerBtnClk(_ sender: UIButton) {
+        
+        var error = false
+        
+        if checkEmpty(textField: firstNameField) || checkEmpty(textField: lastNameField) {
+            print("First Name Field or Password are empty")
+            error = true
+        }
+
+        if !checkEmpty(textField: emailField) {
+            let emailCheck = isValidEmail(testStr: emailField.text! as String)
+            if !emailCheck {
+                //Code to deal with invalid email
+                error = true
+            }
+        }
+        if !checkEmpty(textField: passwordField) {
+            let passwordCHeck = isValidPassword(testStr: passwordField.text! as String)
+            if !passwordCHeck {
+                //Code to deal with invalid password
+                error = true
+            }
+        }
+        if error {
+            return
+        }
+        
+       
         signIn()
     }
+    
 }
