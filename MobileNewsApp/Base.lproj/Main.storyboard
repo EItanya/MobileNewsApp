@@ -153,7 +153,7 @@
                                 <state key="normal" title="Prompt"/>
                                 <connections>
                                     <action selector="createPrompt:" destination="yWn-tW-aVw" eventType="touchUpInside" id="PWj-1t-Qfa"/>
-                                    <segue destination="uEl-6a-MYM" kind="presentation" id="tsW-Dn-2mM"/>
+                                    <segue destination="gcJ-7A-ZQ3" kind="show" id="HHL-oH-0Ar"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWr-ze-igW">
@@ -172,6 +172,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4f-0a-zxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1852" y="-199"/>
+        </scene>
+        <!--Prompt View Controller-->
+        <scene sceneID="00o-Se-1bF">
+            <objects>
+                <viewController id="gcJ-7A-ZQ3" customClass="PromptViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hR6-ha-Pah"/>
+                        <viewControllerLayoutGuide type="bottom" id="zWo-kF-JFV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nhk-mO-HFH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOO-OA-2qj">
+                                <rect key="frame" x="164" y="580" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <action selector="createStory:" destination="gcJ-7A-ZQ3" eventType="touchUpInside" id="im1-Sg-nbs"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KVl-NB-LZN">
+                                <rect key="frame" x="0.0" y="62" width="375" height="491"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NFM-ys-X6x">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NFM-ys-X6x" id="3eA-SG-a6R">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BioLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ue-wT-Cr7">
+                                                    <rect key="frame" x="29" y="11" width="66" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Iq-V9-yZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2813.5999999999999" y="-572.56371814092961"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ene-yJ-Xvr">
@@ -248,24 +300,6 @@
             </objects>
             <point key="canvasLocation" x="1852" y="-865"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="1DN-0G-kz3">
-            <objects>
-                <viewController id="uEl-6a-MYM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aOo-AJ-wNZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="9L1-Ao-wLg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CPE-3S-MdD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9X8-h3-WOH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2814" y="-677"/>
-        </scene>
         <!--Tab View Controller-->
         <scene sceneID="O3O-jb-Cdl">
             <objects>
@@ -288,6 +322,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DBF-ZB-yri"/>
+        <segue reference="Rf0-qC-Yyh"/>
     </inferredMetricsTieBreakers>
 </document>

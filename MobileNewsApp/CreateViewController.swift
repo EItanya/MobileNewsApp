@@ -8,8 +8,6 @@
 
 import UIKit
 
-import UIKit
-
 class CreateViewController: UIViewController {
     
     var userId: String?
