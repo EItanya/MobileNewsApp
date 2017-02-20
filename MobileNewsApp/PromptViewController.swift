@@ -51,14 +51,17 @@ class PromptViewController: UIViewController, UITableViewDataSource, UITableView
                         let x = json["data"] as! [String: Any]
                         let subresults = x["children"] as! [Any]
                         for (value) in subresults {
+                            //Nest JSON sucks
                             let promptObj =  value as! [String: Any]
                             let promptData = promptObj["data"] as! [String: Any]
                             let promptTemp = promptData["title"] as! String
-                            let promptString = promptTemp.substring(from: promptTemp.index(promptTemp.startIndex, offsetBy: 4))
+                            let promptString = self.cleanString(prompt: promptTemp)
+                            
                             self.prompts.append(promptString)
-                            DispatchQueue.main.async {
-                                self.tableView?.reloadData()
-                            }
+                        }
+                        self.prompts.append("Create Your Own Story...")
+                        DispatchQueue.main.async {
+                            self.tableView?.reloadData()
                         }
                         
                     }
@@ -73,7 +76,16 @@ class PromptViewController: UIViewController, UITableViewDataSource, UITableView
     
     //Function to deal with create story
     @IBAction func createStory(_ sender: Any) {
-        
+
+
+    }
+    
+    func cleanString(prompt: String) -> String {
+        //Remove [WP] from strings
+        var promptString = prompt.substring(from: prompt.index(prompt.startIndex, offsetBy: 4))
+        //Check for initial space and remove it
+        if promptString[promptString.startIndex] == " " { promptString.remove(at: promptString.startIndex) }
+        return promptString
     }
     
     //Function to create story in DB
