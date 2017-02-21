@@ -176,9 +176,12 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOO-OA-2qj">
-                                <rect key="frame" x="164" y="580" width="46" height="30"/>
+                                <rect key="frame" x="156" y="580" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Create"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="createStory:" destination="yWn-tW-aVw" eventType="touchUpInside" id="Tdm-h0-Up3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -186,6 +189,7 @@
                     <tabBarItem key="tabBarItem" title="Create" id="ffC-AU-EyS"/>
                     <connections>
                         <outlet property="tableView" destination="KVl-NB-LZN" id="bnF-Xf-0Or"/>
+                        <segue destination="gcJ-7A-ZQ3" kind="show" identifier="createStorySegue" id="9zN-5C-cge"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4f-0a-zxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,12 +207,48 @@
                     <view key="view" contentMode="scaleToFill" id="Nhk-mO-HFH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="c6p-BZ-cOw">
+                                <rect key="frame" x="67" y="202" width="240" height="244"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3s9-iT-fjG">
+                                <rect key="frame" x="67" y="68" width="240" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Genre" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-wz-wgD">
+                                <rect key="frame" x="67" y="127" width="240" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5h-mQ-Emb">
+                                <rect key="frame" x="164" y="524" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create"/>
+                                <connections>
+                                    <action selector="createStoryButton:" destination="gcJ-7A-ZQ3" eventType="touchUpInside" id="WY5-yQ-py8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.23987345829556317" green="0.62821810233160624" blue="0.30768979953739478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="genreField" destination="vpS-wz-wgD" id="zIb-r4-a9V"/>
+                        <outlet property="storyField" destination="c6p-BZ-cOw" id="ONN-jD-YaJ"/>
+                        <outlet property="titleField" destination="3s9-iT-fjG" id="p8Z-Qz-VTu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Iq-V9-yZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2813.5999999999999" y="-572.56371814092961"/>
+            <point key="canvasLocation" x="2916" y="-199.25037481259372"/>
         </scene>
         <!--Join-->
         <scene sceneID="UgC-8h-AjP">
@@ -289,6 +329,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Rf0-qC-Yyh"/>
+        <segue reference="DBF-ZB-yri"/>
     </inferredMetricsTieBreakers>
 </document>

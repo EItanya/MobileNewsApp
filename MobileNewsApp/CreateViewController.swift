@@ -10,6 +10,7 @@ import UIKit
 
 class CreateViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+
     var selecedPrompt: String = ""
     var prompts: [String] = []
     
@@ -79,11 +80,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         if promptString[promptString.startIndex] == " " { promptString.remove(at: promptString.startIndex) }
         return promptString
     }
-    
-    //Function to create story in DB
-    func createStory() {
-        
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.prompts.count
@@ -101,6 +98,11 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selecedPrompt = self.prompts[indexPath.row]
     }
+    
+    //Function to segue into creation screen
+    @IBAction func createStory(_ sender: Any) {
+        self.performSegue(withIdentifier: "createStorySegue", sender: self)
+    }
 
     
     override func didReceiveMemoryWarning() {
@@ -108,15 +110,18 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "createStorySegue" {
+            let promptController = segue.destination as! PromptViewController
+            promptController.selecedPrompt = self.selecedPrompt
+        }
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
      }
-     */
     
 }
 

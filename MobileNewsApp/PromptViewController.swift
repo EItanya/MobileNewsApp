@@ -9,104 +9,38 @@
 import UIKit
 import Parse
 
-class PromptViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PromptViewController: UIViewController {
     
 
     var selecedPrompt: String = ""
-    var prompts: [String] = []
-    private var tableView: UITableView?
+    
+    @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var genreField: UITextField!
+    @IBOutlet weak var storyField: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Setup Table View
-        tableView = UITableView(frame: CGRect(x: 10, y: 50, width: self.view.frame.width, height:500), style: UITableViewStyle.plain)
-        
-        tableView?.dataSource = self
-        tableView?.delegate = self
-        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.estimatedRowHeight = 200
-        super.view.addSubview(tableView!)
-        
-        fetchData()
-        
         // Do any additional setup after loading the view.
     }
     
-    func fetchData() {
-        let config = URLSessionConfiguration.default // Session Configuration
-        let session = URLSession(configuration: config) // Load configuration into Session
-        let url = URL(string: "https://www.reddit.com/r/writingprompts/top.json?limit=5")!
-        
-        let task = session.dataTask(with: url, completionHandler: {
-            (data, response, error) in
-            if error != nil {
-                print("Error getting reddit data:", error ?? "")
-            } else {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
-                    {
-                        //Implement your logic
-                        //print(json)
-                        let x = json["data"] as! [String: Any]
-                        let subresults = x["children"] as! [Any]
-                        for (value) in subresults {
-                            //Nest JSON sucks
-                            let promptObj =  value as! [String: Any]
-                            let promptData = promptObj["data"] as! [String: Any]
-                            let promptTemp = promptData["title"] as! String
-                            let promptString = self.cleanString(prompt: promptTemp)
-                            
-                            self.prompts.append(promptString)
-                        }
-                        self.prompts.append("Create Your Own Story...")
-                        DispatchQueue.main.async {
-                            self.tableView?.reloadData()
-                        }
-                        
-                    }
-                } catch {
-                    print("error in JSONSerialization")
-                    
-                }
-            }
-        })
-        task.resume()
-    }
-    
-    //Function to deal with create story
-    @IBAction func createStory(_ sender: Any) {
-
-
-    }
-    
-    func cleanString(prompt: String) -> String {
-        //Remove [WP] from strings
-        var promptString = prompt.substring(from: prompt.index(prompt.startIndex, offsetBy: 4))
-        //Check for initial space and remove it
-        if promptString[promptString.startIndex] == " " { promptString.remove(at: promptString.startIndex) }
-        return promptString
-    }
-    
-    //Function to create story in DB
+    //Function to create function in DB
     func createStory() {
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.prompts.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = self.prompts[indexPath.row]
-        return cell
-    }
-    
-    //Code that is executed when a table cell is selected
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selecedPrompt = self.prompts[indexPath.row]
+    func checkEmpty(textField:UITextField) -> Bool {
+        if let text = textField.text, !text.isEmpty
+        {
+            //do something if it's not empty
+            return false
+        } else {
+            //TODO: Code to tell user field is empty
+            //Return true if empty
+            return true
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,6 +48,9 @@ class PromptViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func createStoryButton(_ sender: Any) {
+        //Check here that all of the fields are filled out
+    }
 
     
     /*
