@@ -28,19 +28,70 @@ class PromptViewController: UIViewController {
     //Function to create function in DB
     func createStory() {
         
+        //hey current user
+        let user: PFUser = PFUser.current()!
+        
+        //Set up story object to be saved
+        let story = PFObject(className: "Story")
+        story["genre"] = genreField.text
+        story["title"] = titleField.text
+        story["prompt"] = self.selecedPrompt
+        story["created_by"] = user.objectId! as String
+        
+        
+        //Setup entry object to be saved
+        let entry = PFObject(className: "Entry")
+        entry["text"] = storyField.text
+        entry["created_by"] = user.objectId! as String
+        
+        
+        let objectArray : [PFObject] = [story, entry]
+        
+        //Save entry and story in Background
+        PFObject.saveAll(inBackground: objectArray, block: {(success: Bool, error: Error?) -> Void in
+            if success {
+                print("Entry and Story saved to DB")
+                //Call Cloud function to align data in DB
+                //Make segue to story section
+            }
+            else {
+                print("Error saving to DB", error ?? "")
+            }
+        })
+        
+        
+        
+        
+        
+        
+//        entry.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
+//            if success {
+//                print(story.objectId)
+//                story["first_entry"] = story.objectId
+//                print("entry saved properly to DB")
+//                story.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
+//                    if success {
+//                        print("Story saved successfully to DB")
+//                    }
+//                })
+//            }
+//            else {
+//                print("Error saving Entry to DB", error ?? "")
+//            }
+//        })
+        
+        
     }
     
     
     func checkEmpty(textField:UITextField) -> Bool {
-        if let text = textField.text, !text.isEmpty
-        {
-            //do something if it's not empty
-            return false
-        } else {
-            //TODO: Code to tell user field is empty
-            //Return true if empty
-            return true
-        }
+        if let text = textField.text, !text.isEmpty { return false }
+        else {  return true }
+    }
+    
+    func checkEmptyView(textField:UITextView) -> Bool {
+        if let text = textField.text, !text.isEmpty { return false }
+        else {  return true }
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,6 +101,23 @@ class PromptViewController: UIViewController {
     
     @IBAction func createStoryButton(_ sender: Any) {
         //Check here that all of the fields are filled out
+        var error = false
+        if checkEmpty(textField: titleField) {
+            print("text Field is empty")
+            error = true
+        }
+        if checkEmpty(textField: genreField) {
+            print("genre field is empty")
+            error = true
+        }
+        if checkEmptyView(textField: storyField) {
+            print("text View is empty")
+            error = true
+        }
+        if error { return }
+        
+        createStory()
+        
     }
 
     
