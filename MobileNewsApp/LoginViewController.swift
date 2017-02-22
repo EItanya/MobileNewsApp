@@ -44,7 +44,8 @@ class LoginViewController: UIViewController {
             }
             
             print("Logged in successfully with Username")
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            var storyboard = UIStoryboard(name: "User", bundle: nil)
+            var controller = storyboard.instantiateViewControllerWithIdentifier("User") as TabViewController
         })
         
     }
@@ -80,7 +81,8 @@ class LoginViewController: UIViewController {
                         let userEmail:String? = data["email"] as? String
                         
                         self.userId = userId
-                        self.performSegue(withIdentifier: "loginSegue", sender: self)
+                        var storyboard = UIStoryboard(name: "User", bundle: nil)
+                        var controller = storyboard.instantiateViewControllerWithIdentifier("User") as TabViewController
                         
                         
                         //Grab image URL, JSON is tricky in swift 3
