@@ -44,8 +44,10 @@ class LoginViewController: UIViewController {
             }
             
             print("Logged in successfully with Username")
-            var storyboard = UIStoryboard(name: "User", bundle: nil)
-            var controller = storyboard.instantiateViewControllerWithIdentifier("User") as TabViewController
+            let storyboard = UIStoryboard(name: "User", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
+            
+            self.present(controller, animated: true, completion: nil)
         })
         
     }
@@ -81,9 +83,10 @@ class LoginViewController: UIViewController {
                         let userEmail:String? = data["email"] as? String
                         
                         self.userId = userId
-                        var storyboard = UIStoryboard(name: "User", bundle: nil)
-                        var controller = storyboard.instantiateViewControllerWithIdentifier("User") as TabViewController
+                        let storyboard = UIStoryboard(name: "User", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
                         
+                        self.present(controller, animated: true, completion: nil)
                         
                         //Grab image URL, JSON is tricky in swift 3
                         if let image = data["picture"] as? [String: Any] {

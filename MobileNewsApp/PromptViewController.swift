@@ -17,26 +17,27 @@ class PromptViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var genreField: UITextField!
     @IBOutlet weak var storyField: UITextView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.color = UIColor.red
         
         // Do any additional setup after loading the view.
     }
     
+    
     //Function to create function in DB
     func createStory() {
         
+        activityIndicator.startAnimating()
+        
         //hey current user
         let user: PFUser = PFUser.current()!
-        
-        //Set up story object to be saved
-        let story = PFObject(className: "Story")
-        story["genre"] = genreField.text
-        story["title"] = titleField.text
-        story["prompt"] = self.selecedPrompt
-        story["created_by"] = user.objectId! as String
         
         let storyDict : [String: Any] = [
             "genre" : genreField.text!,
@@ -50,34 +51,18 @@ class PromptViewController: UIViewController {
             "created_by": user.objectId! as String
         ]
         
-        
-        //Setup entry object to be saved
-        let entry = PFObject(className: "Entry")
-        entry["text"] = storyField.text
-        entry["created_by"] = user.objectId! as String
-        
-        
-        let objectArray : [PFObject] = [story, entry]
-        
         //Possible change to cloud code to do all in one call
         PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "story": storyDict], block: {
             (response: Any?, error: Error?) -> Void in
-            print("Called Cloud Code")
-            
+            //Edit later to include message about server issues.
+            if error != nil {
+                print("Error saving data to DB:", error ?? "")
+            } else {
+                self.activityIndicator.stopAnimating()
+                print(response as! String)
+                //Code to segue
+            }
         })
-        
-        
-        //Save entry and story in Background
-//        PFObject.saveAll(inBackground: objectArray, block: {(success: Bool, error: Error?) -> Void in
-//            if success {
-//                print("Entry and Story saved to DB")
-//                //Call Cloud function to align data in DB
-//                //Make segue to story section
-//            }
-//            else {
-//                print("Error saving to DB", error ?? "")
-//            }
-//        })
         
     }
     
@@ -114,7 +99,10 @@ class PromptViewController: UIViewController {
         }
         if error { return }
         
+        //
         createStory()
+        
+        //Segue to next screen, probably
         
     }
 
