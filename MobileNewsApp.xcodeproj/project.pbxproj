@@ -23,6 +23,10 @@
 		15FBA2101E4E80FC00DDEEB7 /* MobileNewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FBA20F1E4E80FC00DDEEB7 /* MobileNewsAppTests.swift */; };
 		15FBA21B1E4E80FC00DDEEB7 /* MobileNewsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FBA21A1E4E80FC00DDEEB7 /* MobileNewsAppUITests.swift */; };
 		8B06EA141E5DF571002ADFE5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA131E5DF571002ADFE5 /* User.storyboard */; };
+		8B06EA1A1E5DFC8A002ADFE5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA191E5DFC8A002ADFE5 /* Home.storyboard */; };
+		8B06EA1C1E5DFCC9002ADFE5 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA1B1E5DFCC9002ADFE5 /* Create.storyboard */; };
+		8B06EA1E1E5DFCED002ADFE5 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA1D1E5DFCED002ADFE5 /* Join.storyboard */; };
+		8B06EA201E5DFD23002ADFE5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA1F1E5DFD23002ADFE5 /* Settings.storyboard */; };
 		8F011B04A78A3B1BAA75FBBA /* Pods_MobileNewsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2914B95F337E9D34D293644E /* Pods_MobileNewsAppTests.framework */; };
 		A193AA92999A53C3958BE05D /* Pods_MobileNewsAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEAA3E88429F8186911C01C /* Pods_MobileNewsAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -73,6 +77,10 @@
 		5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileNewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5DE0C5E8A1C5E9C40ADDF6 /* Pods-MobileNewsAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsAppUITests/Pods-MobileNewsAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B06EA131E5DF571002ADFE5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		8B06EA191E5DFC8A002ADFE5 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		8B06EA1B1E5DFCC9002ADFE5 /* Create.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
+		8B06EA1D1E5DFCED002ADFE5 /* Join.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
+		8B06EA1F1E5DFD23002ADFE5 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		DA8B71A0BA28F897E9E0EDF4 /* Pods-MobileNewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsApp/Pods-MobileNewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FCEAA3E88429F8186911C01C /* Pods_MobileNewsAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileNewsAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,11 +117,12 @@
 			isa = PBXGroup;
 			children = (
 				8B06EA131E5DF571002ADFE5 /* User.storyboard */,
-				15422E781E590A81002C9BD4 /* SettingsViewController.swift */,
-				15422E721E58FECB002C9BD4 /* TabViewController.swift */,
 				15422E741E58FFB1002C9BD4 /* HomeViewController.swift */,
-				07452F3A1E595BAD00B187C3 /* CreateViewController.swift */,
-				0782EAC61E5A61FB00514F45 /* PromptViewController.swift */,
+				15422E721E58FECB002C9BD4 /* TabViewController.swift */,
+				8B06EA151E5DFB96002ADFE5 /* Home */,
+				8B06EA161E5DFBA1002ADFE5 /* Create */,
+				8B06EA171E5DFBAB002ADFE5 /* Join */,
+				8B06EA181E5DFBB3002ADFE5 /* Settings */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
@@ -193,6 +202,41 @@
 				3C68A11C736A33E6C003678B /* Pods-MobileNewsAppUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8B06EA151E5DFB96002ADFE5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8B06EA191E5DFC8A002ADFE5 /* Home.storyboard */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		8B06EA161E5DFBA1002ADFE5 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				8B06EA1B1E5DFCC9002ADFE5 /* Create.storyboard */,
+				07452F3A1E595BAD00B187C3 /* CreateViewController.swift */,
+				0782EAC61E5A61FB00514F45 /* PromptViewController.swift */,
+			);
+			name = Create;
+			sourceTree = "<group>";
+		};
+		8B06EA171E5DFBAB002ADFE5 /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				8B06EA1D1E5DFCED002ADFE5 /* Join.storyboard */,
+			);
+			name = Join;
+			sourceTree = "<group>";
+		};
+		8B06EA181E5DFBB3002ADFE5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8B06EA1F1E5DFD23002ADFE5 /* Settings.storyboard */,
+				15422E781E590A81002C9BD4 /* SettingsViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		EE475732A5002EF738D5547A /* Frameworks */ = {
@@ -322,8 +366,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				15FBA2051E4E80FB00DDEEB7 /* LaunchScreen.storyboard in Resources */,
+				8B06EA1A1E5DFC8A002ADFE5 /* Home.storyboard in Resources */,
 				8B06EA141E5DF571002ADFE5 /* User.storyboard in Resources */,
+				8B06EA201E5DFD23002ADFE5 /* Settings.storyboard in Resources */,
 				15FBA2021E4E80FB00DDEEB7 /* Assets.xcassets in Resources */,
+				8B06EA1C1E5DFCC9002ADFE5 /* Create.storyboard in Resources */,
+				8B06EA1E1E5DFCED002ADFE5 /* Join.storyboard in Resources */,
 				15FBA1FD1E4E80FB00DDEEB7 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
