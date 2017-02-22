@@ -38,6 +38,18 @@ class PromptViewController: UIViewController {
         story["prompt"] = self.selecedPrompt
         story["created_by"] = user.objectId! as String
         
+        let storyDict : [String: Any] = [
+            "genre" : genreField.text!,
+            "title" : titleField.text!,
+            "prompt": self.selecedPrompt,
+            "created_by": user.objectId! as String
+        ]
+        
+        let entryDict : [String: Any] = [
+            "text": storyField.text,
+            "created_by": user.objectId! as String
+        ]
+        
         
         //Setup entry object to be saved
         let entry = PFObject(className: "Entry")
@@ -47,39 +59,25 @@ class PromptViewController: UIViewController {
         
         let objectArray : [PFObject] = [story, entry]
         
-        //Save entry and story in Background
-        PFObject.saveAll(inBackground: objectArray, block: {(success: Bool, error: Error?) -> Void in
-            if success {
-                print("Entry and Story saved to DB")
-                //Call Cloud function to align data in DB
-                //Make segue to story section
-            }
-            else {
-                print("Error saving to DB", error ?? "")
-            }
+        //Possible change to cloud code to do all in one call
+        PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "story": storyDict], block: {
+            (response: Any?, error: Error?) -> Void in
+            print("Called Cloud Code")
+            
         })
         
         
-        
-        
-        
-        
-//        entry.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
+        //Save entry and story in Background
+//        PFObject.saveAll(inBackground: objectArray, block: {(success: Bool, error: Error?) -> Void in
 //            if success {
-//                print(story.objectId)
-//                story["first_entry"] = story.objectId
-//                print("entry saved properly to DB")
-//                story.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
-//                    if success {
-//                        print("Story saved successfully to DB")
-//                    }
-//                })
+//                print("Entry and Story saved to DB")
+//                //Call Cloud function to align data in DB
+//                //Make segue to story section
 //            }
 //            else {
-//                print("Error saving Entry to DB", error ?? "")
+//                print("Error saving to DB", error ?? "")
 //            }
 //        })
-        
         
     }
     
