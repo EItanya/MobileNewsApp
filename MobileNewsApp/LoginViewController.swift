@@ -134,7 +134,36 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     @IBOutlet weak var fullyRegisterAccountButton: LoginScreenButton!
     @IBAction func fullyRegisterAccount(_ sender: Any) {
         //Code that is now in register.swift Is probably gonna move into a seperate file
-        //And will be called from htere
+        //And will be called from here
+        var error = false
+        
+        if checkEmpty(textField: firstNameField) || checkEmpty(textField: lastNameField) {
+            print("First Name Field or Password are empty")
+            error = true
+        }
+        
+        if checkEmpty(textField: emailField) {
+//            let emailCheck = isValidEmail(testStr: emailField.text! as String)
+//            if !emailCheck {
+//                //Code to deal with invalid email
+//                error = true
+//            }
+            print("Email Field is empty")
+            error = true
+        }
+        if !checkEmpty(textField: passwordField) {
+            if (passwordField.text?.characters.count)! < 7 {
+                //Code to deal with invalid password
+                print("Password is too short")
+                error = true
+            }
+        } else { error = true }
+        if error {
+            return
+        }
+        
+        signIn()
+
     }
     @IBOutlet weak var backToLoginButton: LoginScreenButton!
 
@@ -223,6 +252,46 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                 print("Uh oh. The user cancelled the Facebook login.")
             }
             
+        })
+    }
+    
+//    func isValidEmail(testStr:String) -> Bool {
+//        print("validate emilId: \(testStr)")
+//        let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
+//        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+//        let result = emailTest.evaluate(with: testStr)
+//        return result
+//    }
+    
+
+    
+    func checkEmpty(textField:UITextField) -> Bool {
+        if let text = textField.text, !text.isEmpty
+        {
+            //do something if it's not empty
+            return false
+        } else {
+            //TODO: Code to tell user field is empty
+            //Return true if empty
+            return true
+        }
+    }
+    
+    func signIn() {
+        let user = PFUser()
+        user.username = emailField.text! as String
+        user.password = passwordField.text! as String
+        user.email = emailField.text! as String
+        user["first_name"] = firstNameField.text! as String
+        user["last_name"] = lastNameField.text! as String
+        
+        user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
+            if error != nil {
+                print("Error is ", error ?? "")
+                return
+            }
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            print("User is added successfully")
         })
     }
     
