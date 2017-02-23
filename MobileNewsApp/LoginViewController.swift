@@ -21,6 +21,11 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
+    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var lastNameField: UITextField!
+    
+    @IBOutlet weak var logInMessage: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,12 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "login.jpg")
         self.view.insertSubview(backgroundImage, at: 0)
+        
+        self.firstNameField.center.x += self.view.bounds.width
+        self.lastNameField.center.x += self.view.bounds.width
+        self.fullyRegisterAccountButton.center.x += self.view.bounds.width
+        self.logInMessage.center.x -= self.view.bounds.width
+        self.backToLoginButton.center.x += self.view.frame.width
 
         // Do any additional setup after loading the view.
     }
@@ -54,6 +65,21 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     }
     
+    func logInMessageLoad() {
+        UIView.animate(withDuration: 1.0,
+                       delay: 0,
+                       usingSpringWithDamping: CGFloat(0.20),
+                       initialSpringVelocity: CGFloat(6.0),
+                       options: UIViewAnimationOptions.allowUserInteraction,
+                       animations: {
+                        self.logInMessage.center.x += self.view.bounds.width
+        },
+                       completion: { Void in()  }
+        )
+        
+        
+    }
+    
     @IBAction func login(_ sender: Any) {
         
         animateButton(button: self.loginButton)
@@ -75,6 +101,55 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 //            self.present(controller, animated: true, completion: nil)
             self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
+        
+    }
+    
+    @IBOutlet weak var registerButton: UIButton!
+    @IBAction func register(_ sender: Any) {
+        
+        //Might have to add a segue here in animations don't work
+//        UIView.animate(withDuration: 1.0, animations: {
+//            self.registerButton.center.x -= self.view.frame.width
+//            self.loginButton.center.x -= self.view.frame.width
+//            self.facebookLoginButton.center.x -= self.view.frame.width
+//            
+//
+//        })
+        
+        UIView.animate(withDuration: 1.0, delay: 0, animations: {
+
+            self.registerButton.center.x -= self.view.frame.width
+            self.loginButton.center.x -= self.view.frame.width
+            self.facebookLoginButton.center.x -= self.view.frame.width
+            self.firstNameField.center.x -= self.view.frame.width
+            self.lastNameField.center.x -= self.view.frame.width
+            self.fullyRegisterAccountButton.center.x -= self.view.bounds.width
+            self.backToLoginButton.center.x -= self.view.frame.width
+        }, completion: nil)
+        
+    }
+    
+    
+    
+    @IBOutlet weak var fullyRegisterAccountButton: LoginScreenButton!
+    @IBAction func fullyRegisterAccount(_ sender: Any) {
+        //Code that is now in register.swift Is probably gonna move into a seperate file
+        //And will be called from htere
+    }
+    @IBOutlet weak var backToLoginButton: LoginScreenButton!
+
+    @IBAction func backToLogin(_ sender: Any) {
+        //Send the register page back into the side
+        UIView.animate(withDuration: 1.0, delay: 0, animations: {
+            
+            self.registerButton.center.x += self.view.frame.width
+            self.loginButton.center.x += self.view.frame.width
+            self.facebookLoginButton.center.x += self.view.frame.width
+            self.firstNameField.center.x += self.view.frame.width
+            self.lastNameField.center.x += self.view.frame.width
+            self.fullyRegisterAccountButton.center.x += self.view.bounds.width
+            self.backToLoginButton.center.x += self.view.frame.width
+        }, completion: nil)
         
     }
 

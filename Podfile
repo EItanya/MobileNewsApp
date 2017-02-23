@@ -11,7 +11,8 @@ target 'MobileNewsApp' do
     pod 'FBSDKLoginKit'
     pod 'Parse'
     pod 'ParseFacebookUtilsV4'
-    
+
+
     
   target 'MobileNewsAppTests' do
     inherit! :search_paths

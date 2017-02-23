@@ -11,8 +11,8 @@ import FBSDKLoginKit
 import Parse
 import ParseFacebookUtilsV4
 
-class RegistrationViewController: UIViewController {
-
+class NewUserViewController: UIViewController {
+    
     var userId: String?
     
     @IBOutlet var emailField: UITextField!
@@ -27,16 +27,16 @@ class RegistrationViewController: UIViewController {
         backgroundImage.image = UIImage(named: "login.jpg")
         self.view.insertSubview(backgroundImage, at: 0)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -76,7 +76,7 @@ class RegistrationViewController: UIViewController {
             return true
         }
     }
- 
+    
     func signIn() {
         let user = PFUser()
         user.username = emailField.text! as String
@@ -103,7 +103,7 @@ class RegistrationViewController: UIViewController {
             print("First Name Field or Password are empty")
             error = true
         }
-
+        
         if !checkEmpty(textField: emailField) {
             let emailCheck = isValidEmail(testStr: emailField.text! as String)
             if !emailCheck {

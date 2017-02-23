@@ -65,18 +65,70 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Don't have an account?"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="UIe-eT-Tn6"/>
+                                    <action selector="register:" destination="PH3-hY-Oa6" eventType="touchUpInside" id="7yF-2L-489"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Logging In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQf-ip-c4d">
+                                <rect key="frame" x="88" y="116" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qpf-hQ-1Ii">
+                                <rect key="frame" x="20" y="312" width="339" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G0v-R6-h5O">
+                                <rect key="frame" x="20" y="370" width="339" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fN4-kV-65w" customClass="LoginScreenButton" customModule="MobileNewsApp" customModuleProvider="target">
+                                <rect key="frame" x="81" y="433" width="214" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.38412888256540023" blue="0.52508480322562323" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Register Account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fullyRegisterAccount:" destination="PH3-hY-Oa6" eventType="touchUpInside" id="Xve-FB-8Ad"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0g-GJ-KjL" customClass="LoginScreenButton" customModule="MobileNewsApp" customModuleProvider="target">
+                                <rect key="frame" x="80" y="493" width="214" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.3841288826" blue="0.52508480319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Oops, I have an account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToLogin:" destination="PH3-hY-Oa6" eventType="touchUpInside" id="Pbj-pl-Hch"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="backToLoginButton" destination="b0g-GJ-KjL" id="58A-a3-O4R"/>
                         <outlet property="emailField" destination="9oa-RK-nPf" id="keC-cW-8Vy"/>
                         <outlet property="facebookLoginButton" destination="e2P-ia-rZ6" id="Jap-sL-RRC"/>
+                        <outlet property="firstNameField" destination="qpf-hQ-1Ii" id="6bY-QN-6fE"/>
+                        <outlet property="fullyRegisterAccountButton" destination="fN4-kV-65w" id="QV4-ai-I8P"/>
+                        <outlet property="lastNameField" destination="G0v-R6-h5O" id="iip-UQ-ZpS"/>
+                        <outlet property="logInMessage" destination="BQf-ip-c4d" id="zke-A2-nX0"/>
                         <outlet property="loginButton" destination="Tht-2x-bsA" id="Vrv-by-ATj"/>
                         <outlet property="passwordField" destination="y7b-VT-0oj" id="UgO-Yc-Nah"/>
-                        <segue destination="ryt-YT-ud1" kind="show" identifier="loginSegue" id="qRn-aO-Qiy"/>
+                        <outlet property="registerButton" destination="Ke4-MA-LSA" id="3j3-eO-98d"/>
+                        <segue destination="ryt-YT-ud1" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="qRn-aO-Qiy"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="registrationSegue" modalTransitionStyle="crossDissolve" id="han-bq-njo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7S0-cS-NBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,6 +199,7 @@
                         <outlet property="firstNameField" destination="84i-2A-OVF" id="QZK-DV-Ep6"/>
                         <outlet property="lastNameField" destination="o0z-IX-dsU" id="hif-8H-C1i"/>
                         <outlet property="passwordField" destination="w6s-78-qYw" id="GR8-9y-5ih"/>
+                        <segue destination="ryt-YT-ud1" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="2hB-9d-JON"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -154,4 +207,7 @@
             <point key="canvasLocation" x="-18.399999999999999" y="929.68515742128943"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qRn-aO-Qiy"/>
+    </inferredMetricsTieBreakers>
 </document>
