@@ -76,11 +76,20 @@
                         <outlet property="facebookLoginButton" destination="e2P-ia-rZ6" id="Jap-sL-RRC"/>
                         <outlet property="loginButton" destination="Tht-2x-bsA" id="Vrv-by-ATj"/>
                         <outlet property="passwordField" destination="y7b-VT-0oj" id="UgO-Yc-Nah"/>
+                        <segue destination="ryt-YT-ud1" kind="show" identifier="loginSegue" id="qRn-aO-Qiy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7S0-cS-NBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-18.399999999999999" y="115.59220389805098"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="Ej5-nl-a2d">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" id="ryt-YT-ud1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ibj-Ja-Ljn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="770" y="115"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="tne-QT-ifu">

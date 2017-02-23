@@ -69,10 +69,11 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             }
             
             print("Logged in successfully with Username")
-            let storyboard = UIStoryboard(name: "User", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
-            
-            self.present(controller, animated: true, completion: nil)
+//            let storyboard = UIStoryboard(name: "User", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
+//            
+//            self.present(controller, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
         
     }
