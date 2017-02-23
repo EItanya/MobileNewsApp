@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class SettingsViewController: UIViewController {
 
@@ -21,6 +22,11 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func logoutButton(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+        PFUser.logOutInBackground()
+    }
 
     /*
     // MARK: - Navigation

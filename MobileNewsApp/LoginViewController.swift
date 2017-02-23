@@ -38,7 +38,25 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         // Dispose of any resources that can be recreated.
     }
     
+    func animateButton(button: UIButton) {
+        button.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        
+        UIView.animate(withDuration: 2.0,
+                       delay: 0,
+                       usingSpringWithDamping: CGFloat(0.20),
+                       initialSpringVelocity: CGFloat(6.0),
+                       options: UIViewAnimationOptions.allowUserInteraction,
+                       animations: {
+                       button.transform = CGAffineTransform.identity
+        },
+                       completion: { Void in()  }
+        )
+
+    }
+    
     @IBAction func login(_ sender: Any) {
+        
+        animateButton(button: self.loginButton)
         
         let email = emailField.text! as String
         let password = passwordField.text! as String
@@ -61,6 +79,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     @IBAction func facebookLogin(_ sender: Any) {
         
+        animateButton(button: self.facebookLoginButton)
         
         PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"], block: {
             (user: PFUser?, error: Error?) -> Void in
