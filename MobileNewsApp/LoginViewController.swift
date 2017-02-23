@@ -12,19 +12,26 @@ import Parse
 import ParseFacebookUtilsV4
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     var userId: String?
 
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var facebookLoginButton: LoginScreenButton!
     
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "login.jpg")
+        self.view.insertSubview(backgroundImage, at: 0)
 
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

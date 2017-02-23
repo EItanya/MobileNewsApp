@@ -10,6 +10,8 @@
 		07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07452F3A1E595BAD00B187C3 /* CreateViewController.swift */; };
 		077CCCF472A0C5165376A82E /* Pods_MobileNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */; };
 		0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782EAC61E5A61FB00514F45 /* PromptViewController.swift */; };
+		07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */; };
+		07FA139C1E5E66CA0075F857 /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07FA139B1E5E66CA0075F857 /* login.jpg */; };
 		15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E721E58FECB002C9BD4 /* TabViewController.swift */; };
 		15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E741E58FFB1002C9BD4 /* HomeViewController.swift */; };
 		15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E761E590278002C9BD4 /* LoginViewController.swift */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		0782EAC61E5A61FB00514F45 /* PromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
+		07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenButton.swift; sourceTree = "<group>"; };
+		07FA139B1E5E66CA0075F857 /* login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = login.jpg; path = "../../Animated Login Screen/login.jpg"; sourceTree = "<group>"; };
 		0B0AC99EA3695AA18C3EF809 /* Pods-MobileNewsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsAppTests/Pods-MobileNewsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		15422E721E58FECB002C9BD4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		15422E741E58FFB1002C9BD4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				15FBA1FB1E4E80FB00DDEEB7 /* Login.storyboard */,
 				15E99A4F1E4E9F6100B736B4 /* RegistrationViewController.swift */,
 				15422E761E590278002C9BD4 /* LoginViewController.swift */,
+				07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */,
+				07FA139B1E5E66CA0075F857 /* login.jpg */,
 			);
 			name = Login/Registration;
 			sourceTree = "<group>";
@@ -369,6 +375,7 @@
 				8B06EA1A1E5DFC8A002ADFE5 /* Home.storyboard in Resources */,
 				8B06EA141E5DF571002ADFE5 /* User.storyboard in Resources */,
 				8B06EA201E5DFD23002ADFE5 /* Settings.storyboard in Resources */,
+				07FA139C1E5E66CA0075F857 /* login.jpg in Resources */,
 				15FBA2021E4E80FB00DDEEB7 /* Assets.xcassets in Resources */,
 				8B06EA1C1E5DFCC9002ADFE5 /* Create.storyboard in Resources */,
 				8B06EA1E1E5DFCED002ADFE5 /* Join.storyboard in Resources */,
@@ -536,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
+				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
