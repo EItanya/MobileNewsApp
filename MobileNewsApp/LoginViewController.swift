@@ -116,7 +116,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 //
 //        })
         
-        UIView.animate(withDuration: 1.0, delay: 0, animations: {
+        UIView.animate(withDuration: 0.75, delay: 0, animations: {
 
             self.registerButton.center.x -= self.view.frame.width
             self.loginButton.center.x -= self.view.frame.width
@@ -169,7 +169,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     @IBAction func backToLogin(_ sender: Any) {
         //Send the register page back into the side
-        UIView.animate(withDuration: 1.0, delay: 0, animations: {
+        UIView.animate(withDuration: 0.75, delay: 0, animations: {
             
             self.registerButton.center.x += self.view.frame.width
             self.loginButton.center.x += self.view.frame.width

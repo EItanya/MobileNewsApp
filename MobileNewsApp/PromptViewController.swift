@@ -13,13 +13,14 @@ class PromptViewController: UIViewController {
     
 
     var selecedPrompt: String = ""
+    let whiteBorder : CALayer? = nil
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var genreField: UITextField!
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.center = self.view.center
@@ -27,7 +28,39 @@ class PromptViewController: UIViewController {
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         activityIndicator.color = UIColor.red
         
+        addUnderlines(textField: self.titleField)
+        addUnderlines(textField: self.genreField)
+        createWhiteUnderline()
+        
         // Do any additional setup after loading the view.
+    
+    }
+    
+    //Function to add underlines under textFields
+    func addUnderlines(textField: UITextField) {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.lightGray.cgColor
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
+        
+        
+        border.borderWidth = width
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
+        
+    }
+    
+    func createWhiteUnderline() {
+        let width = CGFloat(1.0)
+        self.whiteBorder?.borderColor = UIColor.white.cgColor
+        self.whiteBorder?.borderWidth = width
+        self.whiteBorder?.frame = CGRect(x: 0, y: self.titleField.frame.size.height - width, width:  self.titleField.frame.size.width, height: self.titleField.frame.size.height)
+    }
+    
+    @IBAction func titleFieldEntry(_ sender: Any) {
+        self.titleField.layer.addSublayer(self.whiteBorder!)
+        self.titleField.layer.masksToBounds = true
+        
     }
     
     
