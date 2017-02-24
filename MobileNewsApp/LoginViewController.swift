@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         super.viewDidLoad()
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "login.jpg")
+        backgroundImage.image = UIImage(named: "login")
         self.view.insertSubview(backgroundImage, at: 0)
         
         self.firstNameField.center.x += self.view.bounds.width
