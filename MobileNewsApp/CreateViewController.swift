@@ -14,6 +14,8 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     var selecedPrompt: String = ""
     var prompts: [String] = []
     
+    var viewHasLoaded:Bool = false
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -29,6 +31,11 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Do any additional setup after loading the view.
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        animateTable()
+//    }
     
     func fetchData() {
         let config = URLSessionConfiguration.default // Session Configuration
@@ -58,7 +65,12 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
                         }
                         self.prompts.append("Create Your Own Story...")
                         DispatchQueue.main.async {
-                            self.tableView?.reloadData()
+                            if !self.viewHasLoaded {
+                                self.animateTable()
+                                self.viewHasLoaded = true
+                            }
+                            //self.tableView?.reloadData()
+                            
                         }
                         
                     }
@@ -71,6 +83,24 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         task.resume()
     }
 
+    
+    func animateTable () {
+        tableView.reloadData()
+        let cells = tableView.visibleCells
+        let tableViewHeight = tableView.bounds.size.height
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+        }
+        
+        var delayCounter = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
+        
+    }
     
     
     func cleanString(prompt: String) -> String {
