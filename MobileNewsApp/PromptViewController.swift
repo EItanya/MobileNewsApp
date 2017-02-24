@@ -9,17 +9,20 @@
 import UIKit
 import Parse
 
-class PromptViewController: UIViewController {
+class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
 
     var selecedPrompt: String = ""
     let whiteBorder : CALayer? = nil
+    let genres : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
+    let genrePicker = UIPickerView()
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var genreField: UITextField!
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +31,39 @@ class PromptViewController: UIViewController {
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         activityIndicator.color = UIColor.red
         
+        //Call code to setup Genre Picker
+        setUpPicker()
+        
         addUnderlines(textField: self.titleField)
         addUnderlines(textField: self.genreField)
         createWhiteUnderline()
         
         // Do any additional setup after loading the view.
     
+    }
+    
+    //Function to set up genrePicker
+    func setUpPicker() {
+        genrePicker.delegate = self
+        genrePicker.dataSource = self
+        genrePicker.showsSelectionIndicator = true
+        genreField.inputView = genrePicker
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PromptViewController.donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PromptViewController.donePicker))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        genreField.inputAccessoryView = toolBar
+
     }
     
     //Function to add underlines under textFields
@@ -137,6 +167,30 @@ class PromptViewController: UIViewController {
         
         //Segue to next screen, probably
         
+    }
+    
+    
+    //Code to set up Genre Picker
+    func donePicker() {
+        
+        genreField.resignFirstResponder()
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.genres.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.genres[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.genreField.text = genres[row]
     }
 
     
