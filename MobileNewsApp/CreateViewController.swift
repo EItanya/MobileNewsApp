@@ -25,6 +25,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         //Set height of table view cells
         tableView?.rowHeight = UITableViewAutomaticDimension
         tableView?.estimatedRowHeight = 200
+        tableView?.backgroundColor = UIColor.clear
         
         //Fetch Prompt Data from Reddit
         fetchData()
