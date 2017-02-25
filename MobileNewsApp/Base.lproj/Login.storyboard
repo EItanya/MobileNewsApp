@@ -125,6 +125,7 @@
                         <outlet property="lastNameField" destination="G0v-R6-h5O" id="iip-UQ-ZpS"/>
                         <outlet property="logInMessage" destination="BQf-ip-c4d" id="zke-A2-nX0"/>
                         <outlet property="loginButton" destination="Tht-2x-bsA" id="Vrv-by-ATj"/>
+                        <outlet property="loginWindowView" destination="6Ec-UP-6oE" id="q4j-Sw-Ik8"/>
                         <outlet property="passwordField" destination="y7b-VT-0oj" id="UgO-Yc-Nah"/>
                         <outlet property="registerButton" destination="Ke4-MA-LSA" id="3j3-eO-98d"/>
                         <segue destination="ryt-YT-ud1" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="qRn-aO-Qiy"/>
@@ -132,6 +133,20 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7S0-cS-NBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="6Ec-UP-6oE">
+                    <rect key="frame" x="0.0" y="0.0" width="254" height="81"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Logging In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3Q-5a-j7r">
+                            <rect key="frame" x="75" y="20" width="104" height="43"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="-18.399999999999999" y="115.59220389805098"/>
         </scene>

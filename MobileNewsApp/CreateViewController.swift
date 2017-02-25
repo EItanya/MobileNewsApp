@@ -14,6 +14,8 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     var selecedPrompt: String = ""
     var prompts: [String] = []
     
+    var viewHasLoaded:Bool = false
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -23,12 +25,19 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         //Set height of table view cells
         tableView?.rowHeight = UITableViewAutomaticDimension
         tableView?.estimatedRowHeight = 200
+        tableView?.backgroundColor = UIColor.clear
+        
         
         //Fetch Prompt Data from Reddit
         fetchData()
         
         // Do any additional setup after loading the view.
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        animateTable()
+//    }
     
     func fetchData() {
         let config = URLSessionConfiguration.default // Session Configuration
@@ -58,7 +67,12 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
                         }
                         self.prompts.append("Create Your Own Story...")
                         DispatchQueue.main.async {
-                            self.tableView?.reloadData()
+                            if !self.viewHasLoaded {
+                                self.animateTable()
+                                self.viewHasLoaded = true
+                            }
+                            //self.tableView?.reloadData()
+                            
                         }
                         
                     }
@@ -71,6 +85,24 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         task.resume()
     }
 
+    
+    func animateTable () {
+        tableView.reloadData()
+        let cells = tableView.visibleCells
+        let tableViewHeight = tableView.bounds.size.height
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+        }
+        
+        var delayCounter = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
+        
+    }
     
     
     func cleanString(prompt: String) -> String {
@@ -89,7 +121,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     //Function to return cells at IndexPath
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "promptCell", for: indexPath)
-        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.numberOfLines = 2
         cell.textLabel?.text = self.prompts[indexPath.row]
         return cell
     }
@@ -97,7 +129,20 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     //Code that is executed when a table cell is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selecedPrompt = self.prompts[indexPath.row]
+        
+        let cells = tableView.visibleCells
+        for cell in cells {
+            cell.textLabel?.numberOfLines = 2
+        }
+        let cell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        cell.textLabel?.numberOfLines = 0
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 80.0
+//    }
     
     //Function to segue into creation screen
     @IBAction func createStory(_ sender: Any) {

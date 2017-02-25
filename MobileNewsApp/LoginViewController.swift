@@ -16,22 +16,27 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     var userId: String?
 
+    //Outlets for buttons
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var facebookLoginButton: LoginScreenButton!
     
+    //Outlets for all entry Fields
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     
+    //Nothing right now
     @IBOutlet weak var logInMessage: UILabel!
     
+    //Outlet for Login Pop Up message
+    @IBOutlet var loginWindowView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "login.jpg")
+        backgroundImage.image = UIImage(named: "login")
         self.view.insertSubview(backgroundImage, at: 0)
         
         self.firstNameField.center.x += self.view.bounds.width
@@ -39,6 +44,9 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         self.fullyRegisterAccountButton.center.x += self.view.bounds.width
         self.logInMessage.center.x -= self.view.bounds.width
         self.backToLoginButton.center.x += self.view.frame.width
+        
+        loginWindowView.layer.cornerRadius = 5
+        
 
         // Do any additional setup after loading the view.
     }
@@ -65,6 +73,29 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     }
     
+    func loginModalIn () {
+        self.view.addSubview(loginWindowView)
+        loginWindowView.center = self.view.center
+        loginWindowView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        loginWindowView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.loginWindowView.alpha = 1
+            self.loginWindowView.transform =  CGAffineTransform.identity
+        })
+
+    }
+    
+    func loginModalOut () {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.loginWindowView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.loginWindowView.alpha = 0
+        }, completion: {(success: Bool) -> Void in
+            self.loginWindowView.removeFromSuperview()
+        })
+    }
+    
     func logInMessageLoad() {
         UIView.animate(withDuration: 1.0,
                        delay: 0,
@@ -83,6 +114,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     @IBAction func login(_ sender: Any) {
         
         animateButton(button: self.loginButton)
+        loginModalIn()
         
         let email = emailField.text! as String
         let password = passwordField.text! as String
@@ -91,6 +123,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             (user: PFUser?, error: Error?) -> Void in
             if error != nil {
                 print("Error logging in with username:", error ?? "")
+                self.loginModalOut()
                 return
             }
             
