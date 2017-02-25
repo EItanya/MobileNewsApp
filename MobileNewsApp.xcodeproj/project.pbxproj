@@ -224,8 +224,8 @@
 			children = (
 				8B06EA1B1E5DFCC9002ADFE5 /* Create.storyboard */,
 				07452F3A1E595BAD00B187C3 /* CreateViewController.swift */,
-				0782EAC61E5A61FB00514F45 /* PromptViewController.swift */,
 				07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */,
+				0782EAC61E5A61FB00514F45 /* PromptViewController.swift */,
 			);
 			name = Create;
 			sourceTree = "<group>";

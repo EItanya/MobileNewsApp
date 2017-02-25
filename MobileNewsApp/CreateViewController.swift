@@ -27,6 +27,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         tableView?.estimatedRowHeight = 200
         tableView?.backgroundColor = UIColor.clear
         
+        
         //Fetch Prompt Data from Reddit
         fetchData()
         
@@ -120,7 +121,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     //Function to return cells at IndexPath
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "promptCell", for: indexPath)
-        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.numberOfLines = 2
         cell.textLabel?.text = self.prompts[indexPath.row]
         return cell
     }
@@ -128,7 +129,20 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     //Code that is executed when a table cell is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selecedPrompt = self.prompts[indexPath.row]
+        
+        let cells = tableView.visibleCells
+        for cell in cells {
+            cell.textLabel?.numberOfLines = 2
+        }
+        let cell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        cell.textLabel?.numberOfLines = 0
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 80.0
+//    }
     
     //Function to segue into creation screen
     @IBAction func createStory(_ sender: Any) {
