@@ -65,9 +65,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="NmO-xS-ysL" id="87x-YE-pdF"/>
-                        <segue destination="flp-WY-o5I" kind="show" identifier="createStorySegue" id="Upd-dR-ixb">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="flp-WY-o5I" kind="presentation" identifier="createStorySegue" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="Upd-dR-ixb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JII-Yv-ZqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
