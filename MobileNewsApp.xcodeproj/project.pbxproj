@@ -16,6 +16,8 @@
 		07E62BAC1E610BA800B3F3DA /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E62BAB1E610BA800B3F3DA /* Story.storyboard */; };
 		07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BAD1E6364FE00B3F3DA /* Story.swift */; };
 		07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */; };
+		1512B9941E614BAF000104BE /* JoinStoryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512B9931E614BAF000104BE /* JoinStoryListTableViewController.swift */; };
+		1512B9961E614BB7000104BE /* JoinStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512B9951E614BB7000104BE /* JoinStoryTableViewCell.swift */; };
 		15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E721E58FECB002C9BD4 /* TabViewController.swift */; };
 		15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E741E58FFB1002C9BD4 /* HomeViewController.swift */; };
 		15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E761E590278002C9BD4 /* LoginViewController.swift */; };
@@ -64,6 +66,8 @@
 		07E62BAD1E6364FE00B3F3DA /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenButton.swift; sourceTree = "<group>"; };
 		0B0AC99EA3695AA18C3EF809 /* Pods-MobileNewsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsAppTests/Pods-MobileNewsAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		1512B9931E614BAF000104BE /* JoinStoryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStoryListTableViewController.swift; sourceTree = "<group>"; };
+		1512B9951E614BB7000104BE /* JoinStoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStoryTableViewCell.swift; sourceTree = "<group>"; };
 		15422E721E58FECB002C9BD4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		15422E741E58FFB1002C9BD4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		15422E761E590278002C9BD4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				8B06EA1D1E5DFCED002ADFE5 /* Join.storyboard */,
+				1512B9931E614BAF000104BE /* JoinStoryListTableViewController.swift */,
+				1512B9951E614BB7000104BE /* JoinStoryTableViewCell.swift */,
 				07D178031E5F825000282296 /* JoinViewController.swift */,
 			);
 			name = Join;
@@ -564,6 +570,7 @@
 			files = (
 				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
+				1512B9941E614BAF000104BE /* JoinStoryListTableViewController.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
@@ -572,6 +579,7 @@
 				07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */,
 				07E62BAA1E610B6E00B3F3DA /* StoryViewController.swift in Sources */,
 				15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */,
+				1512B9961E614BB7000104BE /* JoinStoryTableViewCell.swift in Sources */,
 				15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */,
 				15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */,
 				07D178041E5F825000282296 /* JoinViewController.swift in Sources */,
