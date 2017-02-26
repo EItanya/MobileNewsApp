@@ -145,16 +145,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     
-    func checkEmpty(textField:UITextField) -> Bool {
-        if let text = textField.text, !text.isEmpty { return false }
-        else {  return true }
-    }
-    
-    func checkEmptyView(textField:UITextView) -> Bool {
-        if let text = textField.text, !text.isEmpty { return false }
-        else {  return true }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -163,11 +153,11 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func createStoryButton(_ sender: Any) {
         //Check here that all of the fields are filled out
         var error = false
-        if checkEmpty(textField: titleField) {
+        if Util.checkEmpty(textField: titleField) {
             print("Title Field is empty")
             error = true
         }
-        if checkEmpty(textField: genreField) {
+        if Util.checkEmpty(textField: genreField) {
             print("genre field is empty")
             error = true
         }
@@ -193,13 +183,15 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             var roundedValue : Float = slider.value.rounded(.toNearestOrAwayFromZero)
             var resultString:String = ""
             if  slider.value - roundedValue >= 0.25  {
-                resultString = String(Int(roundedValue)) + ":30"
+                resultString = "\(Int(roundedValue)):30"
+//                resultString = String(Int(roundedValue)) + ":30"
                 roundedValue += 0.5
             } else if roundedValue - slider.value >= 0.25 {
-                resultString = String(Int(roundedValue-1)) + ":30"
+                resultString = "\(Int(roundedValue-1))):30"
+//                resultString = String(Int(roundedValue-1)) + ":30"
                 roundedValue -= 0.5
             } else {
-                resultString = String(Int(roundedValue)) + ":00"
+                resultString = "\(Int(roundedValue)):00"
             }
             timeLimitSliderValue.text = String(resultString)
         } else if slider == wordCountSlider {

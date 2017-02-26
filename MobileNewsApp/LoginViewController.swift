@@ -169,12 +169,12 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         //And will be called from here
         var error = false
         
-        if checkEmpty(textField: firstNameField) || checkEmpty(textField: lastNameField) {
+        if Util.checkEmpty(textField: firstNameField) || Util.checkEmpty(textField: lastNameField) {
             print("First Name Field or Password are empty")
             error = true
         }
         
-        if checkEmpty(textField: emailField) {
+        if Util.checkEmpty(textField: emailField) {
 //            let emailCheck = isValidEmail(testStr: emailField.text! as String)
 //            if !emailCheck {
 //                //Code to deal with invalid email
@@ -183,7 +183,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             print("Email Field is empty")
             error = true
         }
-        if !checkEmpty(textField: passwordField) {
+        if !Util.checkEmpty(textField: passwordField) {
             if (passwordField.text?.characters.count)! < 7 {
                 //Code to deal with invalid password
                 print("Password is too short")
@@ -287,27 +287,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         })
     }
     
-//    func isValidEmail(testStr:String) -> Bool {
-//        print("validate emilId: \(testStr)")
-//        let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
-//        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-//        let result = emailTest.evaluate(with: testStr)
-//        return result
-//    }
-    
 
-    
-    func checkEmpty(textField:UITextField) -> Bool {
-        if let text = textField.text, !text.isEmpty
-        {
-            //do something if it's not empty
-            return false
-        } else {
-            //TODO: Code to tell user field is empty
-            //Return true if empty
-            return true
-        }
-    }
+
     
     func signIn() {
         let user = PFUser()

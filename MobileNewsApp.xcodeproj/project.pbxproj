@@ -15,6 +15,7 @@
 		07E62BAA1E610B6E00B3F3DA /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */; };
 		07E62BAC1E610BA800B3F3DA /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E62BAB1E610BA800B3F3DA /* Story.storyboard */; };
 		07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BAD1E6364FE00B3F3DA /* Story.swift */; };
+		07E62BB01E639B4100B3F3DA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BAF1E639B4100B3F3DA /* Util.swift */; };
 		07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */; };
 		1512B9941E614BAF000104BE /* JoinStoryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512B9931E614BAF000104BE /* JoinStoryListTableViewController.swift */; };
 		1512B9961E614BB7000104BE /* JoinStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512B9951E614BB7000104BE /* JoinStoryTableViewCell.swift */; };
@@ -64,6 +65,7 @@
 		07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		07E62BAB1E610BA800B3F3DA /* Story.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
 		07E62BAD1E6364FE00B3F3DA /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		07E62BAF1E639B4100B3F3DA /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenButton.swift; sourceTree = "<group>"; };
 		0B0AC99EA3695AA18C3EF809 /* Pods-MobileNewsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsAppTests/Pods-MobileNewsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		1512B9931E614BAF000104BE /* JoinStoryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStoryListTableViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				15FBA1F71E4E80FB00DDEEB7 /* AppDelegate.swift */,
+				07E62BAF1E639B4100B3F3DA /* Util.swift */,
 				15E99A4E1E4E9F3500B736B4 /* Login/Registration */,
 				15422E711E58FEA3002C9BD4 /* User Interface */,
 				07E62BA81E610B4400B3F3DA /* Story */,
@@ -574,6 +577,7 @@
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				15422E751E58FFB1002C9BD4 /* HomeViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
+				07E62BB01E639B4100B3F3DA /* Util.swift in Sources */,
 				15422E791E590A81002C9BD4 /* SettingsViewController.swift in Sources */,
 				07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */,
 				07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */,

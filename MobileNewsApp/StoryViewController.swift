@@ -44,13 +44,21 @@ class StoryViewController: UIViewController {
     private func loadStoryToScreen() {
         currentUser = PFUser.current()
         titleLabel?.text = story.title
-        authorLabel?.text = "By: $\(currentUser!["first_name"]!) $\(currentUser!["last_name"]!)"
+        authorLabel?.text = "By: \(currentUser!["first_name"]!) \(currentUser!["last_name"]!)"
     }
     
     
     
     @IBAction func submitEntry(_ sender: Any) {
+        var error: Bool = false
+        if Util.checkEmptyView(textField: storyText) {
+            print("text View is empty")
+            error = true
+        }
         
+        if error {
+            return
+        }
     }
     
     @IBAction func exitStoryScreen(_ sender: Any) {
