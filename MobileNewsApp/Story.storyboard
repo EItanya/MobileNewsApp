@@ -36,15 +36,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flz-Mu-8FV">
-                                <rect key="frame" x="166" y="43" width="34" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flz-Mu-8FV">
+                                <rect key="frame" x="67" y="43" width="240" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIj-SL-War">
-                                <rect key="frame" x="157" y="80" width="52" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIj-SL-War">
+                                <rect key="frame" x="67" y="80" width="240" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -62,8 +62,11 @@
                         <color key="backgroundColor" red="0.4006639635" green="0.87087621930000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="authorLabel" destination="YIj-SL-War" id="lut-IF-jn8"/>
                         <outlet property="storyText" destination="V80-l9-dyf" id="lkq-2N-51d"/>
-                        <segue destination="aw1-NS-cmA" kind="show" id="Zkv-ch-oza"/>
+                        <outlet property="submitButton" destination="G94-z8-jLB" id="yRa-od-9Gd"/>
+                        <outlet property="titleLabel" destination="Flz-Mu-8FV" id="IXb-pk-EGx"/>
+                        <segue destination="aw1-NS-cmA" kind="show" identifier="homeSegue" id="Zkv-ch-oza"/>
                         <segue destination="2es-Uy-yzz" kind="show" identifier="userSegue" id="g0B-xD-FIG"/>
                     </connections>
                 </viewController>

@@ -7,24 +7,45 @@
 //
 
 import UIKit
+import Parse
 
 class StoryViewController: UIViewController {
 
     //Variable representing the screen that sent the user here so we can return to it after
     var entryScreen: String?
+    var story : Story!
+    var currentUser: PFUser?
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    
     
     @IBOutlet weak var storyText: UITextView!
     
+    @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //If Id is null then we know that the story has not been officially created yet, more minimal functionality
+        if story.id == nil {
+            submitButton.setTitle("Bring Story Live", for: .normal)
+        }
+        
+        
         storyText.clipsToBounds = true
         storyText.layer.cornerRadius = 5.0
-
+        loadStoryToScreen()
+        
         // Do any additional setup after loading the view.
     }
 
-    
+    //Loads current story info to screen
+    private func loadStoryToScreen() {
+        currentUser = PFUser.current()
+        titleLabel?.text = story.title
+        authorLabel?.text = "By: $\(currentUser!["first_name"]!) $\(currentUser!["last_name"]!)"
+    }
     
     
     

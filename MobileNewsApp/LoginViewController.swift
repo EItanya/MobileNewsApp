@@ -47,7 +47,6 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         
         loginWindowView.layer.cornerRadius = 5
         
-
         // Do any additional setup after loading the view.
     }
     

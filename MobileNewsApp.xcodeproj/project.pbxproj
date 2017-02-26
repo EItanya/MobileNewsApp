@@ -132,8 +132,8 @@
 		07E62BA81E610B4400B3F3DA /* Story */ = {
 			isa = PBXGroup;
 			children = (
-				07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */,
 				07E62BAB1E610BA800B3F3DA /* Story.storyboard */,
+				07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */,
 				07E62BAD1E6364FE00B3F3DA /* Story.swift */,
 			);
 			name = Story;
