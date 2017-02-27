@@ -22,12 +22,15 @@ class Story {
     var id :String? = nil
     var timeLimit : TimeInterval?
     var participants: Int = 5
+    var totalTurns : Int?
+    var entryIds = [String]()
+    var entries : [Entry]?
     
-    static var listOfStoryItems = ["title", "genre", "prompt", "participants", "created_by", "time_limit", "max_word_count", "completed", "first_entry", "previous_entry"]
+    static var listOfStoryItems = ["title", "genre", "prompt", "participants", "created_by", "time_limit", "max_word_count", "completed", "first_entry", "previous_entry", "total_turns", "entries", "entry_ids"]
     
     
     
-    init(creator createdBy: String, title:String, genre: String, prompt: String, wordCount: Int, timeLimit: TimeInterval, participants: Int ) {
+    init(creator createdBy: String, title:String, genre: String, prompt: String, wordCount: Int, timeLimit: TimeInterval, participants: Int, totalTurns: Int ) {
         self.createdBy = createdBy
         self.title = title
         self.genre = genre
@@ -35,11 +38,12 @@ class Story {
         self.wordCount = wordCount
         self.timeLimit = timeLimit
         self.participants = participants
+        self.totalTurns  = totalTurns
     }
 
     //Function to create a new story in the DB
     //This function works
-    func createNewStory(completion: ((_ story: Story, _ error: Error?) -> Void)?) {
+    func createNewStory(completion: ((_ story: Story?, _ error: Error?) -> Void)?) {
         let storyDict : [String: Any] = [
             "genre" : self.genre!,
             "title" : self.title!,
@@ -49,6 +53,7 @@ class Story {
             "time_limit": self.timeLimit!,
             "max_word_count": self.wordCount!,
             "completed": self.completed,
+            "total_turns": self.totalTurns!
         ]
         
         let entryDict : [String: Any] = [
@@ -58,18 +63,23 @@ class Story {
         
         //Possible change to cloud code to do all in one call
         //The response is the newly created story object, just in case we need it for something
+        
+        
         PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "story": storyDict], block: {
             (response: Any?, error: Error?) -> Void in
             //Edit later to include message about server issues.
             var returnError : Error?
-            
+            var returnStory : Story?
             if error != nil {
                 print("Error saving data to DB:", error ?? "")
                 
             } else {
+//                let storyArray : [Story] = convertToStories(stories: [response! as! PFObject])
+//                returnStory = storyArray[0]
                 print(response)
                 //Code to segue
             }
+            completion!(returnStory, returnError)
         })
     }
     
@@ -137,7 +147,8 @@ class Story {
                       prompt: story["prompt"] as! String,
                       wordCount: story["word_count"] as! Int,
                       timeLimit: story["time_limit"] as! TimeInterval,
-                      participants: story["participants"] as! Int
+                      participants: story["participants"] as! Int,
+                      totalTurns: story["total_turns"] as! Int
                 )
             )
         }

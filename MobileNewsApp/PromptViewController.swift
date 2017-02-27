@@ -34,6 +34,8 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var wordCountSliderValue: UILabel!
     @IBOutlet weak var participantSlider: UISlider!
     @IBOutlet weak var participantSliderLabel: UILabel!
+    @IBOutlet weak var totalTurnsSlider: UISlider!
+    @IBOutlet weak var totalTurnsSliderLabel: UILabel!
 
 
     override func viewDidLoad() {
@@ -45,6 +47,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
         addUnderlines(textField: self.titleField)
         addUnderlines(textField: self.genreField)
+
 
 
         createWhiteUnderline()
@@ -108,7 +111,8 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         //hey current user
         let user: PFUser = PFUser.current()!
         
-        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, wordCount: 100, timeLimit: 5.0, participants: 10)
+        //
+        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, wordCount: 100, timeLimit: 5.0, participants: 10, totalTurns: 100)
         self.story = currentStory
         
         self.performSegue(withIdentifier: "firstEntrySegue", sender: self)
@@ -187,7 +191,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 //                resultString = String(Int(roundedValue)) + ":30"
                 roundedValue += 0.5
             } else if roundedValue - slider.value >= 0.25 {
-                resultString = "\(Int(roundedValue-1))):30"
+                resultString = "\(Int(roundedValue-1)):30"
 //                resultString = String(Int(roundedValue-1)) + ":30"
                 roundedValue -= 0.5
             } else {
@@ -201,6 +205,10 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         } else if slider == participantSlider {
             currentVal = Int(slider.value)
             participantSliderLabel.text = String(currentVal)
+        } else if slider == totalTurnsSlider {
+            currentVal = Int(slider.value)
+            currentVal = (currentVal / 5)*5
+            totalTurnsSliderLabel.text = String(currentVal)
         } else {
             return
         }
@@ -221,6 +229,10 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         participantSlider.value = 10
         participantSlider.minimumValue = 5
         participantSlider.maximumValue = 20
+        
+        totalTurnsSlider.value = 50
+        totalTurnsSlider.minimumValue = 25
+        participantSlider.maximumValue = 200
         
     }
     

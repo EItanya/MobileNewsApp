@@ -68,7 +68,7 @@ class StoryViewController: UIViewController {
         story.firstEntry = firstEntry
         story.previousEntry = firstEntry
         
-        self.story.createNewStory(completion: {(story: Story, error: Error?) -> Void in
+        self.story.createNewStory(completion: {(story: Story?, error: Error?) -> Void in
             print("Story has been created and we are back in StoryViewController")
         })
         
