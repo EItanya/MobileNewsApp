@@ -144,7 +144,6 @@
 				15422E721E58FECB002C9BD4 /* TabViewController.swift */,
 				8B06EA151E5DFB96002ADFE5 /* Home */,
 				8B06EA161E5DFBA1002ADFE5 /* Create */,
-				8B06EA171E5DFBAB002ADFE5 /* Join */,
 				8B06EA181E5DFBB3002ADFE5 /* Profile */,
 			);
 			name = "User Interface";
@@ -250,13 +249,6 @@
 				0782EAC61E5A61FB00514F45 /* PromptViewController.swift */,
 			);
 			name = Create;
-			sourceTree = "<group>";
-		};
-		8B06EA171E5DFBAB002ADFE5 /* Join */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Join;
 			sourceTree = "<group>";
 		};
 		8B06EA181E5DFBB3002ADFE5 /* Profile */ = {
