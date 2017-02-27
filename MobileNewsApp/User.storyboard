@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7gb-bA-cWq">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7gb-bA-cWq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="1852" y="-865"/>
         </scene>
-        <!--Create-->
+        <!--CreateNav-->
         <scene sceneID="psF-Cz-ogQ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Create" storyboardName="Create" referencedIdentifier="Create" id="QcO-kw-pZH" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="Create" storyboardName="Create" referencedIdentifier="CreateNav" id="QcO-kw-pZH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="W5v-Jh-Ms9"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRG-eX-i0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="1897" y="473"/>
         </scene>
-        <!--Settings-->
+        <!--Profile-->
         <scene sceneID="3i4-kg-8wz">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Settings" storyboardName="Settings" referencedIdentifier="Settings" id="DXS-Pv-wUl" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="Settings" storyboardName="Profile" referencedIdentifier="Profile" id="DXS-Pv-wUl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="LG5-DA-98I"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtq-w6-Bdh" userLabel="First Responder" sceneMemberID="firstResponder"/>

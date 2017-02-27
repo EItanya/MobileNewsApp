@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SettingsViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
