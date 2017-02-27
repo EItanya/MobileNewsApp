@@ -232,7 +232,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         totalTurnsSlider.value = 50
         totalTurnsSlider.minimumValue = 25
-        participantSlider.maximumValue = 200
+        totalTurnsSlider.maximumValue = 200
         
     }
     
