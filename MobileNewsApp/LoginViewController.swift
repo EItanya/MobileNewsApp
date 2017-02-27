@@ -15,7 +15,6 @@ import ParseFacebookUtilsV4
 class LoginViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     var userId: String?
-    var loadingScreen : LoadingScreenView?
 
     //Outlets for buttons
     @IBOutlet weak var loginButton: UIButton!
