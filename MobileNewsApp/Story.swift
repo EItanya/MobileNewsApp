@@ -38,7 +38,8 @@ class Story {
     }
 
     //Function to create a new story in the DB
-    func createNewStory(completion: (_ story: Story, _ error: Error?) -> Void) {
+    //This function works
+    func createNewStory(completion: ((_ story: Story, _ error: Error?) -> Void)?) {
         let storyDict : [String: Any] = [
             "genre" : self.genre!,
             "title" : self.title!,
@@ -48,8 +49,6 @@ class Story {
             "time_limit": self.timeLimit!,
             "max_word_count": self.wordCount!,
             "completed": self.completed,
-            "first_entry": self.firstEntry!,
-            "previous_entry": self.previousEntry!
         ]
         
         let entryDict : [String: Any] = [
@@ -58,13 +57,17 @@ class Story {
         ]
         
         //Possible change to cloud code to do all in one call
+        //The response is the newly created story object, just in case we need it for something
         PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "story": storyDict], block: {
             (response: Any?, error: Error?) -> Void in
             //Edit later to include message about server issues.
+            var returnError : Error?
+            
             if error != nil {
                 print("Error saving data to DB:", error ?? "")
+                
             } else {
-                print(response as! String)
+                print(response)
                 //Code to segue
             }
         })

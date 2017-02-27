@@ -15,6 +15,7 @@ import ParseFacebookUtilsV4
 class LoginViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     var userId: String?
+    var loadingScreen : LoadingScreenView?
 
     //Outlets for buttons
     @IBOutlet weak var loginButton: UIButton!
@@ -48,6 +49,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         loginWindowView.layer.cornerRadius = 5
         
         // Do any additional setup after loading the view.
+        
+        
     }
     
 

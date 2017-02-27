@@ -51,14 +51,27 @@ class StoryViewController: UIViewController {
     
     @IBAction func submitEntry(_ sender: Any) {
         var error: Bool = false
+        
+        //Check that textView Is not empty
         if Util.checkEmptyView(textField: storyText) {
             print("text View is empty")
             error = true
         }
         
+        
+        
         if error {
             return
         }
+        
+        let firstEntry = Entry(createdBy: (currentUser?.objectId)!, text: storyText.text)
+        story.firstEntry = firstEntry
+        story.previousEntry = firstEntry
+        
+        self.story.createNewStory(completion: {(story: Story, error: Error?) -> Void in
+            print("Story has been created and we are back in StoryViewController")
+        })
+        
     }
     
     @IBAction func exitStoryScreen(_ sender: Any) {
