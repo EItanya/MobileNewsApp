@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class JoinStoryListTableViewController: UITableViewController {
+class HomeStoryListTableViewController: UITableViewController {
     
     var objects = [PFObject]()
     
@@ -68,8 +68,8 @@ class JoinStoryListTableViewController: UITableViewController {
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> JoinStoryTableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! JoinStoryTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HomeStoryTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! HomeStoryTableViewCell
 
         // Configure the cell...
         cell.titleLabel.text = objects[indexPath.row].value(forKey: "title") as! String

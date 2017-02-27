@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JoinStoryTableViewCell: UITableViewCell {
+class HomeStoryTableViewCell: UITableViewCell {
 
     @IBOutlet var promptLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
