@@ -76,7 +76,7 @@ class Story {
             } else {
 //                let storyArray : [Story] = convertToStories(stories: [response! as! PFObject])
 //                returnStory = storyArray[0]
-                print(response)
+                print(response ?? "")
                 //Code to segue
             }
             completion!(returnStory, returnError)
