@@ -217,22 +217,22 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //Function to make sliders look right and create appropaiate values
     func setupSliders() {
-        timeLimitSlider.value = 5.0
         timeLimitSlider.minimumValue = 0.49
         timeLimitSlider.maximumValue = 10.0
+        timeLimitSlider.value = 5.0
         timeLimitSliderValue.text = "5:00"
         
-        wordCountSlider.value = 150
         wordCountSlider.minimumValue = 100
         wordCountSlider.maximumValue = 200
+        wordCountSlider.value = 150
         
-        participantSlider.value = 10
         participantSlider.minimumValue = 5
         participantSlider.maximumValue = 20
+        participantSlider.value = 10
         
-        totalTurnsSlider.value = 50
         totalTurnsSlider.minimumValue = 25
         totalTurnsSlider.maximumValue = 200
+        totalTurnsSlider.value = 50
         
     }
     

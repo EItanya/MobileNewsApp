@@ -21,14 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-Vn-Pb2">
-                                <rect key="frame" x="156" y="580" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Continue"/>
-                                <connections>
-                                    <action selector="createStory:" destination="Xxj-NQ-g5n" eventType="touchUpInside" id="uXf-XG-TXO"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NmO-xS-ysL">
                                 <rect key="frame" x="0.0" y="64" width="375" height="491"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,8 +50,18 @@
                                     <outlet property="delegate" destination="Xxj-NQ-g5n" id="dsJ-oc-fQ7"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-Vn-Pb2" customClass="LoginScreenButton" customModule="MobileNewsApp" customModuleProvider="target">
+                                <rect key="frame" x="65" y="563" width="245" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="createStory:" destination="Xxj-NQ-g5n" eventType="touchUpInside" id="uXf-XG-TXO"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40066396348865907" green="0.87087621931252479" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.38823529411764707" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Create" id="FAr-De-wLH"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -70,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JII-Yv-ZqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897" y="-199"/>
+            <point key="canvasLocation" x="1896.8" y="-199.25037481259372"/>
         </scene>
         <!--Prompt View Controller-->
         <scene sceneID="gS5-RR-mfj">
