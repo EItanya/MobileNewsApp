@@ -11,6 +11,7 @@ target 'MobileNewsApp' do
     pod 'FBSDKLoginKit'
     pod 'Parse'
     pod 'ParseFacebookUtilsV4'
+    pod 'M13Checkbox'
 
 
     
