@@ -26,31 +26,66 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     
-    //Nothing right now
-    @IBOutlet weak var logInMessage: UILabel!
+    @IBOutlet weak var logoOutlet: UIImageView!
+    @IBOutlet weak var usernameLogo: UIImageView!
+    @IBOutlet weak var passwordLogo: UIImageView!
     
     //Outlet for Login Pop Up message
     @IBOutlet var loginWindowView: UIView!
+    @IBOutlet var initialFormView: UIView!
+    @IBOutlet var registerFormView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "login")
-        self.view.insertSubview(backgroundImage, at: 0)
+        logoOutlet.image = UIImage(named: "logo_home")
+        usernameLogo.image = UIImage(named: "username")
+        passwordLogo.image = UIImage(named: "password")
         
-        self.firstNameField.center.x += self.view.bounds.width
-        self.lastNameField.center.x += self.view.bounds.width
-        self.fullyRegisterAccountButton.center.x += self.view.bounds.width
-        self.logInMessage.center.x -= self.view.bounds.width
-        self.backToLoginButton.center.x += self.view.frame.width
+        setupViews()
         
+        addUnderlines(textField: emailField)
+        addUnderlines(textField: passwordField)
+        addUnderlines(textField: firstNameField)
+        addUnderlines(textField: lastNameField)
+        
+
+
+        
+
         loginWindowView.layer.cornerRadius = 5
         
         // Do any additional setup after loading the view.
         
         
     }
+    
+    func setupViews() {
+        view.addSubview(registerFormView)
+        //Setup internal registration view
+        registerFormView.center = view.center
+        registerFormView.frame = CGRect(x: 0, y: self.passwordField.center.y + 30, width: self.view.bounds.width, height: 286)
+        registerFormView.center.x += view.bounds.width
+        
+        //Setup initial view with login button and facebook button
+        view.addSubview(initialFormView)
+        initialFormView.frame = CGRect(x: 0, y: self.passwordField.center.y + 45, width: self.view.bounds.width, height: 259)
+    }
+
+    
+    func addUnderlines(textField: UITextField) {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.white.cgColor
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
+        
+        
+        border.borderWidth = width
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
+        
+    }
+    
     
 
     override func didReceiveMemoryWarning() {
@@ -74,6 +109,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     }
     
+    //Function to animate the login Modal onto the screen
     func loginModalIn () {
         self.view.addSubview(loginWindowView)
         loginWindowView.center = self.view.center
@@ -87,6 +123,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     }
     
+    //Function to make the modal leave the screen
     func loginModalOut () {
         
         UIView.animate(withDuration: 0.3, animations: {
@@ -97,20 +134,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         })
     }
     
-    func logInMessageLoad() {
-        UIView.animate(withDuration: 1.0,
-                       delay: 0,
-                       usingSpringWithDamping: CGFloat(0.20),
-                       initialSpringVelocity: CGFloat(6.0),
-                       options: UIViewAnimationOptions.allowUserInteraction,
-                       animations: {
-                        self.logInMessage.center.x += self.view.bounds.width
-        },
-                       completion: { Void in()  }
-        )
-        
-        
-    }
+
     
     @IBAction func login(_ sender: Any) {
         
@@ -129,40 +153,11 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             }
             
             print("Logged in successfully with Username")
-//            let storyboard = UIStoryboard(name: "User", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
-//            
-//            self.present(controller, animated: true, completion: nil)
             self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
         
     }
-    
-    @IBOutlet weak var registerButton: UIButton!
-    @IBAction func register(_ sender: Any) {
-        
-        //Might have to add a segue here in animations don't work
-//        UIView.animate(withDuration: 1.0, animations: {
-//            self.registerButton.center.x -= self.view.frame.width
-//            self.loginButton.center.x -= self.view.frame.width
-//            self.facebookLoginButton.center.x -= self.view.frame.width
-//            
-//
-//        })
-        
-        UIView.animate(withDuration: 0.75, delay: 0, animations: {
-
-            self.registerButton.center.x -= self.view.frame.width
-            self.loginButton.center.x -= self.view.frame.width
-            self.facebookLoginButton.center.x -= self.view.frame.width
-            self.firstNameField.center.x -= self.view.frame.width
-            self.lastNameField.center.x -= self.view.frame.width
-            self.fullyRegisterAccountButton.center.x -= self.view.bounds.width
-            self.backToLoginButton.center.x -= self.view.frame.width
-        }, completion: nil)
-        
-    }
-    
+ 
     
     
     @IBOutlet weak var fullyRegisterAccountButton: LoginScreenButton!
@@ -199,22 +194,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         signIn()
 
     }
-    @IBOutlet weak var backToLoginButton: LoginScreenButton!
 
-    @IBAction func backToLogin(_ sender: Any) {
-        //Send the register page back into the side
-        UIView.animate(withDuration: 0.75, delay: 0, animations: {
-            
-            self.registerButton.center.x += self.view.frame.width
-            self.loginButton.center.x += self.view.frame.width
-            self.facebookLoginButton.center.x += self.view.frame.width
-            self.firstNameField.center.x += self.view.frame.width
-            self.lastNameField.center.x += self.view.frame.width
-            self.fullyRegisterAccountButton.center.x += self.view.bounds.width
-            self.backToLoginButton.center.x += self.view.frame.width
-        }, completion: nil)
-        
-    }
 
     @IBAction func facebookLogin(_ sender: Any) {
         
@@ -276,8 +256,6 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                                 print("User successfully saved to DB")
                             }
                         })
-                        
-                        
                     }
                 })
                 
@@ -288,6 +266,23 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             
         })
     }
+    
+    //New function that uses the UI Views
+    @IBAction func toRegistration(_ sender: Any) {
+        UIView.animate(withDuration: 0.65, delay: 0, options: .curveEaseOut, animations: {
+            self.initialFormView.center.x -= self.view.bounds.width
+            self.registerFormView.center.x -= self.view.bounds.width
+        }, completion: nil)
+    }
+    
+    //New Funcion that uses the UI Views
+    @IBAction func backToLoginView(_ sender: Any) {
+        UIView.animate(withDuration: 0.65, delay: 0, options: .curveEaseOut, animations: {
+            self.initialFormView.center.x += self.view.bounds.width
+            self.registerFormView.center.x += self.view.bounds.width
+        }, completion: nil)
+    }
+
     
 
 
