@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>M13Checkbox.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,6 +57,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>20A9DD9ABBF08BC57372A26C35327BF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2A52779AA0BD86BA0CEB8753126ED2FE</key>
 		<dict>
 			<key>primary</key>
@@ -77,7 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E63831BCB47DF38F73F172B34738A3F</key>
+		<key>66FA6036BA1053AA6A220483C872DAD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
