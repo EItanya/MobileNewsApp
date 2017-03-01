@@ -148,6 +148,18 @@ extension HomeViewController: FilterTableViewDelegate {
 //        }
 //        
 //        storyTableView.reloadData()
+//        if applyFilters > 0 {
+//            filteredStories.removeAll()
+//            for (index, value) in genre.enumerated() {
+//                if value == true {
+//                    filteredStories.append(contentsOf: stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]}))
+//                }
+//            }
+//        }
+//        else {
+//            filteredStories = stories
+//        }
+//        storyTableView.reloadData()
     }
 }
 

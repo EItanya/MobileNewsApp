@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jP1-go-aov">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GSL-Df-xMR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Home View Controller-->
         <scene sceneID="oKn-iw-wLo">
             <objects>
-                <viewController storyboardIdentifier="Home" id="jP1-go-aov" customClass="HomeViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jP1-go-aov" customClass="HomeViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tj1-WH-R9d"/>
                         <viewControllerLayoutGuide type="bottom" id="CFE-c9-zmy"/>
@@ -84,7 +84,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.38823529411764707" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="Gau-OD-3iP"/>
+                    <navigationItem key="navigationItem" id="6m0-5u-a3t"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="storyTableView" destination="CAD-ZE-zom" id="WWy-vQ-1zB"/>
@@ -92,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgd-Na-SzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896.8" y="472.71364317841085"/>
+            <point key="canvasLocation" x="2708" y="473"/>
         </scene>
         <!--Collapsible Table View Controller-->
         <scene sceneID="HfT-02-Qoe">
@@ -144,7 +144,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vYN-nW-HiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2574" y="473"/>
+            <point key="canvasLocation" x="3512.8000000000002" y="472.71364317841085"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="i6o-5M-gdO">
+            <objects>
+                <navigationController storyboardIdentifier="Home" automaticallyAdjustsScrollViewInsets="NO" id="GSL-Df-xMR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" id="Gau-OD-3iP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CMq-hl-2iD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jP1-go-aov" kind="relationship" relationship="rootViewController" id="ngu-CV-1No"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EBl-UX-8e6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1896.8" y="472.71364317841085"/>
         </scene>
     </scenes>
 </document>
