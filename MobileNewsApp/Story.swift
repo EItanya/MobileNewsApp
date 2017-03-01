@@ -148,7 +148,7 @@ class Story {
                       title: story["title"] as! String,
                       genre: story["genre"] as! String,
                       prompt: story["prompt"] as! String,
-                      wordCount: story["word_count"] as! Int,
+                      wordCount: story["max_word_count"] as! Int,
                       timeLimit: story["time_limit"] as! TimeInterval,
                       participants: story["participants"] as! Int,
                       totalTurns: story["total_turns"] as! Int

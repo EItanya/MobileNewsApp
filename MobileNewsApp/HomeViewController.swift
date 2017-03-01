@@ -25,16 +25,18 @@ class HomeViewController: UIViewController {
     let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
     
     //unfinished stories
-    var unfinishedStories = [PFObject]()
-    var unfinishedFilteredStories = [PFObject]()
+    var unfinishedStories = [Story]()
+    var unfinishedFilteredStories = [Story]()
     
     //completedStories
-    var completedStories = [PFObject]()
-    var completedFilteredStories = [PFObject]()
+    var completedStories = [Story]()
+    var completedFilteredStories = [Story]()
     
     //stories to populate views
-    var stories = [PFObject]()
-    var filteredStories = [PFObject]()
+    var stories = [Story]()
+    var filteredStories = [Story]()
+    
+    var storiesStoryObject = [Story]()
     
     
     //table view of stories
@@ -47,39 +49,21 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         storyTableView.delegate = self
         storyTableView.dataSource = self
-        
+
         storyTableView.rowHeight = UITableViewAutomaticDimension
         storyTableView.estimatedRowHeight = 140
         
-        let queryUnfinished = PFQuery(className: "Story")
-        queryUnfinished.whereKey("completed", equalTo: false)
-        queryUnfinished.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+        Story.getAllStories() {
+            (stories: [Story]?, Error) in
+            self.unfinishedStories = stories!.filter { $0.completed == false }
+            self.unfinishedFilteredStories = self.unfinishedStories
+            self.completedStories = stories!.filter { $0.completed == true }
+            self.completedFilteredStories = self.completedStories
+            self.stories = self.completedStories
+            self.filteredStories = self.completedStories
             
-            if error == nil {
-                
-                self.unfinishedStories = objects!
-                self.unfinishedFilteredStories = objects!
-                print("Successfully retrieved stories")
-                } else {
-                print("Failed to query db")
-            }
-        })
-        
-        let queryCompleted = PFQuery(className: "Story")
-        queryCompleted.whereKey("completed", equalTo: true)
-        queryCompleted.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
-            
-            if error == nil {
-                
-                self.completedStories = objects!
-                self.completedFilteredStories = objects!
-                self.stories = objects!
-                self.filteredStories = objects!
-            } else {
-                print("Failed to query db")
-            }
             self.storyTableView.reloadData()
-        })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,7 +117,7 @@ extension HomeViewController: UIPopoverPresentationControllerDelegate {
             filteredStories.removeAll()
             for (index, value) in genre.enumerated() {
                 if value == true {
-                    filteredStories.append(contentsOf: stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]}))
+                    filteredStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
                 }
             }
         }
@@ -200,9 +184,9 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ storyTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = storyTableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! HomeStoryTableViewCell
-        cell.titleLabel.text = filteredStories[indexPath.row].value(forKey: "title") as? String
-        cell.promptLabel.text = filteredStories[indexPath.row].value(forKey: "prompt") as? String
-        cell.genreLabel.text = filteredStories[indexPath.row].value(forKey: "genre") as? String
+        cell.titleLabel.text = filteredStories[indexPath.row].title
+        cell.promptLabel.text = filteredStories[indexPath.row].prompt
+        cell.genreLabel.text = filteredStories[indexPath.row].genre
 
         
         return cell
