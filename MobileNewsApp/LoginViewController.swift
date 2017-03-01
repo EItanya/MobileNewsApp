@@ -44,10 +44,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         
         setupViews()
         
-        let offset = CGFloat(integerLiteral: Int(view.bounds.width) - 304)
-        
-        addUnderlines(textField: emailField, offset: offset)
-        addUnderlines(textField: passwordField, offset: offset)
+
         addUnderlines(textField: firstNameField, offset: CGFloat(integerLiteral: 0))
         addUnderlines(textField: lastNameField, offset: CGFloat(integerLiteral: 0))
         
@@ -57,6 +54,13 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         // Do any additional setup after loading the view.
         
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let offset = CGFloat(integerLiteral: Int(view.bounds.width) - 304)
+        
+        addUnderlines(textField: emailField, offset: offset)
+        addUnderlines(textField: passwordField, offset: offset)
     }
     
     func setupViews() {
@@ -79,7 +83,6 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         border.borderColor = UIColor.white.cgColor
         border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width: borderWidth, height: textField.frame.size.height)
         
-        print(border.bounds.width)
         
         border.borderWidth = width
         textField.layer.addSublayer(border)
