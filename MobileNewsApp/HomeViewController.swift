@@ -11,6 +11,8 @@ import Parse
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet var storyCompletionControl: UISegmentedControl!
+    
     //filters
     var applyFilters = 0
     
@@ -22,6 +24,15 @@ class HomeViewController: UIViewController {
     //index of genres
     let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
     
+    //unfinished stories
+    var unfinishedStories = [PFObject]()
+    var unfinishedFilteredStories = [PFObject]()
+    
+    //completedStories
+    var completedStories = [PFObject]()
+    var completedFilteredStories = [PFObject]()
+    
+    //stories to populate views
     var stories = [PFObject]()
     var filteredStories = [PFObject]()
     
@@ -40,22 +51,30 @@ class HomeViewController: UIViewController {
         storyTableView.rowHeight = UITableViewAutomaticDimension
         storyTableView.estimatedRowHeight = 140
         
-        let query = PFQuery(className: "Story")
-        query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+        let queryUnfinished = PFQuery(className: "Story")
+        queryUnfinished.whereKey("completed", equalTo: false)
+        queryUnfinished.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
             
             if error == nil {
                 
+                self.unfinishedStories = objects!
+                self.unfinishedFilteredStories = objects!
+                print("Successfully retrieved stories")
+                } else {
+                print("Failed to query db")
+            }
+        })
+        
+        let queryCompleted = PFQuery(className: "Story")
+        queryCompleted.whereKey("completed", equalTo: true)
+        queryCompleted.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+            
+            if error == nil {
+                
+                self.completedStories = objects!
+                self.completedFilteredStories = objects!
                 self.stories = objects!
                 self.filteredStories = objects!
-                print("Successfully retrieved stories")
-                print(self.stories.count)
-                for story in self.stories {
-                    print(story.objectId)
-                    let arr = ["title", "genre", "prompt"]
-                    for item in story.dictionaryWithValues(forKeys: arr) {
-                        print(item.value)
-                    }
-                }
             } else {
                 print("Failed to query db")
             }
@@ -66,6 +85,18 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func storyTypeSegmentChosen(_ sender: UISegmentedControl) {
+        if storyCompletionControl.selectedSegmentIndex == 0 {
+            stories = completedStories
+            filteredStories = completedFilteredStories
+        }
+        else {
+            stories = unfinishedStories
+            filteredStories = unfinishedFilteredStories
+        }
+        storyTableView.reloadData()
     }
 }
 
@@ -138,16 +169,6 @@ extension HomeViewController: FilterTableViewDelegate {
         else {
             self.numPeople[row] = value.toBool()!
         }
-        
-//        filteredStories.removeAll()
-//        
-//        for (index, value) in genre.enumerated() {
-//            if value == true {
-//                filteredStories = stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]})
-//            }
-//        }
-//        
-//        storyTableView.reloadData()
 //        if applyFilters > 0 {
 //            filteredStories.removeAll()
 //            for (index, value) in genre.enumerated() {

@@ -81,12 +81,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1CQ-jZ-34T">
+                                <rect key="frame" x="142" y="72" width="91" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="Read"/>
+                                    <segment title="Join"/>
+                                </segments>
+                                <connections>
+                                    <action selector="storyTypeSegmentChosen:" destination="jP1-go-aov" eventType="valueChanged" id="3jd-H2-Wgq"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.38823529411764707" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="6m0-5u-a3t"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="storyCompletionControl" destination="1CQ-jZ-34T" id="bnT-8E-YBo"/>
                         <outlet property="storyTableView" destination="CAD-ZE-zom" id="WWy-vQ-1zB"/>
                     </connections>
                 </viewController>
