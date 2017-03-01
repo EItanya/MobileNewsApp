@@ -44,13 +44,12 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         
         setupViews()
         
-        addUnderlines(textField: emailField)
-        addUnderlines(textField: passwordField)
-        addUnderlines(textField: firstNameField)
-        addUnderlines(textField: lastNameField)
+        let offset = CGFloat(integerLiteral: Int(view.bounds.width) - 304)
         
-
-
+        addUnderlines(textField: emailField, offset: offset)
+        addUnderlines(textField: passwordField, offset: offset)
+        addUnderlines(textField: firstNameField, offset: CGFloat(integerLiteral: 0))
+        addUnderlines(textField: lastNameField, offset: CGFloat(integerLiteral: 0))
         
 
         loginWindowView.layer.cornerRadius = 5
@@ -73,12 +72,14 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     }
 
     
-    func addUnderlines(textField: UITextField) {
+    func addUnderlines(textField: UITextField, offset: CGFloat) {
+        let borderWidth = textField.frame.size.width + offset
         let border = CALayer()
         let width = CGFloat(1.0)
         border.borderColor = UIColor.white.cgColor
-        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width: borderWidth, height: textField.frame.size.height)
         
+        print(border.bounds.width)
         
         border.borderWidth = width
         textField.layer.addSublayer(border)

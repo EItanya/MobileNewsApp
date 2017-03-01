@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 
-class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
 
     var timeLimit: TimeInterval = 5.0
@@ -40,6 +40,9 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleField.delegate = self
+        genreField.delegate = self
 
         setUpPicker()
         setupSliders()
@@ -80,11 +83,31 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let color = CABasicAnimation(keyPath: "borderColor")
+        color.fromValue = UIColor(hex: Int("444444", radix: 16)!).cgColor
+        color.toValue = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        color.duration = 0.5
+        textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        textField.layer.add(color, forKey: "color and width")
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let color = CABasicAnimation(keyPath: "borderColor")
+        color.fromValue = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        color.toValue = UIColor(hex: Int("444444", radix: 16)!).cgColor
+        color.duration = 0.5
+        textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("444444", radix: 16)!).cgColor
+        textField.layer.add(color, forKey: "color and width")
+    }
+    
+    
+    
     //Function to add underlines under textFields
     func addUnderlines(textField: UITextField) {
         let border = CALayer()
         let width = CGFloat(1.0)
-        border.borderColor = UIColor.lightGray.cgColor
+        border.borderColor = UIColor(hex: Int("444444", radix: 16)!).cgColor
         border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
         
         
@@ -117,34 +140,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         self.performSegue(withIdentifier: "firstEntrySegue", sender: self)
         
-        
-        //Perform Segue to story screen
-        
-        
-        //Old Code to create Stories, being deprecated
-//        let storyDict : [String: Any] = [
-//            "genre" : genreField.text!,
-//            "title" : titleField.text!,
-//            "prompt": self.selecedPrompt,
-//            "created_by": user.objectId! as String
-//        ]
-//        
-//        let entryDict : [String: Any] = [
-//            "text": storyField.text,
-//            "created_by": user.objectId! as String
-//        ]
-//        
-//        //Possible change to cloud code to do all in one call
-//        PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "story": storyDict], block: {
-//            (response: Any?, error: Error?) -> Void in
-//            //Edit later to include message about server issues.
-//            if error != nil {
-//                print("Error saving data to DB:", error ?? "")
-//            } else {
-//                print(response as! String)
-//                //Code to segue
-//            }
-//        })
         
     }
     
