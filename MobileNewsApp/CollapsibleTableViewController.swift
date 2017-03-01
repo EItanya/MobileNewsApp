@@ -37,6 +37,10 @@ class CollapsibleTableViewController: UITableViewController {
     var sections = [Section]()
     var delegate: HomeViewController?
     
+    var genreValues: [Bool]?
+    var wordCountValues: [Bool]?
+    var numContValues: [Bool]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,11 +78,19 @@ extension CollapsibleTableViewController {
         cell.delegate = self
         cell.section = indexPath.section
         cell.row = indexPath.row
-//        var checkbox = M13Checkbox(frame: CGRect(x: 285, y: 12.5, width: 20, height: 20))
-//        checkbox.boxType = .square
-//        cell.contentView.addSubview(checkbox)
+        var checkedState = M13Checkbox.CheckState.unchecked
         
-        //let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checked (_:)))
+        if indexPath.section == 0 && genreValues?[indexPath.row] == true {
+            checkedState = M13Checkbox.CheckState.checked
+        }
+        else if indexPath.section == 1 && wordCountValues?[indexPath.row] == true {
+            checkedState = M13Checkbox.CheckState.checked
+        }
+        else if indexPath.section == 2 && numContValues?[indexPath.row] == true {
+            checkedState = M13Checkbox.CheckState.checked
+        }
+        cell.checkboxOutlet.setCheckState(checkedState, animated: true)
+
         
         return cell
     }

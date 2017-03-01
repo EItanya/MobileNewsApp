@@ -9,15 +9,17 @@
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDataSource, UITableViewDelegate, FilterTableViewDelegate {
+class HomeViewController: UIViewController {
 
     //filters
-    var applyFilters = true
+    var applyFilters = 0
     
+    //current checked filters
     var genre = [false, false, false, false]
     var wordCount = [false, false, false]
     var numPeople = [false, false, false]
     
+    //index of genres
     let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
     
     var stories = [PFObject]()
@@ -65,10 +67,20 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+//
+//MARK: - Popover Delegate
+//
+extension HomeViewController: UIPopoverPresentationControllerDelegate {
     @IBAction func filterBtnClk(_ sender: UIButton) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "filter") as! CollapsibleTableViewController
+        
+        //sets chosen filter values for filterPopupController
+        vc.genreValues = genre
+        vc.wordCountValues = wordCount
+        vc.numContValues = numPeople
         
         vc.modalPresentationStyle = .popover
         vc.delegate = self
@@ -85,8 +97,38 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         return .none
     }
     
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        if applyFilters > 0 {
+            filteredStories.removeAll()
+            for (index, value) in genre.enumerated() {
+                if value == true {
+                    filteredStories.append(contentsOf: stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]}))
+                }
+            }
+        }
+        else {
+            filteredStories = stories
+        }
+        storyTableView.reloadData()
+    }
+}
+
+//
+//MARK: - Filter Delegate
+//
+extension HomeViewController: FilterTableViewDelegate {
     func checkboxValueChanged2(value: Int, section: Int, row: Int) {
         
+        //checks to see if filters are applied
+        if value == 1 {
+            applyFilters += 1
+        }
+            
+        else {
+            applyFilters -= 1
+        }
+        
+        //updates filter values
         if section == 0 {
             self.genre[row] = value.toBool()!
         }
@@ -97,17 +139,23 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             self.numPeople[row] = value.toBool()!
         }
         
-        filteredStories.removeAll()
-        
-        for (index, value) in genre.enumerated() {
-            if value == true {
-                filteredStories = stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]})
-            }
-        }
-        
-        storyTableView.reloadData()
+//        filteredStories.removeAll()
+//        
+//        for (index, value) in genre.enumerated() {
+//            if value == true {
+//                filteredStories = stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]})
+//            }
+//        }
+//        
+//        storyTableView.reloadData()
     }
-    
+}
+
+//
+//MARK: - Story List TableView
+//
+extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
+
     func numberOfSections(in storyTableView: UITableView) -> Int {
         return 1
     }
