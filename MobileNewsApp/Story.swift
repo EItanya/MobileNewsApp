@@ -23,6 +23,7 @@ class Story {
     var timeLimit : TimeInterval?
     var participants: Int = 5
     var totalTurns : Int?
+    var users = [String]()
     var entryIds = [String]()
     var entries : [Entry]?
     
@@ -39,6 +40,7 @@ class Story {
         self.timeLimit = timeLimit
         self.participants = participants
         self.totalTurns  = totalTurns
+        self.users.append(createdBy)
     }
 
     //Function to create a new story in the DB
@@ -53,7 +55,8 @@ class Story {
             "time_limit": self.timeLimit!,
             "max_word_count": self.wordCount!,
             "completed": self.completed,
-            "total_turns": self.totalTurns!
+            "total_turns": self.totalTurns!,
+            "users" : self.users
         ]
         
         let entryDict : [String: Any] = [
@@ -68,8 +71,8 @@ class Story {
         PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "story": storyDict], block: {
             (response: Any?, error: Error?) -> Void in
             //Edit later to include message about server issues.
-            var returnError : Error?
-            var returnStory : Story?
+            let returnError : Error? = nil
+            let returnStory : Story? = nil
             if error != nil {
                 print("Error saving data to DB:", error ?? "")
                 

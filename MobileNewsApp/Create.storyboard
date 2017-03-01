@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,9 +22,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NmO-xS-ysL">
-                                <rect key="frame" x="0.0" y="64" width="375" height="491"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-Vn-Pb2" customClass="LoginScreenButton" customModule="MobileNewsApp" customModuleProvider="target">
+                                <rect key="frame" x="65" y="563" width="245" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="1Rx-Jk-gSV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="createStory:" destination="Xxj-NQ-g5n" eventType="touchUpInside" id="uXf-XG-TXO"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NmO-xS-ysL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="477"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.4006639635" green="0.87087621930000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -50,18 +62,17 @@
                                     <outlet property="delegate" destination="Xxj-NQ-g5n" id="dsJ-oc-fQ7"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-Vn-Pb2" customClass="LoginScreenButton" customModule="MobileNewsApp" customModuleProvider="target">
-                                <rect key="frame" x="65" y="563" width="245" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
-                                <state key="normal" title="Continue"/>
-                                <connections>
-                                    <action selector="createStory:" destination="Xxj-NQ-g5n" eventType="touchUpInside" id="uXf-XG-TXO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.38823529411764707" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="GUx-Vn-Pb2" secondAttribute="trailing" constant="49" id="5LB-oC-dz3"/>
+                            <constraint firstItem="GUx-Vn-Pb2" firstAttribute="leading" secondItem="oNZ-sl-755" secondAttribute="leadingMargin" constant="49" id="KRd-Pm-LSJ"/>
+                            <constraint firstAttribute="trailing" secondItem="NmO-xS-ysL" secondAttribute="trailing" id="SoZ-8u-3d2"/>
+                            <constraint firstItem="IdN-ep-zfi" firstAttribute="top" secondItem="GUx-Vn-Pb2" secondAttribute="bottom" constant="16" id="bBs-x3-qKj"/>
+                            <constraint firstItem="NmO-xS-ysL" firstAttribute="leading" secondItem="oNZ-sl-755" secondAttribute="leading" id="p3Z-7r-D1g"/>
+                            <constraint firstItem="GUx-Vn-Pb2" firstAttribute="top" secondItem="NmO-xS-ysL" secondAttribute="bottom" constant="22" id="spc-2y-XrM"/>
+                            <constraint firstItem="NmO-xS-ysL" firstAttribute="top" secondItem="oNZ-sl-755" secondAttribute="top" constant="64" id="sqD-Ea-Tmh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Strory Creation" id="xQd-CN-daG"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
