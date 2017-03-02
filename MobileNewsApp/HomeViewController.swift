@@ -11,6 +11,8 @@ import Parse
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet var storyCompletionControl: UISegmentedControl!
+    
     //filters
     var applyFilters = 0
     
@@ -22,8 +24,19 @@ class HomeViewController: UIViewController {
     //index of genres
     let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
     
-    var stories = [PFObject]()
-    var filteredStories = [PFObject]()
+    //unfinished stories
+    var unfinishedStories = [Story]()
+    var unfinishedFilteredStories = [Story]()
+    
+    //completedStories
+    var completedStories = [Story]()
+    var completedFilteredStories = [Story]()
+    
+    //stories to populate views
+    var stories = [Story]()
+    var filteredStories = [Story]()
+    
+    var storiesStoryObject = [Story]()
     
     
     //table view of stories
@@ -36,36 +49,38 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         storyTableView.delegate = self
         storyTableView.dataSource = self
-        
+
         storyTableView.rowHeight = UITableViewAutomaticDimension
         storyTableView.estimatedRowHeight = 140
         
-        let query = PFQuery(className: "Story")
-        query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+        Story.getAllStories() {
+            (stories: [Story]?, Error) in
+            self.unfinishedStories = stories!.filter { $0.completed == false }
+            self.unfinishedFilteredStories = self.unfinishedStories
+            self.completedStories = stories!.filter { $0.completed == true }
+            self.completedFilteredStories = self.completedStories
+            self.stories = self.completedStories
+            self.filteredStories = self.completedStories
             
-            if error == nil {
-                
-                self.stories = objects!
-                self.filteredStories = objects!
-                print("Successfully retrieved stories")
-                print(self.stories.count)
-                for story in self.stories {
-                    print(story.objectId)
-                    let arr = ["title", "genre", "prompt"]
-                    for item in story.dictionaryWithValues(forKeys: arr) {
-                        print(item.value)
-                    }
-                }
-            } else {
-                print("Failed to query db")
-            }
             self.storyTableView.reloadData()
-        })
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func storyTypeSegmentChosen(_ sender: UISegmentedControl) {
+        if storyCompletionControl.selectedSegmentIndex == 0 {
+            stories = completedStories
+            filteredStories = completedFilteredStories
+        }
+        else {
+            stories = unfinishedStories
+            filteredStories = unfinishedFilteredStories
+        }
+        storyTableView.reloadData()
     }
 }
 
@@ -102,7 +117,7 @@ extension HomeViewController: UIPopoverPresentationControllerDelegate {
             filteredStories.removeAll()
             for (index, value) in genre.enumerated() {
                 if value == true {
-                    filteredStories.append(contentsOf: stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]}))
+                    filteredStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
                 }
             }
         }
@@ -138,16 +153,6 @@ extension HomeViewController: FilterTableViewDelegate {
         else {
             self.numPeople[row] = value.toBool()!
         }
-        
-//        filteredStories.removeAll()
-//        
-//        for (index, value) in genre.enumerated() {
-//            if value == true {
-//                filteredStories = stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]})
-//            }
-//        }
-//        
-//        storyTableView.reloadData()
 //        if applyFilters > 0 {
 //            filteredStories.removeAll()
 //            for (index, value) in genre.enumerated() {
@@ -179,9 +184,9 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ storyTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = storyTableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! HomeStoryTableViewCell
-        cell.titleLabel.text = filteredStories[indexPath.row].value(forKey: "title") as? String
-        cell.promptLabel.text = filteredStories[indexPath.row].value(forKey: "prompt") as? String
-        cell.genreLabel.text = filteredStories[indexPath.row].value(forKey: "genre") as? String
+        cell.titleLabel.text = filteredStories[indexPath.row].title
+        cell.promptLabel.text = filteredStories[indexPath.row].prompt
+        cell.genreLabel.text = filteredStories[indexPath.row].genre
 
         
         return cell
