@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07452F3A1E595BAD00B187C3 /* CreateViewController.swift */; };
 		077CCCF472A0C5165376A82E /* Pods_MobileNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */; };
+		077D71DE1E6737A100958CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077D71DD1E6737A100958CCA /* User.swift */; };
 		0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782EAC61E5A61FB00514F45 /* PromptViewController.swift */; };
 		07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */; };
 		07E62BAA1E610B6E00B3F3DA /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		077D71DD1E6737A100958CCA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0782EAC61E5A61FB00514F45 /* PromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperTableViewCell.swift; sourceTree = "<group>"; };
 		07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				8B06EA131E5DF571002ADFE5 /* User.storyboard */,
 				15422E721E58FECB002C9BD4 /* TabViewController.swift */,
+				077D71DD1E6737A100958CCA /* User.swift */,
 				15119CDF1E652ABC006CDDFC /* Home */,
 				8B06EA161E5DFBA1002ADFE5 /* Create */,
 				8B06EA181E5DFBB3002ADFE5 /* Profile */,
@@ -582,6 +585,7 @@
 				15119CDE1E652AA6006CDDFC /* CollapsibleTableViewHeader.swift in Sources */,
 				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
+				077D71DE1E6737A100958CCA /* User.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
 				07E62BB01E639B4100B3F3DA /* Util.swift in Sources */,
