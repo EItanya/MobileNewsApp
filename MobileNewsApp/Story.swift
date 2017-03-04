@@ -22,6 +22,7 @@ class Story {
     var id :String? = nil
     var timeLimit : Double?
     var participants: Int = 5
+    var currentEntryNum: Int?
     var totalTurns : Int?
     //Nil at first to setup initial current_user TODO add this to join logic
     var currentUser: String? = nil
@@ -36,7 +37,7 @@ class Story {
     
     
     
-    init(creator createdBy: String, title:String, genre: String, prompt: String, wordCount: Int, timeLimit: Double, participants: Int, totalTurns: Int ) {
+    init(creator createdBy: String, title:String, genre: String, prompt: String, wordCount: Int, timeLimit: Double, participants: Int, totalTurns: Int, currentEntryNum: Int ) {
         self.createdBy = createdBy
         self.title = title
         self.genre = genre
@@ -45,6 +46,7 @@ class Story {
         self.timeLimit = timeLimit
         self.participants = participants
         self.totalTurns  = totalTurns
+        self.currentEntryNum = currentEntryNum
         self.users.append(createdBy)
     }
 
@@ -61,7 +63,8 @@ class Story {
             "max_word_count": self.wordCount!,
             "completed": self.completed,
             "total_turns": self.totalTurns!,
-            "users" : self.users
+            "users" : self.users,
+            "current_entry_num": 1
         ]
         
         let entryDict : [String: Any] = [
@@ -93,12 +96,59 @@ class Story {
     }
     
     //Function to updateStory in DB
-    func updateStory() {
+    func updateStoryAfterTurn(entry: Entry, completion: ((_ error: Error?) -> Void)?) {
         
+//        var entryObj = PFObject(className: "Entry", dictionary: ["text": entry.text!, "created_by": entry.createdBy!, "Number": self.currentEntryNum!])
+        
+//        entryObj.saveInBackground {
+//            (success: Bool, error: Error?) -> Void in
+//            if (success) {
+//                // The object has been saved.
+//            } else {
+//                // There was a problem, check error.description
+//            }
+//        }
+
+        
+//        var query = PFQuery(className:"Story")
+//        query.getObjectInBackground(withId: self.id!) {
+//            (story: PFObject?, error: Error?) -> Void in
+//            if error != nil {
+//                print(error)
+//            } else if let story = story {
+////                gameScore["entry_ids"] = self
+////                gameScore["score"] = 1338
+//                story.saveInBackground()
+//            }
+//        }
+        
+        let entryDict : [String: Any] = [
+            "text": entry.text!,
+            "created_by": entry.createdBy!,
+            "number": entry.number ?? 1
+        ]
+        
+        PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "storyId": self.id!], block: {
+            (response: Any?, error: Error?) -> Void in
+            //Edit later to include message about server issues.
+            let returnError : Error? = nil
+            if error != nil {
+                print("Error saving data to DB:", error ?? "")
+                
+            } else {
+                print(response ?? "")
+                //Code to segue
+            }
+            completion!(returnError)
+        })
     }
     
     //Function to update one local story
     func updateLocalStory() {
+        
+    }
+    
+    func getStoryById() {
         
     }
     
@@ -157,12 +207,55 @@ class Story {
                       wordCount: story["max_word_count"] as! Int,
                       timeLimit: story["time_limit"] as! Double,
                       participants: story["participants"] as! Int,
-                      totalTurns: story["total_turns"] as! Int
+                      totalTurns: story["total_turns"] as! Int,
+                      currentEntryNum: story["current_entry_num"] as! Int
                 )
             )
         }
         return storyArray
     }
+}
+
+
+//Trying out subclassing real quick again
+//We can use it if we want
+class parseUser: PFUser {
+    
+    @NSManaged var first_name: String?
+    @NSManaged var last_name: String?
+    @NSManaged var fb_id: String?
+    @NSManaged var fb_profile_picture: String?
+    
+    override init() {
+        super.init()
+    }
+    
+    override init(className newClassName: String) {
+        super.init()
+    }
+    
+    init(email: String, password: String, firstName: String, lastName: String) {
+        super.init()
+        self.email = email
+        self.username = email
+        self.password = password
+        self.first_name = firstName
+        self.last_name = lastName
+    }
+    
+    init(email: String, password: String, firstName: String, lastName: String, facebookId: String, facebookProfilePic: String) {
+        super.init()
+        self.email = email
+        self.username = email
+        self.password = password
+        self.first_name = firstName
+        self.last_name = lastName
+        self.fb_id = facebookId
+        self.fb_profile_picture = facebookProfilePic
+    }
+    
+    
+    
 }
 
 

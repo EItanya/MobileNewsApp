@@ -297,6 +297,17 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     
     func signIn() {
+        
+//        let user = parseUser(email: emailField.text! as String, password: passwordField.text! as String, firstName: firstNameField.text! as String, lastName: lastNameField.text! as String)
+//        
+//        user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
+//            if error != nil {
+//                print("Error is ", error ?? "")
+//                return
+//            }
+//            self.performSegue(withIdentifier: "loginSegue", sender: self)
+//            print("User is added successfully")
+//        })
         let user = PFUser()
         user.username = emailField.text! as String
         user.password = passwordField.text! as String
