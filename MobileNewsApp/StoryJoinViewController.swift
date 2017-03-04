@@ -27,9 +27,6 @@ class StoryJoinViewController: UIViewController {
     
     
     //Function to join story
-    @IBAction func joinStory(_ sender: Any) {
-        
-    }
 
     /*
     // MARK: - Navigation

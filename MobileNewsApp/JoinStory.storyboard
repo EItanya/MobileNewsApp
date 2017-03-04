@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zKf-y1-VFh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zKf-y1-VFh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Story Join View Controller-->
         <scene sceneID="x0y-XU-EQr">
             <objects>
-                <viewController id="zKf-y1-VFh" customClass="StoryJoinViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JoinStory" id="zKf-y1-VFh" customClass="StoryJoinViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GER-65-q1q"/>
                         <viewControllerLayoutGuide type="bottom" id="TQw-pd-2p3"/>
@@ -43,10 +43,6 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                 <state key="normal" title="Join Story"/>
-                                <connections>
-                                    <action selector="joinStory:" destination="zKf-y1-VFh" eventType="touchUpInside" id="IG4-uZ-QsM"/>
-                                    <action selector="submitEntry:" destination="zKf-y1-VFh" eventType="touchUpInside" id="1kc-df-MAl"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cZ-Ef-gNY">
                                 <rect key="frame" x="67" y="188" width="240" height="196"/>
@@ -58,14 +54,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.4006639635" green="0.87087621930000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <connections>
-                        <outlet property="authorLabel" destination="YIj-SL-War" id="lut-IF-jn8"/>
-                        <outlet property="firstEntry" destination="5cZ-Ef-gNY" id="DMc-u7-X5k"/>
-                        <outlet property="submitButton" destination="G94-z8-jLB" id="yRa-od-9Gd"/>
-                        <outlet property="titleLabel" destination="Flz-Mu-8FV" id="IXb-pk-EGx"/>
-                        <outletCollection property="labels" destination="Flz-Mu-8FV" collectionClass="NSMutableArray" id="XbX-5R-oHV"/>
-                        <outletCollection property="labels" destination="YIj-SL-War" collectionClass="NSMutableArray" id="2fE-63-biI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ug1-JC-LWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
