@@ -7,23 +7,47 @@
 //
 
 import UIKit
+import Parse
 
 class StoryViewController: UIViewController {
 
     var story: Story?
+    var timer: Timer?
+    var user: PFUser?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var turnButton: UIButton!
     @IBOutlet weak var storyField: UITextView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTextField()
-       
+        setupTextView()
+        user = PFUser.current()
+        //Logic to set up page for current writer vs. spectator
+        if (user?.objectId == story?.currentUser) {
+            //It is current user's turn
+            setupCurrentTurn()
+        } else {
+            //Not current turn
+            setupSpectator()
+        }
         // Do any additional setup after loading the view.
     }
     
-    func setupTextField() {
+    func setupCurrentTurn() {
+        turnButton.isEnabled = true
+    }
+    
+    func setupSpectator() {
+        storyField.isSelectable = false
+        storyField.isEditable = false
+        turnButton.isEnabled = false
+    }
+    
+    func setupTextView() {
+        //Simply styling for text Field
         let shadowColor :  CGFloat = 155.0 / 255.0
         let layer = storyField.layer
         layer.cornerRadius = 5.0
@@ -31,6 +55,13 @@ class StoryViewController: UIViewController {
         layer.shadowOpacity = 0.7
         layer.shadowRadius = 5.0
         layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+    }
+    
+    //Setup timer to keep track of persons writing time.
+    func setupTimer() {
+        self.timer = Timer.scheduledTimer(withTimeInterval: (self.story?.timeLimit)!, repeats: false, block: {(timer: Timer) -> Void in
+            print("timer is set up")
+        })
     }
 
     override func didReceiveMemoryWarning() {

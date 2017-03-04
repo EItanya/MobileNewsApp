@@ -10,14 +10,18 @@ import UIKit
 
 class StoryJoinViewController: UIViewController {
     
-    @IBOutlet var labels: [UILabel]!
+    //Current Story Object
+    var story: Story?
 
-    @IBOutlet weak var firstEntry: UILabel!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        titleLabel.text = story?.title
+        authorLabel.text = story?.createdBy
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,9 +31,6 @@ class StoryJoinViewController: UIViewController {
     
     
     //Function to join story
-    @IBAction func joinStory(_ sender: Any) {
-        
-    }
 
     /*
     // MARK: - Navigation
