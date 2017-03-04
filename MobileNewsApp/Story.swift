@@ -92,7 +92,12 @@ class Story {
             } else {
 //                let storyArray : [Story] = convertToStories(stories: [response! as! PFObject])
 //                returnStory = storyArray[0]
-                print(response ?? "")
+                let user = PFUser.current()
+                var activeArray : [String] = user?.object(forKey: "active_stories") as! [String]
+                activeArray.append(response as! String)
+                print(activeArray)
+                user?.setValue(activeArray, forKey: "active_stories")
+                user?.saveInBackground()
                 //Code to segue
             }
             completion!(returnStory, returnError)
