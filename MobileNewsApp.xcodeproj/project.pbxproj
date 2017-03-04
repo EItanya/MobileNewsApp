@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071A23061E6A30D500260D81 /* StoryJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071A23051E6A30D500260D81 /* StoryJoinViewController.swift */; };
 		07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07452F3A1E595BAD00B187C3 /* CreateViewController.swift */; };
+		076D78441E6A394D00387D6A /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 076D78431E6A394D00387D6A /* Story.storyboard */; };
+		076D78461E6A397000387D6A /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076D78451E6A397000387D6A /* StoryViewController.swift */; };
 		077CCCF472A0C5165376A82E /* Pods_MobileNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */; };
 		077D71DE1E6737A100958CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077D71DD1E6737A100958CCA /* User.swift */; };
 		0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782EAC61E5A61FB00514F45 /* PromptViewController.swift */; };
 		07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */; };
-		07E62BAA1E610B6E00B3F3DA /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */; };
-		07E62BAC1E610BA800B3F3DA /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E62BAB1E610BA800B3F3DA /* Story.storyboard */; };
+		07E62BAA1E610B6E00B3F3DA /* FirstEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA91E610B6E00B3F3DA /* FirstEntryViewController.swift */; };
+		07E62BAC1E610BA800B3F3DA /* JoinStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */; };
 		07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BAD1E6364FE00B3F3DA /* Story.swift */; };
 		07E62BB01E639B4100B3F3DA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BAF1E639B4100B3F3DA /* Util.swift */; };
 		07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */; };
@@ -60,12 +63,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		071A23051E6A30D500260D81 /* StoryJoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryJoinViewController.swift; sourceTree = "<group>"; };
 		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		076D78431E6A394D00387D6A /* Story.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
+		076D78451E6A397000387D6A /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		077D71DD1E6737A100958CCA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0782EAC61E5A61FB00514F45 /* PromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperTableViewCell.swift; sourceTree = "<group>"; };
-		07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
-		07E62BAB1E610BA800B3F3DA /* Story.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
+		07E62BA91E610B6E00B3F3DA /* FirstEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstEntryViewController.swift; sourceTree = "<group>"; };
+		07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JoinStory.storyboard; sourceTree = "<group>"; };
 		07E62BAD1E6364FE00B3F3DA /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		07E62BAF1E639B4100B3F3DA /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenButton.swift; sourceTree = "<group>"; };
@@ -138,9 +144,11 @@
 		07E62BA81E610B4400B3F3DA /* Story */ = {
 			isa = PBXGroup;
 			children = (
-				07E62BAB1E610BA800B3F3DA /* Story.storyboard */,
-				07E62BA91E610B6E00B3F3DA /* StoryViewController.swift */,
+				07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */,
+				071A23051E6A30D500260D81 /* StoryJoinViewController.swift */,
 				07E62BAD1E6364FE00B3F3DA /* Story.swift */,
+				076D78431E6A394D00387D6A /* Story.storyboard */,
+				076D78451E6A397000387D6A /* StoryViewController.swift */,
 			);
 			name = Story;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				8B06EA1B1E5DFCC9002ADFE5 /* Create.storyboard */,
+				07E62BA91E610B6E00B3F3DA /* FirstEntryViewController.swift */,
 				07452F3A1E595BAD00B187C3 /* CreateViewController.swift */,
 				07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */,
 				0782EAC61E5A61FB00514F45 /* PromptViewController.swift */,
@@ -413,7 +422,8 @@
 				8B06EA201E5DFD23002ADFE5 /* Profile.storyboard in Resources */,
 				15FBA2021E4E80FB00DDEEB7 /* Assets.xcassets in Resources */,
 				8B06EA1C1E5DFCC9002ADFE5 /* Create.storyboard in Resources */,
-				07E62BAC1E610BA800B3F3DA /* Story.storyboard in Resources */,
+				076D78441E6A394D00387D6A /* Story.storyboard in Resources */,
+				07E62BAC1E610BA800B3F3DA /* JoinStory.storyboard in Resources */,
 				15FBA1FD1E4E80FB00DDEEB7 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,8 +592,10 @@
 				15119CDB1E652AA6006CDDFC /* GenreTableViewCell.swift in Sources */,
 				15119CDC1E652AA6006CDDFC /* CollapsibleTableViewController.swift in Sources */,
 				15119CDD1E652AA6006CDDFC /* Extensions.swift in Sources */,
+				071A23061E6A30D500260D81 /* StoryJoinViewController.swift in Sources */,
 				15119CDE1E652AA6006CDDFC /* CollapsibleTableViewHeader.swift in Sources */,
 				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
+				076D78461E6A397000387D6A /* StoryViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
 				077D71DE1E6737A100958CCA /* User.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
@@ -592,7 +604,7 @@
 				15422E791E590A81002C9BD4 /* ProfileViewController.swift in Sources */,
 				07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */,
 				07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */,
-				07E62BAA1E610B6E00B3F3DA /* StoryViewController.swift in Sources */,
+				07E62BAA1E610B6E00B3F3DA /* FirstEntryViewController.swift in Sources */,
 				15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */,
 				15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */,
 				15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */,

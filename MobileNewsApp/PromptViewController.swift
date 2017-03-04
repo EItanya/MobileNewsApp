@@ -138,7 +138,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, wordCount: 100, timeLimit: 5.0, participants: 10, totalTurns: 100)
         self.story = currentStory
         
-        self.performSegue(withIdentifier: "firstEntrySegue", sender: self)
+        self.performSegue(withIdentifier: "beginStorySegue", sender: self)
         
         
     }
@@ -260,8 +260,8 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "firstEntrySegue" {
-            let storyViewController = segue.destination as! StoryViewController
+        if segue.identifier == "beginStorySegue" {
+            let storyViewController = segue.destination as! FirstEntryViewController
             storyViewController.story = self.story
         }
      // Get the new view controller using segue.destinationViewController.
