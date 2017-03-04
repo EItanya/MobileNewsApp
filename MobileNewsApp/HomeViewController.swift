@@ -187,6 +187,9 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = filteredStories[indexPath.row].title
         cell.promptLabel.text = filteredStories[indexPath.row].prompt
         cell.genreLabel.text = filteredStories[indexPath.row].genre
+        let totalWordCount = String(describing: filteredStories[indexPath.row].totalWordCount!)
+        let maxWordCount = String(describing: filteredStories[indexPath.row].maxWordCount!)
+        cell.wordCountLabel.text = "\(totalWordCount)/\(maxWordCount)"
 
         
         return cell

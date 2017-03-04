@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class StoryJoinViewController: UIViewController {
     
@@ -29,6 +30,10 @@ class StoryJoinViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func joinStoryBtnClk(_ sender: UIButton) {
+        story?.addUser(completion: nil)
+    }
     
     //Function to join story
 
