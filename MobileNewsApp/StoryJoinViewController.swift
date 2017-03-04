@@ -32,7 +32,16 @@ class StoryJoinViewController: UIViewController {
     
     
     @IBAction func joinStoryBtnClk(_ sender: UIButton) {
-        story?.addUser(completion: nil)
+        story?.addUser(completion: {(error: Error?) -> Void in
+            if error != nil {
+                print(error)
+            }
+            else {
+                var storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
+                var vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
+                vc.story = self.story
+                self.show(vc, sender: self)
+            }})
     }
     
     //Function to join story
