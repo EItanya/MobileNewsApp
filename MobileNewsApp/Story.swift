@@ -169,10 +169,12 @@ class Story {
                 if users.count == 1 && currentUser == "" {
                     //Logic if this is the second user being added
                     users.append((user?.objectId)!)
-                    story?["current_user"] = currentUser
+                    story?.setObject(user?.objectId!, forKey: "current_user")
+//                    story["current_user"] = currentUser
                     
                     
                 }
+                
                 story?["users"] = users
                 story?.saveInBackground()
                 
