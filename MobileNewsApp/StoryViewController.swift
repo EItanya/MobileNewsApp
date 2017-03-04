@@ -24,6 +24,7 @@ class StoryViewController: UIViewController {
     }
     
     func setupTextField() {
+        let shadowColor :  CGFloat = 155.0 / 255.0
         let layer = storyField.layer
         layer.cornerRadius = 5.0
         layer.shadowColor = UIColor(displayP3Red: shadowColor, green: shadowColor, blue: shadowColor, alpha: 0.5).cgColor
