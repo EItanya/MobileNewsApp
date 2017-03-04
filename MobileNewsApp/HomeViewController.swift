@@ -192,12 +192,19 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-//    // MARK: - Navigation
-//    
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
+        var vc = storyboard.instantiateViewController(withIdentifier: "JoinStory") as! StoryJoinViewController
+        vc.story = filteredStories[indexPath.row]
+        self.show(vc, sender: self)
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
     
 }

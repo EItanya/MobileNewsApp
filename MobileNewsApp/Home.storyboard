@@ -95,7 +95,6 @@
                                             <outlet property="genreLabel" destination="RJh-5V-sdj" id="fxW-Ub-5nD"/>
                                             <outlet property="promptLabel" destination="lJ9-JA-uLp" id="UXh-t4-ZDp"/>
                                             <outlet property="titleLabel" destination="Heu-L9-5Lo" id="Y6X-Wv-wjt"/>
-                                            <segue destination="05b-j8-eLG" kind="show" id="ZfS-e2-xmz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -125,14 +124,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgd-Na-SzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2708" y="473"/>
-        </scene>
-        <!--JoinStory-->
-        <scene sceneID="17R-FA-9Ys">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="JoinStory" storyboardName="JoinStory" id="05b-j8-eLG" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dOg-4b-Lxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3513" y="472"/>
         </scene>
         <!--Collapsible Table View Controller-->
         <scene sceneID="HfT-02-Qoe">

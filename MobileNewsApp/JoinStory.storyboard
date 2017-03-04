@@ -54,6 +54,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.4006639635" green="0.87087621930000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="authorLabel" destination="YIj-SL-War" id="BjU-H3-efp"/>
+                        <outlet property="titleLabel" destination="Flz-Mu-8FV" id="gjT-et-aiM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ug1-JC-LWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
