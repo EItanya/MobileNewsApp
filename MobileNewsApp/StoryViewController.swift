@@ -14,6 +14,7 @@ class StoryViewController: UIViewController {
     var story: Story?
     var timer: Timer?
     var user: PFUser?
+    var turnOngoing : Bool = false
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -70,6 +71,12 @@ class StoryViewController: UIViewController {
     }
     
     @IBAction func turnButtonPress(_ sender: Any) {
+        if turnOngoing == false {
+           turnOngoing = true
+            setupTimer()
+        } else {
+            turnOngoing = false
+        }
         UIView.transition(with: self.turnButton, duration: 0.5, options: .transitionFlipFromBottom, animations: {() -> Void in
             self.turnButton.setTitle("End Turn", for: .normal)
         }, completion: nil)

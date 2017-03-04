@@ -135,7 +135,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let user: PFUser = PFUser.current()!
         
         //
-        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, wordCount: 100, timeLimit: self.timeLimit, participants: 10, totalTurns: 100, currentEntryNum: 1)
+        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, maxWordCount: 100, timeLimit: self.timeLimit, participants: 10, totalTurns: 100, currentEntry: 1)
         self.story = currentStory
         
         self.performSegue(withIdentifier: "beginStorySegue", sender: self)

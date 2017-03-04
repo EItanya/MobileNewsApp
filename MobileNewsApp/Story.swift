@@ -16,13 +16,14 @@ class Story {
     var genre:String?
     var completed: Bool = false
     var prompt:String?
-    var firstEntry: Entry? = nil
-    var previousEntry: Entry? = nil
-    var wordCount: Int?
+    var firstEntry: String? = nil
+    var previousEntry: String? = nil
+    var totalWordCount: Int?
+    var maxWordCount: Int?
     var id :String? = nil
     var timeLimit : Double?
     var participants: Int = 5
-    var currentEntryNum: Int?
+    var currentEntry: Int?
     var totalTurns : Int?
     //Nil at first to setup initial current_user TODO add this to join logic
     var currentUser: String? = nil
@@ -37,22 +38,23 @@ class Story {
     
     
     
-    init(creator createdBy: String, title:String, genre: String, prompt: String, wordCount: Int, timeLimit: Double, participants: Int, totalTurns: Int, currentEntryNum: Int ) {
+    init(creator createdBy: String, title:String, genre: String, prompt: String, maxWordCount: Int, timeLimit: Double, participants: Int, totalTurns: Int, currentEntry: Int) {
         self.createdBy = createdBy
         self.title = title
         self.genre = genre
         self.prompt = prompt
-        self.wordCount = wordCount
+        self.maxWordCount = maxWordCount
         self.timeLimit = timeLimit
         self.participants = participants
         self.totalTurns  = totalTurns
-        self.currentEntryNum = currentEntryNum
+        self.currentEntry = currentEntry
         self.users.append(createdBy)
     }
+    
 
     //Function to create a new story in the DB
     //This function works
-    func createNewStory(completion: ((_ story: Story?, _ error: Error?) -> Void)?) {
+    func createNewStory(entry: Entry, completion: ((_ story: Story?, _ error: Error?) -> Void)?) {
         let storyDict : [String: Any] = [
             "genre" : self.genre!,
             "title" : self.title!,
@@ -60,17 +62,19 @@ class Story {
             "created_by": self.createdBy!,
             "participants": self.participants,
             "time_limit": self.timeLimit!,
-            "max_word_count": self.wordCount!,
+            "max_word_count": self.maxWordCount!,
             "completed": self.completed,
             "total_turns": self.totalTurns!,
             "users" : self.users,
-            "current_entry_num": 1
+            "current_entry": 1,
+            "current_user": "",
+            "total_word_count": self.totalWordCount!
         ]
         
         let entryDict : [String: Any] = [
-            "text": self.firstEntry!.text!,
-            "created_by": self.firstEntry!.createdBy!,
-            "number": self.firstEntry!.number ?? 1
+            "text": entry.text!,
+            "created_by": entry.createdBy!,
+            "number": entry.number ?? 1
         ]
         
         //Possible change to cloud code to do all in one call
@@ -98,7 +102,7 @@ class Story {
     //Function to updateStory in DB
     func updateStoryAfterTurn(entry: Entry, completion: ((_ error: Error?) -> Void)?) {
         
-//        var entryObj = PFObject(className: "Entry", dictionary: ["text": entry.text!, "created_by": entry.createdBy!, "Number": self.currentEntryNum!])
+//        var entryObj = PFObject(className: "Entry", dictionary: ["text": entry.text!, "created_by": entry.createdBy!, "Number": self.currentEntry!])
         
 //        entryObj.saveInBackground {
 //            (success: Bool, error: Error?) -> Void in
@@ -128,7 +132,7 @@ class Story {
             "number": entry.number ?? 1
         ]
         
-        PFCloud.callFunction(inBackground: "createStory", withParameters: ["entry": entryDict, "storyId": self.id!], block: {
+        PFCloud.callFunction(inBackground: "updateStoryWithEntry", withParameters: ["entry": entryDict, "storyId": self.id!], block: {
             (response: Any?, error: Error?) -> Void in
             //Edit later to include message about server issues.
             let returnError : Error? = nil
@@ -143,14 +147,43 @@ class Story {
         })
     }
     
-    //Function to update one local story
+    //Function to update current local story
     func updateLocalStory() {
         
     }
     
-    func getStoryById() {
+    //Add a new user to the story
+    func addUser(completion: ((_ error: Error?) -> Void)?) {
+        let user = PFUser.current()
+        let query = PFQuery(className: "Story")
+        var returnError : Error? = nil
+        query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
+            if error == nil && story != nil {
+                print(story ?? "")
+                var users : [String] = story?.object(forKey: "users") as! [String]
+                let currentUser: String = story?.object(forKey: "current_user") as! String
+                if users.count == 1 && currentUser == "" {
+                    //Logic if this is the second user being added
+                    users.append((user?.objectId)!)
+                    story?["current_user"] = currentUser
+                    story?["users"] = users
+                    story?.saveInBackground()
+                } else {
+                    
+                }
+                
+            } else {
+                print(error ?? "")
+                returnError = error
+            }
+        })
+        completion!(returnError)
+    }
+    
+    static func getStoryById() {
         
     }
+    
     
     //Function to get all stories
     static func getAllStories(completion:  ((_ stories: [Story]?, _ error: Error?) -> Void)?) {
@@ -198,19 +231,39 @@ class Story {
     //Function to convert a bunch of parse objects into story objects for app to use
     private static func convertToStories(stories: [PFObject]) -> [Story] {
         var storyArray = [Story]()
+        var newStory: Story
         for story in stories {
-            storyArray.append(
-                Story(creator: story["created_by"] as! String,
-                      title: story["title"] as! String,
-                      genre: story["genre"] as! String,
-                      prompt: story["prompt"] as! String,
-                      wordCount: story["max_word_count"] as! Int,
-                      timeLimit: story["time_limit"] as! Double,
-                      participants: story["participants"] as! Int,
-                      totalTurns: story["total_turns"] as! Int,
-                      currentEntryNum: story["current_entry_num"] as! Int
-                )
-            )
+            newStory = Story(creator: story["created_by"] as! String,
+                                 title: story["title"] as! String,
+                                 genre: story["genre"] as! String,
+                                 prompt: story["prompt"] as! String,
+                                 maxWordCount: story["max_word_count"] as! Int,
+                                 timeLimit: story["time_limit"] as! Double,
+                                 participants: story["participants"] as! Int,
+                                 totalTurns: story["total_turns"] as! Int,
+                                 currentEntry: story["current_entry"] as! Int
+                            )
+            newStory.firstEntry = story["first_entry"] as! String?
+            newStory.previousEntry = story["previous_entry"] as! String?
+            newStory.id = story.objectId
+            newStory.currentUser = story["current_user"] as! String?
+            newStory.entryIds = story["entry_ids"] as! [String]
+            newStory.totalWordCount = story["total_word_count"] as! Int?
+            storyArray.append(newStory)
+//            storyArray.append(
+//                Story(creator: story["created_by"] as! String,
+//                      title: story["title"] as! String,
+//                      genre: story["genre"] as! String,
+//                      prompt: story["prompt"] as! String,
+//                      maxWordCount: story["max_word_count"] as! Int,
+//                      timeLimit: story["time_limit"] as! Double,
+//                      participants: story["participants"] as! Int,
+//                      totalTurns: story["total_turns"] as! Int,
+//                      currentEntry: story["current_entry"] as! Int,
+//                      firstEntry: story["first_entry"] as! String,
+//                      previousEntry: story["previous_entry"] as! String
+//                )
+//            )
         }
         return storyArray
     }

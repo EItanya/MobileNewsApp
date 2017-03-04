@@ -255,6 +255,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                         if(userFirstName != nil) { myUser.setValue(userFirstName, forKey: "first_name") }
                         if(userLastName != nil) { myUser.setValue(userLastName, forKey: "last_name") }
                         if(userEmail != nil) { myUser.setValue(userEmail, forKey: "email") }
+                        myUser.setValue([], forKey: "completed_stories")
+                        myUser.setValue([], forKey: "active_stories")
                         //Save User data back to Parse
                         myUser.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
                             if error != nil {
@@ -314,6 +316,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         user.email = emailField.text! as String
         user["first_name"] = firstNameField.text! as String
         user["last_name"] = lastNameField.text! as String
+        user.setValue([], forKey: "completed_stories")
+        user.setValue([], forKey: "active_stories")
         
         user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
             if error != nil {
