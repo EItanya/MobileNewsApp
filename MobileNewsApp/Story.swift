@@ -92,7 +92,11 @@ class Story {
             } else {
 //                let storyArray : [Story] = convertToStories(stories: [response! as! PFObject])
 //                returnStory = storyArray[0]
-                print(response ?? "")
+                let user = PFUser.current()
+                var activeArray : [String] = user?.object(forKey: "active_stories") as! [String]
+                activeArray.append(response as! String)
+                user?.setValue(activeArray, forKey: "active_stories")
+                user?.saveInBackground()
                 //Code to segue
             }
             completion!(returnStory, returnError)
@@ -166,11 +170,17 @@ class Story {
                     //Logic if this is the second user being added
                     users.append((user?.objectId)!)
                     story?["current_user"] = currentUser
-                    story?["users"] = users
-                    story?.saveInBackground()
-                } else {
+                    
                     
                 }
+                story?["users"] = users
+                story?.saveInBackground()
+                
+                //Code to add story to users_active stories
+                var activeArray : [String] = user?.object(forKey: "active_stories") as! [String]
+                activeArray.append(response as! String)
+                user?.setValue(activeArray, forKey: "active_stories")
+                user?.saveInBackground()
                 
             } else {
                 print(error ?? "")
