@@ -13,7 +13,7 @@ import Parse
 class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
 
-    var timeLimit: TimeInterval = 5.0
+    var timeLimit: Double = 5.0
     var maxWords: Int = 100
     var participants: Int =  5
     var selecedPrompt: String = ""
@@ -135,7 +135,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let user: PFUser = PFUser.current()!
         
         //
-        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, wordCount: 100, timeLimit: 5.0, participants: 10, totalTurns: 100)
+        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, wordCount: 100, timeLimit: self.timeLimit, participants: 10, totalTurns: 100)
         self.story = currentStory
         
         self.performSegue(withIdentifier: "beginStorySegue", sender: self)
@@ -179,28 +179,34 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let slider = sender as! UISlider
         var currentVal: Int = 0
         if slider == timeLimitSlider {
+            //Logic for Time Limit
             var roundedValue : Float = slider.value.rounded(.toNearestOrAwayFromZero)
             var resultString:String = ""
+            let resultInt = Int(roundedValue)
             if  slider.value - roundedValue >= 0.25  {
-                resultString = "\(Int(roundedValue)):30"
-//                resultString = String(Int(roundedValue)) + ":30"
+                resultString = "\(resultInt):30"
+                self.timeLimit = Double(resultInt*60+30)
                 roundedValue += 0.5
             } else if roundedValue - slider.value >= 0.25 {
-                resultString = "\(Int(roundedValue-1)):30"
-//                resultString = String(Int(roundedValue-1)) + ":30"
+                resultString = "\(resultInt-1):30"
+                self.timeLimit = Double((resultInt-1)*60+30)
                 roundedValue -= 0.5
             } else {
-                resultString = "\(Int(roundedValue)):00"
+                resultString = "\(resultInt):00"
+                self.timeLimit = Double(resultInt*60)
             }
             timeLimitSliderValue.text = String(resultString)
         } else if slider == wordCountSlider {
+            //Logic for wordCount
             currentVal = Int(slider.value)
             currentVal = (currentVal / 10)*10
             wordCountSliderValue.text = String(currentVal)
         } else if slider == participantSlider {
+            //Logic for # of participants
             currentVal = Int(slider.value)
             participantSliderLabel.text = String(currentVal)
         } else if slider == totalTurnsSlider {
+            //Logic for total # of turns
             currentVal = Int(slider.value)
             currentVal = (currentVal / 5)*5
             totalTurnsSliderLabel.text = String(currentVal)

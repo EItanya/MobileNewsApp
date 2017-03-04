@@ -64,6 +64,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     }
     
     func setupViews() {
+        passwordField.isSecureTextEntry = true
+        
         view.addSubview(registerFormView)
         //Setup internal registration view
         registerFormView.center = view.center

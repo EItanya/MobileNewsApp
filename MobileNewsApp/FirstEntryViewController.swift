@@ -64,7 +64,7 @@ class FirstEntryViewController: UIViewController {
             return
         }
         
-        let firstEntry = Entry(createdBy: (currentUser?.objectId)!, text: storyText.text)
+        let firstEntry = Entry(createdBy: (currentUser?.objectId)!, text: storyText.text, number: 1)
         story.firstEntry = firstEntry
         story.previousEntry = firstEntry
         
