@@ -20,18 +20,23 @@ class Story {
     var previousEntry: Entry? = nil
     var wordCount: Int?
     var id :String? = nil
-    var timeLimit : TimeInterval?
+    var timeLimit : Double?
     var participants: Int = 5
     var totalTurns : Int?
+    //Nil at first to setup initial current_user TODO add this to join logic
+    var currentUser: String? = nil
+    //An Array of users involved in this story
     var users = [String]()
+    //an Array of Entry ids for DB
     var entryIds = [String]()
+    //List of entries for after they are fetched
     var entries : [Entry]?
     
     static var listOfStoryItems = ["title", "genre", "prompt", "participants", "created_by", "time_limit", "max_word_count", "completed", "first_entry", "previous_entry", "total_turns", "entries", "entry_ids"]
     
     
     
-    init(creator createdBy: String, title:String, genre: String, prompt: String, wordCount: Int, timeLimit: TimeInterval, participants: Int, totalTurns: Int ) {
+    init(creator createdBy: String, title:String, genre: String, prompt: String, wordCount: Int, timeLimit: Double, participants: Int, totalTurns: Int ) {
         self.createdBy = createdBy
         self.title = title
         self.genre = genre
@@ -61,7 +66,8 @@ class Story {
         
         let entryDict : [String: Any] = [
             "text": self.firstEntry!.text!,
-            "created_by": self.firstEntry!.createdBy!
+            "created_by": self.firstEntry!.createdBy!,
+            "number": self.firstEntry!.number ?? 1
         ]
         
         //Possible change to cloud code to do all in one call
@@ -149,7 +155,7 @@ class Story {
                       genre: story["genre"] as! String,
                       prompt: story["prompt"] as! String,
                       wordCount: story["max_word_count"] as! Int,
-                      timeLimit: story["time_limit"] as! TimeInterval,
+                      timeLimit: story["time_limit"] as! Double,
                       participants: story["participants"] as! Int,
                       totalTurns: story["total_turns"] as! Int
                 )
@@ -164,9 +170,11 @@ class Story {
 class Entry {
     var text: String?
     var createdBy: String?
-    init(createdBy: String, text: String) {
+    var number: Int?
+    init(createdBy: String, text: String, number: Int) {
         self.text = text
         self.createdBy = createdBy
+        self.number = number
     }
 }
 
