@@ -13,9 +13,11 @@ class StoryJoinViewController: UIViewController {
     
     //Current Story Object
     var story: Story?
+    var entry: PFObject?
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
+    @IBOutlet var previousEntryLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,16 @@ class StoryJoinViewController: UIViewController {
         // Do any additional setup after loading the view.
         titleLabel.text = story?.title
         authorLabel.text = story?.createdBy
+        let query = PFQuery(className: "Entry")
+        query.getObjectInBackground(withId: (self.story?.previousEntry)!, block: {(entry: PFObject?, error: Error?) -> Void in
+            if error != nil {
+                print(error)
+            }
+            else {
+                self.entry = entry
+                self.previousEntryLabel.text! = entry?["text"] as! String
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
