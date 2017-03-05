@@ -37,6 +37,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         logoOutlet.image = UIImage(named: "logo_home")
         usernameLogo.image = UIImage(named: "username")
@@ -158,9 +159,6 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                 return
             }
             
-            let user = User()
-            print(User.current())
-            
             print("Logged in successfully with Username")
             self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
@@ -255,6 +253,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                         if(userFirstName != nil) { myUser.setValue(userFirstName, forKey: "first_name") }
                         if(userLastName != nil) { myUser.setValue(userLastName, forKey: "last_name") }
                         if(userEmail != nil) { myUser.setValue(userEmail, forKey: "email") }
+                        myUser.setValue([], forKey: "completed_stories")
+                        myUser.setValue([], forKey: "active_stories")
                         //Save User data back to Parse
                         myUser.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
                             if error != nil {
@@ -297,12 +297,25 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 
     
     func signIn() {
+        
+//        let user = parseUser(email: emailField.text! as String, password: passwordField.text! as String, firstName: firstNameField.text! as String, lastName: lastNameField.text! as String)
+//        
+//        user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
+//            if error != nil {
+//                print("Error is ", error ?? "")
+//                return
+//            }
+//            self.performSegue(withIdentifier: "loginSegue", sender: self)
+//            print("User is added successfully")
+//        })
         let user = PFUser()
         user.username = emailField.text! as String
         user.password = passwordField.text! as String
         user.email = emailField.text! as String
         user["first_name"] = firstNameField.text! as String
         user["last_name"] = lastNameField.text! as String
+        user.setValue([], forKey: "completed_stories")
+        user.setValue([], forKey: "active_stories")
         
         user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
             if error != nil {

@@ -20,4 +20,9 @@ class Util {
         if let text = textField.text, !text.isEmpty { return false }
         else {  return true }
     }
+    
+    static func countWords(text: String) -> Int {
+        let words = text.components(separatedBy: CharacterSet.whitespaces)
+        return words.count
+    }
 }

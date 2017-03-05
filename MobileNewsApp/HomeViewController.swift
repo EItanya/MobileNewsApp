@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     var stories = [Story]()
     var filteredStories = [Story]()
     
-    var storiesStoryObject = [Story]()
+    //var storiesStoryObject = [Story]()
     
     
     //table view of stories
@@ -52,12 +52,13 @@ class HomeViewController: UIViewController {
 
         storyTableView.rowHeight = UITableViewAutomaticDimension
         storyTableView.estimatedRowHeight = 140
-        
+
         Story.getAllStories() {
             (stories: [Story]?, Error) in
-            self.unfinishedStories = stories!.filter { $0.completed == false }
+            let validStories = stories!.filter { $0.users.contains(PFUser.current()!.objectId!) == false }
+            self.unfinishedStories = validStories.filter { $0.completed == false }
             self.unfinishedFilteredStories = self.unfinishedStories
-            self.completedStories = stories!.filter { $0.completed == true }
+            self.completedStories = validStories.filter { $0.completed == true }
             self.completedFilteredStories = self.completedStories
             self.stories = self.completedStories
             self.filteredStories = self.completedStories
@@ -187,6 +188,9 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = filteredStories[indexPath.row].title
         cell.promptLabel.text = filteredStories[indexPath.row].prompt
         cell.genreLabel.text = filteredStories[indexPath.row].genre
+        let totalWordCount = String(describing: filteredStories[indexPath.row].totalWordCount!)
+        let maxWordCount = String(describing: filteredStories[indexPath.row].maxWordCount!)
+        cell.wordCountLabel.text = "\(totalWordCount)/\(maxWordCount)"
 
         
         return cell

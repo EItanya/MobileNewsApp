@@ -11,6 +11,7 @@
 		07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07452F3A1E595BAD00B187C3 /* CreateViewController.swift */; };
 		076D78441E6A394D00387D6A /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 076D78431E6A394D00387D6A /* Story.storyboard */; };
 		076D78461E6A397000387D6A /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076D78451E6A397000387D6A /* StoryViewController.swift */; };
+		077CCC5D1E6C858E0010B0DC /* LoadingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CCC5C1E6C858E0010B0DC /* LoadingModalView.swift */; };
 		077CCCF472A0C5165376A82E /* Pods_MobileNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */; };
 		077D71DE1E6737A100958CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077D71DD1E6737A100958CCA /* User.swift */; };
 		0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782EAC61E5A61FB00514F45 /* PromptViewController.swift */; };
@@ -72,6 +73,7 @@
 		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		076D78431E6A394D00387D6A /* Story.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
 		076D78451E6A397000387D6A /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
+		077CCC5C1E6C858E0010B0DC /* LoadingModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingModalView.swift; sourceTree = "<group>"; };
 		077D71DD1E6737A100958CCA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0782EAC61E5A61FB00514F45 /* PromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
 		07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,6 +156,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		077CCC5B1E6C856D0010B0DC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				07E62BAF1E639B4100B3F3DA /* Util.swift */,
+				077CCC5C1E6C858E0010B0DC /* LoadingModalView.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		07E62BA81E610B4400B3F3DA /* Story */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,8 +248,8 @@
 		15FBA1F61E4E80FB00DDEEB7 /* MobileNewsApp */ = {
 			isa = PBXGroup;
 			children = (
+				077CCC5B1E6C856D0010B0DC /* Util */,
 				15FBA1F71E4E80FB00DDEEB7 /* AppDelegate.swift */,
-				07E62BAF1E639B4100B3F3DA /* Util.swift */,
 				15119CD61E652AA6006CDDFC /* Extensions.swift */,
 				15E99A4E1E4E9F3500B736B4 /* Login/Registration */,
 				15422E711E58FEA3002C9BD4 /* User Interface */,
@@ -258,7 +269,7 @@
 				15FBA2111E4E80FC00DDEEB7 /* Info.plist */,
 			);
 			path = MobileNewsAppTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		15FBA2191E4E80FC00DDEEB7 /* MobileNewsAppUITests */ = {
 			isa = PBXGroup;
@@ -623,6 +634,7 @@
 				F01B73E31E6B338700728C35 /* FXBlurView.m in Sources */,
 				076D78461E6A397000387D6A /* StoryViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
+				077CCC5D1E6C858E0010B0DC /* LoadingModalView.swift in Sources */,
 				077D71DE1E6737A100958CCA /* User.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
