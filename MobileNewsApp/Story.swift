@@ -219,6 +219,27 @@ class Story {
         })
     }
     
+    static func getUserStoriesArray(storyIds: [String], completion:  ((_ stories: [Story]?, _ error: Error?) -> Void)?) {
+        let query = PFQuery(className: "Story")
+        query.whereKey("objectId", containedIn: storyIds)
+//        query.whereKey("created_by", equalTo: userId)
+        query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            var storyArray : [Story]?
+            if error != nil {
+                print("Failed to query db")
+                returnError = error
+            } else {
+                print("Successfully retrieved stories")
+                storyArray = convertToStories(stories: objects!)
+//                for story in storyArray! {
+//                    print(story)
+//                }
+            }
+            completion!(storyArray, returnError)
+        })
+    }
+    
     //Function to convert a bunch of parse objects into story objects for app to use
     private static func convertToStories(stories: [PFObject]) -> [Story] {
         var storyArray = [Story]()
