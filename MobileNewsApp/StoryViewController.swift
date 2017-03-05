@@ -23,7 +23,13 @@ class StoryViewController: UIViewController {
     @IBOutlet weak var turnButton: UIButton!
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var timerLabel: UILabel!
+ 
     
+    //Playing around with some views
+//    let fakeModalView = LoadingModalView(frame: CGRect(x: 15, y: 15, width: self.view.bounds.width - 80, height: 100), text: "Logging In")
+//    fakeModalView.layer.cornerRadius = 5
+//    self.view.addSubview(fakeModalView)
+//    fakeModalView.center = self.view.center
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,15 +85,24 @@ class StoryViewController: UIViewController {
         turnButton.isEnabled = false
         storyField.isSelectable = false
         storyField.isEditable = false
-        print("End turn")
         let entry = Entry(createdBy: (self.user?.objectId)!, text: storyField.text, number: (story?.entryIds.count)! + 1)
         story?.updateStoryAfterTurn(entry: entry, completion: {(error: Error?) -> Void in
             if error != nil {
-                print("Error saving an entry into the DB")
             } else {
-                print("Story has been updated")
+                self.popTwoIfJoin()
             }
         })
+    }
+    
+    //Code that will only fire if the User joined the story for the first time
+    func popTwoIfJoin() {
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
+        if viewControllers[viewControllers.count-2] is StoryJoinViewController {
+            //Code is here so that User does not have to navigate through the Join Story Page again
+            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true);
+        } else {
+            //Do Nothing
+        }
     }
     
     func updateTimer() {

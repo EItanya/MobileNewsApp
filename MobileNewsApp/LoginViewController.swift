@@ -37,6 +37,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         logoOutlet.image = UIImage(named: "logo_home")
         usernameLogo.image = UIImage(named: "username")
