@@ -200,7 +200,7 @@ class Story {
     //Function to get all user stories, bool for completed
     static func getUserStories(userId: String, completion:  ((_ stories: [Story]?, _ error: Error?) -> Void)?) {
         let query = PFQuery(className: "Story")
-        query.whereKey("id", equalTo: userId)
+        query.whereKey("created_by", equalTo: userId)
         query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
             var returnError: Error? = nil
             var storyArray : [Story]?

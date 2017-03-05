@@ -17,10 +17,10 @@
             </objects>
             <point key="canvasLocation" x="3946.4000000000001" y="332.83358320839585"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="r4C-bN-OXJ">
             <objects>
-                <viewController id="FDg-m8-75h" customClass="ProfileViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Profile" id="FDg-m8-75h" customClass="ProfileViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TsR-Y9-1P9"/>
                         <viewControllerLayoutGuide type="bottom" id="gcs-zt-TMp"/>
@@ -46,7 +46,7 @@
                                     <constraint firstAttribute="height" constant="107" id="tqf-yj-qM4"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3C-jF-JgE" userLabel="Scrollview">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3C-jF-JgE" userLabel="Scrollview">
                                 <rect key="frame" x="0.0" y="44" width="600" height="856"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="9ON-Zh-usp" userLabel="AvatarImage" customClass="AvatarImageView" customModule="MobileNewsApp" customModuleProvider="target">
@@ -148,7 +148,9 @@
                             <constraint firstAttribute="trailing" secondItem="BvH-ms-pZ9" secondAttribute="trailing" id="rru-T9-hbe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fBb-YA-bXW"/>
+                    <navigationItem key="navigationItem" title="Profile" id="fBb-YA-bXW">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="wRH-8I-JU9"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="900"/>
                     <connections>
@@ -164,11 +166,13 @@
             </objects>
             <point key="canvasLocation" x="2971.1999999999998" y="332.83358320839585"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="HDq-LQ-6kD">
             <objects>
                 <navigationController storyboardIdentifier="ProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="PnJ-x4-cAw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="st0-Qj-unO"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Em-fM-4fN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
