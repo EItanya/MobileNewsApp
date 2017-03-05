@@ -217,7 +217,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
+        vc.story = stories[indexPath.row]
+        
+        self.show(vc, sender: self)
+    }
 
 }
