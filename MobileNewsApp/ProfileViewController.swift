@@ -20,10 +20,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
 
         // Do any additional setup after loading the view.
     }
-
-    @IBOutlet weak var completed: UIButton!
-    @IBOutlet weak var Incompleted: UIButton!
-    @IBOutlet weak var profile: UIButton!
     
     
     

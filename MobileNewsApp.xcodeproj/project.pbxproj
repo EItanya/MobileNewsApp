@@ -29,7 +29,6 @@
 		15119CE11E652E2C006CDDFC /* HomeStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15119CE01E652E2C006CDDFC /* HomeStoryTableViewCell.swift */; };
 		15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E721E58FECB002C9BD4 /* TabViewController.swift */; };
 		15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E761E590278002C9BD4 /* LoginViewController.swift */; };
-		15422E791E590A81002C9BD4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E781E590A81002C9BD4 /* ProfileViewController.swift */; };
 		15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E99A4F1E4E9F6100B736B4 /* RegistrationViewController.swift */; };
 		15FBA1F81E4E80FB00DDEEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FBA1F71E4E80FB00DDEEB7 /* AppDelegate.swift */; };
 		15FBA1FD1E4E80FB00DDEEB7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FBA1FB1E4E80FB00DDEEB7 /* Login.storyboard */; };
@@ -46,9 +45,9 @@
 		F01B73E31E6B338700728C35 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = F01B73DF1E6B338700728C35 /* FXBlurView.m */; };
 		F01B73E41E6B338700728C35 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B73E01E6B338700728C35 /* AvatarImageView.swift */; };
 		F01B73E51E6B338700728C35 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B73E11E6B338700728C35 /* LogoutButton.swift */; };
-		F01B73E71E6B33AE00728C35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B73E61E6B33AE00728C35 /* ViewController.swift */; };
+		F01B73E71E6B33AE00728C35 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B73E61E6B33AE00728C35 /* ProfileViewController.swift */; };
 		F01B73E91E6B33C700728C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01B73E81E6B33C700728C35 /* Images.xcassets */; };
-		F01B73EC1E6B347D00728C35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01B73EA1E6B347D00728C35 /* Main.storyboard */; };
+		F0476C111E6B67D200CC34CE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +90,6 @@
 		15119CE01E652E2C006CDDFC /* HomeStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeStoryTableViewCell.swift; path = MobileNewsApp/HomeStoryTableViewCell.swift; sourceTree = "<group>"; };
 		15422E721E58FECB002C9BD4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		15422E761E590278002C9BD4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		15422E781E590A81002C9BD4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		15E99A4F1E4E9F6100B736B4 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		15FBA1F41E4E80FB00DDEEB7 /* MobileNewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileNewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FBA1F71E4E80FB00DDEEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,9 +120,9 @@
 		F01B73E01E6B338700728C35 /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvatarImageView.swift; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/AvatarImageView.swift; sourceTree = "<group>"; };
 		F01B73E11E6B338700728C35 /* LogoutButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogoutButton.swift; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/LogoutButton.swift; sourceTree = "<group>"; };
 		F01B73E21E6B338700728C35 /* TB_TwitterHeader-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TB_TwitterHeader-Bridging-Header.h"; path = "../../../Documents/TB_TwitterUI/TB_TwitterHeader/TB_TwitterHeader-Bridging-Header.h"; sourceTree = "<group>"; };
-		F01B73E61E6B33AE00728C35 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/ViewController.swift; sourceTree = "<group>"; };
+		F01B73E61E6B33AE00728C35 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/ProfileViewController.swift; sourceTree = "<group>"; };
 		F01B73E81E6B33C700728C35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/Images.xcassets; sourceTree = "<group>"; };
-		F01B73EB1E6B347D00728C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		FCEAA3E88429F8186911C01C /* Pods_MobileNewsAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileNewsAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -299,17 +297,16 @@
 		8B06EA181E5DFBB3002ADFE5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F01B73EA1E6B347D00728C35 /* Main.storyboard */,
 				F01B73E81E6B33C700728C35 /* Images.xcassets */,
-				F01B73E61E6B33AE00728C35 /* ViewController.swift */,
-				F01B73DE1E6B338700728C35 /* FXBlurView.h */,
-				F01B73DF1E6B338700728C35 /* FXBlurView.m */,
-				F01B73E01E6B338700728C35 /* AvatarImageView.swift */,
+				F01B73DD1E6B338600728C35 /* MobileNewsApp-Bridging-Header.h */,
 				F01B73E11E6B338700728C35 /* LogoutButton.swift */,
 				F01B73E21E6B338700728C35 /* TB_TwitterHeader-Bridging-Header.h */,
+				F01B73DE1E6B338700728C35 /* FXBlurView.h */,
+				F01B73DF1E6B338700728C35 /* FXBlurView.m */,
 				8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */,
-				15422E781E590A81002C9BD4 /* ProfileViewController.swift */,
-				F01B73DD1E6B338600728C35 /* MobileNewsApp-Bridging-Header.h */,
+				F01B73E61E6B33AE00728C35 /* ProfileViewController.swift */,
+				F01B73E01E6B338700728C35 /* AvatarImageView.swift */,
+				F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -446,7 +443,6 @@
 				15119CD81E652AA6006CDDFC /* Home.storyboard in Resources */,
 				8B06EA141E5DF571002ADFE5 /* User.storyboard in Resources */,
 				8B06EA201E5DFD23002ADFE5 /* Profile.storyboard in Resources */,
-				F01B73EC1E6B347D00728C35 /* Main.storyboard in Resources */,
 				15FBA2021E4E80FB00DDEEB7 /* Assets.xcassets in Resources */,
 				8B06EA1C1E5DFCC9002ADFE5 /* Create.storyboard in Resources */,
 				076D78441E6A394D00387D6A /* Story.storyboard in Resources */,
@@ -622,7 +618,7 @@
 				15119CDD1E652AA6006CDDFC /* Extensions.swift in Sources */,
 				071A23061E6A30D500260D81 /* StoryJoinViewController.swift in Sources */,
 				15119CDE1E652AA6006CDDFC /* CollapsibleTableViewHeader.swift in Sources */,
-				F01B73E71E6B33AE00728C35 /* ViewController.swift in Sources */,
+				F01B73E71E6B33AE00728C35 /* ProfileViewController.swift in Sources */,
 				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
 				F01B73E31E6B338700728C35 /* FXBlurView.m in Sources */,
 				076D78461E6A397000387D6A /* StoryViewController.swift in Sources */,
@@ -630,8 +626,8 @@
 				077D71DE1E6737A100958CCA /* User.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
+				F0476C111E6B67D200CC34CE /* ProfileTableViewCell.swift in Sources */,
 				07E62BB01E639B4100B3F3DA /* Util.swift in Sources */,
-				15422E791E590A81002C9BD4 /* ProfileViewController.swift in Sources */,
 				07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */,
 				07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */,
 				07E62BAA1E610B6E00B3F3DA /* FirstEntryViewController.swift in Sources */,
@@ -689,14 +685,6 @@
 				15FBA2041E4E80FB00DDEEB7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		F01B73EA1E6B347D00728C35 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F01B73EB1E6B347D00728C35 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
