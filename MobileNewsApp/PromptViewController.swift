@@ -13,7 +13,7 @@ import Parse
 class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
 
-    var timeLimit: Double = 5.0
+    var timeLimit: Double = 300.0
     var maxWords: Int = 100
     var participants: Int =  5
     var selecedPrompt: String = ""
