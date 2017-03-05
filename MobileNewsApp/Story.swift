@@ -105,30 +105,7 @@ class Story {
     
     //Function to updateStory in DB
     func updateStoryAfterTurn(entry: Entry, completion: ((_ error: Error?) -> Void)?) {
-        
-//        var entryObj = PFObject(className: "Entry", dictionary: ["text": entry.text!, "created_by": entry.createdBy!, "Number": self.currentEntry!])
-        
-//        entryObj.saveInBackground {
-//            (success: Bool, error: Error?) -> Void in
-//            if (success) {
-//                // The object has been saved.
-//            } else {
-//                // There was a problem, check error.description
-//            }
-//        }
 
-        
-//        var query = PFQuery(className:"Story")
-//        query.getObjectInBackground(withId: self.id!) {
-//            (story: PFObject?, error: Error?) -> Void in
-//            if error != nil {
-//                print(error)
-//            } else if let story = story {
-////                gameScore["entry_ids"] = self
-////                gameScore["score"] = 1338
-//                story.saveInBackground()
-//            }
-//        }
         
         let entryDict : [String: Any] = [
             "text": entry.text!,
@@ -169,11 +146,12 @@ class Story {
                 if users.count == 1 && currentUser == "" {
                     //Logic if this is the second user being added
                     users.append((user?.objectId)!)
-                    story?.setObject(user?.objectId!, forKey: "current_user")
-//                    story["current_user"] = currentUser
-                    
-                    
+//                    story?.setObject(user?.objectId! as Any, forKey: "current_user")
+                    story?.setValue(user?.objectId!, forKey: "current_user")
+                    print(self)
+                    self.currentUser = user?.objectId!
                 }
+
                 
                 story?["users"] = users
                 story?.saveInBackground()
@@ -188,8 +166,9 @@ class Story {
                 print(error ?? "")
                 returnError = error
             }
+            completion!(returnError)
         })
-        completion!(returnError)
+        
     }
     
     static func getStoryById() {
@@ -262,20 +241,6 @@ class Story {
             newStory.entryIds = story["entry_ids"] as! [String]
             newStory.totalWordCount = story["total_word_count"] as! Int?
             storyArray.append(newStory)
-//            storyArray.append(
-//                Story(creator: story["created_by"] as! String,
-//                      title: story["title"] as! String,
-//                      genre: story["genre"] as! String,
-//                      prompt: story["prompt"] as! String,
-//                      maxWordCount: story["max_word_count"] as! Int,
-//                      timeLimit: story["time_limit"] as! Double,
-//                      participants: story["participants"] as! Int,
-//                      totalTurns: story["total_turns"] as! Int,
-//                      currentEntry: story["current_entry"] as! Int,
-//                      firstEntry: story["first_entry"] as! String,
-//                      previousEntry: story["previous_entry"] as! String
-//                )
-//            )
         }
         return storyArray
     }
