@@ -43,7 +43,6 @@
 		8B06EA201E5DFD23002ADFE5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */; };
 		8F011B04A78A3B1BAA75FBBA /* Pods_MobileNewsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2914B95F337E9D34D293644E /* Pods_MobileNewsAppTests.framework */; };
 		A193AA92999A53C3958BE05D /* Pods_MobileNewsAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEAA3E88429F8186911C01C /* Pods_MobileNewsAppUITests.framework */; };
-		F01B73E91E6B33C700728C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01B73E81E6B33C700728C35 /* Images.xcassets */; };
 		F0476C111E6B67D200CC34CE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */; };
 		F085397A1E6CB2E200AEF2D8 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08539791E6CB2E200AEF2D8 /* LogoutButton.swift */; };
 		F085397C1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = F085397B1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h */; };
@@ -119,8 +118,6 @@
 		8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		DA8B71A0BA28F897E9E0EDF4 /* Pods-MobileNewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsApp/Pods-MobileNewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F01B73DD1E6B338600728C35 /* MobileNewsApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileNewsApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		F01B73E11E6B338700728C35 /* LogoutButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogoutButton.swift; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/LogoutButton.swift; sourceTree = "<group>"; };
-		F01B73E81E6B33C700728C35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../Documents/TB_TwitterUI/TB_TwitterHeader/Images.xcassets; sourceTree = "<group>"; };
 		F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		F08539791E6CB2E200AEF2D8 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 		F085397B1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TB_TwitterHeader-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -311,14 +308,12 @@
 		8B06EA181E5DFBB3002ADFE5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F01B73E81E6B33C700728C35 /* Images.xcassets */,
 				F01B73DD1E6B338600728C35 /* MobileNewsApp-Bridging-Header.h */,
 				F08539791E6CB2E200AEF2D8 /* LogoutButton.swift */,
 				F085397D1E6CB37F00AEF2D8 /* FXBlurView.h */,
 				F085397E1E6CB37F00AEF2D8 /* FXBlurView.m */,
 				F085397B1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h */,
 				F08539811E6CB3DA00AEF2D8 /* ProfileViewController.swift */,
-				F01B73E11E6B338700728C35 /* LogoutButton.swift */,
 				F08539831E6CB42400AEF2D8 /* AvatarImageView.swift */,
 				8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */,
 				F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */,
@@ -454,7 +449,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				15FBA2051E4E80FB00DDEEB7 /* LaunchScreen.storyboard in Resources */,
-				F01B73E91E6B33C700728C35 /* Images.xcassets in Resources */,
 				15119CD81E652AA6006CDDFC /* Home.storyboard in Resources */,
 				8B06EA141E5DF571002ADFE5 /* User.storyboard in Resources */,
 				8B06EA201E5DFD23002ADFE5 /* Profile.storyboard in Resources */,
