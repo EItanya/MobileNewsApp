@@ -1,92 +1,223 @@
-//
-//  SettingsViewController.swift
-//  MobileNewsApp
-//
-//  Created by Nelia Perez on 2/18/17.
-//  Copyright © 2017 cs378. All rights reserved.
-//
+
 
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UITableViewDataSource {
+let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
+let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
+let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
 
-    let data:[String] = ["Name", "Email", "Password"]
-    let data1:[String] = ["Completed", "Created", "Involved"]
-    let data2:[String] = ["Notification", "Theme", "Item c"]
+class ProfileViewController: UIViewController, UIScrollViewDelegate {
+    
+    @IBOutlet var scrollView:UIScrollView!
+    @IBOutlet var avatarImage:UIImageView!
+    @IBOutlet var header:UIView!
+    @IBOutlet var headerLabel:UILabel!
+    @IBOutlet var headerImageView:UIImageView!
+    @IBOutlet var headerBlurImageView:UIImageView!
+    var blurredHeaderImageView:UIImageView?
+    
+    
+    @IBOutlet weak var profileTableView: UITableView!
+    
+    @IBOutlet weak var profileControl: UISegmentedControl!
+    
+    //current checked filters
+    var genre = [false, false, false, false]
+    var wordCount = [false, false, false]
+    var numPeople = [false, false, false]
+    
+    //index of genres
+    let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
+    
+    //unfinished stories
+    var unfinishedStories = [Story]()
+    var unfinishedFilteredStories = [Story]()
+    
+    //completedStories
+    var completedStories = [Story]()
+    var completedFilteredStories = [Story]()
+    
+    //stories to populate views
+    var stories = [Story]()
+    var filteredStories = [Story]()
+    
+    var storiesStoryObject = [Story]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        scrollView.delegate = self
+        ///
+        profileTableView.delegate = self
+        profileTableView.dataSource = self
+        
+        profileTableView.rowHeight = UITableViewAutomaticDimension
+        profileTableView.estimatedRowHeight = 140
+        let user = PFUser.current()
+        let id = user?.objectId
+//        if user != nil
+//        {
+//            let userId = user!.objectId
+//            id = userId!
+//            let index = id.index(id.startIndex, offsetBy: 9)
+//            id.substring(from: index)
+//
+//        }
+        print("my uid is \(id)")
+        
+        Story.getUserStories(userId: id!) {
+            (stories:[Story]?, Error) in
+            self.unfinishedStories = stories!.filter { $0.completed == false }
+            self.completedStories = stories!.filter { $0.completed == true }
+            self.stories = self.unfinishedStories
+            self.profileTableView.reloadData()
+        }
+        
+//        Story.getAllStories() {
+//            (stories: [Story]?, Error) in
+//            self.unfinishedStories = stories!.filter { $0.completed == false }
+//            self.completedStories = stories!.filter { $0.completed == true }
+//            self.stories = self.unfinishedStories
+//            
+//            self.profileTableView.reloadData()
+//        }
+//        
+        
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // Header - Image
+        
+        headerImageView = UIImageView(frame: header.bounds)
+        headerImageView?.image = UIImage(named: "header_bg")
+        headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
+        header.insertSubview(headerImageView, belowSubview: headerLabel)
+        
+        // Header - Blurred Image
+        
+        //headerBlurImageView = UIImageView(frame: header.bounds)
+        //headerBlurImageView?.image = UIImage(named: "header_bg")?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+        //headerBlurImageView?.contentMode = UIViewContentMode.scaleAspectFill
+        //headerBlurImageView?.alpha = 0.0
+        //header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
+        
+        header.clipsToBounds = true
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func logoutButton(_ sender: Any) {
-        
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
         PFUser.logOutInBackground()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        
-        if indexPath.section == 0 {
-            cell.textLabel?.text = data[indexPath.row]
-        }
-        else if indexPath.section == 1 {
-            cell.textLabel?.text = data1[indexPath.row]
-        }
-        else
-        {
-            cell.textLabel?.text = data2[indexPath.row]
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return data.count
-        }
-        else if section == 1 {
-            return data1.count
-        }
-        return data2.count
-        
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0
-        {
-            return "Profile"
-        }
-        else if section == 1
-        {
-            return "Stories"
+
+    @IBAction func profileTabSwitch(_ sender: UISegmentedControl) {
+        if profileControl.selectedSegmentIndex == 0 {
+            stories = completedStories
         }
         else {
-            return "Settings"
+            stories = unfinishedStories
         }
+        profileTableView.reloadData()
     }
-    /*
-    // MARK: - Navigation
+    
+    
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offset = scrollView.contentOffset.y
+        var avatarTransform = CATransform3DIdentity
+        var headerTransform = CATransform3DIdentity
+        
+        // PULL DOWN -----------------
+        
+        if offset < 0 {
+            
+            let headerScaleFactor:CGFloat = -(offset) / header.bounds.height
+            let headerSizevariation = ((header.bounds.height * (1.0 + headerScaleFactor)) - header.bounds.height)/2.0
+            headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation, 0)
+            headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
+            
+            header.layer.transform = headerTransform
+        }
+            
+            // SCROLL UP/DOWN ------------
+            
+        else {
+            
+            // Header -----------
+            
+            headerTransform = CATransform3DTranslate(headerTransform, 0, max(-offset_HeaderStop, -offset), 0)
+            
+            //  ------------ Label
+            
+            let labelTransform = CATransform3DMakeTranslation(0, max(-distance_W_LabelHeader, offset_B_LabelHeader - offset), 0)
+            headerLabel.layer.transform = labelTransform
+            
+            //  ------------ Blur
+            
+            headerBlurImageView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
+            
+            // Avatar -----------
+            
+            let avatarScaleFactor = (min(offset_HeaderStop, offset)) / avatarImage.bounds.height / 1.4 // Slow down the animation
+            let avatarSizeVariation = ((avatarImage.bounds.height * (1.0 + avatarScaleFactor)) - avatarImage.bounds.height) / 2.0
+            avatarTransform = CATransform3DTranslate(avatarTransform, 0, avatarSizeVariation, 0)
+            avatarTransform = CATransform3DScale(avatarTransform, 1.0 - avatarScaleFactor, 1.0 - avatarScaleFactor, 0)
+            
+            if offset <= offset_HeaderStop {
+                
+                if avatarImage.layer.zPosition < header.layer.zPosition{
+                    header.layer.zPosition = 0
+                }
+                
+            }else {
+                if avatarImage.layer.zPosition >= header.layer.zPosition{
+                    header.layer.zPosition = 2
+                }
+            }
+        }
+        
+        // Apply Transformations
+        
+        header.layer.transform = headerTransform
+        avatarImage.layer.transform = avatarTransform
+    }
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent
+    }
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in storyTableView: UITableView) -> Int {
+        return 1
     }
-    */
+    
+    func tableView(_ profileTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Number of stories: \(stories.count)")
+        return stories.count
+    }
+    
+    func tableView(_ profileTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = profileTableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileTableViewCell
+        cell.titleLabel.text = stories[indexPath.row].title
+        cell.promptLabel.text = stories[indexPath.row].prompt
+        cell.genreLabel.text = stories[indexPath.row].genre
+        
+        return cell
+    }
+
+
 
 }

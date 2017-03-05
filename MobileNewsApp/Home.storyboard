@@ -183,7 +183,7 @@
                 <navigationController storyboardIdentifier="Home" automaticallyAdjustsScrollViewInsets="NO" id="GSL-Df-xMR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="Gau-OD-3iP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CMq-hl-2iD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CMq-hl-2iD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
