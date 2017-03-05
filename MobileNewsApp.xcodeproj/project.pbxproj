@@ -245,7 +245,7 @@
 				15FBA2111E4E80FC00DDEEB7 /* Info.plist */,
 			);
 			path = MobileNewsAppTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		15FBA2191E4E80FC00DDEEB7 /* MobileNewsAppUITests */ = {
 			isa = PBXGroup;

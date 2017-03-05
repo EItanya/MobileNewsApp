@@ -158,9 +158,6 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                 return
             }
             
-            let user = User()
-            print(User.current())
-            
             print("Logged in successfully with Username")
             self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
