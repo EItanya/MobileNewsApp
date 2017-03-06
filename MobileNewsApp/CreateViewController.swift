@@ -140,6 +140,18 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.endUpdates()
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath.row % 2 == 0)
+        {
+            cell.backgroundColor = UIColor(colorLiteralRed: 247/255, green: 243/255, blue: 242/255, alpha: 1)
+        } else {
+            cell.backgroundColor = UIColor.white
+        }
+    }
+    
+
+        
+    
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 80.0
 //    }

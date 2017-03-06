@@ -259,6 +259,8 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.genreField.text = genres[row]
     }
+    
+    
 
     
     
