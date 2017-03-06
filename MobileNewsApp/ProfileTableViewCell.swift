@@ -10,12 +10,10 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var promptLabel: UILabel!
-
-    @IBOutlet var peopleAheadLabel: UILabel!
-    @IBOutlet var wordCountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

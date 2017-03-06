@@ -313,9 +313,9 @@
 				F085397D1E6CB37F00AEF2D8 /* FXBlurView.h */,
 				F085397E1E6CB37F00AEF2D8 /* FXBlurView.m */,
 				F085397B1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h */,
-				F08539811E6CB3DA00AEF2D8 /* ProfileViewController.swift */,
 				F08539831E6CB42400AEF2D8 /* AvatarImageView.swift */,
 				8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */,
+				F08539811E6CB3DA00AEF2D8 /* ProfileViewController.swift */,
 				F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */,
 			);
 			name = Profile;

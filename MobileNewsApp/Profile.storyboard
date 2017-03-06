@@ -75,45 +75,45 @@
                                             <segue destination="dId-dc-oyH" kind="show" identifier="logoutSegue" id="i8k-ez-06d"/>
                                         </connections>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="208" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jba-e0-D8Z">
-                                        <rect key="frame" x="0.0" y="222" width="600" height="634"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jba-e0-D8Z">
+                                        <rect key="frame" x="0.0" y="241" width="600" height="571"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="208" id="7tJ-I3-6vj" customClass="ProfileTableViewCell" customModule="MobileNewsApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="600" height="208"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="110" id="7tJ-I3-6vj" customClass="ProfileTableViewCell" customModule="MobileNewsApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="600" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7tJ-I3-6vj" id="rQI-j3-xD4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="207"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="109"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrR-lX-mRz" userLabel="Title">
-                                                            <rect key="frame" x="40" y="0.0" width="113" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrR-lX-mRz" userLabel="Title">
+                                                            <rect key="frame" x="8" y="0.0" width="232" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prompt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyD-6E-aFs" userLabel="Prompt">
-                                                            <rect key="frame" x="40" y="41" width="503" height="141"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7c-6j-4Ov" userLabel="Genre">
+                                                            <rect key="frame" x="248" y="8" width="139" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7c-6j-4Ov" userLabel="Genre">
-                                                            <rect key="frame" x="279" y="0.0" width="139" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prompt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyD-6E-aFs" userLabel="Prompt">
+                                                            <rect key="frame" x="8" y="37" width="455" height="83"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="genreLabel" destination="j7c-6j-4Ov" id="4Ic-nQ-hiM"/>
-                                                    <outlet property="promptLabel" destination="AyD-6E-aFs" id="enw-YT-cYE"/>
-                                                    <outlet property="titleLabel" destination="QrR-lX-mRz" id="fAK-qP-GXU"/>
+                                                    <outlet property="genreLabel" destination="j7c-6j-4Ov" id="5lC-Ro-bhs"/>
+                                                    <outlet property="promptLabel" destination="AyD-6E-aFs" id="RWY-yC-kAj"/>
+                                                    <outlet property="titleLabel" destination="QrR-lX-mRz" id="3b8-6P-REW"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

@@ -17,9 +17,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var headerBlurImageView:UIImageView!
     var blurredHeaderImageView:UIImageView?
     
-    
+    @IBOutlet weak var turnSign: UIImageView!
     @IBOutlet weak var profileTableView: UITableView!
-    
     @IBOutlet weak var profileControl: UISegmentedControl!
     
     //current checked filters
@@ -52,9 +51,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         ///
         profileTableView.delegate = self
         profileTableView.dataSource = self
-        
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.estimatedRowHeight = 140
+        
         let user = PFUser.current()
         let id = user?.objectId
 //        if user != nil
@@ -75,6 +74,15 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
             self.profileTableView.reloadData()
         }
         
+        
+        
+        
+//        Story.getUserCurrentStory(userId: id!) {
+//            (stories:[Story]?, Error) in
+//            self.turnSign.image = UIImage(named: "logo_home")
+//        }
+        
+
 //        Story.getAllStories() {
 //            (stories: [Story]?, Error) in
 //            self.unfinishedStories = stories!.filter { $0.completed == false }
@@ -199,8 +207,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSections(in storyTableView: UITableView) -> Int {
+    func numberOfSections(in profileTableView: UITableView) -> Int {
         return 1
+        
     }
     
     func tableView(_ profileTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -212,11 +221,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = profileTableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileTableViewCell
         cell.titleLabel.text = stories[indexPath.row].title
-        cell.promptLabel.text = stories[indexPath.row].prompt
         cell.genreLabel.text = stories[indexPath.row].genre
+        cell.promptLabel.text = stories[indexPath.row].createdBy
         
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
