@@ -14,6 +14,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var promptLabel: UILabel!
+    @IBOutlet weak var imgMyTurn: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

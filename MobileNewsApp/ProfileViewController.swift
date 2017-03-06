@@ -2,6 +2,7 @@
 
 import UIKit
 import Parse
+import QuartzCore
 
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
 let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
@@ -42,8 +43,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     var filteredStories = [Story]()
     
     var storiesStoryObject = [Story]()
-    
-    
+    var isMyTurn = false
+    var userId = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,20 +55,35 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.estimatedRowHeight = 140
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+    
+        // Header - Image
+        headerImageView = UIImageView(frame: header.bounds)
+        headerImageView?.image = UIImage(named: "header_bg")
+        headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
+        header.insertSubview(headerImageView, belowSubview: headerLabel)
+
         let user = PFUser.current()
         let id = user?.objectId
-//        if user != nil
-//        {
-//            let userId = user!.objectId
-//            id = userId!
-//            let index = id.index(id.startIndex, offsetBy: 9)
-//            id.substring(from: index)
-//
-//        }
-        print("my uid is \(id)")
+        userId = id!
+        //        if user != nil
+        //        {
+        //            let userId = user!.objectId
+        //            id = userId!
+        //            let index = id.index(id.startIndex, offsetBy: 9)
+        //            id.substring(from: index)
+        //
+        //        }
+        print("my id is \(id)")
+        print("my userId is \(userId)")
         
         Story.getUserStories(userId: id!) {
             (stories:[Story]?, Error) in
+            //print("how about here id is \(id!)")
+
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
             self.stories = self.unfinishedStories
@@ -75,42 +91,26 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         }
         
         
-        
-        
-//        Story.getUserCurrentStory(userId: id!) {
+//        Story.getUserCurrentStory(userId: id!, storyIds: ["users"]) {
 //            (stories:[Story]?, Error) in
-//            self.turnSign.image = UIImage(named: "logo_home")
-//        }
-        
-
-//        Story.getAllStories() {
-//            (stories: [Story]?, Error) in
 //            self.unfinishedStories = stories!.filter { $0.completed == false }
 //            self.completedStories = stories!.filter { $0.completed == true }
 //            self.stories = self.unfinishedStories
-//            
 //            self.profileTableView.reloadData()
 //        }
-//        
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         
-        // Header - Image
+        //        Story.getAllStories() {
+        //            (stories: [Story]?, Error) in
+        //            self.unfinishedStories = stories!.filter { $0.completed == false }
+        //            self.completedStories = stories!.filter { $0.completed == true }
+        //            self.stories = self.unfinishedStories
+        //            
+        //            self.profileTableView.reloadData()
+        //        }
+        //        
+
         
-        headerImageView = UIImageView(frame: header.bounds)
-        headerImageView?.image = UIImage(named: "header_bg")
-        headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
-        header.insertSubview(headerImageView, belowSubview: headerLabel)
-        
-        // Header - Blurred Image
-        
-        //headerBlurImageView = UIImageView(frame: header.bounds)
-        //headerBlurImageView?.image = UIImage(named: "header_bg")?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
-        //headerBlurImageView?.contentMode = UIViewContentMode.scaleAspectFill
-        //headerBlurImageView?.alpha = 0.0
-        //header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
         
         header.clipsToBounds = true
     }
@@ -222,7 +222,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = profileTableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileTableViewCell
         cell.titleLabel.text = stories[indexPath.row].title
         cell.genreLabel.text = stories[indexPath.row].genre
-        cell.promptLabel.text = stories[indexPath.row].createdBy
+        cell.promptLabel.text = stories[indexPath.row].prompt
+        if(stories[indexPath.row].currentUser! == userId)
+        {
+            cell.imgMyTurn.image = #imageLiteral(resourceName: "check_mark")
+        }
+        else
+        {
+            cell.imgMyTurn.image = #imageLiteral(resourceName: "x_mark")
+        }
         
         return cell
     }

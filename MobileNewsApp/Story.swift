@@ -220,25 +220,15 @@ class Story {
     }
     
     
-    //Function to get all user stories, bool for completed
-    static func getUserCurrentStory(userId: String, completion:  ((_ stories: [Story]?, _ error: Error?) -> Void)?) {
+    static func getUserCurrentStories(userId: String, completion:  ((_ current: Bool, _ error: Error?) -> Void)?) {
         let query = PFQuery(className: "Story")
         query.whereKey("current_user", equalTo: userId)
         query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
-            var returnError: Error? = nil
-            var storyArray : [Story]?
-            if error != nil {
-                print("Failed to query db")
-                returnError = error
-            } else {
-                print("Successfully retrieved stories")
-                storyArray = convertToStories(stories: objects!)
-                for story in storyArray! {
-                    print(story)
-                }
+            let returnError: Error? = nil
+            let current = false
                 
-            }
-            completion!(storyArray, returnError)
+            
+            completion!(current, returnError)
         })
     }
     
