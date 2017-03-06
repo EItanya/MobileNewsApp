@@ -35,6 +35,17 @@ class StoryViewController: UIViewController {
         super.viewDidLoad()
         setupTextView()
         user = PFUser.current()
+        
+        
+        
+        titleLabel.text = story?.title
+        authorLabel.text = "By: \((story?.author)!)"
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         //Logic to set up page for current writer vs. spectator
         
         if (user?.objectId == story?.currentUser) {
@@ -44,16 +55,19 @@ class StoryViewController: UIViewController {
             //Not current turn
             setupSpectator()
         }
-        // Do any additional setup after loading the view.
+        
     }
     
+    
     func setupCurrentTurn() {
+//        turnButton.setTitle("Bagin Turn", for: .normal)
         storyField.isSelectable = false
         storyField.isEditable = false
         turnButton.isEnabled = true
     }
     
     func setupSpectator() {
+        turnButton.setTitle("(Not Your Turn)", for: .normal)
         storyField.isSelectable = false
         storyField.isEditable = false
         turnButton.isEnabled = false

@@ -11,7 +11,10 @@ import Parse
 
 class Story {
     
+    //ID of User
     var createdBy:String?
+    //First and Last name of User, for convenience
+    var author:String?
     var title:String?
     var genre:String?
     var completed: Bool = false
@@ -68,7 +71,8 @@ class Story {
             "users" : self.users,
             "current_entry": 1,
             "current_user": "",
-            "total_word_count": self.totalWordCount!
+            "total_word_count": self.totalWordCount!,
+            "author": self.author ?? "unknown"
         ]
         
         let entryDict : [String: Any] = [
@@ -271,6 +275,7 @@ class Story {
                             )
             newStory.firstEntry = story["first_entry"] as! String?
             newStory.previousEntry = story["previous_entry"] as! String?
+            newStory.author = story["author"] as! String?
             newStory.id = story.objectId
             newStory.users = story["users"] as! [String]
             newStory.currentUser = story["current_user"] as! String?

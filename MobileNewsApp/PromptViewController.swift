@@ -30,8 +30,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var timeLimitSlider: UISlider!
     @IBOutlet weak var timeLimitSliderValue: UILabel!
-    @IBOutlet weak var wordCountSlider: UISlider!
-    @IBOutlet weak var wordCountSliderValue: UILabel!
     @IBOutlet weak var participantSlider: UISlider!
     @IBOutlet weak var participantSliderLabel: UILabel!
     @IBOutlet weak var totalTurnsSlider: UISlider!
@@ -86,15 +84,15 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let color = CABasicAnimation(keyPath: "borderColor")
         color.fromValue = UIColor(hex: Int("444444", radix: 16)!).cgColor
-        color.toValue = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        color.toValue = UIColor(hex: Int("63D0E8", radix: 16)!).cgColor
         color.duration = 0.5
-        textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("63D0E8", radix: 16)!).cgColor
         textField.layer.add(color, forKey: "color and width")
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         let color = CABasicAnimation(keyPath: "borderColor")
-        color.fromValue = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        color.fromValue = UIColor(hex: Int("63D0E8", radix: 16)!).cgColor
         color.toValue = UIColor(hex: Int("444444", radix: 16)!).cgColor
         color.duration = 0.5
         textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("444444", radix: 16)!).cgColor
@@ -196,12 +194,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 self.timeLimit = Double(resultInt*60)
             }
             timeLimitSliderValue.text = String(resultString)
-        } else if slider == wordCountSlider {
-            //Logic for wordCount
-            currentVal = Int(slider.value)
-            currentVal = (currentVal / 10)*10
-            wordCountSliderValue.text = String(currentVal)
-        } else if slider == participantSlider {
+        }  else if slider == participantSlider {
             //Logic for # of participants
             currentVal = Int(slider.value)
             participantSliderLabel.text = String(currentVal)
@@ -223,9 +216,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         timeLimitSlider.value = 5.0
         timeLimitSliderValue.text = "5:00"
         
-        wordCountSlider.minimumValue = 100
-        wordCountSlider.maximumValue = 200
-        wordCountSlider.value = 150
         
         participantSlider.minimumValue = 5
         participantSlider.maximumValue = 20
@@ -259,6 +249,8 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.genreField.text = genres[row]
     }
+    
+    
 
     
     
