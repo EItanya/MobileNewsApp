@@ -251,7 +251,13 @@
         <scene sceneID="wcB-tb-9Js">
             <objects>
                 <navigationController storyboardIdentifier="CreateNav" automaticallyAdjustsScrollViewInsets="NO" id="WGo-kC-s7J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" id="iBN-HM-P9s"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="tab2" selectedImage="tab2" id="iBN-HM-P9s">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.38823529411764707" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KlH-b1-19w">
@@ -334,4 +340,8 @@
             <point key="canvasLocation" x="4714" y="-199"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab2" width="25" height="25"/>
+    </resources>
+    <color key="tintColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
