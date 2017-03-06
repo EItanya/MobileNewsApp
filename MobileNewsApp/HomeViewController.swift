@@ -52,7 +52,9 @@ class HomeViewController: UIViewController {
 
         storyTableView.rowHeight = UITableViewAutomaticDimension
         storyTableView.estimatedRowHeight = 140
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         Story.getAllStories() {
             (stories: [Story]?, Error) in
             let validStories = stories!.filter { $0.users.contains(PFUser.current()!.objectId!) == false }
