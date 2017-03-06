@@ -145,7 +145,6 @@ class Story {
                 let currentUser: String = story?.object(forKey: "current_user") as! String
                 if users.count == 1 && currentUser == "" {
                     //Logic if this is the second user being added
-                    users.append((user?.objectId)!)
 //                    story?.setObject(user?.objectId! as Any, forKey: "current_user")
                     story?.setValue(user?.objectId!, forKey: "current_user")
                     print(self)
@@ -153,7 +152,8 @@ class Story {
                 }
 
                 
-                story?["users"] = users
+                users.append((user?.objectId)!)
+                story?.setObject(users, forKey: "users")
                 story?.saveInBackground()
                 
                 //Code to add story to users_active stories
@@ -282,6 +282,7 @@ class Story {
             newStory.firstEntry = story["first_entry"] as! String?
             newStory.previousEntry = story["previous_entry"] as! String?
             newStory.id = story.objectId
+            newStory.users = story["users"] as! [String]
             newStory.currentUser = story["current_user"] as! String?
             newStory.entryIds = story["entry_ids"] as! [String]
             newStory.totalWordCount = story["total_word_count"] as! Int?
