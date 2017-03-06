@@ -170,7 +170,7 @@
         <scene sceneID="HDq-LQ-6kD">
             <objects>
                 <navigationController storyboardIdentifier="ProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="PnJ-x4-cAw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="st0-Qj-unO"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="tab1" selectedImage="tab1" id="st0-Qj-unO"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Em-fM-4fN">
@@ -189,5 +189,6 @@
     </scenes>
     <resources>
         <image name="profile" width="175" height="175"/>
+        <image name="tab1" width="25" height="25"/>
     </resources>
 </document>
