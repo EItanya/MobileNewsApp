@@ -30,8 +30,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var timeLimitSlider: UISlider!
     @IBOutlet weak var timeLimitSliderValue: UILabel!
-    @IBOutlet weak var wordCountSlider: UISlider!
-    @IBOutlet weak var wordCountSliderValue: UILabel!
     @IBOutlet weak var participantSlider: UISlider!
     @IBOutlet weak var participantSliderLabel: UILabel!
     @IBOutlet weak var totalTurnsSlider: UISlider!
@@ -196,12 +194,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 self.timeLimit = Double(resultInt*60)
             }
             timeLimitSliderValue.text = String(resultString)
-        } else if slider == wordCountSlider {
-            //Logic for wordCount
-            currentVal = Int(slider.value)
-            currentVal = (currentVal / 10)*10
-            wordCountSliderValue.text = String(currentVal)
-        } else if slider == participantSlider {
+        }  else if slider == participantSlider {
             //Logic for # of participants
             currentVal = Int(slider.value)
             participantSliderLabel.text = String(currentVal)
@@ -223,9 +216,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         timeLimitSlider.value = 5.0
         timeLimitSliderValue.text = "5:00"
         
-        wordCountSlider.minimumValue = 100
-        wordCountSlider.maximumValue = 200
-        wordCountSlider.value = 150
         
         participantSlider.minimumValue = 5
         participantSlider.maximumValue = 20

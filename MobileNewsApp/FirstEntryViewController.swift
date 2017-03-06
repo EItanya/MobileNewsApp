@@ -67,6 +67,8 @@ class FirstEntryViewController: UIViewController {
         let firstEntry = Entry(createdBy: (currentUser?.objectId)!, text: storyText.text, number: 1)
         //Code to count words and add to story
         story.totalWordCount = Util.countWords(text: storyText.text)
+        story.author = "\(currentUser?.object(forKey: "first_name") as! String) \(currentUser?.object(forKey: "last_name") as! String)"
+//        story.author = currentUser?.object(forKey: "first_name") as! String + currentUser?.object(forKey: "last_name") as! String
         
         self.story.createNewStory(entry: firstEntry, completion: {(story: Story?, error: Error?) -> Void in
             print("Story has been created and we are back in StoryViewController")
