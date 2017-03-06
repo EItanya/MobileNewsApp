@@ -84,15 +84,15 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let color = CABasicAnimation(keyPath: "borderColor")
         color.fromValue = UIColor(hex: Int("444444", radix: 16)!).cgColor
-        color.toValue = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        color.toValue = UIColor(hex: Int("63D0E8", radix: 16)!).cgColor
         color.duration = 0.5
-        textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("63D0E8", radix: 16)!).cgColor
         textField.layer.add(color, forKey: "color and width")
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         let color = CABasicAnimation(keyPath: "borderColor")
-        color.fromValue = UIColor(hex: Int("FFFFFF", radix: 16)!).cgColor
+        color.fromValue = UIColor(hex: Int("63D0E8", radix: 16)!).cgColor
         color.toValue = UIColor(hex: Int("444444", radix: 16)!).cgColor
         color.duration = 0.5
         textField.layer.sublayers?[0].borderColor = UIColor(hex: Int("444444", radix: 16)!).cgColor
