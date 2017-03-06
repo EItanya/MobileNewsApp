@@ -52,23 +52,32 @@ class HomeViewController: UIViewController {
 
         storyTableView.rowHeight = UITableViewAutomaticDimension
         storyTableView.estimatedRowHeight = 140
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        Story.getAllStories() {
-            (stories: [Story]?, Error) in
+        Story.getAllStories(completion: {(stories: [Story]?, Error) -> Void in
             let validStories = stories!.filter { $0.users.contains(PFUser.current()!.objectId!) == false }
             self.unfinishedStories = validStories.filter { $0.completed == false }
             self.unfinishedFilteredStories = self.unfinishedStories
             self.completedStories = validStories.filter { $0.completed == true }
             self.completedFilteredStories = self.completedStories
-            self.stories = self.completedStories
-            self.filteredStories = self.completedStories
+            if self.storyCompletionControl.selectedSegmentIndex == 0 {
+                self.stories = self.completedStories
+                self.filteredStories = self.completedFilteredStories
+            }
+            else {
+                self.stories = self.unfinishedStories
+                self.filteredStories = self.unfinishedFilteredStories
+            }
+            
+            self.applyStoryFilters()
             
             self.storyTableView.reloadData()
-        }
+        })
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -84,6 +93,22 @@ class HomeViewController: UIViewController {
             filteredStories = unfinishedFilteredStories
         }
         storyTableView.reloadData()
+    }
+    
+    func applyStoryFilters() {
+        //apply filters
+        if applyFilters > 0 {
+            filteredStories.removeAll()
+            for (index, value) in genre.enumerated() {
+                if value == true {
+                    filteredStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
+                }
+            }
+        }
+        //no filters
+        else {
+            filteredStories = stories
+        }
     }
 }
 
@@ -116,17 +141,7 @@ extension HomeViewController: UIPopoverPresentationControllerDelegate {
     }
     
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        if applyFilters > 0 {
-            filteredStories.removeAll()
-            for (index, value) in genre.enumerated() {
-                if value == true {
-                    filteredStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
-                }
-            }
-        }
-        else {
-            filteredStories = stories
-        }
+        self.applyStoryFilters()
         storyTableView.reloadData()
     }
 }
@@ -156,18 +171,6 @@ extension HomeViewController: FilterTableViewDelegate {
         else {
             self.numPeople[row] = value.toBool()!
         }
-//        if applyFilters > 0 {
-//            filteredStories.removeAll()
-//            for (index, value) in genre.enumerated() {
-//                if value == true {
-//                    filteredStories.append(contentsOf: stories.filter({$0.value(forKey: "genre") as! String == genreCategories[index]}))
-//                }
-//            }
-//        }
-//        else {
-//            filteredStories = stories
-//        }
-//        storyTableView.reloadData()
     }
 }
 
@@ -199,8 +202,8 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
-        var vc = storyboard.instantiateViewController(withIdentifier: "JoinStory") as! StoryJoinViewController
+        let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "JoinStory") as! StoryJoinViewController
         vc.story = filteredStories[indexPath.row]
         self.show(vc, sender: self)
     }
