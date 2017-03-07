@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         emailField.delegate = self
         passwordField.delegate = self
         firstNameField.delegate = self
@@ -51,8 +51,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         setupViews()
         
 
-        addUnderlines(textField: firstNameField, offset: CGFloat(integerLiteral: 0))
-        addUnderlines(textField: lastNameField, offset: CGFloat(integerLiteral: 0))
+//        addUnderlines(textField: firstNameField, offset: CGFloat(integerLiteral: 0))
+//        addUnderlines(textField: lastNameField, offset: CGFloat(integerLiteral: 0))
         
 
         loginWindowView.layer.cornerRadius = 5
@@ -71,12 +71,12 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         return true
     }
     
-    override func viewDidLayoutSubviews() {
-        let offset = CGFloat(integerLiteral: Int(view.bounds.width) - 304)
-        
-        addUnderlines(textField: emailField, offset: offset)
-        addUnderlines(textField: passwordField, offset: offset)
-    }
+//    override func viewDidLayoutSubviews() {
+//        let offset = CGFloat(integerLiteral: Int(view.bounds.width) - 304)
+//        
+//        addUnderlines(textField: emailField, offset: offset)
+//        addUnderlines(textField: passwordField, offset: offset)
+//    }
     
     func setupViews() {
         passwordField.isSecureTextEntry = true

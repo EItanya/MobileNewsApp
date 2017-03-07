@@ -12,6 +12,7 @@ target 'MobileNewsApp' do
     pod 'Parse'
     pod 'ParseFacebookUtilsV4'
     pod 'M13Checkbox'
+    pod 'SkyFloatingLabelTextField', '~> 2.0.0'
 
 
     

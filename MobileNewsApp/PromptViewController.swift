@@ -46,8 +46,8 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         setupSliders()
         
 
-        addUnderlines(textField: self.titleField)
-        addUnderlines(textField: self.genreField)
+//        addUnderlines(textField: self.titleField)
+//        addUnderlines(textField: self.genreField)
 
 
 
