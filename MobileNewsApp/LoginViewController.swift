@@ -12,7 +12,7 @@ import Parse
 import ParseFacebookUtilsV4
 
 
-class LoginViewController: UIViewController, UIViewControllerTransitioningDelegate {
+class LoginViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextFieldDelegate {
     
     var userId: String?
 
@@ -37,6 +37,11 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailField.delegate = self
+        passwordField.delegate = self
+        firstNameField.delegate = self
+        lastNameField.delegate = self
     
         
         logoOutlet.image = UIImage(named: "logo_home")
@@ -55,6 +60,15 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         // Do any additional setup after loading the view.
         
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     override func viewDidLayoutSubviews() {

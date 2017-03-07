@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class FirstEntryViewController: UIViewController {
+class FirstEntryViewController: UIViewController, UITextViewDelegate {
 
     //Variable representing the screen that sent the user here so we can return to it after
     var entryScreen: String?
@@ -34,6 +34,8 @@ class FirstEntryViewController: UIViewController {
         
         setupTextView()
         
+        storyText.delegate = self
+        
         
         storyText.clipsToBounds = true
         storyText.layer.cornerRadius = 5.0
@@ -41,6 +43,13 @@ class FirstEntryViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+    
 
     //Loads current story info to screen
     private func loadStoryToScreen() {

@@ -56,6 +56,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Do any additional setup after loading the view.
     
     }
+
     
     //Function to set up genrePicker
     func setUpPicker() {
@@ -79,6 +80,10 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         genreField.inputAccessoryView = toolBar
 
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

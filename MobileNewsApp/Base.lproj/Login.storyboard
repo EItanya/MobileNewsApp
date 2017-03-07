@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PH3-hY-Oa6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PH3-hY-Oa6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AYL-3E-GdX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9oa-RK-nPf">
                                 <rect key="frame" x="99" y="229" width="219" height="30"/>
@@ -43,7 +43,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bih-rO-vVW">
                                 <rect key="frame" x="106" y="43" width="163" height="163"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="163" id="iJB-pd-fcI"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="CiV-0e-P7o"/>
                                     <constraint firstAttribute="width" constant="163" id="rS0-FY-ezk"/>
                                 </constraints>
                             </imageView>
@@ -64,9 +64,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bih-rO-vVW" firstAttribute="leading" secondItem="AYL-3E-GdX" secondAttribute="leadingMargin" constant="90" id="2XE-f4-T0u"/>
                             <constraint firstItem="y7b-VT-0oj" firstAttribute="leading" secondItem="qFB-00-D6V" secondAttribute="trailing" constant="7" id="3jH-gH-1Yk"/>
                             <constraint firstItem="qFB-00-D6V" firstAttribute="top" secondItem="8rI-aO-QEC" secondAttribute="bottom" constant="22" id="Gam-O0-eFp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bih-rO-vVW" secondAttribute="trailing" constant="90" id="L4w-bl-KRQ"/>
+                            <constraint firstItem="bih-rO-vVW" firstAttribute="leading" secondItem="AYL-3E-GdX" secondAttribute="leadingMargin" constant="90" id="LXs-ty-5sJ"/>
                             <constraint firstItem="9oa-RK-nPf" firstAttribute="leading" secondItem="8rI-aO-QEC" secondAttribute="trailing" constant="7" id="PiF-Gb-TtO"/>
                             <constraint firstItem="8rI-aO-QEC" firstAttribute="leading" secondItem="AYL-3E-GdX" secondAttribute="leadingMargin" constant="41" id="Poz-Mo-2dl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="y7b-VT-0oj" secondAttribute="trailing" constant="41" id="SWK-Z0-N2T"/>
@@ -74,7 +75,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9oa-RK-nPf" secondAttribute="trailing" constant="41" id="YCn-g2-tbt"/>
                             <constraint firstItem="bih-rO-vVW" firstAttribute="top" secondItem="hrc-es-NSO" secondAttribute="bottom" constant="23" id="aBZ-7n-9xt"/>
                             <constraint firstItem="qFB-00-D6V" firstAttribute="top" secondItem="8rI-aO-QEC" secondAttribute="bottom" constant="22" id="eSp-Wr-hhS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bih-rO-vVW" secondAttribute="trailing" constant="90" id="eue-Ea-CKM"/>
+                            <constraint firstItem="9oa-RK-nPf" firstAttribute="top" secondItem="bih-rO-vVW" secondAttribute="bottom" constant="23" id="jGt-5V-34R"/>
                             <constraint firstItem="y7b-VT-0oj" firstAttribute="top" secondItem="9oa-RK-nPf" secondAttribute="bottom" constant="30" id="mID-nq-YXS"/>
                             <constraint firstItem="8rI-aO-QEC" firstAttribute="top" secondItem="hrc-es-NSO" secondAttribute="bottom" constant="207" id="mzr-sD-27t"/>
                             <constraint firstItem="qFB-00-D6V" firstAttribute="leading" secondItem="AYL-3E-GdX" secondAttribute="leadingMargin" constant="41" id="zRn-fg-tAS"/>
