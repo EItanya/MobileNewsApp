@@ -101,7 +101,7 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "User", bundle: nil)
             let viewController = mainStoryboard.instantiateViewController(withIdentifier: "User") as! UITabBarController
             
-            UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromBottom, animations: {() -> Void in
+            UIView.transition(with: self.view, duration: 0.5, options: .curveLinear, animations: {() -> Void in
                 UIApplication.shared.keyWindow?.rootViewController = viewController
             }, completion: nil)
             
