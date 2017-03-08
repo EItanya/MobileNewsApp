@@ -35,8 +35,7 @@ class StoryViewController: UIViewController {
         super.viewDidLoad()
         setupTextView()
         user = PFUser.current()
-        
-        
+  
         
         titleLabel.text = story?.title
         authorLabel.text = "By: \((story?.author)!)"

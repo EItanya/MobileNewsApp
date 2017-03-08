@@ -237,6 +237,43 @@ class Story {
     }
     
     
+    
+
+
+    /**
+     It returns completed and active stories from user object, only takes in completion block
+     
+     :param: completion is a completion block to be executed when the data has been retrieved
+     
+     :returns:   none
+     */
+    static func getUserStoriesArray(completion:  ((_ stories: [Story]?, _ error: Error?) -> Void)?) {
+        let query = PFQuery(className: "Story")
+        let user = PFUser.current()
+        let completeStories = user?.object(forKey: "complete_stories") as! [String]
+        let activeStories = user?.object(forKey: "active_stories") as! [String]
+        let storyIds = completeStories + activeStories
+            
+        query.whereKey("objectId", containedIn: storyIds)
+        //        query.whereKey("created_by", equalTo: userId)
+        query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            var storyArray : [Story]?
+            if error != nil {
+                print("Failed to query db")
+                returnError = error
+            } else {
+                print("Successfully retrieved stories")
+                storyArray = convertToStories(stories: objects!)
+                //                for story in storyArray! {
+                //                    print(story)
+                //                }
+            }
+            completion!(storyArray, returnError)
+        })
+    }
+    
+    
     static func getUserStoriesArray(storyIds: [String], completion:  ((_ stories: [Story]?, _ error: Error?) -> Void)?) {
         let query = PFQuery(className: "Story")
         query.whereKey("objectId", containedIn: storyIds)
@@ -256,6 +293,7 @@ class Story {
             }
             completion!(storyArray, returnError)
         })
+        
     }
     
     
