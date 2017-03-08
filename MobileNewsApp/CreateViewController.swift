@@ -28,6 +28,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         tableView?.backgroundColor = UIColor.clear
         
         
+        
         //Fetch Prompt Data from Reddit
         fetchData()
         

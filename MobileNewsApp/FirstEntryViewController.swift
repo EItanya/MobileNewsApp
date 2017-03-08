@@ -35,8 +35,6 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
             submitButton.setTitle("Bring Story Live", for: .normal)
         }
         
-        savingModalIn()
-        
         setupTextView()
         
         storyText.delegate = self

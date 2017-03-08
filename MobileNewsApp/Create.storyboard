@@ -40,7 +40,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nVe-jF-glx" id="4pP-2j-Dib">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bU-JT-MRc">
@@ -67,8 +67,11 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-Vn-Pb2">
-                                <rect key="frame" x="0.0" y="572" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="576" width="414" height="51"/>
                                 <color key="backgroundColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="5so-z0-uaZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="19"/>
                                 <state key="normal" title="Select">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,8 +84,7 @@
                         <color key="backgroundColor" red="0.38823529411764707" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GUx-Vn-Pb2" firstAttribute="trailing" secondItem="NmO-xS-ysL" secondAttribute="trailing" id="1fr-8Q-3UW"/>
-                            <constraint firstItem="GUx-Vn-Pb2" firstAttribute="top" secondItem="Sxb-8c-uC1" secondAttribute="bottom" constant="572" id="5QZ-sz-4tI"/>
-                            <constraint firstItem="GUx-Vn-Pb2" firstAttribute="bottom" secondItem="IdN-ep-zfi" secondAttribute="top" id="GpW-Qn-2mB"/>
+                            <constraint firstItem="GUx-Vn-Pb2" firstAttribute="bottom" secondItem="IdN-ep-zfi" secondAttribute="top" constant="4" id="GpW-Qn-2mB"/>
                             <constraint firstItem="GUx-Vn-Pb2" firstAttribute="leading" secondItem="NmO-xS-ysL" secondAttribute="leading" id="S8d-q8-3oq"/>
                             <constraint firstAttribute="trailing" secondItem="NmO-xS-ysL" secondAttribute="trailing" id="SoZ-8u-3d2"/>
                             <constraint firstItem="IdN-ep-zfi" firstAttribute="top" secondItem="NmO-xS-ysL" secondAttribute="bottom" constant="47" id="krL-ap-i56"/>
@@ -308,7 +310,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KlH-b1-19w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="KlH-b1-19w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
