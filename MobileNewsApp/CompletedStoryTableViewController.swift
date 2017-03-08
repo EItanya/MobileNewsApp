@@ -12,20 +12,43 @@ class CompletedStoryTableViewController: UITableViewController {
     
     var story: Story?
     var entryArray = [Entry]()
+    var effectView: UIVisualEffectView?
     
     @IBOutlet weak var headerView: UIView!
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     
+    
+    @IBOutlet weak var loadingModal: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getEntryData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func getEntryData() {
+        loadingModalIn()
+        story?.getEntries(completion: {(error: Error?) -> Void in
+            if error != nil
+            {
+                print("Error getting Entries")
+            }
+            else
+            {
+                //Code to populate list
+                //Right now just points to same data, might need to update later
+                self.entryArray = (self.story?.entries)!
+            }
+            self.loadingModalOut()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +76,9 @@ class CompletedStoryTableViewController: UITableViewController {
 
         return cell
     }
+    
+    
+    
     
 
     /*
@@ -99,5 +125,36 @@ class CompletedStoryTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func loadingModalIn () {
+        
+        effectView = UIVisualEffectView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        self.view.addSubview(effectView!)
+        
+        self.view.addSubview(loadingModal)
+        loadingModal.center = self.view.center
+        loadingModal.center.y += 15
+        loadingModal.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        loadingModal.alpha = 0
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.effectView?.effect = UIBlurEffect(style: .light)
+            self.loadingModal.alpha = 1
+            self.loadingModal.transform =  CGAffineTransform.identity
+        })
+        
+    }
+    
+    //Function to make the modal leave the screen
+    func loadingModalOut () {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.effectView?.effect = nil
+            self.loadingModal.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.loadingModal.alpha = 0
+        }, completion: {(success: Bool) -> Void in
+            self.loadingModal.removeFromSuperview()
+        })
+    }
 
 }

@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="DIN Alternate Bold.otf">
+            <string>DIN-BoldAlternate</string>
+        </array>
         <array key="DIN Alternate Regular.otf">
             <string>DIN-RegularAlternate</string>
         </array>
@@ -193,7 +196,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Ep8-B7-XqJ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="17"/>
                             <state key="normal" title="Register Account">
                                 <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -207,7 +210,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="XHW-9O-EeQ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="17"/>
                             <state key="normal" title="Oops, I have an account">
                                 <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -242,7 +245,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Q9H-nF-dYr"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="17"/>
                             <state key="normal" title="Login">
                                 <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -256,7 +259,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="vup-jt-znC"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="17"/>
                             <state key="normal" title="Facebook Login">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -269,7 +272,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="iFa-Bu-Lfh"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="17"/>
                             <state key="normal" title="New To Snowball? Join Here">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>

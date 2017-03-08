@@ -258,6 +258,28 @@ class Story {
         })
     }
     
+    
+    //Function to get all user stories, bool for completed
+    func getEntries(completion:  ((_ error: Error?) -> Void)?) {
+        let query = PFQuery(className: "Entry")
+        query.whereKey("objectId", containedIn: self.entryIds)
+        query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            if error != nil {
+                print("Failed to query db")
+                returnError = error
+            } else {
+                print("Successfully retrieved entries")
+                for entry in objects! {
+                    self.entries?.append(Entry(createdBy: entry.objectId!, text: entry.object(forKey: "text") as! String, number: entry.object(forKey: "number") as! Int))
+                }
+                
+            }
+            completion!(returnError)
+        })
+    }
+    
+    
     //Function to convert a bunch of parse objects into story objects for app to use
     private static func convertToStories(stories: [PFObject]) -> [Story] {
         var storyArray = [Story]()
@@ -335,11 +357,14 @@ class Entry {
     var text: String?
     var createdBy: String?
     var number: Int?
+    
+    
     init(createdBy: String, text: String, number: Int) {
         self.text = text
         self.createdBy = createdBy
         self.number = number
     }
+
 }
 
 

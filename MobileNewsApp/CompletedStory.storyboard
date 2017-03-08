@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN Alternate Regular.otf">
+            <string>DIN-RegularAlternate</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Completed Story Table View Controller-->
         <scene sceneID="dOj-sy-Y90">
@@ -73,10 +78,33 @@
                     <connections>
                         <outlet property="authorLabel" destination="QJe-7s-yiC" id="QHr-Jt-sjs"/>
                         <outlet property="headerView" destination="NQP-V6-eI2" id="tXf-xU-Yre"/>
+                        <outlet property="loadingModal" destination="2lM-WH-LHU" id="kJr-3n-l6E"/>
                         <outlet property="titleLabel" destination="Yl7-Zx-xWY" id="Wmr-nd-dFe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7m-gI-i3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="g9k-XI-T7l">
+                    <rect key="frame" x="0.0" y="0.0" width="377" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lM-WH-LHU">
+                            <rect key="frame" x="39" y="43" width="299" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="q5o-Dq-Gip"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="2lM-WH-LHU" firstAttribute="top" secondItem="g9k-XI-T7l" secondAttribute="top" constant="43" id="CeI-Ci-o6H"/>
+                        <constraint firstItem="2lM-WH-LHU" firstAttribute="leading" secondItem="g9k-XI-T7l" secondAttribute="leading" constant="39" id="osE-TL-4pM"/>
+                        <constraint firstAttribute="trailing" secondItem="2lM-WH-LHU" secondAttribute="trailing" constant="39" id="wMC-VC-lsk"/>
+                        <constraint firstAttribute="bottom" secondItem="2lM-WH-LHU" secondAttribute="bottom" constant="42" id="xPU-hZ-vlR"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="-143.19999999999999" y="182.15892053973016"/>
         </scene>

@@ -123,6 +123,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "promptCell", for: indexPath)
         cell.textLabel?.numberOfLines = 2
         cell.textLabel?.text = self.prompts[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "DIN", size: 17.0)
         return cell
     }
     

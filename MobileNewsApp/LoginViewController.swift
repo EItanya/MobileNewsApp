@@ -16,6 +16,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     var userId: String?
 
+    var effectView : UIVisualEffectView?
+    
     //Outlets for buttons
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var facebookLoginButton: LoginScreenButton!
@@ -132,12 +134,18 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     
     //Function to animate the login Modal onto the screen
     func loginModalIn () {
+        
+        effectView = UIVisualEffectView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        self.view.addSubview(effectView!)
+        
         self.view.addSubview(loginWindowView)
         loginWindowView.center = self.view.center
+        loginWindowView.center.y += 15
         loginWindowView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         loginWindowView.alpha = 0
         
         UIView.animate(withDuration: 0.3, animations: {
+            self.effectView?.effect = UIBlurEffect(style: .light)
             self.loginWindowView.alpha = 1
             self.loginWindowView.transform =  CGAffineTransform.identity
         })
@@ -148,6 +156,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     func loginModalOut () {
         
         UIView.animate(withDuration: 0.3, animations: {
+            self.effectView?.effect = nil
             self.loginWindowView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.loginWindowView.alpha = 0
         }, completion: {(success: Bool) -> Void in
@@ -220,74 +229,85 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
     @IBAction func facebookLogin(_ sender: Any) {
         
         animateButton(button: self.facebookLoginButton)
+        loginModalIn()
         
         PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"], block: {
             (user: PFUser?, error: Error?) -> Void in
             if let user = user {
                 if user.isNew {
                     print("User signed up and logged in through Facebook!")
+                    let requestParameters = ["fields": "id, email, first_name, last_name, picture.type(large)"]
+                    let userDetails : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me", parameters: requestParameters)
+                    
+                    userDetails.start(completionHandler: { (connection, result, error) -> Void in
+                        if error != nil {
+                            print("Error getting Facebook Info", error ?? "")
+                            return
+                        } else if result != nil {
+                            //Get Current USer
+                            let myUser:PFUser = PFUser.current()!
+                            //Turn result into Dictionary
+                            let data:[String:AnyObject] = result as! [String : AnyObject]
+                            //Gather Data
+                            let userId:String? = data["id"] as? String
+                            let userFirstName:String? = data["first_name"] as? String
+                            let userLastName:String? = data["last_name"] as? String
+                            let userEmail:String? = data["email"] as? String
+                            
+                            self.userId = userId
+                            
+                            
+                            //Grab image URL, JSON is tricky in swift 3
+                            if let image = data["picture"] as? [String: Any] {
+                                if let imageData = image["data"] as? [String:Any] {
+                                    let userImage:String? = imageData["url"] as! String?
+                                    if (userImage != nil) { myUser.setValue(userImage, forKey: "fb_profile_picture") }
+                                }
+                            }
+                            
+                            //Set My User values to add data to parse user
+                            if(userId != nil) { myUser.setValue(userId, forKey: "fb_id") }
+                            if(userFirstName != nil) { myUser.setValue(userFirstName, forKey: "first_name") }
+                            if(userLastName != nil) { myUser.setValue(userLastName, forKey: "last_name") }
+                            if(userEmail != nil) { myUser.setValue(userEmail, forKey: "email") }
+                            myUser.setValue([], forKey: "completed_stories")
+                            myUser.setValue([], forKey: "active_stories")
+                            //Save User data back to Parse
+                            myUser.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
+                                if error != nil {
+                                    print("Error saving User to DB", error ?? "")
+                                    return
+                                }
+                                else if success {
+                                    print("User successfully saved to DB")
+                                }
+                            })
+                        }
+                    })
+                    self.segueToMainApp()
+                    
                 } else {
                     print("User logged in through Facebook!")
+                    self.segueToMainApp()
                 }
-                
-                let requestParameters = ["fields": "id, email, first_name, last_name, picture.type(large)"]
-                let userDetails : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me", parameters: requestParameters)
-                
-                userDetails.start(completionHandler: { (connection, result, error) -> Void in
-                    if error != nil {
-                        print("Error getting Facebook Info", error ?? "")
-                        return
-                    } else if result != nil {
-                        //Get Current USer
-                        let myUser:PFUser = PFUser.current()!
-                        //Turn result into Dictionary
-                        let data:[String:AnyObject] = result as! [String : AnyObject]
-                        //Gather Data
-                        let userId:String? = data["id"] as? String
-                        let userFirstName:String? = data["first_name"] as? String
-                        let userLastName:String? = data["last_name"] as? String
-                        let userEmail:String? = data["email"] as? String
-                        
-                        self.userId = userId
-                        let storyboard = UIStoryboard(name: "User", bundle: nil)
-                        let controller = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
-                        
-                        self.present(controller, animated: true, completion: nil)
-                        
-                        //Grab image URL, JSON is tricky in swift 3
-                        if let image = data["picture"] as? [String: Any] {
-                            if let imageData = image["data"] as? [String:Any] {
-                                let userImage:String? = imageData["url"] as! String?
-                                if (userImage != nil) { myUser.setValue(userImage, forKey: "fb_profile_picture") }
-                            }
-                        }
-                        
-                        //Set My User values to add data to parse user
-                        if(userId != nil) { myUser.setValue(userId, forKey: "fb_id") }
-                        if(userFirstName != nil) { myUser.setValue(userFirstName, forKey: "first_name") }
-                        if(userLastName != nil) { myUser.setValue(userLastName, forKey: "last_name") }
-                        if(userEmail != nil) { myUser.setValue(userEmail, forKey: "email") }
-                        myUser.setValue([], forKey: "completed_stories")
-                        myUser.setValue([], forKey: "active_stories")
-                        //Save User data back to Parse
-                        myUser.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
-                            if error != nil {
-                                print("Error saving User to DB", error ?? "")
-                                return
-                            }
-                            else if success {
-                                print("User successfully saved to DB")
-                            }
-                        })
-                    }
-                })
                 
                 
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
+                self.loginModalOut()
             }
             
+            
         })
+    }
+    
+    func segueToMainApp() {
+        loginModalOut()
+        
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
     //New function that uses the UI Views
