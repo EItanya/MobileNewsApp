@@ -10,11 +10,14 @@ import UIKit
 import Parse
 
 class FirstEntryViewController: UIViewController, UITextViewDelegate {
+    //Modal to be displayed when creating a story
+    @IBOutlet var savingModal: UIView!
 
     //Variable representing the screen that sent the user here so we can return to it after
     var entryScreen: String?
     var story : Story!
     var currentUser: PFUser?
+    var effectView: UIVisualEffectView?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -88,6 +91,8 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
             return
         }
         
+        savingModalIn()
+        
         let firstEntry = Entry(createdBy: (currentUser?.objectId)!, text: storyText.text, number: 1)
         //Code to count words and add to story
         story.totalWordCount = Util.countWords(text: storyText.text)
@@ -98,13 +103,14 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
             print("Story has been created and we are back in StoryViewController")
             
             //Code to transition back to Home screen after story is created in DB
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "User", bundle: nil)
-            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "User") as! UITabBarController
-            
-            UIView.transition(with: self.view, duration: 0.5, options: .curveLinear, animations: {() -> Void in
-                UIApplication.shared.keyWindow?.rootViewController = viewController
-            }, completion: nil)
-            
+//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "User", bundle: nil)
+//            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "User") as! UITabBarController
+//            
+//            UIView.transition(with: self.view, duration: 0.5, options: .curveLinear, animations: {() -> Void in
+//                UIApplication.shared.keyWindow?.rootViewController = viewController
+//            }, completion: nil)
+            self.savingModalOut()
+            self.performSegue(withIdentifier: "thanksSegue", sender: self)
 
         })
         
@@ -112,6 +118,37 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func exitStoryScreen(_ sender: Any) {
         
+    }
+    
+    //Function to animate the login Modal onto the screen
+    func savingModalIn () {
+        
+        effectView = UIVisualEffectView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        self.view.addSubview(effectView!)
+        
+        self.view.addSubview(savingModal)
+        savingModal.center = self.view.center
+        savingModal.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        savingModal.alpha = 0
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.effectView?.effect = UIBlurEffect(style: .light)
+            self.savingModal.alpha = 1
+            self.savingModal.transform =  CGAffineTransform.identity
+        })
+        
+    }
+    
+    //Function to make the modal leave the screen
+    func savingModalOut () {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.effectView?.effect = nil
+            self.savingModal.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.savingModal.alpha = 0
+        }, completion: {(success: Bool) -> Void in
+            self.savingModal.removeFromSuperview()
+        })
     }
     
     

@@ -14,6 +14,7 @@
 		0778E89D1E6F0CCB0061898B /* CompletedStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0778E89C1E6F0CCB0061898B /* CompletedStory.storyboard */; };
 		0778E89F1E6F0D3B0061898B /* CompletedStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0778E89E1E6F0D3B0061898B /* CompletedStoryTableViewController.swift */; };
 		0778E8A11E6F0D770061898B /* CompletedStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0778E8A01E6F0D770061898B /* CompletedStoryTableViewCell.swift */; };
+		0778E8A31E6FA9950061898B /* ThanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0778E8A21E6FA9950061898B /* ThanksViewController.swift */; };
 		077CCC5D1E6C858E0010B0DC /* LoadingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CCC5C1E6C858E0010B0DC /* LoadingModalView.swift */; };
 		077CCCF472A0C5165376A82E /* Pods_MobileNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */; };
 		077D71DE1E6737A100958CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077D71DD1E6737A100958CCA /* User.swift */; };
@@ -82,6 +83,7 @@
 		0778E89C1E6F0CCB0061898B /* CompletedStory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompletedStory.storyboard; sourceTree = "<group>"; };
 		0778E89E1E6F0D3B0061898B /* CompletedStoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedStoryTableViewController.swift; sourceTree = "<group>"; };
 		0778E8A01E6F0D770061898B /* CompletedStoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedStoryTableViewCell.swift; sourceTree = "<group>"; };
+		0778E8A21E6FA9950061898B /* ThanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksViewController.swift; sourceTree = "<group>"; };
 		077CCC5C1E6C858E0010B0DC /* LoadingModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingModalView.swift; sourceTree = "<group>"; };
 		077D71DD1E6737A100958CCA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0782EAC61E5A61FB00514F45 /* PromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				07452F3A1E595BAD00B187C3 /* CreateViewController.swift */,
 				07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */,
 				0782EAC61E5A61FB00514F45 /* PromptViewController.swift */,
+				0778E8A21E6FA9950061898B /* ThanksViewController.swift */,
 			);
 			name = Create;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				07E62BAA1E610B6E00B3F3DA /* FirstEntryViewController.swift in Sources */,
 				15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */,
 				15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */,
+				0778E8A31E6FA9950061898B /* ThanksViewController.swift in Sources */,
 				15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */,
 				15FBA1F81E4E80FB00DDEEB7 /* AppDelegate.swift in Sources */,
 			);
