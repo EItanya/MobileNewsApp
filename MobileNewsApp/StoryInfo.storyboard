@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="o83-GH-fEZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN Alternate Regular.otf">
+            <string>DIN-RegularAlternate</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Story Info View Controller-->
+        <scene sceneID="PDG-tr-i5h">
+            <objects>
+                <viewController id="o83-GH-fEZ" customClass="StoryInfoViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n8R-je-rvv"/>
+                        <viewControllerLayoutGuide type="bottom" id="eQA-sQ-Kog"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Wq-OU-Cbu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nxB-ch-5Wl">
+                                <rect key="frame" x="0.0" y="218" width="375" height="344"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="7lu-3E-zYp" customClass="UserTableViewCell" customModule="MobileNewsApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7lu-3E-zYp" id="5LH-kW-Ge4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-4H-fya">
+                                                    <rect key="frame" x="15" y="4" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2t-qX-hX5">
+                                                    <rect key="frame" x="58" y="11" width="121" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImage" destination="LyP-4H-fya" id="jGe-x9-C7v"/>
+                                            <outlet property="nameLabel" destination="T2t-qX-hX5" id="pVi-NF-BKR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkI-40-xyV" customClass="LoginScreenButton" customModule="MobileNewsApp" customModuleProvider="target">
+                                <rect key="frame" x="50" y="609" width="276" height="38"/>
+                                <color key="backgroundColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="cTM-AI-giF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="20"/>
+                                <state key="normal" title="Leave Story">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="leaveStory:" destination="o83-GH-fEZ" eventType="touchUpInside" id="Bfr-yr-Kbx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mkI-40-xyV" firstAttribute="leading" secondItem="8Wq-OU-Cbu" secondAttribute="leadingMargin" constant="34" id="DyG-cu-UDL"/>
+                            <constraint firstItem="nxB-ch-5Wl" firstAttribute="top" secondItem="n8R-je-rvv" secondAttribute="bottom" constant="198" id="Ebu-Iv-6fV"/>
+                            <constraint firstItem="nxB-ch-5Wl" firstAttribute="leading" secondItem="8Wq-OU-Cbu" secondAttribute="leading" id="R5q-UE-VOq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mkI-40-xyV" secondAttribute="trailing" constant="33" id="VCi-Mz-ADc"/>
+                            <constraint firstAttribute="trailing" secondItem="nxB-ch-5Wl" secondAttribute="trailing" id="Z4d-l3-fMg"/>
+                            <constraint firstItem="mkI-40-xyV" firstAttribute="top" secondItem="nxB-ch-5Wl" secondAttribute="bottom" constant="47" id="fuW-Vp-Kza"/>
+                            <constraint firstItem="eQA-sQ-Kog" firstAttribute="top" secondItem="mkI-40-xyV" secondAttribute="bottom" constant="20" id="rEH-6T-YgR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="leaveButton" destination="mkI-40-xyV" id="nqW-Ko-H5B"/>
+                        <outlet property="userTable" destination="nxB-ch-5Wl" id="RAN-Q8-nCj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gTm-Rb-Q17" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="69.599999999999994" y="115.59220389805098"/>
+        </scene>
+    </scenes>
+</document>

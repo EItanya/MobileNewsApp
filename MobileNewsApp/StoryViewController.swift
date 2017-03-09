@@ -39,8 +39,17 @@ class StoryViewController: UIViewController {
         
         titleLabel.text = story?.title
         authorLabel.text = "By: \((story?.author)!)"
+        
+        
+        let infoImage = UIImage(named: "info")
+        let infoButton = UIBarButtonItem(image: infoImage, style: .plain, target: self, action: #selector(StoryViewController.storyInfoSegue))
+        infoButton.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = infoButton
+        
         // Do any additional setup after loading the view.
     }
+    
+    
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,15 +169,26 @@ class StoryViewController: UIViewController {
         
     }
     
+    
+    //Function to segue to story Info.
+    func storyInfoSegue(sender: AnyObject) {
+        self.performSegue(withIdentifier: "ShowInfo", sender: self)
+    }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowInfo" {
+            let infoController = segue.destination as! StoryInfoViewController
+            infoController.story = self.story
+        }
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

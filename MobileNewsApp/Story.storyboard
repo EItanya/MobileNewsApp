@@ -110,11 +110,20 @@
                         <outlet property="timerLabel" destination="cyK-AG-oTm" id="AVD-EK-n00"/>
                         <outlet property="titleLabel" destination="353-yW-4W6" id="hPR-3w-SiF"/>
                         <outlet property="turnButton" destination="xXc-MS-YDD" id="kg8-Rb-jQa"/>
+                        <segue destination="cZV-UP-ZEp" kind="show" identifier="ShowInfo" id="bEA-h5-CDD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hQ-Ri-h3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-223.19999999999999" y="232.53373313343329"/>
+        </scene>
+        <!--StoryInfo-->
+        <scene sceneID="ZFM-vD-qnb">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="StoryInfo" storyboardName="StoryInfo" id="cZV-UP-ZEp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gIK-Ao-xG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="503" y="148"/>
         </scene>
     </scenes>
 </document>

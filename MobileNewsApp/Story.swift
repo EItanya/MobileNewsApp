@@ -175,9 +175,87 @@ class Story {
         
     }
     
+    //Function to get all users from story users Array
+    func getUsers(completion: ((_ users: [User]?, _ error: Error? ) -> Void)?) {
+        
+        let query:PFQuery = PFUser.query()!
+        query.whereKey("objectId", containedIn: self.users)
+
+        query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            var userArray : [User]? = nil
+            if error != nil
+            {
+                print("Failed to query db for Users")
+                returnError = error
+            }
+            else
+            {
+                print("Successfully retrieved users")
+                userArray = User.convertToUsers(userObjects: objects!)
+
+            }
+            completion!(userArray, returnError)
+        })
+        
+        
+    }
+    
+    //This function works
+    func deleteStory(completion: ((_ error: Error?) -> Void)?) {
+        let query = PFQuery(className: "Story")
+        query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            if error != nil
+            {
+                print("could not retrieve story from DB")
+                returnError = error!
+            }
+            else
+            {
+                story?.deleteInBackground()
+            }
+            completion!(returnError)
+        })
+    }
+    
+    func removeUser(user: String, completion: ((_ error: Error?) -> Void)?) {
+        if self.currentUser == user
+        {
+            //Logic to move turn pointer to next person
+            let index = self.users.index(of: user)
+            //If item is last in list
+            if index == self.users.count - 1
+            {
+                self.currentUser = self.users[0]
+            }
+        }
+        self.users.remove(at: self.users.index(of: user)!)
+        
+        let query = PFQuery(className: "Story")
+        query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
+            let saveError: Error? = nil
+            if error != nil {
+                print("there was an error deleting you from the story")
+            }
+            else
+            {
+                story?.setObject(self.users, forKey: "users")
+                story?.saveInBackground()
+            }
+            
+            if let callback = completion! as ((Error?) -> Void)? {
+                callback(saveError)
+            }
+        })
+        
+    }
+    
     static func getStoryById() {
         
     }
+    
+    
     
     
     //Function to get all stories
@@ -186,15 +264,15 @@ class Story {
         query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
             var returnError: Error? = nil
             var storyArray : [Story]?
-            if error != nil {
+            if error != nil
+            {
                 print("Failed to query db")
                 returnError = error
-            } else {
+            }
+            else
+            {
                 print("Successfully retrieved stories")
                 storyArray = convertToStories(stories: objects!)
-                for story in storyArray! {
-                    print(story)
-                }
                 
             }
             completion!(storyArray, returnError)
@@ -208,15 +286,15 @@ class Story {
         query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
             var returnError: Error? = nil
             var storyArray : [Story]?
-            if error != nil {
+            if error != nil
+            {
                 print("Failed to query db")
                 returnError = error
-            } else {
+            }
+            else
+            {
                 print("Successfully retrieved stories")
                 storyArray = convertToStories(stories: objects!)
-                for story in storyArray! {
-                    print(story)
-                }
                 
             }
             completion!(storyArray, returnError)
@@ -323,7 +401,7 @@ class Story {
     
     
     //Function to convert a bunch of parse objects into story objects for app to use
-    private static func convertToStories(stories: [PFObject]) -> [Story] {
+    static func convertToStories(stories: [PFObject]) -> [Story] {
         var storyArray = [Story]()
         var newStory: Story
         for story in stories {
@@ -354,44 +432,44 @@ class Story {
 
 //Trying out subclassing real quick again
 //We can use it if we want
-class parseUser: PFUser {
-    
-    @NSManaged var first_name: String?
-    @NSManaged var last_name: String?
-    @NSManaged var fb_id: String?
-    @NSManaged var fb_profile_picture: String?
-    
-    override init() {
-        super.init()
-    }
-    
-    override init(className newClassName: String) {
-        super.init()
-    }
-    
-    init(email: String, password: String, firstName: String, lastName: String) {
-        super.init()
-        self.email = email
-        self.username = email
-        self.password = password
-        self.first_name = firstName
-        self.last_name = lastName
-    }
-    
-    init(email: String, password: String, firstName: String, lastName: String, facebookId: String, facebookProfilePic: String) {
-        super.init()
-        self.email = email
-        self.username = email
-        self.password = password
-        self.first_name = firstName
-        self.last_name = lastName
-        self.fb_id = facebookId
-        self.fb_profile_picture = facebookProfilePic
-    }
-    
-    
-    
-}
+//class parseUser: PFUser {
+//    
+//    var first_name: String?
+//    var last_name: String?
+//    var fb_id: String?
+//    var fb_profile_picture: String?
+//    
+//    override init() {
+//        super.init()
+//    }
+//    
+//    override init(className newClassName: String) {
+//        super.init()
+//    }
+//    
+//    init(email: String, password: String, firstName: String, lastName: String) {
+//        super.init()
+//        self.email = email
+//        self.username = email
+//        self.password = password
+//        self.first_name = firstName
+//        self.last_name = lastName
+//    }
+//    
+//    init(email: String, password: String, firstName: String, lastName: String, facebookId: String, facebookProfilePic: String) {
+//        super.init()
+//        self.email = email
+//        self.username = email
+//        self.password = password
+//        self.first_name = firstName
+//        self.last_name = lastName
+//        self.fb_id = facebookId
+//        self.fb_profile_picture = facebookProfilePic
+//    }
+//    
+//    
+//    
+//}
 
 
 

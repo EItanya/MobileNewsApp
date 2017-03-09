@@ -19,6 +19,9 @@
 		077CCCF472A0C5165376A82E /* Pods_MobileNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB120947769BF5C7E4D527B /* Pods_MobileNewsApp.framework */; };
 		077D71DE1E6737A100958CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077D71DD1E6737A100958CCA /* User.swift */; };
 		0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0782EAC61E5A61FB00514F45 /* PromptViewController.swift */; };
+		078EF8B01E7193500010862C /* StoryInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 078EF8AF1E7193500010862C /* StoryInfo.storyboard */; };
+		078EF8B21E7193620010862C /* StoryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078EF8B11E7193620010862C /* StoryInfoViewController.swift */; };
+		078EF8B41E71A0510010862C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078EF8B31E71A0510010862C /* UserTableViewCell.swift */; };
 		07CED03F1E6E3411006D2308 /* DIN Alternate Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07CED03E1E6E3411006D2308 /* DIN Alternate Regular.otf */; };
 		07CED0411E6E354C006D2308 /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07CED0401E6E354C006D2308 /* DIN Alternate Bold.otf */; };
 		07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */; };
@@ -87,6 +90,9 @@
 		077CCC5C1E6C858E0010B0DC /* LoadingModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingModalView.swift; sourceTree = "<group>"; };
 		077D71DD1E6737A100958CCA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0782EAC61E5A61FB00514F45 /* PromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromptViewController.swift; sourceTree = "<group>"; };
+		078EF8AF1E7193500010862C /* StoryInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryInfo.storyboard; sourceTree = "<group>"; };
+		078EF8B11E7193620010862C /* StoryInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryInfoViewController.swift; sourceTree = "<group>"; };
+		078EF8B31E71A0510010862C /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		07CED03E1E6E3411006D2308 /* DIN Alternate Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Regular.otf"; sourceTree = "<group>"; };
 		07CED0401E6E354C006D2308 /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
 		07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperTableViewCell.swift; sourceTree = "<group>"; };
@@ -189,9 +195,20 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		078EF8AE1E7193440010862C /* Story Info */ = {
+			isa = PBXGroup;
+			children = (
+				078EF8AF1E7193500010862C /* StoryInfo.storyboard */,
+				078EF8B11E7193620010862C /* StoryInfoViewController.swift */,
+				078EF8B31E71A0510010862C /* UserTableViewCell.swift */,
+			);
+			name = "Story Info";
+			sourceTree = "<group>";
+		};
 		07E62BA81E610B4400B3F3DA /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				078EF8AE1E7193440010862C /* Story Info */,
 				0778E89B1E6F0CB80061898B /* Completed Story */,
 				07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */,
 				071A23051E6A30D500260D81 /* StoryJoinViewController.swift */,
@@ -484,6 +501,7 @@
 				0778E89D1E6F0CCB0061898B /* CompletedStory.storyboard in Resources */,
 				076D78441E6A394D00387D6A /* Story.storyboard in Resources */,
 				07E62BAC1E610BA800B3F3DA /* JoinStory.storyboard in Resources */,
+				078EF8B01E7193500010862C /* StoryInfo.storyboard in Resources */,
 				07CED0411E6E354C006D2308 /* DIN Alternate Bold.otf in Resources */,
 				15FBA1FD1E4E80FB00DDEEB7 /* Login.storyboard in Resources */,
 				07CED03F1E6E3411006D2308 /* DIN Alternate Regular.otf in Resources */,
@@ -655,6 +673,7 @@
 				F085397C1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h in Sources */,
 				F085397A1E6CB2E200AEF2D8 /* LogoutButton.swift in Sources */,
 				15119CE11E652E2C006CDDFC /* HomeStoryTableViewCell.swift in Sources */,
+				078EF8B21E7193620010862C /* StoryInfoViewController.swift in Sources */,
 				15119CD91E652AA6006CDDFC /* HomeViewController.swift in Sources */,
 				15119CDB1E652AA6006CDDFC /* GenreTableViewCell.swift in Sources */,
 				15119CDC1E652AA6006CDDFC /* CollapsibleTableViewController.swift in Sources */,
@@ -680,6 +699,7 @@
 				15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */,
 				0778E8A31E6FA9950061898B /* ThanksViewController.swift in Sources */,
 				15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */,
+				078EF8B41E71A0510010862C /* UserTableViewCell.swift in Sources */,
 				15FBA1F81E4E80FB00DDEEB7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
