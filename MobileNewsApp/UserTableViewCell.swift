@@ -13,6 +13,7 @@ class UserTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarImage: UIImageView!
+    var user: User?
     
     
     override func awakeFromNib() {

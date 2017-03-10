@@ -19,6 +19,8 @@ class StoryInfoViewController: UIViewController {
     
     @IBOutlet weak var userTable: UITableView!
     @IBOutlet weak var leaveButton: LoginScreenButton!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
 
     override func viewDidLoad() {
@@ -51,6 +53,10 @@ class StoryInfoViewController: UIViewController {
     }
     
     func setupView() {
+        self.automaticallyAdjustsScrollViewInsets = false
+        userTable.layer.cornerRadius = 5
+        userTable.layer.borderColor = UIColor.lightGray.cgColor
+        userTable.layer.borderWidth = 2.0
         
         if story?.createdBy == self.user.objectId
         {
@@ -126,6 +132,7 @@ extension StoryInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTable.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
         let user = users[indexPath.row]
+        cell.user = user
         cell.nameLabel.text = "\((user.firstName)!) \((user.lastName)!)"
         let avatar = UIImage(named: "username")
         cell.avatarImage.image = avatar

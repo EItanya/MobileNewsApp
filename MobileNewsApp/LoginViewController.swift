@@ -295,6 +295,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
                 self.loginModalOut()
+                return
             }
             
             
