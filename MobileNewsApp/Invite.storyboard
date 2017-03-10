@@ -39,7 +39,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0yz-y5-9fO">
-                                                    <rect key="frame" x="8" y="7" width="50" height="50"/>
+                                                    <rect key="frame" x="8" y="15" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbW-lK-70d">
@@ -49,10 +49,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWY-Rf-8Gz">
+                                                    <rect key="frame" x="300" y="15" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avatarImageView" destination="0yz-y5-9fO" id="e5V-Nh-hKD"/>
+                                            <outlet property="checkboxView" destination="HWY-Rf-8Gz" id="nZ8-Dq-L20"/>
                                             <outlet property="nameLabel" destination="TbW-lK-70d" id="RDA-i5-OSU"/>
                                         </connections>
                                     </tableViewCell>
