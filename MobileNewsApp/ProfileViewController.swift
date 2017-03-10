@@ -80,35 +80,23 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         print("my id is \(id)")
         print("my userId is \(userId)")
         
-        Story.getUserStories(userId: id!) {
-            (stories:[Story]?, Error) in
-            //print("how about here id is \(id!)")
-
-            self.unfinishedStories = stories!.filter { $0.completed == false }
-            self.completedStories = stories!.filter { $0.completed == true }
-            self.stories = self.unfinishedStories
-            self.profileTableView.reloadData()
-        }
-        
-        
-//        Story.getUserCurrentStory(userId: id!, storyIds: ["users"]) {
+//        Story.getUserStories(userId: id!) {
 //            (stories:[Story]?, Error) in
+//            //print("how about here id is \(id!)")
+//
 //            self.unfinishedStories = stories!.filter { $0.completed == false }
 //            self.completedStories = stories!.filter { $0.completed == true }
 //            self.stories = self.unfinishedStories
 //            self.profileTableView.reloadData()
 //        }
         
-        
-        //        Story.getAllStories() {
-        //            (stories: [Story]?, Error) in
-        //            self.unfinishedStories = stories!.filter { $0.completed == false }
-        //            self.completedStories = stories!.filter { $0.completed == true }
-        //            self.stories = self.unfinishedStories
-        //            
-        //            self.profileTableView.reloadData()
-        //        }
-        //        
+        Story.getUserStoriesArray { (stories, Error) in
+            
+            self.unfinishedStories = stories!.filter { $0.completed == false }
+            self.completedStories = stories!.filter { $0.completed == true }
+            self.stories = self.unfinishedStories + self.completedStories
+            self.profileTableView.reloadData()
+        }
 
         
         
