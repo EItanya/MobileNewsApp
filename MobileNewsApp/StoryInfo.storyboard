@@ -127,6 +127,7 @@
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="inviteButton:" destination="o83-GH-fEZ" id="d7O-z0-PKI"/>
+                                <segue destination="pA7-6d-H6z" kind="presentation" identifier="inviteSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="hGr-Nx-Jnq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -140,6 +141,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gTm-Rb-Q17" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="69.599999999999994" y="133.5832083958021"/>
+        </scene>
+        <!--Invite-->
+        <scene sceneID="WUK-B6-zXZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Invite" referencedIdentifier="Invite" id="pA7-6d-H6z" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8R-NR-5w6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="845" y="-35"/>
         </scene>
     </scenes>
 </document>

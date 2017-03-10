@@ -24,6 +24,10 @@
 		078EF8B41E71A0510010862C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078EF8B31E71A0510010862C /* UserTableViewCell.swift */; };
 		07CED03F1E6E3411006D2308 /* DIN Alternate Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07CED03E1E6E3411006D2308 /* DIN Alternate Regular.otf */; };
 		07CED0411E6E354C006D2308 /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07CED0401E6E354C006D2308 /* DIN Alternate Bold.otf */; };
+		07D3E95A1E732AB50014AB10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D3E9591E732AB50014AB10 /* LaunchScreen.storyboard */; };
+		07D3E95E1E732BCC0014AB10 /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D3E95D1E732BCC0014AB10 /* Invite.storyboard */; };
+		07D3E9601E732D140014AB10 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3E95F1E732D140014AB10 /* InviteViewController.swift */; };
+		07D3E9621E7330850014AB10 /* InviteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3E9611E7330850014AB10 /* InviteTableViewCell.swift */; };
 		07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */; };
 		07E62BAA1E610B6E00B3F3DA /* FirstEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E62BA91E610B6E00B3F3DA /* FirstEntryViewController.swift */; };
 		07E62BAC1E610BA800B3F3DA /* JoinStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */; };
@@ -44,7 +48,6 @@
 		15FBA1FD1E4E80FB00DDEEB7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FBA1FB1E4E80FB00DDEEB7 /* Login.storyboard */; };
 		15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15FBA1FE1E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld */; };
 		15FBA2021E4E80FB00DDEEB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15FBA2011E4E80FB00DDEEB7 /* Assets.xcassets */; };
-		15FBA2051E4E80FB00DDEEB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FBA2031E4E80FB00DDEEB7 /* LaunchScreen.storyboard */; };
 		15FBA2101E4E80FC00DDEEB7 /* MobileNewsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FBA20F1E4E80FC00DDEEB7 /* MobileNewsAppTests.swift */; };
 		15FBA21B1E4E80FC00DDEEB7 /* MobileNewsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FBA21A1E4E80FC00DDEEB7 /* MobileNewsAppUITests.swift */; };
 		8B06EA141E5DF571002ADFE5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA131E5DF571002ADFE5 /* User.storyboard */; };
@@ -95,6 +98,10 @@
 		078EF8B31E71A0510010862C /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		07CED03E1E6E3411006D2308 /* DIN Alternate Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Regular.otf"; sourceTree = "<group>"; };
 		07CED0401E6E354C006D2308 /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
+		07D3E9591E732AB50014AB10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		07D3E95D1E732BCC0014AB10 /* Invite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Invite.storyboard; sourceTree = "<group>"; };
+		07D3E95F1E732D140014AB10 /* InviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		07D3E9611E7330850014AB10 /* InviteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteTableViewCell.swift; sourceTree = "<group>"; };
 		07E62BA61E60E1A100B3F3DA /* PaperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperTableViewCell.swift; sourceTree = "<group>"; };
 		07E62BA91E610B6E00B3F3DA /* FirstEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstEntryViewController.swift; sourceTree = "<group>"; };
 		07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JoinStory.storyboard; sourceTree = "<group>"; };
@@ -117,7 +124,6 @@
 		15FBA1FC1E4E80FB00DDEEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		15FBA1FF1E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobileNewsApp.xcdatamodel; sourceTree = "<group>"; };
 		15FBA2011E4E80FB00DDEEB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		15FBA2041E4E80FB00DDEEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15FBA2061E4E80FB00DDEEB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15FBA20B1E4E80FC00DDEEB7 /* MobileNewsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileNewsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FBA20F1E4E80FC00DDEEB7 /* MobileNewsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNewsAppTests.swift; sourceTree = "<group>"; };
@@ -205,9 +211,20 @@
 			name = "Story Info";
 			sourceTree = "<group>";
 		};
+		07D3E9561E732A8C0014AB10 /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+				07D3E95D1E732BCC0014AB10 /* Invite.storyboard */,
+				07D3E95F1E732D140014AB10 /* InviteViewController.swift */,
+				07D3E9611E7330850014AB10 /* InviteTableViewCell.swift */,
+			);
+			name = Invite;
+			sourceTree = "<group>";
+		};
 		07E62BA81E610B4400B3F3DA /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				07D3E9561E732A8C0014AB10 /* Invite */,
 				078EF8AE1E7193440010862C /* Story Info */,
 				0778E89B1E6F0CB80061898B /* Completed Story */,
 				07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */,
@@ -268,6 +285,7 @@
 		15FBA1EB1E4E80FA00DDEEB7 = {
 			isa = PBXGroup;
 			children = (
+				07D3E9591E732AB50014AB10 /* LaunchScreen.storyboard */,
 				15FBA1F61E4E80FB00DDEEB7 /* MobileNewsApp */,
 				15FBA20E1E4E80FC00DDEEB7 /* MobileNewsAppTests */,
 				15FBA2191E4E80FC00DDEEB7 /* MobileNewsAppUITests */,
@@ -297,7 +315,6 @@
 				15422E711E58FEA3002C9BD4 /* User Interface */,
 				07E62BA81E610B4400B3F3DA /* Story */,
 				15FBA2011E4E80FB00DDEEB7 /* Assets.xcassets */,
-				15FBA2031E4E80FB00DDEEB7 /* LaunchScreen.storyboard */,
 				15FBA2061E4E80FB00DDEEB7 /* Info.plist */,
 				15FBA1FE1E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld */,
 			);
@@ -492,7 +509,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15FBA2051E4E80FB00DDEEB7 /* LaunchScreen.storyboard in Resources */,
 				15119CD81E652AA6006CDDFC /* Home.storyboard in Resources */,
 				8B06EA141E5DF571002ADFE5 /* User.storyboard in Resources */,
 				8B06EA201E5DFD23002ADFE5 /* Profile.storyboard in Resources */,
@@ -502,7 +518,9 @@
 				076D78441E6A394D00387D6A /* Story.storyboard in Resources */,
 				07E62BAC1E610BA800B3F3DA /* JoinStory.storyboard in Resources */,
 				078EF8B01E7193500010862C /* StoryInfo.storyboard in Resources */,
+				07D3E95E1E732BCC0014AB10 /* Invite.storyboard in Resources */,
 				07CED0411E6E354C006D2308 /* DIN Alternate Bold.otf in Resources */,
+				07D3E95A1E732AB50014AB10 /* LaunchScreen.storyboard in Resources */,
 				15FBA1FD1E4E80FB00DDEEB7 /* Login.storyboard in Resources */,
 				07CED03F1E6E3411006D2308 /* DIN Alternate Regular.otf in Resources */,
 			);
@@ -686,6 +704,7 @@
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
 				077CCC5D1E6C858E0010B0DC /* LoadingModalView.swift in Sources */,
 				F085397F1E6CB37F00AEF2D8 /* FXBlurView.h in Sources */,
+				07D3E9601E732D140014AB10 /* InviteViewController.swift in Sources */,
 				077D71DE1E6737A100958CCA /* User.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
@@ -700,6 +719,7 @@
 				0778E8A31E6FA9950061898B /* ThanksViewController.swift in Sources */,
 				15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */,
 				078EF8B41E71A0510010862C /* UserTableViewCell.swift in Sources */,
+				07D3E9621E7330850014AB10 /* InviteTableViewCell.swift in Sources */,
 				15FBA1F81E4E80FB00DDEEB7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,14 +762,6 @@
 				15FBA1FC1E4E80FB00DDEEB7 /* Base */,
 			);
 			name = Login.storyboard;
-			sourceTree = "<group>";
-		};
-		15FBA2031E4E80FB00DDEEB7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				15FBA2041E4E80FB00DDEEB7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

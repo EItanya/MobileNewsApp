@@ -115,5 +115,32 @@ class User {
         
     }
     
+    static func getAllUsers(completion: ((_ users: [User]?, _ error: Error?) -> Void)?){
+        let query:PFQuery = PFUser.query()!
+        
+        query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            var userArray : [User]? = nil
+            if error != nil
+            {
+                print("Failed to query db for Users")
+                returnError = error
+            }
+            else
+            {
+                print("Successfully retrieved users")
+                userArray = User.convertToUsers(userObjects: objects!)
+                
+            }
+            
+            
+            if completion != nil {
+                completion!(userArray, returnError)
+            }
+            
+            
+        })
+    }
+    
     
 }
