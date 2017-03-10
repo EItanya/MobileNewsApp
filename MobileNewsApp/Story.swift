@@ -230,7 +230,14 @@ class Story {
                 self.currentUser = self.users[0]
             }
         }
+        
         self.users.remove(at: self.users.index(of: user)!)
+        
+        let userObj = PFUser.current()
+        var activeStories = userObj?.object(forKey: "active_stories") as! [String]
+        let index = activeStories.index(of: self.id!)
+        activeStories.remove(at: index!)
+        userObj?.setObject(activeStories, forKey: "active_stories")
         
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
@@ -240,8 +247,10 @@ class Story {
             }
             else
             {
+                
                 story?.setObject(self.users, forKey: "users")
                 story?.saveInBackground()
+                userObj?.saveInBackground()
             }
             
             if let callback = completion! as ((Error?) -> Void)? {

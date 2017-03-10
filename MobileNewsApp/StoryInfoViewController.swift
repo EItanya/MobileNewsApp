@@ -89,7 +89,7 @@ class StoryInfoViewController: UIViewController {
         else
         {
             //Just delete user from Story
-            self.story?.removeUser(user: (self.story?.id!)!, completion: {(error: Error?) -> Void in
+            self.story?.removeUser(user: self.user.objectId!, completion: {(error: Error?) -> Void in
                 if error != nil
                 {
                     print("There was an error removing you from the story")
