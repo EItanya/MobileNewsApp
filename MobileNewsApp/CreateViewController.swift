@@ -24,7 +24,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
         
         //Set height of table view cells
         tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.estimatedRowHeight = 200
+        tableView?.estimatedRowHeight = 100
         tableView?.backgroundColor = UIColor.clear
         
         

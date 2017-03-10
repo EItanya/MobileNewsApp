@@ -36,28 +36,21 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.4006639635" green="0.87087621930000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="promptCell" id="nVe-jF-glx" customClass="PaperTableViewCell" customModule="MobileNewsApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="promptCell" id="nVe-jF-glx">
                                         <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nVe-jF-glx" id="4pP-2j-Dib">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bU-JT-MRc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bU-JT-MRc">
                                                     <rect key="frame" x="29" y="11" width="66" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="66" id="dnU-Ou-Xby"/>
-                                                    </constraints>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="1bU-JT-MRc" secondAttribute="bottom" constant="59.666666666666671" id="4na-yo-DjU"/>
-                                                <constraint firstItem="1bU-JT-MRc" firstAttribute="top" secondItem="4pP-2j-Dib" secondAttribute="topMargin" constant="3" id="W12-wa-IxX"/>
-                                                <constraint firstItem="1bU-JT-MRc" firstAttribute="leading" secondItem="4pP-2j-Dib" secondAttribute="leadingMargin" constant="21" id="o3g-YU-HMG"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -67,7 +60,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUx-Vn-Pb2">
-                                <rect key="frame" x="0.0" y="576" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="572" width="414" height="51"/>
                                 <color key="backgroundColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="5so-z0-uaZ"/>
@@ -84,7 +77,7 @@
                         <color key="backgroundColor" red="0.38823529411764707" green="0.81568627450980391" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GUx-Vn-Pb2" firstAttribute="trailing" secondItem="NmO-xS-ysL" secondAttribute="trailing" id="1fr-8Q-3UW"/>
-                            <constraint firstItem="GUx-Vn-Pb2" firstAttribute="bottom" secondItem="IdN-ep-zfi" secondAttribute="top" constant="4" id="GpW-Qn-2mB"/>
+                            <constraint firstItem="GUx-Vn-Pb2" firstAttribute="bottom" secondItem="IdN-ep-zfi" secondAttribute="top" id="GpW-Qn-2mB"/>
                             <constraint firstItem="GUx-Vn-Pb2" firstAttribute="leading" secondItem="NmO-xS-ysL" secondAttribute="leading" id="S8d-q8-3oq"/>
                             <constraint firstAttribute="trailing" secondItem="NmO-xS-ysL" secondAttribute="trailing" id="SoZ-8u-3d2"/>
                             <constraint firstItem="IdN-ep-zfi" firstAttribute="top" secondItem="NmO-xS-ysL" secondAttribute="bottom" constant="47" id="krL-ap-i56"/>
