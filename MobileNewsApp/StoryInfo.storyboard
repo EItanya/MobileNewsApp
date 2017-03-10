@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Story Info View Controller-->
+        <!--Story Info-->
         <scene sceneID="PDG-tr-i5h">
             <objects>
                 <viewController id="o83-GH-fEZ" customClass="StoryInfoViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,7 +88,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-ha-AtO">
-                                <rect key="frame" x="16" y="20" width="174" height="28"/>
+                                <rect key="frame" x="16" y="53" width="174" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="f5Q-kZ-kUs"/>
                                     <constraint firstAttribute="height" constant="28" id="oKL-mL-krb"/>
@@ -98,7 +98,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DQ-KE-sPr">
-                                <rect key="frame" x="16" y="56" width="174" height="28"/>
+                                <rect key="frame" x="16" y="89" width="174" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="95K-9m-pbX"/>
                                 </constraints>
@@ -119,9 +119,17 @@
                             <constraint firstItem="mkI-40-xyV" firstAttribute="top" secondItem="nxB-ch-5Wl" secondAttribute="bottom" constant="21" id="W6s-5P-TW3"/>
                             <constraint firstAttribute="bottom" secondItem="mkI-40-xyV" secondAttribute="bottom" constant="20" symbolic="YES" id="jkN-gW-23B"/>
                             <constraint firstItem="nxB-ch-5Wl" firstAttribute="leading" secondItem="8Wq-OU-Cbu" secondAttribute="leadingMargin" constant="-6" id="urD-ym-ZiK"/>
-                            <constraint firstItem="UBS-ha-AtO" firstAttribute="top" secondItem="n8R-je-rvv" secondAttribute="bottom" id="yhc-of-NqX"/>
+                            <constraint firstItem="UBS-ha-AtO" firstAttribute="top" secondItem="n8R-je-rvv" secondAttribute="bottom" constant="33" id="yhc-of-NqX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Story Info" id="yTz-8m-dwQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JEg-Lt-Eo7">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="inviteButton:" destination="o83-GH-fEZ" id="d7O-z0-PKI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="3DQ-KE-sPr" id="qxL-7z-E9A"/>
                         <outlet property="leaveButton" destination="mkI-40-xyV" id="nqW-Ko-H5B"/>

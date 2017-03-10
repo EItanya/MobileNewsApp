@@ -31,7 +31,7 @@ class StoryInfoViewController: UIViewController {
         
         getListOfUsers()
         setupView()
-        
+//        setupInvite()
         
         
         
@@ -51,6 +51,11 @@ class StoryInfoViewController: UIViewController {
             }
         })
     }
+    
+//    func setupInvite() {
+//        let button = self.navigationItem.rightBarButtonItem
+//        button.
+//    }
     
     func setupView() {
         self.automaticallyAdjustsScrollViewInsets = false
@@ -75,38 +80,55 @@ class StoryInfoViewController: UIViewController {
     
 
     @IBAction func leaveStory(_ sender: Any) {
-        if admin == true
-        {
-            //Delete the story for good
-            self.story?.deleteStory(completion: {(error: Error?) -> Void in
-                if error != nil
-                {
-                    print("there was an error deleting the story")
-                    return
-                }
-            })
+        var title = "Alert"
+        var message = "Are you sure you want to delete this story?"
+        if admin == false {
+            message = "Are you sure you want to leave this story"
+            title = "Remove"
         }
-        else
-        {
-            //Just delete user from Story
-            self.story?.removeUser(user: self.user.objectId!, completion: {(error: Error?) -> Void in
-                if error != nil
-                {
-                    print("There was an error removing you from the story")
-                    return
-                }
-            })
-        }
-        //Segue back to profile
-        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
-        if viewControllers[viewControllers.count-3] is ProfileViewController {
-            //Code is here so that User does not have to navigate through the Join Story Page again
-            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true);
-        } else {
-            //Do Nothing
-        }
+        
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: title, style: .default, handler: {(action: UIAlertAction) in
+            if self.admin == true
+            {
+                //Delete the story for good
+                self.story?.deleteStory(completion: {(error: Error?) -> Void in
+                    if error != nil
+                    {
+                        print("there was an error deleting the story")
+                        return
+                    }
+                })
+            }
+            else
+            {
+                //Just delete user from Story
+                self.story?.removeUser(user: self.user.objectId!, completion: {(error: Error?) -> Void in
+                    if error != nil
+                    {
+                        print("There was an error removing you from the story")
+                        return
+                    }
+                })
+            }
+            //Segue back to profile
+            let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
+            if viewControllers[viewControllers.count-3] is ProfileViewController {
+                //Code is here so that User does not have to navigate through the Join Story Page again
+                self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true);
+            } else {
+                //Do Nothing
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+
     }
     
+    @IBAction func inviteButton(_ sender: UIBarButtonItem) {
+        
+    }
 
     /*
     // MARK: - Navigation

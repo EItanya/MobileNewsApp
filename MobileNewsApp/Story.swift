@@ -409,6 +409,36 @@ class Story {
     }
     
     
+    //Function to invite a user to a story
+    func inviteUser(userId: String, completion: ((_ error: Error?) -> Void)?) {
+        let user = PFUser.current()
+        let to: String = userId
+        let from: String = (user?.objectId)!
+        let story: String = self.id!
+        
+        let invite = PFObject(className: "invite", dictionary: [
+            "to": to,
+            "from": from,
+            "story": story
+            ])
+        
+        invite.saveInBackground(block: {(success: Bool?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            if error != nil
+            {
+                print("there was an error inviting the user")
+                returnError = error
+            }
+            
+            if completion != nil {
+                completion!(returnError)
+            }
+        })
+        
+        
+    }
+    
+    
     //Function to convert a bunch of parse objects into story objects for app to use
     static func convertToStories(stories: [PFObject]) -> [Story] {
         var storyArray = [Story]()
