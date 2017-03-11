@@ -38,12 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 98/255, green: 208/255, blue: 232/255, alpha: 1)
         
         
-        let user: PFUser? = PFUser.current()
-        if user != nil {
-            let storyboard: UIStoryboard = UIStoryboard(name: "User", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
-            self.window?.rootViewController = vc;
-        }
+//        let user: PFUser? = PFUser.current()
+//        if user != nil {
+//            let storyboard: UIStoryboard = UIStoryboard(name: "User", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "User") as! TabViewController
+//            self.window?.rootViewController = vc;
+//        }
         
         
         return true

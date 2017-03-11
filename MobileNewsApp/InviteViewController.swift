@@ -28,6 +28,10 @@ class InviteViewController: UIViewController {
         
         self.hidesBottomBarWhenPushed = true
         
+        
+        
+        UIBarButtonItem.appearance().tintColor = .white
+        
         User.getAllUsers(completion: {(users: [User]?, error: Error?) -> Void in
             
             if error != nil {
@@ -49,6 +53,10 @@ class InviteViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     
@@ -109,16 +117,6 @@ extension InviteViewController: UITableViewDelegate, UITableViewDataSource {
         cell.avatarImageView.layer.backgroundColor = UIColor.lightGray.cgColor
         cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.layer.bounds.width/2
         
-        
-        //If the user is selected, might have to reload, we'll see
-        if selectedUsers.index(of: user.id!) != nil {
-            cell.checkbox.toggleCheckState()
-        }
-        
-
-        
-        
-        
         return cell
     }
     
@@ -167,7 +165,13 @@ extension InviteViewController: UISearchBarDelegate {
         self.inviteTableView.reloadData()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
     
-    
-    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
 }
