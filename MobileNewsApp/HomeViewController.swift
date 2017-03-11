@@ -47,16 +47,21 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //Dynamic sizing of story cells
         storyTableView.delegate = self
         storyTableView.dataSource = self
-
         storyTableView.rowHeight = UITableViewAutomaticDimension
         storyTableView.estimatedRowHeight = 140
+        
+        //Custom font for segmented control object
+        let attr = NSDictionary(object: UIFont(name: "DIN", size: 15.0)!, forKey: NSFontAttributeName as NSCopying)
+        storyCompletionControl.setTitleTextAttributes(attr as [NSObject : AnyObject] , for: .normal)
         
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //Queries for stories and places it in its respective completed, unfinished, etc. arrays
         Story.getAllStories(completion: {(stories: [Story]?, Error) -> Void in
             let validStories = stories!.filter { $0.users.contains(PFUser.current()!.objectId!) == false }
             self.unfinishedStories = validStories.filter { $0.completed == false }
@@ -83,11 +88,14 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Action to take when story read/join segment control changed value
     @IBAction func storyTypeSegmentChosen(_ sender: UISegmentedControl) {
+        //Switches to show completed stories
         if storyCompletionControl.selectedSegmentIndex == 0 {
             stories = completedStories
             filteredStories = completedFilteredStories
         }
+        //Switches to show unfinished stories
         else {
             stories = unfinishedStories
             filteredStories = unfinishedFilteredStories
@@ -95,6 +103,7 @@ class HomeViewController: UIViewController {
         storyTableView.reloadData()
     }
     
+    //Populates the filtered stories array which is used to fill in table view
     func applyStoryFilters() {
         //apply filters
         if applyFilters > 0 {
@@ -113,7 +122,7 @@ class HomeViewController: UIViewController {
 }
 
 //
-//MARK: - Popover Delegate
+//MARK: - Popover Delegate for story filters
 //
 extension HomeViewController: UIPopoverPresentationControllerDelegate {
     @IBAction func filterBtnClk(_ sender: UIButton) {
@@ -147,7 +156,7 @@ extension HomeViewController: UIPopoverPresentationControllerDelegate {
 }
 
 //
-//MARK: - Filter Delegate
+//MARK: - Filter Delegate to track actions inside the filter popover view
 //
 extension HomeViewController: FilterTableViewDelegate {
     func checkboxValueChanged2(value: Int, section: Int, row: Int) {
@@ -190,17 +199,25 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ storyTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = storyTableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! HomeStoryTableViewCell
-        cell.titleLabel.text = filteredStories[indexPath.row].title
-        cell.promptLabel.text = filteredStories[indexPath.row].prompt
-        cell.genreLabel.text = filteredStories[indexPath.row].genre
-        let totalWordCount = String(describing: filteredStories[indexPath.row].totalWordCount!)
-        let maxWordCount = String(describing: filteredStories[indexPath.row].maxWordCount!)
-        cell.wordCountLabel.text = "\(totalWordCount)/\(maxWordCount)"
+        
+        let currentStory = filteredStories[indexPath.row]
+        
+        cell.titleLabel.text = currentStory.title
+        cell.promptLabel.text = currentStory.prompt
+        cell.genreLabel.text = currentStory.genre
+        let currentUserId = currentStory.currentUser
+        var peopleInLine = 0
+        if currentUserId != "" {
+            peopleInLine = currentStory.users.count - currentStory.users.index(of: currentUserId!)!
+        }
+        cell.peopleAheadLabel.text = "\(peopleInLine) people ahead"
+        cell.turnCountLabel.text = "\(currentStory.currentEntry!)/\(currentStory.totalTurns!) turns"
 
         
         return cell
     }
     
+    //Shows the StoryJoinView Controller particular to the story cell clicked when joined
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "JoinStory") as! StoryJoinViewController
@@ -210,10 +227,10 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//    }
     
 }

@@ -51,6 +51,7 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
         contentView.backgroundColor = UIColor(hex: 0x2E3944)
         
         titleLabel.textColor = UIColor.white
+        titleLabel.font = UIFont(name: "DIN-BoldAlternate", size: 17)
         arrowLabel.textColor = UIColor.white
         
         //
@@ -62,7 +63,7 @@ class CollapsibleTableViewHeader: UITableViewHeaderFooterView {
         ]
         
         contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-20-[titleLabel]-[arrowLabel]-20-|",
+            withVisualFormat: "H:|-8-[titleLabel]-[arrowLabel]-20-|",
             options: [],
             metrics: nil,
             views: views

@@ -28,7 +28,7 @@ class StoryJoinViewController: UIViewController {
         let query = PFQuery(className: "Entry")
         query.getObjectInBackground(withId: (self.story?.previousEntry)!, block: {(entry: PFObject?, error: Error?) -> Void in
             if error != nil {
-                print(error)
+                print(error!)
             }
             else {
                 self.entry = entry
@@ -46,11 +46,11 @@ class StoryJoinViewController: UIViewController {
     @IBAction func joinStoryBtnClk(_ sender: UIButton) {
         story?.addUser(completion: {(error: Error?) -> Void in
             if error != nil {
-                print(error)
+                print(error!)
             }
             else {
-                var storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
-                var vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
+                let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
                 vc.story = self.story
                 self.show(vc, sender: self)
             }})
