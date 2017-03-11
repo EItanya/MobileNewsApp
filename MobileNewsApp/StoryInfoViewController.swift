@@ -13,9 +13,17 @@ class StoryInfoViewController: UIViewController {
     
     var story: Story?
     var users = [User]()
+    var storyUsers = [String: [User]]()
     let user: PFUser = PFUser.current()!
     var admin: Bool = false
+    var invited =  [String]()
     
+    struct userGroup {
+        var sectionName: String!
+        var sectionObjects: [User]
+    }
+    
+    var userGroups = [userGroup]()
     
     @IBOutlet weak var userTable: UITableView!
     @IBOutlet weak var leaveButton: LoginScreenButton!
@@ -29,7 +37,9 @@ class StoryInfoViewController: UIViewController {
         userTable.delegate = self
         userTable.dataSource = self
         
-        getListOfUsers()
+        getListOfUsers2()
+        
+//        getListOfUsers()
         setupView()
 //        setupInvite()
         
@@ -48,8 +58,51 @@ class StoryInfoViewController: UIViewController {
             {
                 self.users = users!
                 self.userTable.reloadData()
+
+                
             }
         })
+    }
+    
+    func getListOfUsers2() {
+        
+        User.getAllUsers(completion: {(users: [User]?, error: Error?) -> Void in
+            if error != nil
+            {
+                print ("there was an error getting the story users")
+            }
+            else
+            {
+                self.users = users!.filter({(user) -> Bool in
+                    return self.story!.users.index(of: user.id!) != nil
+                })
+                
+                self.userGroups.append(userGroup(sectionName: "Active", sectionObjects: self.users))
+                
+                self.userTable.reloadData()
+                
+                self.story?.getInvites(completion: {(invitedUsers: [String]?, error: Error?) -> Void in
+                    if error != nil
+                    {
+                        print ("There was an error retrieving Invites")
+                    }
+                    else
+                    {
+                        if invitedUsers != nil {
+                            self.invited = invitedUsers!
+                            self.userGroups.append(userGroup(sectionName: "Invited", sectionObjects: users!.filter({(user) -> Bool in
+                                return self.invited.index(of: user.id!) != nil
+                            })))
+                            self.userTable.reloadData()
+                        }
+                        
+                    }
+                    
+                })
+ 
+            }
+        })
+      
     }
     
 //    func setupInvite() {
@@ -152,12 +205,12 @@ extension StoryInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return userGroups[section].sectionObjects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTable.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
-        let user = users[indexPath.row]
+        let user = userGroups[indexPath.section].sectionObjects[indexPath.row]
         cell.user = user
         cell.nameLabel.text = "\((user.firstName)!) \((user.lastName)!)"
         let avatar = UIImage(named: "username")
@@ -166,6 +219,15 @@ extension StoryInfoViewController: UITableViewDelegate, UITableViewDataSource {
         cell.avatarImage.layer.cornerRadius = cell.avatarImage.layer.bounds.width/2
         
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.userGroups[section].sectionName
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.userGroups.count
     }
     
 }

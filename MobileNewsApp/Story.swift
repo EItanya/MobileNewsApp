@@ -197,9 +197,56 @@ class Story {
             }
             completion!(userArray, returnError)
         })
-        
-        
     }
+    
+    
+    //Function to get all users in the story, and all of the users that have been invited
+    func getUsersPlusInvited(completion: ((_ users: [User]?, _ error: Error? ) -> Void)?) {
+        
+        let invQuery: PFQuery = PFQuery(className: "Invite")
+        invQuery.whereKey("story", equalTo: self.id!)
+        var userIdArray = self.users
+        
+        var returnError: Error? = nil
+        var userArray : [User]? = nil
+        
+        invQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+
+            if error != nil
+            {
+                print("Failed to query db for Invites")
+                returnError = error
+            }
+            else
+            {
+                print("Successfully retrieved Invites")
+                for obj in objects! {
+                    userIdArray.append(obj.object(forKey: "to") as! String)
+                }
+                
+                let query:PFQuery = PFUser.query()!
+                query.whereKey("objectId", containedIn: userIdArray)
+                
+                query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
+
+                    if error != nil
+                    {
+                        print("Failed to query db for Users")
+                        returnError = error
+                    }
+                    else
+                    {
+                        print("Successfully retrieved users")
+                        userArray = User.convertToUsers(userObjects: objects!)
+                        
+                    }
+                    completion!(userArray, returnError)
+                })
+            }
+        })
+
+    }
+    
     
     //This function works
     func deleteStory(completion: ((_ error: Error?) -> Void)?) {
@@ -408,6 +455,33 @@ class Story {
         })
     }
     
+    func getInvites(completion: ((_ invitedUsers: [String]?, _ error: Error?) -> Void)?) {
+        let query: PFQuery = PFQuery(className: "Invite")
+        query.whereKey("story", equalTo: self.id!)
+        
+        query.findObjectsInBackground(block: {(invites: [PFObject]?, error: Error?) -> Void in
+            var returnArray =  [String]()
+            var returnError: Error? = nil
+            if error != nil
+            {
+                returnError = error!
+                print("Error getting invited users")
+            }
+            else
+            {
+                print("successfully retrieved invited users")
+                for invite in invites! {
+                    let x = invite.object(forKey: "to") as! String
+                    returnArray.append(x)
+                }
+            }
+            
+            if completion != nil {
+                completion!(returnArray, returnError)
+            }
+            
+        })
+    }
     
     func inviteUsers(users: [String], completion: ((_ error: Error?) -> Void)?) {
         let user = PFUser.current()
@@ -499,46 +573,6 @@ class Story {
 }
 
 
-//Trying out subclassing real quick again
-//We can use it if we want
-//class parseUser: PFUser {
-//    
-//    var first_name: String?
-//    var last_name: String?
-//    var fb_id: String?
-//    var fb_profile_picture: String?
-//    
-//    override init() {
-//        super.init()
-//    }
-//    
-//    override init(className newClassName: String) {
-//        super.init()
-//    }
-//    
-//    init(email: String, password: String, firstName: String, lastName: String) {
-//        super.init()
-//        self.email = email
-//        self.username = email
-//        self.password = password
-//        self.first_name = firstName
-//        self.last_name = lastName
-//    }
-//    
-//    init(email: String, password: String, firstName: String, lastName: String, facebookId: String, facebookProfilePic: String) {
-//        super.init()
-//        self.email = email
-//        self.username = email
-//        self.password = password
-//        self.first_name = firstName
-//        self.last_name = lastName
-//        self.fb_id = facebookId
-//        self.fb_profile_picture = facebookProfilePic
-//    }
-//    
-//    
-//    
-//}
 
 
 
