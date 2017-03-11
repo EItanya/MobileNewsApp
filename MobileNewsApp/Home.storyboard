@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GSL-Df-xMR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GSL-Df-xMR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,14 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN Alternate Bold.otf">
+            <string>DIN-BoldAlternate</string>
+        </array>
+        <array key="DIN Alternate Regular.otf">
+            <string>DIN-RegularAlternate</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Home View Controller-->
         <scene sceneID="oKn-iw-wLo">
@@ -25,6 +33,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q97-RU-SdX">
                                 <rect key="frame" x="307" y="77" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="14"/>
                                 <state key="normal" title="Filter ▿"/>
                                 <connections>
                                     <action selector="filterBtnClk:" destination="jP1-go-aov" eventType="touchUpInside" id="KM3-C0-cfe"/>
@@ -44,31 +53,31 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Heu-L9-5Lo">
                                                     <rect key="frame" x="8" y="8" width="359" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="prompt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJ9-JA-uLp">
                                                     <rect key="frame" x="8" y="53" width="56" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJh-5V-sdj">
                                                     <rect key="frame" x="8" y="32" width="56" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="people ahead" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-M3-N4P">
                                                     <rect key="frame" x="145" y="32" width="104" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="word count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILk-df-Chr">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="turn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILk-df-Chr">
                                                     <rect key="frame" x="305" y="32" width="87" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -76,8 +85,7 @@
                                             <constraints>
                                                 <constraint firstItem="lJ9-JA-uLp" firstAttribute="top" secondItem="RJh-5V-sdj" secondAttribute="bottom" constant="5" id="0br-S6-5Lg"/>
                                                 <constraint firstItem="Heu-L9-5Lo" firstAttribute="leading" secondItem="TCT-bg-HfW" secondAttribute="leadingMargin" constant="8" id="55Z-Fd-Sdy"/>
-                                                <constraint firstAttribute="trailing" secondItem="ILk-df-Chr" secondAttribute="trailing" constant="8" id="6m9-EA-Mt2"/>
-                                                <constraint firstItem="ILk-df-Chr" firstAttribute="top" secondItem="TCT-bg-HfW" secondAttribute="top" constant="24" id="8yk-J9-z0R"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ILk-df-Chr" secondAttribute="trailing" constant="8" id="8r3-MY-Zsl"/>
                                                 <constraint firstItem="RJh-5V-sdj" firstAttribute="top" secondItem="Heu-L9-5Lo" secondAttribute="bottom" constant="5" id="Amv-eZ-EnE"/>
                                                 <constraint firstItem="Heu-L9-5Lo" firstAttribute="top" secondItem="TCT-bg-HfW" secondAttribute="topMargin" id="IDj-jJ-Tqq"/>
                                                 <constraint firstItem="fKA-M3-N4P" firstAttribute="top" secondItem="TCT-bg-HfW" secondAttribute="topMargin" constant="24" id="L0q-cy-who"/>
@@ -85,16 +93,17 @@
                                                 <constraint firstItem="fKA-M3-N4P" firstAttribute="leading" secondItem="TCT-bg-HfW" secondAttribute="leadingMargin" constant="127" id="Q2y-cQ-cxZ"/>
                                                 <constraint firstItem="lJ9-JA-uLp" firstAttribute="leading" secondItem="TCT-bg-HfW" secondAttribute="leadingMargin" constant="8" id="Y3D-Uv-rmV"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="lJ9-JA-uLp" secondAttribute="bottom" id="cm6-6r-l86"/>
+                                                <constraint firstItem="ILk-df-Chr" firstAttribute="top" secondItem="TCT-bg-HfW" secondAttribute="topMargin" constant="24" id="jQZ-95-Y3K"/>
                                                 <constraint firstItem="Heu-L9-5Lo" firstAttribute="trailing" secondItem="TCT-bg-HfW" secondAttribute="trailingMargin" constant="8" id="qDb-JX-Ngg"/>
                                                 <constraint firstItem="RJh-5V-sdj" firstAttribute="leading" secondItem="TCT-bg-HfW" secondAttribute="leadingMargin" constant="8" id="ueN-ag-7pb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="genreLabel" destination="RJh-5V-sdj" id="fxW-Ub-5nD"/>
-                                            <outlet property="peopleAheadLabel" destination="fKA-M3-N4P" id="TFl-cc-0ml"/>
+                                            <outlet property="peopleAheadLabel" destination="fKA-M3-N4P" id="1SU-xC-I9r"/>
                                             <outlet property="promptLabel" destination="lJ9-JA-uLp" id="UXh-t4-ZDp"/>
                                             <outlet property="titleLabel" destination="Heu-L9-5Lo" id="Y6X-Wv-wjt"/>
-                                            <outlet property="wordCountLabel" destination="ILk-df-Chr" id="KPU-Gj-hMl"/>
+                                            <outlet property="turnCountLabel" destination="ILk-df-Chr" id="Ol2-Z6-jEh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -144,7 +153,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdI-l6-c9k">
                                             <rect key="frame" x="8" y="11" width="132" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -184,7 +193,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="tab3" selectedImage="tab3" id="QFe-6j-8Q3"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CMq-hl-2iD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CMq-hl-2iD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

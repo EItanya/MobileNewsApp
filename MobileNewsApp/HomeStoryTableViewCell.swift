@@ -14,7 +14,8 @@ class HomeStoryTableViewCell: UITableViewCell {
     @IBOutlet var genreLabel: UILabel!
     @IBOutlet var promptLabel: UILabel!
     @IBOutlet var peopleAheadLabel: UILabel!
-    @IBOutlet var wordCountLabel: UILabel!
+    @IBOutlet var turnCountLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
