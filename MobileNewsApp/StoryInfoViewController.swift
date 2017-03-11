@@ -137,6 +137,7 @@ class StoryInfoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let vc = segue.destination as! InviteViewController
+        vc.story = self.story!
         vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

@@ -409,12 +409,42 @@ class Story {
     }
     
     
+    func inviteUsers(users: [String], completion: ((_ error: Error?) -> Void)?) {
+        let user = PFUser.current()
+        let myId = (user?.objectId)!
+        let story: String = self.id!
+        var objArray = [PFObject]()
+        for userId in users {
+            objArray.append(PFObject(className: "Invite", dictionary: [
+                "to": userId,
+                "from": myId,
+                "story": story
+                ]))
+        }
+        
+        PFObject.saveAll(inBackground: objArray, block: {(success: Bool?, error: Error?) -> Void in
+            var returnError: Error? = nil
+            if error != nil
+            {
+                print("there was an error inviting the user")
+                returnError = error
+            }
+            
+            if completion != nil {
+                completion!(returnError)
+            }
+        })
+        
+    }
+
+    
     //Function to invite a user to a story
-    func inviteUser(userId: String, completion: ((_ error: Error?) -> Void)?) {
+    func inviteOneUser(userId: String, completion: ((_ error: Error?) -> Void)?) {
         let user = PFUser.current()
         let to: String = userId
         let from: String = (user?.objectId)!
         let story: String = self.id!
+        
         
         let invite = PFObject(className: "invite", dictionary: [
             "to": to,
