@@ -116,6 +116,9 @@ class StoryInfoViewController: UIViewController {
         userTable.layer.borderColor = UIColor.lightGray.cgColor
         userTable.layer.borderWidth = 2.0
         
+        self.titleLabel?.text = self.story?.title
+        self.authorLabel?.text = self.story?.author
+        
         if story?.createdBy == self.user.objectId
         {
             //Case when the current User is the Admin.
@@ -205,7 +208,8 @@ extension StoryInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userGroups[section].sectionObjects.count
+        //If admin return both sections, otherwise only return the first
+        return self.admin ? userGroups[section].sectionObjects.count : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

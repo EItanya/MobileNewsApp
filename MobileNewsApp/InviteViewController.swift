@@ -29,6 +29,12 @@ class InviteViewController: UIViewController {
         self.hidesBottomBarWhenPushed = true
         
         
+        //Cant make rounded corners because three different pieces, not one view :(
+//        self.view.layer.cornerRadius = 3
+//        self.view.layer.borderColor = UIColor.lightGray.cgColor
+//        self.view.layer.borderWidth = 2.0
+        
+        
         
         UIBarButtonItem.appearance().tintColor = .white
         

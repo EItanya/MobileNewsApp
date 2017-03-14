@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		071A23061E6A30D500260D81 /* StoryJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071A23051E6A30D500260D81 /* StoryJoinViewController.swift */; };
 		07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07452F3A1E595BAD00B187C3 /* CreateViewController.swift */; };
+		07579B331E762D800021AF85 /* ManageInvites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07579B321E762D800021AF85 /* ManageInvites.storyboard */; };
+		07579B351E762D990021AF85 /* ManageInviteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07579B341E762D990021AF85 /* ManageInviteTableViewCell.swift */; };
+		07579B371E762DAE0021AF85 /* ManageInviteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07579B361E762DAE0021AF85 /* ManageInviteTableViewController.swift */; };
+		07579B391E76E5A00021AF85 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07579B381E76E5A00021AF85 /* Invite.swift */; };
 		076D78441E6A394D00387D6A /* Story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 076D78431E6A394D00387D6A /* Story.storyboard */; };
 		076D78461E6A397000387D6A /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076D78451E6A397000387D6A /* StoryViewController.swift */; };
 		0778E89D1E6F0CCB0061898B /* CompletedStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0778E89C1E6F0CCB0061898B /* CompletedStory.storyboard */; };
@@ -84,6 +88,10 @@
 /* Begin PBXFileReference section */
 		071A23051E6A30D500260D81 /* StoryJoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryJoinViewController.swift; sourceTree = "<group>"; };
 		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		07579B321E762D800021AF85 /* ManageInvites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageInvites.storyboard; sourceTree = "<group>"; };
+		07579B341E762D990021AF85 /* ManageInviteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageInviteTableViewCell.swift; sourceTree = "<group>"; };
+		07579B361E762DAE0021AF85 /* ManageInviteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageInviteTableViewController.swift; sourceTree = "<group>"; };
+		07579B381E76E5A00021AF85 /* Invite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
 		076D78431E6A394D00387D6A /* Story.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Story.storyboard; sourceTree = "<group>"; };
 		076D78451E6A397000387D6A /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		0778E89C1E6F0CCB0061898B /* CompletedStory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompletedStory.storyboard; sourceTree = "<group>"; };
@@ -180,6 +188,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07579B311E762D710021AF85 /* Manage Invites */ = {
+			isa = PBXGroup;
+			children = (
+				07579B321E762D800021AF85 /* ManageInvites.storyboard */,
+				07579B341E762D990021AF85 /* ManageInviteTableViewCell.swift */,
+				07579B361E762DAE0021AF85 /* ManageInviteTableViewController.swift */,
+			);
+			name = "Manage Invites";
+			sourceTree = "<group>";
+		};
 		0778E89B1E6F0CB80061898B /* Completed Story */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +235,7 @@
 				07D3E95D1E732BCC0014AB10 /* Invite.storyboard */,
 				07D3E95F1E732D140014AB10 /* InviteViewController.swift */,
 				07D3E9611E7330850014AB10 /* InviteTableViewCell.swift */,
+				07579B381E76E5A00021AF85 /* Invite.swift */,
 			);
 			name = Invite;
 			sourceTree = "<group>";
@@ -224,6 +243,7 @@
 		07E62BA81E610B4400B3F3DA /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				07579B311E762D710021AF85 /* Manage Invites */,
 				07D3E9561E732A8C0014AB10 /* Invite */,
 				078EF8AE1E7193440010862C /* Story Info */,
 				0778E89B1E6F0CB80061898B /* Completed Story */,
@@ -521,6 +541,7 @@
 				07D3E95E1E732BCC0014AB10 /* Invite.storyboard in Resources */,
 				07CED0411E6E354C006D2308 /* DIN Alternate Bold.otf in Resources */,
 				07D3E95A1E732AB50014AB10 /* LaunchScreen.storyboard in Resources */,
+				07579B331E762D800021AF85 /* ManageInvites.storyboard in Resources */,
 				15FBA1FD1E4E80FB00DDEEB7 /* Login.storyboard in Resources */,
 				07CED03F1E6E3411006D2308 /* DIN Alternate Regular.otf in Resources */,
 			);
@@ -702,12 +723,14 @@
 				0778E89F1E6F0D3B0061898B /* CompletedStoryTableViewController.swift in Sources */,
 				076D78461E6A397000387D6A /* StoryViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
+				07579B391E76E5A00021AF85 /* Invite.swift in Sources */,
 				077CCC5D1E6C858E0010B0DC /* LoadingModalView.swift in Sources */,
 				F085397F1E6CB37F00AEF2D8 /* FXBlurView.h in Sources */,
 				07D3E9601E732D140014AB10 /* InviteViewController.swift in Sources */,
 				077D71DE1E6737A100958CCA /* User.swift in Sources */,
 				15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */,
 				0782EAC71E5A61FB00514F45 /* PromptViewController.swift in Sources */,
+				07579B351E762D990021AF85 /* ManageInviteTableViewCell.swift in Sources */,
 				F0476C111E6B67D200CC34CE /* ProfileTableViewCell.swift in Sources */,
 				07E62BB01E639B4100B3F3DA /* Util.swift in Sources */,
 				07E62BA71E60E1A100B3F3DA /* PaperTableViewCell.swift in Sources */,
@@ -715,6 +738,7 @@
 				07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */,
 				07E62BAA1E610B6E00B3F3DA /* FirstEntryViewController.swift in Sources */,
 				15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */,
+				07579B371E762DAE0021AF85 /* ManageInviteTableViewController.swift in Sources */,
 				15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */,
 				0778E8A31E6FA9950061898B /* ThanksViewController.swift in Sources */,
 				15FBA2001E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld in Sources */,
