@@ -62,11 +62,21 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         //Queries for stories and places it in its respective completed, unfinished, etc. arrays
+//        let query = PFQuery(className: "Story")
+//        query.getObjectInBackground(withId: "ssnrNOXJZD", block: { (story: PFObject?, error: Error?) -> Void in
+//            if error != nil {
+//                print("Error in retrieving storyobject")
+//            }
+//            else {
+//                story?.setValue(true, forKey: "completed")
+//                story?.saveInBackground()
+//            }
+//        })
         Story.getAllStories(completion: {(stories: [Story]?, Error) -> Void in
             let validStories = stories!.filter { $0.users.contains(PFUser.current()!.objectId!) == false }
             self.unfinishedStories = validStories.filter { $0.completed == false }
             self.unfinishedFilteredStories = self.unfinishedStories
-            self.completedStories = validStories.filter { $0.completed == true }
+            self.completedStories = (stories?.filter { $0.completed == true })!
             self.completedFilteredStories = self.completedStories
             if self.storyCompletionControl.selectedSegmentIndex == 0 {
                 self.stories = self.completedStories
@@ -197,8 +207,16 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ storyTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = storyTableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! HomeStoryTableViewCell
+        if storyCompletionControl.selectedSegmentIndex == 0 {
+            let cell = storyTableView.dequeueReusableCell(withIdentifier: "readStoryCell", for: indexPath) as! ReadStoryTableViewCell
+            
+            let currentStory = filteredStories[indexPath.row]
+            cell.titleLabel.text = currentStory.title
+            
+            return cell
+        }
+        else {
+        let cell = storyTableView.dequeueReusableCell(withIdentifier: "joinStoryCell", for: indexPath) as! HomeStoryTableViewCell
         
         let currentStory = filteredStories[indexPath.row]
         
@@ -215,14 +233,23 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
 
         
         return cell
+        }
     }
     
     //Shows the StoryJoinView Controller particular to the story cell clicked when joined
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "JoinStory") as! StoryJoinViewController
-        vc.story = filteredStories[indexPath.row]
-        self.show(vc, sender: self)
+        if storyCompletionControl.selectedSegmentIndex == 0 {
+            let storyboard: UIStoryboard = UIStoryboard(name: "CompletedStory", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ReadStoryViewController") as! CompletedStoryTableViewController
+            vc.story = filteredStories[indexPath.row]
+            self.show(vc, sender: self)
+        }
+        else {
+            let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "JoinStoryViewController") as! StoryJoinViewController
+            vc.story = filteredStories[indexPath.row]
+            self.show(vc, sender: self)
+        }
     }
     
     // MARK: - Navigation

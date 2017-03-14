@@ -25,6 +25,12 @@ class CompletedStoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 75
+        
+        titleLabel.text = story?.title
+        authorLabel.text = story?.author
+        
         getEntryData()
 
         // Uncomment the following line to preserve selection between presentations
@@ -48,6 +54,7 @@ class CompletedStoryTableViewController: UITableViewController {
                 self.entryArray = (self.story?.entries)!
             }
             self.loadingModalOut()
+            self.tableView.reloadData()
         })
     }
 
@@ -73,6 +80,7 @@ class CompletedStoryTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! CompletedStoryTableViewCell
 
         // Configure the cell...
+        cell.entryLabel.text = entryArray[indexPath.row].text
 
         return cell
     }
