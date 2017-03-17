@@ -36,12 +36,15 @@ class HomeViewController: UIViewController {
     var stories = [Story]()
     var filteredStories = [Story]()
     
-    //var storiesStoryObject = [Story]()
-    
-    
     //table view of stories
     @IBOutlet var storyTableView: UITableView!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,21 +60,20 @@ class HomeViewController: UIViewController {
         let attr = NSDictionary(object: UIFont(name: "DIN", size: 15.0)!, forKey: NSFontAttributeName as NSCopying)
         storyCompletionControl.setTitleTextAttributes(attr as [NSObject : AnyObject] , for: .normal)
         
+        self.storyTableView.addSubview(self.refreshControl)
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //Queries for stories and places it in its respective completed, unfinished, etc. arrays
-//        let query = PFQuery(className: "Story")
-//        query.getObjectInBackground(withId: "ssnrNOXJZD", block: { (story: PFObject?, error: Error?) -> Void in
-//            if error != nil {
-//                print("Error in retrieving storyobject")
-//            }
-//            else {
-//                story?.setValue(true, forKey: "completed")
-//                story?.saveInBackground()
-//            }
-//        })
+        getStories(completion: nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func getStories(completion: ((_ refreshControl: UIRefreshControl) -> Void)?) {
         Story.getAllStories(completion: {(stories: [Story]?, Error) -> Void in
             let validStories = stories!.filter { $0.users.contains(PFUser.current()!.objectId!) == false }
             self.unfinishedStories = validStories.filter { $0.completed == false }
@@ -88,14 +90,16 @@ class HomeViewController: UIViewController {
             }
             
             self.applyStoryFilters()
-            
             self.storyTableView.reloadData()
+            
+            completion?(self.refreshControl)
         })
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        getStories(completion: { (refreshControl) in
+            refreshControl.endRefreshing()
+        })
     }
     
     //Action to take when story read/join segment control changed value
