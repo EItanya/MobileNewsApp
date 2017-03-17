@@ -41,7 +41,7 @@ class CompletedStoryTableViewController: UITableViewController {
     }
     
     func getEntryData() {
-        loadingModalIn()
+        //loadingModalIn()
         story?.getEntries(completion: {(error: Error?) -> Void in
             if error != nil
             {
@@ -52,8 +52,9 @@ class CompletedStoryTableViewController: UITableViewController {
                 //Code to populate list
                 //Right now just points to same data, might need to update later
                 self.entryArray = (self.story?.entries)!
+                self.entryArray.sort(by: {$0.number! < $1.number! })
             }
-            self.loadingModalOut()
+            //self.loadingModalOut()
             self.tableView.reloadData()
         })
     }
