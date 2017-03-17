@@ -11,6 +11,7 @@ import UIKit
 class CompletedStoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var entryLabel: UILabel!
+    @IBOutlet var userProfileImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
