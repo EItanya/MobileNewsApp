@@ -14,7 +14,7 @@ class CompletedStoryTableViewController: UITableViewController {
     var story: Story?
     var entryArray = [Entry]()
     var effectView: UIVisualEffectView?
-    var userImageURLDict: [String: String] = [:]
+    var userImageDict: [String: UIImage] = [:]
     
     @IBOutlet weak var headerView: UIView!
 
@@ -42,24 +42,10 @@ class CompletedStoryTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        retrieveProfileImages()
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    
-    func retrieveProfileImages() {
-        for user in story!.users {
-            let query = PFUser.query()
-            query?.getObjectInBackground(withId: user, block: { (currentUser, error) in
-                if error != nil {
-                    print("Problem querying for user")
-                }
-                else {
-                    self.userImageURLDict[user] = currentUser!["fb_profile_picture"] as! String
-                }
-            })
-        }
-    }
-
     
     func getEntryData() {
         //loadingModalIn()
@@ -80,10 +66,6 @@ class CompletedStoryTableViewController: UITableViewController {
         })
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
@@ -105,35 +87,7 @@ class CompletedStoryTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.entryLabel.text = currentEntry.text
-        
-        var session = URLSession(configuration: .default)
-        
-        let query = PFUser.query()
-        query?.getObjectInBackground(withId: currentEntry.createdBy!, block: { (user, error) in
-            
-            let pictureUrl = URL(string: user?["fb_profile_picture"] as! String)
-            let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
-                if error != nil {
-                    print ("Error in downloading image")
-                }
-                else {
-                    if let res = response as? HTTPURLResponse {
-                        print("Downloaded profile picture with response code \(res.statusCode)")
-                        if let imageData = data {
-                            // Finally convert that Data into an image and do what you wish with it.
-                            cell.userProfileImage.image = UIImage(data: imageData)
-                            // Do something with your image.
-                        } else {
-                            print("Couldn't get image: Image is nil")
-                        }
-                    } else {
-                        print("Couldn't get response code for some reason")
-                    }
-                }
-            })
-            downloadPicTask.resume()
-
-        })
+        cell.userProfileImage.image = userImageDict[currentEntry.createdBy!]
         return cell
     }
     
