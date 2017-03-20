@@ -35,7 +35,7 @@ class Story {
     //an Array of Entry ids for DB
     var entryIds = [String]()
     //List of entries for after they are fetched
-    var entries : [Entry]?
+    var entries = [Entry]()
     
     static var listOfStoryItems = ["title", "genre", "prompt", "participants", "created_by", "time_limit", "max_word_count", "completed", "first_entry", "previous_entry", "total_turns", "entries", "entry_ids"]
     
@@ -447,7 +447,7 @@ class Story {
             } else {
                 print("Successfully retrieved entries")
                 for entry in objects! {
-                    self.entries?.append(Entry(createdBy: entry.objectId!, text: entry.object(forKey: "text") as! String, number: entry.object(forKey: "number") as! Int))
+                    self.entries.append(Entry(createdBy: entry.object(forKey: "created_by") as! String, text: entry.object(forKey: "text") as! String, number: entry.object(forKey: "number") as! Int))
                 }
                 
             }
@@ -561,6 +561,7 @@ class Story {
             newStory.firstEntry = story["first_entry"] as! String?
             newStory.previousEntry = story["previous_entry"] as! String?
             newStory.author = story["author"] as! String?
+            newStory.completed = story["completed"] as! Bool
             newStory.id = story.objectId
             newStory.users = story["users"] as! [String]
             newStory.currentUser = story["current_user"] as! String?

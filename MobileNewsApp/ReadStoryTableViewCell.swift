@@ -1,17 +1,16 @@
 //
-//  CompletedStoryTableViewCell.swift
+//  ReadStoryTableViewCell.swift
 //  MobileNewsApp
 //
-//  Created by Eitan Yarmush on 3/7/17.
+//  Created by Nelia Perez on 3/14/17.
 //  Copyright © 2017 cs378. All rights reserved.
 //
 
 import UIKit
 
-class CompletedStoryTableViewCell: UITableViewCell {
+class ReadStoryTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var entryLabel: UILabel!
-    @IBOutlet var userProfileImage: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

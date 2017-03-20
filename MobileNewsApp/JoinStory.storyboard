@@ -12,7 +12,7 @@
         <!--Story Join View Controller-->
         <scene sceneID="x0y-XU-EQr">
             <objects>
-                <viewController storyboardIdentifier="JoinStory" id="zKf-y1-VFh" customClass="StoryJoinViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JoinStoryViewController" id="zKf-y1-VFh" customClass="StoryJoinViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GER-65-q1q"/>
                         <viewControllerLayoutGuide type="bottom" id="TQw-pd-2p3"/>
