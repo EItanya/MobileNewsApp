@@ -80,7 +80,16 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         toolBar.isUserInteractionEnabled = true
         
         genreField.inputAccessoryView = toolBar
+        
 
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == genreField {
+            return false
+        } else {
+            return true
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -217,10 +226,10 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //Function to make sliders look right and create appropaiate values
     func setupSliders() {
-        timeLimitSlider.minimumValue = 0.49
-        timeLimitSlider.maximumValue = 10.0
-        timeLimitSlider.value = 5.0
-        timeLimitSliderValue.text = "5:00"
+        timeLimitSlider.minimumValue = 0.09
+        timeLimitSlider.maximumValue = 3.0
+        timeLimitSlider.value = 2.0
+        timeLimitSliderValue.text = "2:00"
         
         
         participantSlider.minimumValue = 5

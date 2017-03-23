@@ -209,18 +209,25 @@ extension StoryInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //If admin return both sections, otherwise only return the first
-        return self.admin ? userGroups[section].sectionObjects.count : 1
+        var returnVal = userGroups[section].sectionObjects.count
+        if section == 1 && self.admin == false {
+            returnVal = 0
+        }
+//        return self.admin ? userGroups[section].sectionObjects.count : 1
+        return returnVal
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTable.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
-        let user = userGroups[indexPath.section].sectionObjects[indexPath.row]
-        cell.user = user
-        cell.nameLabel.text = "\((user.firstName)!) \((user.lastName)!)"
-        let avatar = UIImage(named: "username")
-        cell.avatarImage.image = avatar
-        cell.avatarImage.layer.backgroundColor = UIColor.lightGray.cgColor
-        cell.avatarImage.layer.cornerRadius = cell.avatarImage.layer.bounds.width/2
+        if userGroups[indexPath.section].sectionObjects.count > 0 {
+            let user = userGroups[indexPath.section].sectionObjects[indexPath.row]
+            cell.user = user
+            cell.nameLabel.text = "\((user.firstName)!) \((user.lastName)!)"
+            let avatar = UIImage(named: "username")
+            cell.avatarImage.image = avatar
+            cell.avatarImage.layer.backgroundColor = UIColor.lightGray.cgColor
+            cell.avatarImage.layer.cornerRadius = cell.avatarImage.layer.bounds.width/2
+        }
         
         return cell
     }

@@ -9,20 +9,31 @@
 import UIKit
 import Parse
 
-class StoryViewController: UIViewController {
+class StoryViewController: UIViewController, UITextViewDelegate {
 
+    
     var story: Story?
+    var entry: PFObject?
     var timer: Timer?
     var secondTimer: Timer?
     var counter : Int?
     var user: PFUser?
     var turnOngoing : Bool = false
+    var numberOfChars: Int = 0
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var turnButton: UIButton!
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
+    
+    @IBOutlet weak var entryAuthorLabel: UILabel!
+    @IBOutlet weak var entryTextLabel: UILabel!
+    @IBOutlet weak var entryImageView: UIImageView!
+    @IBOutlet weak var prevEntryView: UIView!
+    
  
     
     //Playing around with some views
@@ -34,17 +45,25 @@ class StoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextView()
+        setupPreviousEntry()
         user = PFUser.current()
   
         
         titleLabel.text = story?.title
         authorLabel.text = "By: \((story?.author)!)"
         
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
+        if viewControllers[viewControllers.count-2] is ProfileViewController {
+            //Code is here so that User does not have to navigate through the Join Story Page again
+            let infoImage = UIImage(named: "info")
+            let infoButton = UIBarButtonItem(image: infoImage, style: .plain, target: self, action: #selector(StoryViewController.storyInfoSegue))
+            infoButton.tintColor = UIColor.white
+            navigationItem.rightBarButtonItem = infoButton
+        } else {
+            //Do Nothing
+        }
         
-        let infoImage = UIImage(named: "info")
-        let infoButton = UIBarButtonItem(image: infoImage, style: .plain, target: self, action: #selector(StoryViewController.storyInfoSegue))
-        infoButton.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = infoButton
+        
         
         // Do any additional setup after loading the view.
     }
@@ -65,6 +84,24 @@ class StoryViewController: UIViewController {
             setupSpectator()
         }
         
+    }
+    
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        numberOfChars = newText.characters.count
+        print(newText)
+        print(numberOfChars)
+        updateCharacterCount()
+        return numberOfChars <= 250
+    }
+    
+    func updateCharacterCount() {
+        if numberOfChars == 0 {
+            characterCountLabel.text = ""
+        } else {
+            characterCountLabel.text = "\(self.numberOfChars)/250"
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -99,6 +136,31 @@ class StoryViewController: UIViewController {
         layer.borderColor = UIColor.darkGray.cgColor
     }
     
+    
+    
+    func setupPreviousEntry() {
+        if let lastEntry = self.entry {
+            entryTextLabel.text = lastEntry.object(forKey: "text") as! String?
+            entryAuthorLabel.text = lastEntry.object(forKey: "author") as! String?
+        } else {
+            //Must make DB call to get Entry
+            let query = PFQuery(className: "Entry")
+            query.getObjectInBackground(withId: (self.story?.previousEntry)!, block: {(entry: PFObject?, error: Error?) -> Void in
+                if let queryError = error {
+                    print(queryError)
+                } else {
+                    self.entry = entry
+                    //Recursive kinda cuz why not, This is such bad code it hurts my head
+                    self.setupPreviousEntry()
+                }
+            })
+            
+            
+        }
+    }
+    
+    
+    
     //Setup timer to keep track of persons writing time.
     func setupTimer() {
         self.counter = Int((self.story?.timeLimit!)!)
@@ -112,7 +174,8 @@ class StoryViewController: UIViewController {
         turnButton.isEnabled = false
         storyField.isSelectable = false
         storyField.isEditable = false
-        let entry = Entry(createdBy: (self.user?.objectId)!, text: storyField.text, number: (story?.entryIds.count)! + 1)
+        let authorName = (self.user?.object(forKey: "first_name") as! String) + " " + (self.user?.object(forKey: "last_name") as! String)
+        let entry = Entry(createdBy: (self.user?.objectId)!, text: storyField.text, number: (story?.entryIds.count)! + 1, author: authorName)
         story?.updateStoryAfterTurn(entry: entry, completion: {(error: Error?) -> Void in
             if error != nil {
             } else {

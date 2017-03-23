@@ -78,7 +78,8 @@ class Story {
         let entryDict : [String: Any] = [
             "text": entry.text!,
             "created_by": entry.createdBy!,
-            "number": entry.number ?? 1
+            "number": entry.number ?? 1,
+            "author": entry.author!
         ]
         
         //Possible change to cloud code to do all in one call
@@ -114,7 +115,8 @@ class Story {
         let entryDict : [String: Any] = [
             "text": entry.text!,
             "created_by": entry.createdBy!,
-            "number": entry.number ?? 1
+            "number": entry.number ?? 1,
+            "author": entry.author!
         ]
         
         PFCloud.callFunction(inBackground: "updateStoryWithEntry", withParameters: ["entry": entryDict, "storyId": self.id!], block: {
@@ -447,7 +449,7 @@ class Story {
             } else {
                 print("Successfully retrieved entries")
                 for entry in objects! {
-                    self.entries.append(Entry(createdBy: entry.object(forKey: "created_by") as! String, text: entry.object(forKey: "text") as! String, number: entry.object(forKey: "number") as! Int))
+                    self.entries.append(Entry(createdBy: entry.object(forKey: "created_by") as! String, text: entry.object(forKey: "text") as! String, number: entry.object(forKey: "number") as! Int,  author: entry.object(forKey: "author") as! String))
                 }
                 
             }
@@ -581,12 +583,14 @@ class Entry {
     var text: String?
     var createdBy: String?
     var number: Int?
+    var author: String?
     
     
-    init(createdBy: String, text: String, number: Int) {
+    init(createdBy: String, text: String, number: Int, author: String) {
         self.text = text
         self.createdBy = createdBy
         self.number = number
+        self.author = author
     }
 
 }

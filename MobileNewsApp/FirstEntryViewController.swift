@@ -93,7 +93,10 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
         
         savingModalIn()
         
-        let firstEntry = Entry(createdBy: (currentUser?.objectId)!, text: storyText.text, number: 1)
+        let authorName = (self.currentUser?.object(forKey: "first_name") as! String) + " " + (self.currentUser?.object(forKey: "last_name") as! String)
+        
+        
+        let firstEntry = Entry(createdBy: (currentUser?.objectId)!, text: storyText.text, number: 1, author: authorName)
         //Code to count words and add to story
         story.totalWordCount = Util.countWords(text: storyText.text)
         story.author = "\(currentUser?.object(forKey: "first_name") as! String) \(currentUser?.object(forKey: "last_name") as! String)"

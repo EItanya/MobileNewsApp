@@ -52,6 +52,7 @@ class StoryJoinViewController: UIViewController {
                 let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
                 vc.story = self.story
+                vc.entry = self.entry
                 self.show(vc, sender: self)
             }})
     }
