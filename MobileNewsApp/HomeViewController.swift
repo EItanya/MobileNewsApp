@@ -242,16 +242,60 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     
     //Shows the StoryJoinView Controller particular to the story cell clicked when joined
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentStory = filteredStories[indexPath.row]
         if storyCompletionControl.selectedSegmentIndex == 0 {
             let storyboard: UIStoryboard = UIStoryboard(name: "CompletedStory", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ReadStoryViewController") as! CompletedStoryTableViewController
-            vc.story = filteredStories[indexPath.row]
-            self.show(vc, sender: self)
+            vc.story = currentStory
+            let myGroup = DispatchGroup()
+            let session = URLSession(configuration: .default)
+            var userImageDict: [String: UIImage] = [:]
+
+            for user in currentStory.users {
+                myGroup.enter()
+                let query = PFUser.query()
+                query?.getObjectInBackground(withId: user, block: { (currentUser, error) in
+                    if error != nil {
+                        print("Problem querying for user")
+                    }
+                    else {
+                        let url = currentUser!["fb_profile_picture"] as? String
+                        myGroup.enter()
+                        let pictureUrl = URL(string: url!)
+                        let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
+                            if error != nil {
+                                print ("Error in downloading image")
+                            }
+                            else {
+                                if let res = response as? HTTPURLResponse {
+                                    print("Downloaded profile picture with response code \(res.statusCode)")
+                                    if let imageData = data {
+                                        userImageDict[user] = UIImage(data: imageData)
+                                    } else {
+                                        print("Couldn't get image: Image is nil")
+                                    }
+                                } else {
+                                    print("Couldn't get response code for some reason")
+                                }
+                            }
+                            myGroup.leave()
+                        })
+                        downloadPicTask.resume()
+
+                    }
+                    myGroup.leave()
+                })
+            }
+
+            myGroup.notify(queue: .main) {
+                vc.userImageDict = userImageDict
+                self.show(vc, sender: self)
+            }
         }
         else {
             let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "JoinStoryViewController") as! StoryJoinViewController
-            vc.story = filteredStories[indexPath.row]
+            vc.story = currentStory
             self.show(vc, sender: self)
         }
     }
