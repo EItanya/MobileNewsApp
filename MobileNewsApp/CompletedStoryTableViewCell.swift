@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class CompletedStoryTableViewCell: UITableViewCell {
+class CompletedStoryTableViewCell: MGSwipeTableCell {
 
     @IBOutlet weak var entryLabel: UILabel!
     @IBOutlet var userProfileImage: UIImageView!

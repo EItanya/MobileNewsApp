@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MGSwipeTableCell
 
 class CompletedStoryTableViewController: UITableViewController {
     
@@ -88,6 +89,17 @@ class CompletedStoryTableViewController: UITableViewController {
         // Configure the cell...
         cell.entryLabel.text = currentEntry.text
         cell.userProfileImage.image = userImageDict[currentEntry.createdBy!]
+        let reportButton = MGSwipeButton(title: "Report", backgroundColor: UIColor.red)
+        {
+            (sender: MGSwipeTableCell!) in
+            
+            print("\(currentEntry.author!), \(currentEntry.number!)")
+            return true
+            
+        }
+        reportButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
+        cell.rightButtons = [reportButton]
+        cell.rightSwipeSettings.transition = .rotate3D
         return cell
     }
     
