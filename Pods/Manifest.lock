@@ -5,13 +5,14 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.20.0):
+  - FBSDKCoreKit (4.20.2):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.20.0):
+  - FBSDKLoginKit (4.20.2):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.20.0):
+  - FBSDKShareKit (4.20.2):
     - FBSDKCoreKit
   - M13Checkbox (3.1.3)
+  - MGSwipeTableCell (1.5.6)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
   - ParseFacebookUtilsV4 (1.11.1):
@@ -27,20 +28,22 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - M13Checkbox
+  - MGSwipeTableCell
   - Parse
   - ParseFacebookUtilsV4
   - SkyFloatingLabelTextField (~> 2.0.0)
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: 2d16979b28fe28c2b95af0d275ad5f9703c6c8de
-  FBSDKLoginKit: a9d9391506c687e2304a590bf9312837fce7f375
-  FBSDKShareKit: 1b91af62a603d67f392bc7fde63bc4a0705dde31
+  FBSDKCoreKit: 82eac696eb6157da5f4266c3a241f00e9bd72471
+  FBSDKLoginKit: 2211bede07c83391349eacc1fd86cf6d9289ce38
+  FBSDKShareKit: ca9b22264ea49a896dafb2467c1a4f72aa41996f
   M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
+  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
 
-PODFILE CHECKSUM: bb2f1d5bca95d707d859d72a48e2c73565727082
+PODFILE CHECKSUM: 9f30f61b63dd201e7f3442b4a29ff846bac86091
 
 COCOAPODS: 1.2.0
