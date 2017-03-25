@@ -88,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		071A23051E6A30D500260D81 /* StoryJoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryJoinViewController.swift; sourceTree = "<group>"; };
+		072F3D0D1E86E2FE007356DB /* MobileNewsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileNewsApp.entitlements; sourceTree = "<group>"; };
 		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		07579B321E762D800021AF85 /* ManageInvites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageInvites.storyboard; sourceTree = "<group>"; };
 		07579B341E762D990021AF85 /* ManageInviteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageInviteTableViewCell.swift; sourceTree = "<group>"; };
@@ -331,6 +332,7 @@
 		15FBA1F61E4E80FB00DDEEB7 /* MobileNewsApp */ = {
 			isa = PBXGroup;
 			children = (
+				072F3D0D1E86E2FE007356DB /* MobileNewsApp.entitlements */,
 				077CCC5B1E6C856D0010B0DC /* Util */,
 				15FBA1F71E4E80FB00DDEEB7 /* AppDelegate.swift */,
 				15119CD61E652AA6006CDDFC /* Extensions.swift */,
@@ -494,6 +496,14 @@
 						DevelopmentTeam = 7ZYS4NMJDU;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					15FBA20A1E4E80FC00DDEEB7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -892,6 +902,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MobileNewsApp/MobileNewsApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7ZYS4NMJDU;
@@ -912,6 +923,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MobileNewsApp/MobileNewsApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7ZYS4NMJDU;
