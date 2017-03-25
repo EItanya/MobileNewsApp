@@ -119,6 +119,10 @@ class Story {
             "author": entry.author!
         ]
         
+        if isStoryComplete() {
+            
+        }
+        
         PFCloud.callFunction(inBackground: "updateStoryWithEntry", withParameters: ["entry": entryDict, "storyId": self.id!], block: {
             (response: Any?, error: Error?) -> Void in
             //Edit later to include message about server issues.
@@ -572,6 +576,16 @@ class Story {
             storyArray.append(newStory)
         }
         return storyArray
+    }
+    
+    //func to check for completed story 
+    func isStoryComplete() -> Bool {
+        if currentEntry == totalTurns {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
 

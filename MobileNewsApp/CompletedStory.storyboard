@@ -43,6 +43,14 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hf-ay-Q6o">
+                                    <rect key="frame" x="298" y="35" width="40" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Share"/>
+                                    <connections>
+                                        <segue destination="ViY-ql-j5R" kind="show" id="8wH-Ns-Di7"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -120,6 +128,24 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="-143.5" y="181.5"/>
+        </scene>
+        <!--Upload Completed ToS3 View Controller-->
+        <scene sceneID="uoV-UC-CBp">
+            <objects>
+                <viewController id="ViY-ql-j5R" customClass="UploadCompletedToS3ViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZaI-S2-TH9"/>
+                        <viewControllerLayoutGuide type="bottom" id="CEb-7X-fcl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wFG-jk-1tx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QVz-0P-eVN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="569" y="181"/>
         </scene>
     </scenes>
     <resources>

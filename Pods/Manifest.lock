@@ -1,4 +1,7 @@
 PODS:
+  - AWSCore (2.5.2)
+  - AWSS3 (2.5.2):
+    - AWSCore (= 2.5.2)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -24,6 +27,8 @@ PODS:
   - SkyFloatingLabelTextField (2.0.1)
 
 DEPENDENCIES:
+  - AWSCore
+  - AWSS3
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -34,6 +39,8 @@ DEPENDENCIES:
   - SkyFloatingLabelTextField (~> 2.0.0)
 
 SPEC CHECKSUMS:
+  AWSCore: b2fe455c2c7d6653521238c5b0b0ddb67ec4f063
+  AWSS3: 1f53d780bae0a5949f11da99520c14684bc90af0
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 82eac696eb6157da5f4266c3a241f00e9bd72471
   FBSDKLoginKit: 2211bede07c83391349eacc1fd86cf6d9289ce38
@@ -44,6 +51,6 @@ SPEC CHECKSUMS:
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
 
-PODFILE CHECKSUM: 9f30f61b63dd201e7f3442b4a29ff846bac86091
+PODFILE CHECKSUM: ae00def72c603b2002444bae42922168217ad07c
 
 COCOAPODS: 1.2.0
