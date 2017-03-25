@@ -122,11 +122,19 @@ class HomeViewController: UIViewController {
         //apply filters
         if applyFilters > 0 {
             filteredStories.removeAll()
+            var genreStories = [Story]()
             for (index, value) in genre.enumerated() {
                 if value == true {
-                    filteredStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
+                    genreStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
                 }
             }
+//            var genreStories = [Story]()
+//            for (index, value) in genre.enumerated() {
+//                if value == true {
+//                    genreStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
+//                }
+//            }
+            
         }
         //no filters
         else {

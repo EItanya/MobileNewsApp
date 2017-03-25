@@ -50,8 +50,9 @@ class CollapsibleTableViewController: UITableViewController {
         // Here we have three sections: Mac, iPad, iPhone
         sections = [
             Section(name: "Genre", items: ["Horror", "Comedy", "Fiction", "Non-Fiction"]),
-            Section(name: "Word Count", items: ["Short", "Medium", "Long"]),
-            Section(name: "Number of Contributors", items: ["Couple", "Some", "Many"])
+            Section(name: "Total turns", items: ["25-75", "75-125", "125-200"]),
+            Section(name: "Number of Contributors", items: ["1-7", "7-14", "14-20"]),
+            Section(name: "People ahead", items: ["1-7", "7-14", "14-20"])
         ]
     }
     
