@@ -491,7 +491,7 @@
 				TargetAttributes = {
 					15FBA1F31E4E80FA00DDEEB7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = AJT3GN6RM7;
+						DevelopmentTeam = 7ZYS4NMJDU;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -894,11 +894,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = AJT3GN6RM7;
+				DEVELOPMENT_TEAM = 7ZYS4NMJDU;
 				INFOPLIST_FILE = MobileNewsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.Snowball;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.SnowballApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MobileNewsApp/MobileNewsApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -914,11 +914,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = AJT3GN6RM7;
+				DEVELOPMENT_TEAM = 7ZYS4NMJDU;
 				INFOPLIST_FILE = MobileNewsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.Snowball;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.SnowballApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MobileNewsApp/MobileNewsApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
