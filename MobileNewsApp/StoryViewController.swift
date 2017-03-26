@@ -197,11 +197,19 @@ class StoryViewController: UIViewController, UITextViewDelegate {
                     let isComplete = object?["completed"] as! Bool
                     if isComplete {
                             let story = Story(story: object!)
-                            let pdfComposer = PDFComposer(story: story)
-                            let pdfHTML = pdfComposer.renderHTML()
-                            let HTMLContent = pdfHTML
-                            pdfComposer.exportHTMLContentToPDF(HTMLContent: HTMLContent!)
-                            pdfComposer.uploadToS3(filepath: "Add filepath here!!!")
+                            story.getEntries(completion: { (error: Error?) -> Void in
+                                if error != nil {
+                                    print("Error querying for entries")
+                                }
+                                else {
+                                story.entries.sort(by: {$0.number! < $1.number! })
+                                let pdfComposer = PDFComposer(story: story)
+                                let pdfHTML = pdfComposer.renderHTML()
+                                let HTMLContent = pdfHTML
+                                let url = pdfComposer.exportHTMLContentToPDF(HTMLContent: HTMLContent!)
+                                pdfComposer.uploadToS3(url: url)
+                                }
+                            })
                         }
                     }
                 })

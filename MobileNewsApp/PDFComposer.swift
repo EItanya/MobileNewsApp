@@ -12,7 +12,8 @@ import AWSS3
 
 class PDFComposer: NSObject {
 
-    let pathToInvoiceHTMLTemplate = Bundle.main.path(forResource: "complete_story", ofType: "html")
+    let pathToCompleteStoryHTMLTemplate = Bundle.main.path(forResource: "complete_story", ofType: "html")
+    let pathToSingleEntryHTMLTemplate = Bundle.main.path(forResource: "single_entry", ofType: "html")
     
     var story: Story?
     
@@ -26,15 +27,29 @@ class PDFComposer: NSObject {
     
     func renderHTML() -> String! {
         do {
-            var HTMLContent = try String(contentsOfFile: pathToInvoiceHTMLTemplate!)
+            var HTMLContent = try String(contentsOfFile: pathToCompleteStoryHTMLTemplate!)
             
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TITLE#", with: story!.title!)
             HTMLContent = HTMLContent.replacingOccurrences(of: "#AUTHOR#", with: story!.author!)
-                        HTMLContent = HTMLContent.replacingOccurrences(of: "#GENRE#", with: story!.author!)
+                        HTMLContent = HTMLContent.replacingOccurrences(of: "#GENRE#", with: story!.genre!)
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TIME#", with: "\(story!.timeLimit!)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#NUMPARTICIPANTS#", with: "\(story!.participants)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#NUMTURNS#", with: "\(story!.totalTurns!)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#PROMPT#", with: story!.prompt!)
+            
+            var allEntries = ""
+            
+            for entry in (story?.entries)! {
+                var itemHTMLContent: String!
+                
+                itemHTMLContent = try String(contentsOfFile: self.pathToSingleEntryHTMLTemplate!)
+                
+                itemHTMLContent = itemHTMLContent.replacingOccurrences(of: "#ENTRY#", with: entry.text!)
+                
+                 allEntries += itemHTMLContent
+            }
+            
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#ENTRIES#", with: allEntries)
             
             return HTMLContent
         }
@@ -46,34 +61,42 @@ class PDFComposer: NSObject {
         return nil
     }
     
-    func exportHTMLContentToPDF(HTMLContent: String) {
+    func exportHTMLContentToPDF(HTMLContent: String) -> NSURL {
         let printPageRenderer = CustomPrintPageRenderer()
         let printFormatter = UIMarkupTextPrintFormatter(markupText: HTMLContent)
         printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
         
         let pdfData = drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
         
-        pdfFilename = "\(AppDelegate.getAppDelegate().getDocDir())/\(story!.id).pdf"
-        pdfData?.write(toFile: pdfFilename, atomically: true)
+        let fileManager = FileManager.default
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(story!.id!).pdf")
+        fileManager.createFile(atPath: path as String, contents: pdfData as Data?, attributes: nil)
         
-        print(pdfFilename)
+        let fileUrl = NSURL(fileURLWithPath: path)
+        
+        pdfData?.write(toFile: "\(fileUrl)", atomically: true)
+        
+        return fileUrl
     }
     
     func drawPDFUsingPrintPageRenderer(printPageRenderer: UIPrintPageRenderer) -> NSData! {
         let data = NSMutableData()
         
         UIGraphicsBeginPDFContextToData(data, CGRect.zero, nil)
+        printPageRenderer.prepare(forDrawingPages: NSMakeRange(0, printPageRenderer.numberOfPages))
         
-        UIGraphicsBeginPDFPage()
+        let bounds = UIGraphicsGetPDFContextBounds()
         
-        printPageRenderer.drawPage(at: 0, in: UIGraphicsGetPDFContextBounds())
+        for i in 0...(printPageRenderer.numberOfPages - 1) {
+            UIGraphicsBeginPDFPage()
+            printPageRenderer.drawPage(at: i, in: bounds)
+        }
         
-        UIGraphicsEndPDFContext()
-        
+        UIGraphicsEndPDFContext();
         return data
     }
 
-    func uploadToS3(filepath: String) {
+    func uploadToS3(url: NSURL) {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USWest2,
                                                                 identityPoolId:"us-west-2:bb5dab7f-bb7e-405b-8498-6a5fb644f4aa")
         
@@ -84,17 +107,13 @@ class PDFComposer: NSObject {
         //file information
         let S3BucketName = "mobile-news-app"
         
-        //let remoteName = ""
-        
-        
         let uploadRequest = AWSS3TransferManagerUploadRequest()
         uploadRequest?.bucket = S3BucketName
-        uploadRequest?.key = "test"
-        uploadRequest?.body = URL(fileURLWithPath: filepath)
+        uploadRequest?.key = "\(story!.id!).pdf"
+        uploadRequest?.body = url as URL!
         
         let transferManager = AWSS3TransferManager.default()
-        //let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-        
+       
         transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
             
             if let error = task.error as? NSError {
