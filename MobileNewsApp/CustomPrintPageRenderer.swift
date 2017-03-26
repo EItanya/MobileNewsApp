@@ -25,7 +25,8 @@ class CustomPrintPageRenderer: UIPrintPageRenderer {
         
         // Set the horizontal and vertical insets (that's optional).
         //self.setValue(NSValue(cgRect: pageFrame), forKey: "printableRect")
-        self.setValue(NSValue(cgRect: pageFrame.insetBy(dx: 10.0, dy: 10.0)), forKey: "printableRect")
+        self.setValue(NSValue(cgRect: pageFrame.insetBy(dx: 70.0, dy: 70.0)), forKey: "printableRect")
+
     }
     
 }

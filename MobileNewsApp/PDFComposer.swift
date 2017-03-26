@@ -30,6 +30,7 @@ class PDFComposer: NSObject {
             
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TITLE#", with: story!.title!)
             HTMLContent = HTMLContent.replacingOccurrences(of: "#AUTHOR#", with: story!.author!)
+                        HTMLContent = HTMLContent.replacingOccurrences(of: "#GENRE#", with: story!.author!)
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TIME#", with: "\(story!.timeLimit!)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#NUMPARTICIPANTS#", with: "\(story!.participants)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#NUMTURNS#", with: "\(story!.totalTurns!)")
@@ -52,7 +53,7 @@ class PDFComposer: NSObject {
         
         let pdfData = drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
         
-        pdfFilename = "\(AppDelegate.getAppDelegate().getDocDir())/\(story?.id).pdf"
+        pdfFilename = "\(AppDelegate.getAppDelegate().getDocDir())/\(story!.id).pdf"
         pdfData?.write(toFile: pdfFilename, atomically: true)
         
         print(pdfFilename)

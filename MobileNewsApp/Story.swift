@@ -74,7 +74,7 @@ class Story {
         currentUser = story["current_user"] as! String?
         entryIds = story["entry_ids"] as! [String]
         totalWordCount = story["total_word_count"] as! Int?
-        self.getEntries(completion: nil)
+//        self.getEntries(completion: nil)
     }
     
 
