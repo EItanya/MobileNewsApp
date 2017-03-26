@@ -14,6 +14,8 @@ target 'MobileNewsApp' do
     pod 'M13Checkbox'
     pod 'SkyFloatingLabelTextField', '~> 2.0.0'
     pod 'MGSwipeTableCell'
+    pod 'AWSCore'
+    pod 'AWSS3'
 
 
     
