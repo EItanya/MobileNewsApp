@@ -33,7 +33,7 @@ class UploadCompletedToS3ViewController: UIViewController, UINavigationControlle
         let uploadRequest = AWSS3TransferManagerUploadRequest()
         uploadRequest?.bucket = S3BucketName
         uploadRequest?.key = "test"
-        uploadRequest?.body = URL(fileURLWithPath: "/Users/neliaperez/Desktop/1.pdf")
+        uploadRequest?.body = URL(fileURLWithPath: "/Users/neliaperez/Desktop/")
         
         let transferManager = AWSS3TransferManager.default()
         //let transferManager = AWSS3TransferManager.defaultS3TransferManager()

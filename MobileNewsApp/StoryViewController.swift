@@ -179,6 +179,23 @@ class StoryViewController: UIViewController, UITextViewDelegate {
         story?.updateStoryAfterTurn(entry: entry, completion: {(error: Error?) -> Void in
             if error != nil {
             } else {
+                let query = PFQuery(className: "Story")
+                query.getObjectInBackground(withId: (self.story?.id)!, block: {(object: PFObject?, error: Error?) -> Void in
+                    if error != nil {
+                        print("Could not get story object")
+                    }
+                    else {
+                    let isComplete = object?["complete"] as! Bool
+                    if isComplete {
+                            let story = Story(story: object!)
+                            let pdfComposer = PDFComposer(story: story)
+                            let pdfHTML = pdfComposer.renderHTML()
+                            let HTMLContent = pdfHTML
+                            pdfComposer.exportHTMLContentToPDF(HTMLContent: HTMLContent!)
+                            pdfComposer.uploadToS3(filepath: "Add filepath here!!!")
+                        }
+                    }
+                })
                 self.popTwoIfJoin()
             }
         })

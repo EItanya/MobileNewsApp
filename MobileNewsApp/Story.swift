@@ -54,6 +54,29 @@ class Story {
         self.users.append(createdBy)
     }
     
+    init(story: PFObject) {
+        createdBy = story["created_by"] as? String
+        title = story["title"] as? String
+        author = story["author"] as? String
+        genre = story["genre"] as? String
+        prompt = story["prompt"] as? String
+        maxWordCount = story["max_word_count"] as? Int
+        timeLimit = story["time_limit"] as? Double
+        participants = story["participants"] as! Int
+        totalTurns = story["total_turns"] as? Int
+        currentEntry = story["current_entry"] as? Int
+        firstEntry = story["first_entry"] as! String?
+        previousEntry = story["previous_entry"] as! String?
+        author = story["author"] as! String?
+        completed = story["completed"] as! Bool
+        id = story.objectId
+        users = story["users"] as! [String]
+        currentUser = story["current_user"] as! String?
+        entryIds = story["entry_ids"] as! [String]
+        totalWordCount = story["total_word_count"] as! Int?
+        self.getEntries(completion: nil)
+    }
+    
 
     //Function to create a new story in the DB
     //This function works
