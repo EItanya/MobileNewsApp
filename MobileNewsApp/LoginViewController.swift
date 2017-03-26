@@ -164,6 +164,18 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         })
     }
     
+    
+    //Function to subscribe the user to a channel
+    func subscribeToPush(){
+        let user = PFUser.current()
+        
+        let currentInstallation = PFInstallation.current()
+        currentInstallation?.addUniqueObject(user?.objectId ?? "default", forKey: "channels")
+        currentInstallation?.addUniqueObject(
+            "default", forKey: "channels")
+        currentInstallation?.saveInBackground()
+    }
+    
 
     
     @IBAction func login(_ sender: Any) {
@@ -183,6 +195,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             }
             
             print("Logged in successfully with Username")
+            self.subscribeToPush()
             self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
         
@@ -284,15 +297,18 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                             })
                         }
                     })
+                    self.subscribeToPush()
                     self.segueToMainApp()
                     
                 } else {
+                    self.subscribeToPush()
                     print("User logged in through Facebook!")
                     self.segueToMainApp()
                 }
                 
                 
             } else {
+                //APP CRASHES HERE FOR SOME REASON
                 print("Uh oh. The user cancelled the Facebook login.")
                 self.loginModalOut()
                 return
