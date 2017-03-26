@@ -46,17 +46,22 @@ class PDFComposer: NSObject {
         return nil
     }
     
-    func exportHTMLContentToPDF(HTMLContent: String) {
+    func exportHTMLContentToPDF(HTMLContent: String) -> NSURL {
         let printPageRenderer = CustomPrintPageRenderer()
         let printFormatter = UIMarkupTextPrintFormatter(markupText: HTMLContent)
         printPageRenderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
         
         let pdfData = drawPDFUsingPrintPageRenderer(printPageRenderer: printPageRenderer)
         
-        pdfFilename = "\(AppDelegate.getAppDelegate().getDocDir())/\(story!.id).pdf"
-        pdfData?.write(toFile: pdfFilename, atomically: true)
+        let fileManager = FileManager.default
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(story!.id!).pdf")
+        fileManager.createFile(atPath: path as String, contents: pdfData as Data?, attributes: nil)
         
-        print(pdfFilename)
+        let fileUrl = NSURL(fileURLWithPath: path)
+        
+        pdfData?.write(toFile: "\(fileUrl)", atomically: true)
+        
+        return fileUrl
     }
     
     func drawPDFUsingPrintPageRenderer(printPageRenderer: UIPrintPageRenderer) -> NSData! {
@@ -73,7 +78,7 @@ class PDFComposer: NSObject {
         return data
     }
 
-    func uploadToS3(filepath: String) {
+    func uploadToS3(url: NSURL) {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USWest2,
                                                                 identityPoolId:"us-west-2:bb5dab7f-bb7e-405b-8498-6a5fb644f4aa")
         
@@ -84,17 +89,13 @@ class PDFComposer: NSObject {
         //file information
         let S3BucketName = "mobile-news-app"
         
-        //let remoteName = ""
-        
-        
         let uploadRequest = AWSS3TransferManagerUploadRequest()
         uploadRequest?.bucket = S3BucketName
-        uploadRequest?.key = "test"
-        uploadRequest?.body = URL(fileURLWithPath: filepath)
+        uploadRequest?.key = "\(story!.id!).pdf"
+        uploadRequest?.body = url as URL!
         
         let transferManager = AWSS3TransferManager.default()
-        //let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-        
+       
         transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
             
             if let error = task.error as? NSError {

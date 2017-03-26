@@ -200,8 +200,8 @@ class StoryViewController: UIViewController, UITextViewDelegate {
                             let pdfComposer = PDFComposer(story: story)
                             let pdfHTML = pdfComposer.renderHTML()
                             let HTMLContent = pdfHTML
-                            pdfComposer.exportHTMLContentToPDF(HTMLContent: HTMLContent!)
-                            pdfComposer.uploadToS3(filepath: "Add filepath here!!!")
+                            let url = pdfComposer.exportHTMLContentToPDF(HTMLContent: HTMLContent!)
+                            pdfComposer.uploadToS3(url: url)
                         }
                     }
                 })
