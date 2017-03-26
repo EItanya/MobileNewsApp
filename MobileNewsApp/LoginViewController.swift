@@ -160,6 +160,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             self.loginWindowView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.loginWindowView.alpha = 0
         }, completion: {(success: Bool) -> Void in
+            self.effectView?.removeFromSuperview()
             self.loginWindowView.removeFromSuperview()
         })
     }

@@ -11,9 +11,10 @@ import CoreData
 import FBSDKCoreKit
 import Parse
 import ParseFacebookUtilsV4
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -31,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Initialize Parse Facebook Auth
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
+        registerForPushNotifications(application: application)
+        
         //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //Navbar Code 
@@ -47,6 +50,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         return true
+    }
+    
+    //Function for registering for push notifications
+    func registerForPushNotifications(application: UIApplication) {
+        
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: {(granted, error) in
+                if (granted)
+                {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+                else{
+                    //Do stuff if unsuccessful...
+                }
+            })
+        }
+            
+        else {
+            let type: UIUserNotificationType = [UIUserNotificationType.badge, UIUserNotificationType.alert, UIUserNotificationType.sound];
+            let setting = UIUserNotificationSettings(types: type, categories: nil);
+            UIApplication.shared.registerUserNotificationSettings(setting);
+            UIApplication.shared.registerForRemoteNotifications();
+        }
+        
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //Implement this. Do something with the token I receive. Send it to my push notification server to register the device or something else I'd like to do with the token.
+        let token = String(format: "%@", deviceToken as CVarArg)
+        print(token)
+        let installation = PFInstallation.current()
+        installation?.setDeviceTokenFrom(deviceToken as Data)
+        installation?.saveInBackground()
+    }
+    
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        //        Code when will present user notification
+        print("Will Present")
+        print(notification.request.content.userInfo)
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("recieved Response")
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

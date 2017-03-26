@@ -30,8 +30,8 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     
     
     @IBOutlet weak var entryAuthorLabel: UILabel!
-    @IBOutlet weak var entryTextLabel: UILabel!
     @IBOutlet weak var entryImageView: UIImageView!
+    @IBOutlet weak var entryTextView: UITextView!
     @IBOutlet weak var prevEntryView: UIView!
     
  
@@ -134,13 +134,22 @@ class StoryViewController: UIViewController, UITextViewDelegate {
         layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         layer.borderWidth = 2
         layer.borderColor = UIColor.darkGray.cgColor
+        
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(x: prevEntryView.frame.minX, y: prevEntryView.frame.minY + 10, width: self.view.frame.size.width - (prevEntryView.frame.minX*2), height: 1.0)
+        topBorder.backgroundColor = UIColor.lightGray.cgColor
+        self.view.layer.addSublayer(topBorder)
+        
+        
+        entryTextView.isSelectable = false
+        entryTextView.isEditable = false
     }
     
     
     
     func setupPreviousEntry() {
         if let lastEntry = self.entry {
-            entryTextLabel.text = lastEntry.object(forKey: "text") as! String?
+            entryTextView.text = lastEntry.object(forKey: "text") as! String?
             entryAuthorLabel.text = lastEntry.object(forKey: "author") as! String?
         } else {
             //Must make DB call to get Entry
@@ -185,7 +194,7 @@ class StoryViewController: UIViewController, UITextViewDelegate {
                         print("Could not get story object")
                     }
                     else {
-                    let isComplete = object?["complete"] as! Bool
+                    let isComplete = object?["completed"] as! Bool
                     if isComplete {
                             let story = Story(story: object!)
                             let pdfComposer = PDFComposer(story: story)
@@ -227,8 +236,9 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func turnButtonPress(_ sender: Any) {
         if turnOngoing == false {
-           turnOngoing = true
+            turnOngoing = true
             setupTimer()
+            self.story?.startUserTurn()
             storyField.isSelectable = true
             storyField.isEditable = true
         } else {
@@ -238,11 +248,12 @@ class StoryViewController: UIViewController, UITextViewDelegate {
             endTurn()
         }
         UIView.transition(with: self.turnButton, duration: 0.5, options: .transitionFlipFromBottom, animations: {() -> Void in
-            self.turnButton.setTitle("End Turn", for: .normal)
             if self.turnOngoing == true {
+                self.turnButton.setTitle("End Turn", for: .normal)
                 self.turnButton.backgroundColor = UIColor.red
             } else {
-                self.turnButton.backgroundColor = UIColor.blue
+                self.turnButton.setTitle("(Thanks for writing)", for: .normal)
+                self.turnButton.backgroundColor = UIColor(colorLiteralRed: 98/255, green: 208/255, blue: 232/255, alpha: 1)
             }
             
         }, completion: nil)

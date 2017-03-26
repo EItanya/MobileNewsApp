@@ -131,6 +131,7 @@ class Story {
         })
     }
     
+    
     //Function to updateStory in DB
     func updateStoryAfterTurn(entry: Entry, completion: ((_ error: Error?) -> Void)?) {
 
@@ -158,6 +159,17 @@ class Story {
                 //Code to segue
             }
             completion!(returnError)
+        })
+    }
+    
+    
+    //Function to update timer in DB so that this person's turn isnt ended early by the scheduler
+    func startUserTurn() {
+        PFCloud.callFunction(inBackground: "startUserTurn", withParameters: ["storyId": self.id!], block: {(response: Any?, error: Error?) -> Void in
+            if error != nil {
+                print(error ?? "")
+            }
+            
         })
     }
     
