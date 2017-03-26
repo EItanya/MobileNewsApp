@@ -12,7 +12,8 @@ import AWSS3
 
 class PDFComposer: NSObject {
 
-    let pathToInvoiceHTMLTemplate = Bundle.main.path(forResource: "complete_story", ofType: "html")
+    let pathToCompleteStoryHTMLTemplate = Bundle.main.path(forResource: "complete_story", ofType: "html")
+    let pathToSingleEntryHTMLTemplate = Bundle.main.path(forResource: "single_entry", ofType: "html")
     
     var story: Story?
     
@@ -26,15 +27,29 @@ class PDFComposer: NSObject {
     
     func renderHTML() -> String! {
         do {
-            var HTMLContent = try String(contentsOfFile: pathToInvoiceHTMLTemplate!)
+            var HTMLContent = try String(contentsOfFile: pathToCompleteStoryHTMLTemplate!)
             
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TITLE#", with: story!.title!)
             HTMLContent = HTMLContent.replacingOccurrences(of: "#AUTHOR#", with: story!.author!)
-                        HTMLContent = HTMLContent.replacingOccurrences(of: "#GENRE#", with: story!.author!)
+                        HTMLContent = HTMLContent.replacingOccurrences(of: "#GENRE#", with: story!.genre!)
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TIME#", with: "\(story!.timeLimit!)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#NUMPARTICIPANTS#", with: "\(story!.participants)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#NUMTURNS#", with: "\(story!.totalTurns!)")
             HTMLContent = HTMLContent.replacingOccurrences(of: "#PROMPT#", with: story!.prompt!)
+            
+            var allEntries = ""
+            
+            for entry in (story?.entries)! {
+                var itemHTMLContent: String!
+                
+                itemHTMLContent = try String(contentsOfFile: self.pathToSingleEntryHTMLTemplate!)
+                
+                itemHTMLContent = itemHTMLContent.replacingOccurrences(of: "#ENTRY#", with: entry.text!)
+                
+                 allEntries += itemHTMLContent
+            }
+            
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#ENTRIES#", with: allEntries)
             
             return HTMLContent
         }
@@ -68,13 +83,16 @@ class PDFComposer: NSObject {
         let data = NSMutableData()
         
         UIGraphicsBeginPDFContextToData(data, CGRect.zero, nil)
+        printPageRenderer.prepare(forDrawingPages: NSMakeRange(0, printPageRenderer.numberOfPages))
         
-        UIGraphicsBeginPDFPage()
+        let bounds = UIGraphicsGetPDFContextBounds()
         
-        printPageRenderer.drawPage(at: 0, in: UIGraphicsGetPDFContextBounds())
+        for i in 0...(printPageRenderer.numberOfPages - 1) {
+            UIGraphicsBeginPDFPage()
+            printPageRenderer.drawPage(at: i, in: bounds)
+        }
         
-        UIGraphicsEndPDFContext()
-        
+        UIGraphicsEndPDFContext();
         return data
     }
 
