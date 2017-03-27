@@ -36,6 +36,7 @@ class Story {
     var entryIds = [String]()
     //List of entries for after they are fetched
     var entries = [Entry]()
+    var url = ""
     
     static var listOfStoryItems = ["title", "genre", "prompt", "participants", "created_by", "time_limit", "max_word_count", "completed", "first_entry", "previous_entry", "total_turns", "entries", "entry_ids"]
     
@@ -74,6 +75,7 @@ class Story {
         currentUser = story["current_user"] as! String?
         entryIds = story["entry_ids"] as! [String]
         totalWordCount = story["total_word_count"] as! Int?
+        url = story["url"] as! String
 //        self.getEntries(completion: nil)
     }
     
@@ -608,6 +610,7 @@ class Story {
             newStory.currentUser = story["current_user"] as! String?
             newStory.entryIds = story["entry_ids"] as! [String]
             newStory.totalWordCount = story["total_word_count"] as! Int?
+            newStory.url = story["url"] as! String
             storyArray.append(newStory)
         }
         return storyArray
