@@ -184,6 +184,14 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         animateButton(button: self.loginButton)
         loginModalIn()
         
+        let user = PFUser.current()
+        
+        if user?.objectId != nil {
+            self.loginModalOut()
+            self.segueToMainApp()
+            return
+        }
+        
         let email = emailField.text! as String
         let password = passwordField.text! as String
         
@@ -244,6 +252,16 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         
         animateButton(button: self.facebookLoginButton)
         loginModalIn()
+        
+        let user = PFUser.current()
+        
+        if user?.objectId != nil {
+            self.loginModalOut()
+            self.segueToMainApp()
+            return
+        }
+        
+        
         
         PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"], block: {
             (user: PFUser?, error: Error?) -> Void in
