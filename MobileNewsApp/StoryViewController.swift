@@ -90,11 +90,10 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         numberOfChars = newText.characters.count
-        print(newText)
-        print(numberOfChars)
         updateCharacterCount()
         return numberOfChars <= 250
     }
+    
     
     func updateCharacterCount() {
         if numberOfChars == 0 {
@@ -134,6 +133,10 @@ class StoryViewController: UIViewController, UITextViewDelegate {
         layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         layer.borderWidth = 2
         layer.borderColor = UIColor.darkGray.cgColor
+        
+        storyField.autocorrectionType = UITextAutocorrectionType.yes
+        storyField.spellCheckingType = UITextSpellCheckingType.yes
+        storyField.delegate = self
         
         let topBorder = CALayer()
         topBorder.frame = CGRect(x: prevEntryView.frame.minX, y: prevEntryView.frame.minY + 10, width: self.view.frame.size.width - (prevEntryView.frame.minX*2), height: 1.0)
