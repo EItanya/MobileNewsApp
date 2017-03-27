@@ -160,8 +160,21 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             self.loginWindowView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.loginWindowView.alpha = 0
         }, completion: {(success: Bool) -> Void in
+            self.effectView?.removeFromSuperview()
             self.loginWindowView.removeFromSuperview()
         })
+    }
+    
+    
+    //Function to subscribe the user to a channel
+    func subscribeToPush(){
+        let user = PFUser.current()
+        
+        let currentInstallation = PFInstallation.current()
+        currentInstallation?.addUniqueObject(user?.objectId ?? "default", forKey: "channels")
+        currentInstallation?.addUniqueObject(
+            "default", forKey: "channels")
+        currentInstallation?.saveInBackground()
     }
     
 
@@ -183,6 +196,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
             }
             
             print("Logged in successfully with Username")
+            self.subscribeToPush()
             self.performSegue(withIdentifier: "loginSegue", sender: self)
         })
         
@@ -284,15 +298,18 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                             })
                         }
                     })
+                    self.subscribeToPush()
                     self.segueToMainApp()
                     
                 } else {
+                    self.subscribeToPush()
                     print("User logged in through Facebook!")
                     self.segueToMainApp()
                 }
                 
                 
             } else {
+                //APP CRASHES HERE FOR SOME REASON
                 print("Uh oh. The user cancelled the Facebook login.")
                 self.loginModalOut()
                 return

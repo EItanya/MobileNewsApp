@@ -36,6 +36,7 @@ class Story {
     var entryIds = [String]()
     //List of entries for after they are fetched
     var entries = [Entry]()
+    var url = ""
     
     static var listOfStoryItems = ["title", "genre", "prompt", "participants", "created_by", "time_limit", "max_word_count", "completed", "first_entry", "previous_entry", "total_turns", "entries", "entry_ids"]
     
@@ -52,6 +53,30 @@ class Story {
         self.totalTurns  = totalTurns
         self.currentEntry = currentEntry
         self.users.append(createdBy)
+    }
+    
+    init(story: PFObject) {
+        createdBy = story["created_by"] as? String
+        title = story["title"] as? String
+        author = story["author"] as? String
+        genre = story["genre"] as? String
+        prompt = story["prompt"] as? String
+        maxWordCount = story["max_word_count"] as? Int
+        timeLimit = story["time_limit"] as? Double
+        participants = story["participants"] as! Int
+        totalTurns = story["total_turns"] as? Int
+        currentEntry = story["current_entry"] as? Int
+        firstEntry = story["first_entry"] as! String?
+        previousEntry = story["previous_entry"] as! String?
+        author = story["author"] as! String?
+        completed = story["completed"] as! Bool
+        id = story.objectId
+        users = story["users"] as! [String]
+        currentUser = story["current_user"] as! String?
+        entryIds = story["entry_ids"] as! [String]
+        totalWordCount = story["total_word_count"] as! Int?
+        url = story["url"] as! String
+//        self.getEntries(completion: nil)
     }
     
 
@@ -108,6 +133,7 @@ class Story {
         })
     }
     
+    
     //Function to updateStory in DB
     func updateStoryAfterTurn(entry: Entry, completion: ((_ error: Error?) -> Void)?) {
 
@@ -118,6 +144,10 @@ class Story {
             "number": entry.number ?? 1,
             "author": entry.author!
         ]
+        
+        if isStoryComplete() {
+            
+        }
         
         PFCloud.callFunction(inBackground: "updateStoryWithEntry", withParameters: ["entry": entryDict, "storyId": self.id!], block: {
             (response: Any?, error: Error?) -> Void in
@@ -131,6 +161,17 @@ class Story {
                 //Code to segue
             }
             completion!(returnError)
+        })
+    }
+    
+    
+    //Function to update timer in DB so that this person's turn isnt ended early by the scheduler
+    func startUserTurn() {
+        PFCloud.callFunction(inBackground: "startUserTurn", withParameters: ["storyId": self.id!], block: {(response: Any?, error: Error?) -> Void in
+            if error != nil {
+                print(error ?? "")
+            }
+            
         })
     }
     
@@ -569,9 +610,20 @@ class Story {
             newStory.currentUser = story["current_user"] as! String?
             newStory.entryIds = story["entry_ids"] as! [String]
             newStory.totalWordCount = story["total_word_count"] as! Int?
+            newStory.url = story["url"] as! String
             storyArray.append(newStory)
         }
         return storyArray
+    }
+    
+    //func to check for completed story 
+    func isStoryComplete() -> Bool {
+        if currentEntry == totalTurns {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
 

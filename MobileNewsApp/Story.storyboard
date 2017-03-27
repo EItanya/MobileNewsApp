@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="DIN Alternate Bold.otf">
+            <string>DIN-BoldAlternate</string>
+        </array>
         <array key="DIN Alternate Regular.otf">
             <string>DIN-RegularAlternate</string>
         </array>
@@ -42,21 +45,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="353-yW-4W6">
-                                <rect key="frame" x="38" y="28" width="300" height="30"/>
+                                <rect key="frame" x="38" y="20" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OYo-ei-tRB"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="sTC-TL-yHh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFc-cr-9eQ">
-                                <rect key="frame" x="38" y="75" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fSc-nE-rac"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -92,17 +86,17 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Previous Entry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMZ-Q7-x9P">
                                         <rect key="frame" x="8" y="0.0" width="284" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Previous Entry Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPc-9B-jxq">
-                                        <rect key="frame" x="0.0" y="49" width="292" height="30"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rQ5-Fy-HgS">
+                                        <rect key="frame" x="0.0" y="61" width="300" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -115,6 +109,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFc-cr-9eQ">
+                                <rect key="frame" x="38" y="58" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fSc-nE-rac"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -130,16 +133,16 @@
                             <constraint firstItem="xXc-MS-YDD" firstAttribute="leading" secondItem="hLZ-5b-6nW" secondAttribute="leadingMargin" constant="22" id="N1A-kc-zqE"/>
                             <constraint firstItem="cyK-AG-oTm" firstAttribute="leading" secondItem="hLZ-5b-6nW" secondAttribute="leadingMargin" constant="22" id="NQr-jd-KsB"/>
                             <constraint firstItem="353-yW-4W6" firstAttribute="leading" secondItem="hLZ-5b-6nW" secondAttribute="leadingMargin" constant="22" id="OFK-nh-I5Z"/>
-                            <constraint firstItem="NFc-cr-9eQ" firstAttribute="top" secondItem="353-yW-4W6" secondAttribute="bottom" constant="17" id="SNv-PV-3QJ"/>
+                            <constraint firstItem="NFc-cr-9eQ" firstAttribute="top" secondItem="353-yW-4W6" secondAttribute="bottom" constant="8" id="SNv-PV-3QJ"/>
                             <constraint firstItem="xXc-MS-YDD" firstAttribute="leading" secondItem="hLZ-5b-6nW" secondAttribute="leadingMargin" constant="22" id="V9B-jx-mZ7"/>
-                            <constraint firstItem="353-yW-4W6" firstAttribute="top" secondItem="Drq-sW-Ke4" secondAttribute="bottom" constant="8" id="VId-Hl-rUT"/>
+                            <constraint firstItem="353-yW-4W6" firstAttribute="top" secondItem="Drq-sW-Ke4" secondAttribute="bottom" id="VId-Hl-rUT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="353-yW-4W6" secondAttribute="trailing" constant="21" id="f0j-Jl-6lm"/>
                             <constraint firstItem="Oh1-yT-zZi" firstAttribute="trailing" secondItem="NFc-cr-9eQ" secondAttribute="trailing" id="fle-Sg-kDu"/>
                             <constraint firstItem="KGF-nr-pcg" firstAttribute="top" secondItem="cDH-5k-ZQC" secondAttribute="bottom" constant="22" id="gb6-Yz-4Dz"/>
                             <constraint firstItem="KGF-nr-pcg" firstAttribute="leading" secondItem="hLZ-5b-6nW" secondAttribute="leadingMargin" constant="22" id="kBj-oD-xZj"/>
                             <constraint firstItem="cDH-5k-ZQC" firstAttribute="top" secondItem="Oh1-yT-zZi" secondAttribute="bottom" constant="-22" id="mPE-bg-QsS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cDH-5k-ZQC" secondAttribute="trailing" constant="21" id="opR-JL-dlZ"/>
-                            <constraint firstItem="Oh1-yT-zZi" firstAttribute="top" secondItem="353-yW-4W6" secondAttribute="bottom" constant="67" id="qzW-XO-S5i"/>
+                            <constraint firstItem="Oh1-yT-zZi" firstAttribute="top" secondItem="353-yW-4W6" secondAttribute="bottom" constant="75" id="qzW-XO-S5i"/>
                             <constraint firstItem="cDH-5k-ZQC" firstAttribute="leading" secondItem="hLZ-5b-6nW" secondAttribute="leadingMargin" constant="22" id="vgW-nw-XEp"/>
                             <constraint firstItem="IDR-OY-hIA" firstAttribute="top" secondItem="cyK-AG-oTm" secondAttribute="bottom" constant="104" id="zV3-F5-QFR"/>
                         </constraints>
@@ -151,7 +154,7 @@
                         <outlet property="authorLabel" destination="NFc-cr-9eQ" id="ZDD-uF-cH4"/>
                         <outlet property="characterCountLabel" destination="Oh1-yT-zZi" id="xYD-D8-MKn"/>
                         <outlet property="entryAuthorLabel" destination="wFm-li-uYX" id="5zi-21-v6C"/>
-                        <outlet property="entryTextLabel" destination="tPc-9B-jxq" id="RiO-tk-dOA"/>
+                        <outlet property="entryTextView" destination="rQ5-Fy-HgS" id="ctl-zh-62g"/>
                         <outlet property="prevEntryView" destination="cDH-5k-ZQC" id="vJd-SL-DnU"/>
                         <outlet property="storyField" destination="KGF-nr-pcg" id="Hc5-ux-Ujr"/>
                         <outlet property="timerLabel" destination="cyK-AG-oTm" id="AVD-EK-n00"/>
@@ -162,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hQ-Ri-h3V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-247" y="225"/>
+            <point key="canvasLocation" x="-247.19999999999999" y="224.4377811094453"/>
         </scene>
         <!--StoryInfo-->
         <scene sceneID="ZFM-vD-qnb">

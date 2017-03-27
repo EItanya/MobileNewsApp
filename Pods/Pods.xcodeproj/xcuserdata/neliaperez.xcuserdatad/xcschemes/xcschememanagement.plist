@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AWSCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AWSS3.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,17 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5ACFCBB5C36270A9DF9A2D2D11708867</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>604812C3C9A517FBAEC9558B08FB868D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>831D978C415527A3883EEB47658FEE33</key>
+		<key>6B2C2E5BA00679F228C36DFE32A59DCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8357DD1FD09B53D12B939D68A1A964D7</key>
+		<key>9F7098779713B711F6C591B62A41F242</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -123,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E64E7EFECDC066EED16B6197A7573929</key>
 		<dict>
 			<key>primary</key>
 			<true/>
