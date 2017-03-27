@@ -349,7 +349,11 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4xI-fx-NEY">
+<<<<<<< HEAD
+                                <rect key="frame" x="40" y="140.33333333333331" width="334" height="410.66666666666669"/>
+=======
                                 <rect key="frame" x="40" y="139.33333333333331" width="334" height="411.66666666666669"/>
+>>>>>>> cf25b20dead05cb841c0e138e327a6466b5398c3
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -373,7 +377,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write Away!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZ3-Zd-LKh">
+<<<<<<< HEAD
+                                <rect key="frame" x="40" y="103" width="334" height="23.333333333333329"/>
+=======
                                 <rect key="frame" x="40" y="103" width="334" height="22.333333333333329"/>
+>>>>>>> cf25b20dead05cb841c0e138e327a6466b5398c3
                                 <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="19"/>
                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

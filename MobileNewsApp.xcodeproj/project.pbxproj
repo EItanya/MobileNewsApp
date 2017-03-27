@@ -64,6 +64,7 @@
 		8B06EA201E5DFD23002ADFE5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */; };
 		8F011B04A78A3B1BAA75FBBA /* Pods_MobileNewsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2914B95F337E9D34D293644E /* Pods_MobileNewsAppTests.framework */; };
 		A193AA92999A53C3958BE05D /* Pods_MobileNewsAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEAA3E88429F8186911C01C /* Pods_MobileNewsAppUITests.framework */; };
+		F0152C6C1E88C9ED00E2DF31 /* BadgeSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0152C6B1E88C9ED00E2DF31 /* BadgeSwift.swift */; };
 		F0476C111E6B67D200CC34CE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */; };
 		F085397A1E6CB2E200AEF2D8 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08539791E6CB2E200AEF2D8 /* LogoutButton.swift */; };
 		F085397C1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = F085397B1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h */; };
@@ -160,6 +161,7 @@
 		8B06EA1B1E5DFCC9002ADFE5 /* Create.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		DA8B71A0BA28F897E9E0EDF4 /* Pods-MobileNewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileNewsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileNewsApp/Pods-MobileNewsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F0152C6B1E88C9ED00E2DF31 /* BadgeSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeSwift.swift; sourceTree = "<group>"; };
 		F01B73DD1E6B338600728C35 /* MobileNewsApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileNewsApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		F08539791E6CB2E200AEF2D8 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				8B06EA1F1E5DFD23002ADFE5 /* Profile.storyboard */,
 				F08539811E6CB3DA00AEF2D8 /* ProfileViewController.swift */,
 				F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */,
+				F0152C6B1E88C9ED00E2DF31 /* BadgeSwift.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				15C087051E80308900378230 /* ReadStoryTableViewCell.swift in Sources */,
 				15119CD91E652AA6006CDDFC /* HomeViewController.swift in Sources */,
 				15119CDB1E652AA6006CDDFC /* GenreTableViewCell.swift in Sources */,
+				F0152C6C1E88C9ED00E2DF31 /* BadgeSwift.swift in Sources */,
 				15119CDC1E652AA6006CDDFC /* CollapsibleTableViewController.swift in Sources */,
 				155D5F741E86FCDB00AF5604 /* CustomPrintPageRenderer.swift in Sources */,
 				15119CDD1E652AA6006CDDFC /* Extensions.swift in Sources */,
