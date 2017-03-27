@@ -21,6 +21,10 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var turnSign: UIImageView!
     @IBOutlet weak var profileTableView: UITableView!
     @IBOutlet weak var profileControl: UISegmentedControl!
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var notificationCount: BadgeSwift!
+    @IBOutlet weak var notificationImage: UIButton!
+
     
     //current checked filters
     var genre = [false, false, false, false]
@@ -48,7 +52,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.delegate = self
+        //scrollView.delegate = self
         ///
         profileTableView.delegate = self
         profileTableView.dataSource = self
@@ -56,29 +60,25 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         profileTableView.estimatedRowHeight = 140
         
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
     
         // Header - Image
-        headerImageView = UIImageView(frame: header.bounds)
-        headerImageView?.image = UIImage(named: "header_bg")
-        headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
-        header.insertSubview(headerImageView, belowSubview: headerLabel)
+//        headerImageView = UIImageView(frame: header.bounds)
+//        headerImageView?.image = UIImage(named: "header_bg")
+//        headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
+        //header.insertSubview(headerImageView, belowSubview: headerLabel)
 
         let user = PFUser.current()
         let id = user?.objectId
         userId = id!
-        //        if user != nil
-        //        {
-        //            let userId = user!.objectId
-        //            id = userId!
-        //            let index = id.index(id.startIndex, offsetBy: 9)
-        //            id.substring(from: index)
-        //
-        //        }
+
         print("my id is \(id)")
         print("my userId is \(userId)")
+        
+
         
 //        Story.getUserStories(userId: id!) {
 //            (stories:[Story]?, Error) in
@@ -91,16 +91,22 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 //        }
         
         Story.getUserStoriesArray { (stories, Error) in
-            
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
             self.stories = self.unfinishedStories + self.completedStories
             self.profileTableView.reloadData()
         }
 
+        let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
+        self.profileName.text = profileName
+        let invites = [Invite]()
+        let numInvites = invites.count
+        print("This is the number of invites i have \(numInvites)")
+        self.notificationCount.text = String(numInvites)
+        self.notificationImage.setImage(#imageLiteral(resourceName: "Invite"), for: UIControlState.normal)
+        self.notificationImage.setTitle("", for: UIControlState.normal)
         
-        
-        header.clipsToBounds = true
+        //header.clipsToBounds = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,81 +117,92 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         self.performSegue(withIdentifier: "logoutSegue", sender: self)
         PFUser.logOutInBackground()
     }
+
+    @IBAction func notification(_ sender: Any) {
+        self.performSegue(withIdentifier: "manageInviteSegue", sender: self)
+    }
+
     
 
     @IBAction func profileTabSwitch(_ sender: UISegmentedControl) {
         if profileControl.selectedSegmentIndex == 0 {
-            stories = completedStories
+            stories = completedStories + unfinishedStories
         }
-        else {
+        else if profileControl.selectedSegmentIndex == 1
+        {
             stories = unfinishedStories
+        }
+        else
+        {
+            stories = completedStories
         }
         profileTableView.reloadData()
     }
     
+
     
     
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let offset = scrollView.contentOffset.y
-        var avatarTransform = CATransform3DIdentity
-        var headerTransform = CATransform3DIdentity
-        
-        // PULL DOWN -----------------
-        
-        if offset < 0 {
-            
-            let headerScaleFactor:CGFloat = -(offset) / header.bounds.height
-            let headerSizevariation = ((header.bounds.height * (1.0 + headerScaleFactor)) - header.bounds.height)/2.0
-            headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation, 0)
-            headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
-            
-            header.layer.transform = headerTransform
-        }
-            
-            // SCROLL UP/DOWN ------------
-            
-        else {
-            
-            // Header -----------
-            
-            headerTransform = CATransform3DTranslate(headerTransform, 0, max(-offset_HeaderStop, -offset), 0)
-            
-            //  ------------ Label
-            
-            let labelTransform = CATransform3DMakeTranslation(0, max(-distance_W_LabelHeader, offset_B_LabelHeader - offset), 0)
-            headerLabel.layer.transform = labelTransform
-            
-            //  ------------ Blur
-            
-            headerBlurImageView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
-            
-            // Avatar -----------
-            
-            let avatarScaleFactor = (min(offset_HeaderStop, offset)) / avatarImage.bounds.height / 1.4 // Slow down the animation
-            let avatarSizeVariation = ((avatarImage.bounds.height * (1.0 + avatarScaleFactor)) - avatarImage.bounds.height) / 2.0
-            avatarTransform = CATransform3DTranslate(avatarTransform, 0, avatarSizeVariation, 0)
-            avatarTransform = CATransform3DScale(avatarTransform, 1.0 - avatarScaleFactor, 1.0 - avatarScaleFactor, 0)
-            
-            if offset <= offset_HeaderStop {
-                
-                if avatarImage.layer.zPosition < header.layer.zPosition{
-                    header.layer.zPosition = 0
-                }
-                
-            }else {
-                if avatarImage.layer.zPosition >= header.layer.zPosition{
-                    header.layer.zPosition = 2
-                }
-            }
-        }
-        
-        // Apply Transformations
-        
-        header.layer.transform = headerTransform
-        avatarImage.layer.transform = avatarTransform
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//        let offset = scrollView.contentOffset.y
+//        var avatarTransform = CATransform3DIdentity
+//        var headerTransform = CATransform3DIdentity
+//        
+//        // PULL DOWN -----------------
+//        
+//        if offset < 0 {
+//            
+//            let headerScaleFactor:CGFloat = -(offset) / header.bounds.height
+//            let headerSizevariation = ((header.bounds.height * (1.0 + headerScaleFactor)) - header.bounds.height)/2.0
+//            headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation, 0)
+//            headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
+//            
+//            header.layer.transform = headerTransform
+//        }
+//            
+//            // SCROLL UP/DOWN ------------
+//            
+//        else {
+//            
+//            // Header -----------
+//            
+//            headerTransform = CATransform3DTranslate(headerTransform, 0, max(-offset_HeaderStop, -offset), 0)
+//            
+//            //  ------------ Label
+//            
+//            let labelTransform = CATransform3DMakeTranslation(0, max(-distance_W_LabelHeader, offset_B_LabelHeader - offset), 0)
+//            headerLabel.layer.transform = labelTransform
+//            
+//            //  ------------ Blur
+//            
+//            headerBlurImageView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
+//            
+//            // Avatar -----------
+//            
+//            let avatarScaleFactor = (min(offset_HeaderStop, offset)) / avatarImage.bounds.height / 1.4 // Slow down the animation
+//            let avatarSizeVariation = ((avatarImage.bounds.height * (1.0 + avatarScaleFactor)) - avatarImage.bounds.height) / 2.0
+//            avatarTransform = CATransform3DTranslate(avatarTransform, 0, avatarSizeVariation, 0)
+//            avatarTransform = CATransform3DScale(avatarTransform, 1.0 - avatarScaleFactor, 1.0 - avatarScaleFactor, 0)
+//            
+//            if offset <= offset_HeaderStop {
+//                
+//                if avatarImage.layer.zPosition < header.layer.zPosition{
+//                    header.layer.zPosition = 0
+//                }
+//                
+//            }else {
+//                if avatarImage.layer.zPosition >= header.layer.zPosition{
+//                    header.layer.zPosition = 2
+//                }
+//            }
+//        }
+//        
+//        // Apply Transformations
+//        
+//        header.layer.transform = headerTransform
+//        avatarImage.layer.transform = avatarTransform
+//    }
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
