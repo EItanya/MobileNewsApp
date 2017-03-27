@@ -111,6 +111,7 @@ class PDFComposer: NSObject {
         uploadRequest?.bucket = S3BucketName
         uploadRequest?.key = "\(story!.id!).pdf"
         uploadRequest?.body = url as URL!
+        uploadRequest?.contentType = "application/pdf"
         
         let transferManager = AWSS3TransferManager.default()
        
