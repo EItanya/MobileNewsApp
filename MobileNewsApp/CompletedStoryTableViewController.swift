@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import MGSwipeTableCell
+import FBSDKCoreKit
+import FBSDKShareKit
 
 class CompletedStoryTableViewController: UITableViewController {
     
@@ -21,7 +23,7 @@ class CompletedStoryTableViewController: UITableViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    
+
     
     @IBOutlet weak var loadingModal: UILabel!
     
@@ -33,6 +35,17 @@ class CompletedStoryTableViewController: UITableViewController {
         
         titleLabel.text = story?.title
         authorLabel.text = story?.author
+        
+        let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
+        content.contentURL = NSURL(string: story!.url) as URL!
+        content.contentTitle = "\(story!.title!)"
+        content.contentDescription = "Add a caption"
+        content.imageURL = NSURL(string: "https://s3-us-west-2.amazonaws.com/mobile-news-app/logonew_720.png") as URL!
+        
+        let fbkShareBtn: FBSDKShareButton = FBSDKShareButton()
+        fbkShareBtn.shareContent = content
+        fbkShareBtn.frame = CGRect(x: headerView.center.x, y: headerView.center.y, width: 100, height: 25)
+        headerView.addSubview(fbkShareBtn)
         
         getEntryData()
 
@@ -66,7 +79,6 @@ class CompletedStoryTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
-
 
     // MARK: - Table view data source
 
