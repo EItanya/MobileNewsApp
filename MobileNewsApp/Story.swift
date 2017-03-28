@@ -75,7 +75,6 @@ class Story {
         currentUser = story["current_user"] as! String?
         entryIds = story["entry_ids"] as! [String]
         totalWordCount = story["total_word_count"] as! Int?
-        url = story["url"] as! String
 //        self.getEntries(completion: nil)
     }
     
@@ -97,7 +96,8 @@ class Story {
             "current_entry": 1,
             "current_user": "",
             "total_word_count": self.totalWordCount!,
-            "author": self.author ?? "unknown"
+            "author": self.author ?? "unknown",
+            "url": ""
         ]
         
         let entryDict : [String: Any] = [
@@ -293,6 +293,13 @@ class Story {
     
     //This function works
     func deleteStory(completion: ((_ error: Error?) -> Void)?) {
+        
+        let userObj = PFUser.current()
+        var activeStories = userObj?.object(forKey: "active_stories") as! [String]
+        let index = activeStories.index(of: self.id!)
+        activeStories.remove(at: index!)
+        userObj?.setObject(activeStories, forKey: "active_stories")
+        
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
             var returnError: Error? = nil
@@ -303,6 +310,7 @@ class Story {
             }
             else
             {
+                userObj?.saveInBackground()
                 story?.deleteInBackground()
             }
             completion!(returnError)
@@ -328,6 +336,7 @@ class Story {
         let index = activeStories.index(of: self.id!)
         activeStories.remove(at: index!)
         userObj?.setObject(activeStories, forKey: "active_stories")
+        userObj?.saveInBackground()
         
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in

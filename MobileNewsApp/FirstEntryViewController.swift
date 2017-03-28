@@ -18,9 +18,13 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
     var story : Story!
     var currentUser: PFUser?
     var effectView: UIVisualEffectView?
+    var numberOfChars = 0
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    @IBOutlet weak var placeHolderLabel: UILabel!
+    @IBOutlet weak var promptText: UITextView!
     
     
     @IBOutlet weak var storyText: UITextView!
@@ -51,6 +55,25 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
         self.view.endEditing(true)
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        numberOfChars = newText.characters.count
+        updateCharacterCount()
+        return numberOfChars <= 250
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if storyText.hasText {
+            placeHolderLabel.isHidden = true
+        } else {
+            placeHolderLabel.isHidden = false
+        }
+    }
+    
+    func updateCharacterCount() {
+        characterCountLabel.text = "\(numberOfChars)/250"
+    }
+    
     
     
 
@@ -72,7 +95,33 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
         layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         layer.borderWidth = 2
         layer.borderColor = UIColor(displayP3Red: 68/255, green: 68/255, blue: 68/255, alpha: 1).cgColor
+        
+//        placeHolderLabel.isHidden = true
+        //Setup placehodler label
+//        placeholderLabel = UILabel(frame: CGRect(x: storyText.frame.minX + 10, y: storyText.frame.minY + 10, width: storyText.frame.size.width - 20, height: storyText.frame.size.height-20))
+//        storyText.addSubview(placeholderLabel)
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(FirstEntryViewController.resignKeyboard))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.storyText.inputAccessoryView = doneToolbar
+        
+        promptText.text = self.story?.prompt!
     }
+    
+    func resignKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    
     
     
     

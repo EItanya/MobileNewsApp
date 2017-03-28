@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Manage Invite Table View Controller-->
+        <!--Invites-->
         <scene sceneID="yKF-iL-3RE">
             <objects>
                 <tableViewController id="ldY-dd-5uw" customClass="ManageInviteTableViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,6 +109,7 @@
                             <outlet property="delegate" destination="ldY-dd-5uw" id="jhn-eV-hcq"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Invites" id="mjR-qv-ZoR"/>
                     <connections>
                         <outlet property="inviteTableView" destination="Ues-oD-dY1" id="3iN-SW-A3H"/>
                     </connections>
