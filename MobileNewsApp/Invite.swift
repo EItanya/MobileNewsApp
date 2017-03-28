@@ -28,22 +28,23 @@ class Invite {
         
     }
     
-    static func getUsers(usersIds: [String], completion: ((_ users: [User]?, _ error: Error?) -> Void)?) {
+    static func getUsers(usersIds: [String], completion: ((_ users: [PFObject]?, _ error: Error?) -> Void)?) {
         let query:PFQuery = PFUser.query()!
-        query.whereKey("objectId", equalTo: usersIds)
+//        query.whereKey("objectId", equalTo: usersIds)
+        query.selectKeys(usersIds)
         
         query.findObjectsInBackground(block: {(users: [PFObject]?, error: Error?) -> Void in
-            var returnArray =  [User]()
+            let returnArray =  [PFObject]()
             var returnError: Error? = nil
             if error != nil
             {
                 returnError = error!
-                print("Error getting invites")
+                print("Error getting Users")
             }
             else
             {
-                print("successfully retrieved invites")
-                returnArray = User.convertToUsers(userObjects: users!)
+                print("successfully retrieved Users")
+//                returnArray = User.convertToUsers(userObjects: users!)
                 
             }
             

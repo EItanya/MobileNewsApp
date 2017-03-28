@@ -44,8 +44,10 @@ class ManageInviteTableViewController: UITableViewController {
                     idArray.append(invite.from)
                 }
                 
-                Invite.getUsers(usersIds: idArray, completion: {(users: [User]?, error: Error?) -> Void in
-                    
+                Invite.getUsers(usersIds: idArray, completion: {(users: [PFObject]?, error: Error?) -> Void in
+                    for user in users! {
+                        print(user.objectId)
+                    }
                 })
                 
             }

@@ -101,7 +101,7 @@ class User {
         for user in userObjects
         {
             //Code to set up basic user Object
-            let userObject: User?  = User(email: user.object(forKey: "username") as! String, firstName: user.object(forKey: "first_name") as! String, lastName: user.object(forKey: "last_name") as! String, id: user.objectId!, completedStories: user.object(forKey: "completed_stories") as? [String], activeStories: user.object(forKey: "active_stories") as? [String])
+            let userObject: User?  = User(email: user.object(forKey: "email") as! String, firstName: user.object(forKey: "first_name") as! String, lastName: user.object(forKey: "last_name") as! String, id: user.objectId!, completedStories: user.object(forKey: "completed_stories") as? [String], activeStories: user.object(forKey: "active_stories") as? [String])
             if let fb_id = user.object(forKey: "fb_id") as? String
             {
                 userObject?.fb_id = fb_id
