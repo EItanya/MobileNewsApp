@@ -13,6 +13,7 @@ class StoryInfoViewController: UIViewController {
     
     var story: Story?
     var users = [User]()
+    var allUsers = [User]()
     var storyUsers = [String: [User]]()
     let user: PFUser = PFUser.current()!
     var admin: Bool = false
@@ -48,6 +49,20 @@ class StoryInfoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func updateTable() {
+//        print(invited.count)
+//        if userGroups.count > 1 {
+//            userGroups[1].sectionObjects = users.filter({self.invited.contains($0.id!)})
+//            self.userTable.reloadData()
+//        }
+        if invited.count > 0 {
+            print(invited)
+            print(users)
+            userGroups[1].sectionObjects = allUsers.filter({self.invited.contains($0.id!)})
+            self.userTable.reloadData()
+        }
+    }
+    
     func getListOfUsers() {
         story?.getUsers(completion: {(users: [User]?, error: Error?) -> Void in
             if error != nil
@@ -73,6 +88,7 @@ class StoryInfoViewController: UIViewController {
             }
             else
             {
+                self.allUsers = users!
                 self.users = users!.filter({(user) -> Bool in
                     return self.story!.users.index(of: user.id!) != nil
                 })
@@ -195,6 +211,7 @@ class StoryInfoViewController: UIViewController {
         let vc = segue.destination as! InviteViewController
         vc.story = self.story!
         vc.invited = self.invited
+        vc.parentVC = self
         vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

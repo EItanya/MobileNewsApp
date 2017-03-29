@@ -17,6 +17,7 @@ class InviteViewController: UIViewController {
     var users = [User]()
     var story: Story!
     var invited = [String]()
+    var parentVC: StoryInfoViewController!
     
     var filteredUsers = [User]()
     var selectedUsers = [String]()
@@ -46,7 +47,10 @@ class InviteViewController: UIViewController {
                 print("There was an error retrieving the users")
             }
             else {
-                self.invited.append((PFUser.current()?.objectId!)!)
+//                self.invited.append((PFUser.current()?.objectId!)!)
+                for user in self.story.users {
+                    self.invited.append(user)
+                }
                 self.users = users!.filter({ !self.invited.contains($0.id!)})
 //                for user in self.users {
 //                    if self.invited.contains(user.id!) {
@@ -92,12 +96,18 @@ class InviteViewController: UIViewController {
             return
         }
         
+        
+        
         story.inviteUsers(users: self.selectedUsers, completion: {(error: Error?) -> Void in
             if error != nil {
                 print("Something went wrong")
             }
             else
             {
+                for user in self.selectedUsers {
+                    self.parentVC.invited.append(user)
+                }
+                self.parentVC.updateTable()
                 self.dismiss(animated: true, completion: nil)
             }
             
