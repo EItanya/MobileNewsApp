@@ -22,8 +22,6 @@ class CompletedStoryTableViewController: UITableViewController {
     @IBOutlet weak var headerView: UIView!
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-
     
     @IBOutlet weak var loadingModal: UILabel!
     
@@ -32,9 +30,9 @@ class CompletedStoryTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 75
+        self.tableView.separatorStyle = .none
         
         titleLabel.text = story?.title
-        authorLabel.text = story?.author
         
         let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
         content.contentURL = NSURL(string: story!.url) as URL!
@@ -44,7 +42,7 @@ class CompletedStoryTableViewController: UITableViewController {
         
         let fbkShareBtn: FBSDKShareButton = FBSDKShareButton()
         fbkShareBtn.shareContent = content
-        fbkShareBtn.frame = CGRect(x: headerView.center.x, y: headerView.center.y, width: 100, height: 25)
+        fbkShareBtn.frame = CGRect(x: headerView.center.x + 90, y: headerView.center.y + 15, width: 90, height: 25)
         headerView.addSubview(fbkShareBtn)
         
         getEntryData()
@@ -196,3 +194,4 @@ class CompletedStoryTableViewController: UITableViewController {
     }
 
 }
+

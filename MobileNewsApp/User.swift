@@ -45,15 +45,12 @@ class User {
         self.activeStoryIds = activeStories
     }
     
-    init(email: String, firstName: String, lastName: String, id: String, completedStories: [String]?, activeStories: [String]?, fb_id: String, fb_profile_picture: String) {
-        self.email = email
+    init( firstName: String, lastName: String, id: String, completedStories: [String]?, activeStories: [String]?) {
         self.firstName = firstName
         self.lastName = lastName
         self.id = id
         self.comletedStoryIds = completedStories
         self.activeStoryIds = activeStories
-        self.fb_id = fb_id
-        self.fb_profile_picture = fb_profile_picture
     }
     
     
@@ -101,7 +98,7 @@ class User {
         for user in userObjects
         {
             //Code to set up basic user Object
-            let userObject: User?  = User(email: user.object(forKey: "username") as! String, firstName: user.object(forKey: "first_name") as! String, lastName: user.object(forKey: "last_name") as! String, id: user.objectId!, completedStories: user.object(forKey: "completed_stories") as? [String], activeStories: user.object(forKey: "active_stories") as? [String])
+            let userObject: User?  = User(firstName: user.object(forKey: "first_name") as! String, lastName: user.object(forKey: "last_name") as! String, id: user.objectId!, completedStories: user.object(forKey: "completed_stories") as? [String], activeStories: user.object(forKey: "active_stories") as? [String])
             if let fb_id = user.object(forKey: "fb_id") as? String
             {
                 userObject?.fb_id = fb_id
@@ -117,6 +114,8 @@ class User {
     
     static func getAllUsers(completion: ((_ users: [User]?, _ error: Error?) -> Void)?){
         let query:PFQuery = PFUser.query()!
+//        let user = PFUser.current()
+//        query.whereKey("objectId", notEqualTo: user?.objectId!)
         
         query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
             var returnError: Error? = nil
@@ -129,6 +128,11 @@ class User {
             else
             {
                 print("Successfully retrieved users")
+//                for user in objects! {
+//                    print(user.object(forKey: "first_name") as! String)
+//                    print(user.object(forKey: "last_name") as! String)
+//                    print(user.objectId!)
+//                }
                 userArray = User.convertToUsers(userObjects: objects!)
                 
             }

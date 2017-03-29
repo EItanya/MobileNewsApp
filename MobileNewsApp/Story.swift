@@ -75,7 +75,6 @@ class Story {
         currentUser = story["current_user"] as! String?
         entryIds = story["entry_ids"] as! [String]
         totalWordCount = story["total_word_count"] as! Int?
-        url = story["url"] as! String
 //        self.getEntries(completion: nil)
     }
     
@@ -97,7 +96,8 @@ class Story {
             "current_entry": 1,
             "current_user": "",
             "total_word_count": self.totalWordCount!,
-            "author": self.author ?? "unknown"
+            "author": self.author ?? "unknown",
+            "url": ""
         ]
         
         let entryDict : [String: Any] = [
@@ -293,6 +293,13 @@ class Story {
     
     //This function works
     func deleteStory(completion: ((_ error: Error?) -> Void)?) {
+        
+        let userObj = PFUser.current()
+        var activeStories = userObj?.object(forKey: "active_stories") as! [String]
+        let index = activeStories.index(of: self.id!)
+        activeStories.remove(at: index!)
+        userObj?.setObject(activeStories, forKey: "active_stories")
+        
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
             var returnError: Error? = nil
@@ -303,6 +310,7 @@ class Story {
             }
             else
             {
+                userObj?.saveInBackground()
                 story?.deleteInBackground()
             }
             completion!(returnError)
@@ -328,6 +336,7 @@ class Story {
         let index = activeStories.index(of: self.id!)
         activeStories.remove(at: index!)
         userObj?.setObject(activeStories, forKey: "active_stories")
+        userObj?.saveInBackground()
         
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
@@ -530,27 +539,51 @@ class Story {
         let user = PFUser.current()
         let myId = (user?.objectId)!
         let story: String = self.id!
-        var objArray = [PFObject]()
+        var objArray : [[String: String]] = []
         for userId in users {
-            objArray.append(PFObject(className: "Invite", dictionary: [
+            objArray.append([
                 "to": userId,
                 "from": myId,
                 "story": story
-                ]))
+            ])
+//            objArray.append(PFObject(className: "Invite", dictionary: [
+//                "to": userId,
+//                "from": myId,
+//                "story": story
+//                ]))
         }
         
-        PFObject.saveAll(inBackground: objArray, block: {(success: Bool?, error: Error?) -> Void in
-            var returnError: Error? = nil
-            if error != nil
-            {
-                print("there was an error inviting the user")
-                returnError = error
+        let user_name = "\(user?.object(forKey: "first_name") as! String) \(user?.object(forKey: "last_name") as! String)"
+        
+        PFCloud.callFunction(inBackground: "inviteUsers", withParameters: ["invites": objArray, "name": user_name, "story_name": self.title!], block: {
+            (response: Any?, error: Error?) -> Void in
+            //Edit later to include message about server issues.
+            let returnError : Error? = nil
+            if error != nil {
+                print("Error saving data to DB:", error ?? "")
+                
+            } else {
+                print(response)
             }
-            
             if completion != nil {
                 completion!(returnError)
             }
+            
         })
+
+        
+//        PFObject.saveAll(inBackground: objArray, block: {(success: Bool?, error: Error?) -> Void in
+//            var returnError: Error? = nil
+//            if error != nil
+//            {
+//                print("there was an error inviting the user")
+//                returnError = error
+//            }
+//            
+//            if completion != nil {
+//                completion!(returnError)
+//            }
+//        })
         
     }
 
