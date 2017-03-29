@@ -195,10 +195,10 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="900"/>
                     <connections>
-                        <outlet property="avatarImage" destination="9ON-Zh-usp" id="3SI-m8-zVi"/>
                         <outlet property="notificationCount" destination="JEY-Xr-dGy" id="baE-dy-Enu"/>
                         <outlet property="notificationImage" destination="qBC-4q-ojt" id="ubz-e1-Gob"/>
                         <outlet property="profileControl" destination="9AI-x9-fLe" id="n3T-v7-nAV"/>
+                        <outlet property="profileImage" destination="9ON-Zh-usp" id="kHV-o5-8wd"/>
                         <outlet property="profileName" destination="RV2-FL-Jan" id="2VH-Nb-VDY"/>
                         <outlet property="profileTableView" destination="jba-e0-D8Z" id="xGy-gh-gET"/>
                         <segue destination="UZK-cB-ZWN" kind="show" identifier="manageInviteSegue" id="PqL-qZ-aYY"/>

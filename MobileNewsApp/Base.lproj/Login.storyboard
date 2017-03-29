@@ -22,7 +22,7 @@
         <!--Login View Controller-->
         <scene sceneID="gIu-5A-cV9">
             <objects>
-                <viewController id="PH3-hY-Oa6" customClass="LoginViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="PH3-hY-Oa6" customClass="LoginViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hrc-es-NSO"/>
                         <viewControllerLayoutGuide type="bottom" id="ie9-kO-HYF"/>

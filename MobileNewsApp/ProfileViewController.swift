@@ -50,6 +50,13 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     var isMyTurn = false
     var userId = String()
     
+    var entryArray = [Entry]()
+    var userImageDict: [String: UIImage] = [:]
+    @IBOutlet weak var profileImage: AvatarImageView!
+
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //scrollView.delegate = self
@@ -106,6 +113,45 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         self.notificationImage.setImage(#imageLiteral(resourceName: "Invite"), for: UIControlState.normal)
         self.notificationImage.setTitle("", for: UIControlState.normal)
         
+        //let img = userImageDict[user]
+        
+        //let image = (user?.object(forKey: "fb_profile_picture") as! UIImage)
+        //print("This is my link to the picture: \(image)")
+        //self.profileImage.image = image
+        
+        //let imageString = (user?.object(forKey: "fb_profile_picture"))
+
+        
+       // let url = URL(string: image.imageString)
+        let session = URLSession(configuration: .default)
+        let url = user!["fb_profile_picture"] as? String
+        let pictureUrl = URL(string: url!)
+        
+        let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
+            if error != nil {
+                print ("Error in downloading image")
+            }
+            else {
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded profile picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        self.profileImage.image = UIImage(data: imageData)
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        })
+        downloadPicTask.resume()
+
+        
+        
+        
+//        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+//        imageView.image = UIImage(data: data!)
+        
         //header.clipsToBounds = true
     }
     
@@ -114,7 +160,13 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func logoutButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        UIApplication.shared.keyWindow?.rootViewController = viewController
+        
+        
+        //self.performSegue(withIdentifier: "logoutSegue", sender: self)
         PFUser.logOutInBackground()
     }
 
