@@ -539,27 +539,51 @@ class Story {
         let user = PFUser.current()
         let myId = (user?.objectId)!
         let story: String = self.id!
-        var objArray = [PFObject]()
+        var objArray : [[String: String]] = []
         for userId in users {
-            objArray.append(PFObject(className: "Invite", dictionary: [
+            objArray.append([
                 "to": userId,
                 "from": myId,
                 "story": story
-                ]))
+            ])
+//            objArray.append(PFObject(className: "Invite", dictionary: [
+//                "to": userId,
+//                "from": myId,
+//                "story": story
+//                ]))
         }
         
-        PFObject.saveAll(inBackground: objArray, block: {(success: Bool?, error: Error?) -> Void in
-            var returnError: Error? = nil
-            if error != nil
-            {
-                print("there was an error inviting the user")
-                returnError = error
+        let user_name = "\(user?.object(forKey: "first_name") as! String) \(user?.object(forKey: "last_name") as! String)"
+        
+        PFCloud.callFunction(inBackground: "inviteUsers", withParameters: ["invites": objArray, "name": user_name, "story_name": self.title!], block: {
+            (response: Any?, error: Error?) -> Void in
+            //Edit later to include message about server issues.
+            let returnError : Error? = nil
+            if error != nil {
+                print("Error saving data to DB:", error ?? "")
+                
+            } else {
+                print(response)
             }
-            
             if completion != nil {
                 completion!(returnError)
             }
+            
         })
+
+        
+//        PFObject.saveAll(inBackground: objArray, block: {(success: Bool?, error: Error?) -> Void in
+//            var returnError: Error? = nil
+//            if error != nil
+//            {
+//                print("there was an error inviting the user")
+//                returnError = error
+//            }
+//            
+//            if completion != nil {
+//                completion!(returnError)
+//            }
+//        })
         
     }
 

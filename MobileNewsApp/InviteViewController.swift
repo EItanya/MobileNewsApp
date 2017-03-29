@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class InviteViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class InviteViewController: UIViewController {
     
     var users = [User]()
     var story: Story!
+    var invited = [String]()
     
     var filteredUsers = [User]()
     var selectedUsers = [String]()
@@ -44,8 +46,14 @@ class InviteViewController: UIViewController {
                 print("There was an error retrieving the users")
             }
             else {
-                self.users = users!
-                self.filteredUsers = users!
+                self.invited.append((PFUser.current()?.objectId!)!)
+                self.users = users!.filter({ !self.invited.contains($0.id!)})
+//                for user in self.users {
+//                    if self.invited.contains(user.id!) {
+//                        
+//                    }
+//                }
+                self.filteredUsers = self.users
 //                self.filteredUsers = self.users.map({ (value: User) -> User in
 //                    return value
 //                })
