@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN Alternate Regular.otf">
+            <string>DIN-RegularAlternate</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Story Join View Controller-->
         <scene sceneID="x0y-XU-EQr">
@@ -67,6 +72,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ug1-JC-LWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-783.20000000000005" y="348.57571214392806"/>
+        </scene>
+        <!--Join Thank You View Controller-->
+        <scene sceneID="apj-5v-1Kw">
+            <objects>
+                <viewController storyboardIdentifier="JoinThankYou" id="54z-xl-DYX" customClass="JoinThankYouViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZvO-zB-abw"/>
+                        <viewControllerLayoutGuide type="bottom" id="bzo-5V-cwf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4FI-FY-Q7r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCP-Sw-Uil">
+                                <rect key="frame" x="16" y="187" width="343" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Thanks for joining the story! We'll notify you when it's your turn. Press the 'X' button in the left-hand corner to go back to the Home screen!</string>
+                                <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.4006639635" green="0.87087621930000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rkq-IG-WoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="104.8" y="348.57571214392806"/>
         </scene>
     </scenes>
 </document>
