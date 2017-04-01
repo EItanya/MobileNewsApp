@@ -52,7 +52,7 @@ class StoryJoinViewController: UIViewController {
                 print(error!)
             }
             else {
-                if self.story?.currentEntry == 1 {
+                if self.story?.currentUser == PFUser.current()?.objectId {
                     let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
                     vc.story = self.story
@@ -63,9 +63,9 @@ class StoryJoinViewController: UIViewController {
                     let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "JoinThankYou") as! JoinThankYouViewController
                     self.show(vc, sender: self)
-
                 }
-            }})
+            }
+        })
     }
     
     //Function to join story
