@@ -190,24 +190,26 @@ class Story {
                 print(story ?? "")
                 var users : [String] = story?.object(forKey: "users") as! [String]
                 let currentUser: String = story?.object(forKey: "current_user") as! String
-                if users.count == 1 && currentUser == "" {
-                    //Logic if this is the second user being added
-//                    story?.setObject(user?.objectId! as Any, forKey: "current_user")
-                    story?.setValue(user?.objectId!, forKey: "current_user")
-                    print(self)
-                    self.currentUser = user?.objectId!
-                }
+                if !users.contains(currentUser) {
+                    if users.count == 1 && currentUser == "" {
+                        //Logic if this is the second user being added
+//                      story?.setObject(user?.objectId! as Any, forKey: "current_user")
+                        story?.setValue(user?.objectId!, forKey: "current_user")
+                        print(self)
+                        self.currentUser = user?.objectId!
+                    }
 
                 
-                users.append((user?.objectId)!)
-                story?.setObject(users, forKey: "users")
-                story?.saveInBackground()
+                    users.append((user?.objectId)!)
+                    story?.setObject(users, forKey: "users")
+                    story?.saveInBackground()
                 
-                //Code to add story to users_active stories
-                var activeArray : [String] = user?.object(forKey: "active_stories") as! [String]
-                activeArray.append(self.id! as String)
-                user?.setObject(activeArray, forKey: "active_stories")
-                user?.saveInBackground()
+                    //Code to add story to users_active stories
+                    var activeArray : [String] = user?.object(forKey: "active_stories") as! [String]
+                    activeArray.append(self.id! as String)
+                    user?.setObject(activeArray, forKey: "active_stories")
+                    user?.saveInBackground()
+                }
                 
             } else {
                 print(error ?? "")

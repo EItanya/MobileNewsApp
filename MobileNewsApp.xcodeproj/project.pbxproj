@@ -45,6 +45,7 @@
 		15119CDD1E652AA6006CDDFC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15119CD61E652AA6006CDDFC /* Extensions.swift */; };
 		15119CDE1E652AA6006CDDFC /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15119CD71E652AA6006CDDFC /* CollapsibleTableViewHeader.swift */; };
 		15119CE11E652E2C006CDDFC /* HomeStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15119CE01E652E2C006CDDFC /* HomeStoryTableViewCell.swift */; };
+		15314B7F1E8EAD8B00386DE9 /* JoinThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15314B7E1E8EAD8B00386DE9 /* JoinThankYouViewController.swift */; };
 		15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E721E58FECB002C9BD4 /* TabViewController.swift */; };
 		15422E771E590278002C9BD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15422E761E590278002C9BD4 /* LoginViewController.swift */; };
 		155D5F701E86F93400AF5604 /* PDFComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155D5F6F1E86F93400AF5604 /* PDFComposer.swift */; };
@@ -131,6 +132,7 @@
 		15119CD61E652AA6006CDDFC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		15119CD71E652AA6006CDDFC /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollapsibleTableViewHeader.swift; path = MobileNewsApp/CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		15119CE01E652E2C006CDDFC /* HomeStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeStoryTableViewCell.swift; path = MobileNewsApp/HomeStoryTableViewCell.swift; sourceTree = "<group>"; };
+		15314B7E1E8EAD8B00386DE9 /* JoinThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinThankYouViewController.swift; sourceTree = "<group>"; };
 		15422E721E58FECB002C9BD4 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		15422E761E590278002C9BD4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		155D5F6F1E86F93400AF5604 /* PDFComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFComposer.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				078EF8AE1E7193440010862C /* Story Info */,
 				0778E89B1E6F0CB80061898B /* Completed Story */,
 				07E62BAB1E610BA800B3F3DA /* JoinStory.storyboard */,
+				15314B7E1E8EAD8B00386DE9 /* JoinThankYouViewController.swift */,
 				155D5F6E1E86F91100AF5604 /* CreatePDF */,
 				071A23051E6A30D500260D81 /* StoryJoinViewController.swift */,
 				07E62BAD1E6364FE00B3F3DA /* Story.swift */,
@@ -778,6 +781,7 @@
 				0778E8A11E6F0D770061898B /* CompletedStoryTableViewCell.swift in Sources */,
 				07E62BAE1E6364FE00B3F3DA /* Story.swift in Sources */,
 				07E62BAA1E610B6E00B3F3DA /* FirstEntryViewController.swift in Sources */,
+				15314B7F1E8EAD8B00386DE9 /* JoinThankYouViewController.swift in Sources */,
 				15422E731E58FECB002C9BD4 /* TabViewController.swift in Sources */,
 				07579B371E762DAE0021AF85 /* ManageInviteTableViewController.swift in Sources */,
 				15E99A501E4E9F6100B736B4 /* RegistrationViewController.swift in Sources */,
