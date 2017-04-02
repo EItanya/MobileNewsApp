@@ -14,11 +14,13 @@ class Invite {
     var from: String!
     var fromObject: User? = nil
     var id: String!
+    var story: String!
     
-    init(to: String, from: String, id: String) {
+    init(to: String, from: String, id: String, story: String) {
         self.to = to
         self.from = from
         self.id = id
+        self.story = story
     }
     
     
@@ -27,6 +29,23 @@ class Invite {
     func delete() {
         
     }
+    
+    /*static func getUserInvites(completion: ((_ invites: [Invite]) -> Void)?) {
+        let query = PFQuery(className: "Invite")
+        query.whereKey("to", equalTo: PFUser.current()?.objectId)
+        query.findObjectsInBackground(block: { (invites: [PFObject]?, error: Error?) -> Void in
+            if error == nil {
+                print("Error getting invites")
+            }
+            else {
+               let userInvites = self.convertToInvite(objArray: invites!)
+               
+                if completion != nil {
+                    completion!(userInvites)
+                }
+            }
+        })
+    }*/
     
     static func getUsers(usersIds: [String], completion: ((_ users: [PFObject]?, _ error: Error?) -> Void)?) {
         let query:PFQuery = PFUser.query()!
@@ -88,9 +107,10 @@ class Invite {
         for invite in objArray {
             inviteArray.append(Invite(to: invite.object(forKey: "to") as! String,
                                       from: invite.object(forKey: "from") as! String,
-                                      id: invite.objectId!))
+                                      id: invite.objectId!,
+                                      story: invite.object(forKey: "story") as! String)
+                               )
         }
-        
         return inviteArray
     }
     

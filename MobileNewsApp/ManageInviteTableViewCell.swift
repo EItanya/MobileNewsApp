@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ManageInviteTableViewCell: UITableViewCell {
 
@@ -24,6 +25,8 @@ class ManageInviteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var infoLabel: UILabel!
     
+    var inviteId: String?
+    var storyId: String?
     
     
     override func awakeFromNib() {
@@ -36,5 +39,30 @@ class ManageInviteTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func acceptInviteBtn(_ sender: UIButton) {
+        let query = PFQuery(className: "Story")
+        query.getObjectInBackground(withId: storyId!, block: {(story: PFObject?, error: Error?) -> Void in
+            if error != nil {
+                print("Error getting story")
+            }
+            else {
+                let story = Story.convertToStory(story: story!)
+                story.addUser(completion: nil)
+            }
+        })
+    }
+    
+    @IBAction func rejectInviteBtn(_ sender: UIButton) {
+        let query = PFQuery(className: "Invite")
+        query.getObjectInBackground(withId: inviteId!, block: {(invite: PFObject?, error: Error?) -> Void in
+            if error != nil {
+                print("Error getting invite")
+            }
+            else {
+                invite?.deleteInBackground()
+            }
+        })
+    }
+    
 }

@@ -39,7 +39,8 @@ class ManageInviteTableViewController: UITableViewController {
             }
             else {
                 self.invites = invites!
-                var idArray = [String]()
+                self.inviteTableView.reloadData()
+                /*var idArray = [String]()
                 for invite in invites! {
                     idArray.append(invite.from)
                 }
@@ -48,8 +49,7 @@ class ManageInviteTableViewController: UITableViewController {
                     for user in users! {
                         print(user.objectId)
                     }
-                })
-                
+                })*/
             }
         })
     }
@@ -78,6 +78,10 @@ class ManageInviteTableViewController: UITableViewController {
         
 
         // Configure the cell...
+        cell.titleLabel.text = invite.story
+        cell.inviteId = invite.id
+        cell.storyId = invite.story
+        
 
         return cell
     }
