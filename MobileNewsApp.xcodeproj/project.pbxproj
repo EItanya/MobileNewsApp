@@ -74,7 +74,6 @@
 		F08539801E6CB37F00AEF2D8 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = F085397E1E6CB37F00AEF2D8 /* FXBlurView.m */; };
 		F08539821E6CB3DA00AEF2D8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08539811E6CB3DA00AEF2D8 /* ProfileViewController.swift */; };
 		F08539841E6CB42400AEF2D8 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08539831E6CB42400AEF2D8 /* AvatarImageView.swift */; };
-		F0F25A0A1E91D68A00384077 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F25A091E91D68A00384077 /* UIBarButtonItem+Badge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,8 +175,6 @@
 		F085397E1E6CB37F00AEF2D8 /* FXBlurView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		F08539811E6CB3DA00AEF2D8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F08539831E6CB42400AEF2D8 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
-		F0F25A081E91D61B00384077 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
-		F0F25A091E91D68A00384077 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
 		FCEAA3E88429F8186911C01C /* Pods_MobileNewsAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileNewsAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -436,8 +433,6 @@
 				F0152C6B1E88C9ED00E2DF31 /* BadgeSwift.swift */,
 				F0621CD01E91A51100DD04E1 /* BBBadgeBarButtonItem.h */,
 				F0621CD11E91A54300DD04E1 /* BBBadgeBarButtonItem.m */,
-				F0F25A081E91D61B00384077 /* UIBarButtonItem+Badge.h */,
-				F0F25A091E91D68A00384077 /* UIBarButtonItem+Badge.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -775,7 +770,6 @@
 				15119CDE1E652AA6006CDDFC /* CollapsibleTableViewHeader.swift in Sources */,
 				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
 				F0621CD21E91A54300DD04E1 /* BBBadgeBarButtonItem.m in Sources */,
-				F0F25A0A1E91D68A00384077 /* UIBarButtonItem+Badge.m in Sources */,
 				0778E89F1E6F0D3B0061898B /* CompletedStoryTableViewController.swift in Sources */,
 				076D78461E6A397000387D6A /* StoryViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
