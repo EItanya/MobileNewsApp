@@ -6,6 +6,7 @@ import QuartzCore
 import AVFoundation
 import BBBadgeBarButtonItem
 
+
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
 let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
@@ -25,7 +26,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var profileControl: UISegmentedControl!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-
     @IBOutlet weak var notificationImage: UIBarButtonItem!
 
     
@@ -157,22 +157,25 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         downloadPicTask.resume()
         
         
-//        var image = UIImage(named: "Invites")
-//        var button = UIButton(type: .custom)
-//        button.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(image!.size.width), height: CGFloat((image?.size.height)!))
-//        button.addTarget(self, action: #selector(self.buttonPress), for: .touchDown)
-//        button.setBackgroundImage(image, for: .normal)
-//        // Make BarButton Item
-//        var navLeftButton = UIBarButtonItem(customView: button)
-//        navigationItem.leftBarButtonItem = navLeftButton
-//        navigationItem.leftBarButtonItem?.badgeValue = "1"
-//
-//        
-//        let navRightButton = BBBadgeBarButtonItem(customUIButton: notification)
-//        //let button = UIButton(type: .custom)
+        let image = UIImage(named: "Invite")
+
+        let button = UIButton(type: .custom)
+        button.tag = 5
+        button.frame = CGRect(x:0, y:0, width:30, height:30)
+        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
+        button.setBackgroundImage(image, for: .normal)
+        
+        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+        rightButton?.badgeValue = "1"
+        rightButton?.badgeOriginX = 20
+        rightButton?.badgeOriginY = -5
+        navigationItem.rightBarButtonItem = rightButton
+        
+//        //let navRightButton = BBBadgeBarButtonItem(customUIButton: notification)
+//        let button = UIButton(type: .custom)
 //        //button.setAttributedTitle(notificationImage.attributedString(), for: .Normal)
-//        let notification = BBBadgeBarButtonItem(customUIButton: notificationImage)
-//        notificationImage.frame = CGRect(x:0, y:0, width:44, height:44)
+//        let notification = BBBadgeBarButtonItem(customUIButton: button)
+//        //notificationImage.frame = CGRect(x:0, y:0, width:44, height:44)
 //        //notification?.badgeValue = "\(numInvites)"
 //        notification?.badgeValue = "1"
 //
@@ -181,7 +184,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 //        notification?.badgeOriginX = 5
 //        notification?.badgeOriginY = 5
 //        self.navigationItem.rightBarButtonItem = notification
-
+    
+        
 
 //        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 //        imageView.image = UIImage(data: data!)
@@ -190,10 +194,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
 
-
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -209,7 +209,11 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         PFUser.logOutInBackground()
     }
 
-
+    func manageInviteSegue(_ sender: UIButton)
+    {
+        self.performSegue(withIdentifier: "manageInvitesSegue", sender: self)
+    }
+    
     
     @IBAction func manageInvite(_ sender: Any) {
         self.performSegue(withIdentifier: "manageInvitesSegue", sender: self)

@@ -172,17 +172,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="fBb-YA-bXW">
                         <barButtonItem key="backBarButtonItem" title="Back" id="wRH-8I-JU9"/>
-                        <barButtonItem key="rightBarButtonItem" tag="1" image="Invite" width="20" style="plain" id="4HJ-lL-DGl">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="manageInvite:" destination="FDg-m8-75h" id="2H9-JR-VfF"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="900"/>
                     <connections>
-                        <outlet property="notificationImage" destination="4HJ-lL-DGl" id="EBE-4T-1nT"/>
                         <outlet property="profileControl" destination="9AI-x9-fLe" id="n3T-v7-nAV"/>
                         <outlet property="profileImage" destination="9ON-Zh-usp" id="kHV-o5-8wd"/>
                         <outlet property="profileName" destination="RV2-FL-Jan" id="2VH-Nb-VDY"/>
@@ -237,7 +230,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Invite" width="25" height="25"/>
         <image name="profile" width="175" height="175"/>
         <image name="tab1" width="25" height="25"/>
     </resources>
