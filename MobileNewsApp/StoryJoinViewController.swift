@@ -19,6 +19,8 @@ class StoryJoinViewController: UIViewController {
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var previousEntryLabel: UILabel!
     
+    var joined = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,28 +46,35 @@ class StoryJoinViewController: UIViewController {
     
     
     @IBAction func joinStoryBtnClk(_ sender: UIButton) {
-        if self.story?.currentUser == "" {
-            print("Show StoryViewController")
-        }
-        story?.addUser(completion: {(error: Error?) -> Void in
-            if error != nil {
-                print(error!)
-            }
-            else {
-                if self.story?.currentUser == PFUser.current()?.objectId {
-                    let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
-                    vc.story = self.story
-                    vc.entry = self.entry
-                    self.show(vc, sender: self)
+        if joined == false {
+            joined = true
+            story?.addUser(completion: {(error: Error?) -> Void in
+                if error != nil {
+                    print(error!)
                 }
                 else {
-                    let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "JoinThankYou") as! JoinThankYouViewController
-                    self.show(vc, sender: self)
+                    if self.story?.currentUser == PFUser.current()?.objectId {
+                        let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
+                        let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
+                        vc.story = self.story
+                        vc.entry = self.entry
+                        self.show(vc, sender: self)
+                    }
+                    else {
+                        let storyboard: UIStoryboard = UIStoryboard(name: "JoinStory", bundle: nil)
+                        let vc = storyboard.instantiateViewController(withIdentifier: "JoinThankYou") as! JoinThankYouViewController
+                        self.show(vc, sender: self)
+                    }
                 }
-            }
-        })
+            })
+        }
+        else {
+            let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
+            vc.story = self.story
+            vc.entry = self.entry
+            self.show(vc, sender: self)
+        }
     }
     
     //Function to join story

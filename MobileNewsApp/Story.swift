@@ -182,6 +182,7 @@ class Story {
     
     //Add a new user to the story
     func addUser(completion: ((_ error: Error?) -> Void)?) {
+        print("Im inside addUser")
         let user = PFUser.current()
         let query = PFQuery(className: "Story")
         var returnError : Error? = nil
@@ -190,32 +191,33 @@ class Story {
                 print(story ?? "")
                 var users : [String] = story?.object(forKey: "users") as! [String]
                 let currentUser: String = story?.object(forKey: "current_user") as! String
-                if !users.contains(currentUser) {
-                    if users.count == 1 && currentUser == "" {
-                        //Logic if this is the second user being added
-//                      story?.setObject(user?.objectId! as Any, forKey: "current_user")
-                        story?.setValue(user?.objectId!, forKey: "current_user")
-                        print(self)
-                        self.currentUser = user?.objectId!
-                    }
+                if users.count == 1 && currentUser == "" {
+                    //Logic if this is the second user being added
+//                  story?.setObject(user?.objectId! as Any, forKey: "current_user")
+                    story?.setValue(user?.objectId!, forKey: "current_user")
+                    print(self)
+                    self.currentUser = user?.objectId!
+                }
 
-                
                     users.append((user?.objectId)!)
                     story?.setObject(users, forKey: "users")
                     story?.saveInBackground()
                 
-                    //Code to add story to users_active stories
-                    var activeArray : [String] = user?.object(forKey: "active_stories") as! [String]
-                    activeArray.append(self.id! as String)
-                    user?.setObject(activeArray, forKey: "active_stories")
-                    user?.saveInBackground()
-                }
-                
-            } else {
+                //Code to add story to users_active stories
+                var activeArray : [String] = user?.object(forKey: "active_stories") as! [String]
+                activeArray.append(self.id! as String)
+                user?.setObject(activeArray, forKey: "active_stories")
+                user?.saveInBackground()
+            }
+            
+            else {
                 print(error ?? "")
                 returnError = error
             }
-            completion!(returnError)
+            
+            if completion != nil {
+                completion!(returnError)
+            }
         })
         
     }
@@ -651,7 +653,32 @@ class Story {
         return storyArray
     }
     
-    //func to check for completed story 
+    static func convertToStory(story: PFObject) -> Story {
+        let newStory = Story(creator: story["created_by"] as! String,
+                        title: story["title"] as! String,
+                        genre: story["genre"] as! String,
+                        prompt: story["prompt"] as! String,
+                        maxWordCount: story["max_word_count"] as! Int,
+                        timeLimit: story["time_limit"] as! Double,
+                        participants: story["participants"] as! Int,
+                        totalTurns: story["total_turns"] as! Int,
+                        currentEntry: story["current_entry"] as! Int
+            )
+        newStory.firstEntry = story["first_entry"] as! String?
+        newStory.previousEntry = story["previous_entry"] as! String?
+        newStory.author = story["author"] as! String?
+        newStory.completed = story["completed"] as! Bool
+        newStory.id = story.objectId
+        newStory.users = story["users"] as! [String]
+        newStory.currentUser = story["current_user"] as! String?
+        newStory.entryIds = story["entry_ids"] as! [String]
+        newStory.totalWordCount = story["total_word_count"] as! Int?
+        newStory.url = story["url"] as! String
+        
+        return newStory
+    }
+    
+    //func to check for completed story
     func isStoryComplete() -> Bool {
         if currentEntry == totalTurns {
             return true
