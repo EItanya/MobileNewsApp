@@ -39,7 +39,7 @@
     self.badgeMinSize   = 8;
     self.badgeOriginX   = 7;
     self.badgeOriginY   = -9;
-    self.shouldHideBadgeAtZero = YES;
+    self.shouldHideBadgeAtZero = NO;
     self.shouldAnimateBadge = YES;
     // Avoids badge to be clipped when animating its scale
     self.customView.clipsToBounds = NO;
