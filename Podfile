@@ -16,8 +16,7 @@ target 'MobileNewsApp' do
     pod 'MGSwipeTableCell'
     pod 'AWSCore'
     pod 'AWSS3'
-
-
+    pod 'BBBadgeBarButtonItem'
     
   target 'MobileNewsAppTests' do
     inherit! :search_paths

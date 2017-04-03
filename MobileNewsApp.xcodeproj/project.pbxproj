@@ -67,6 +67,7 @@
 		A193AA92999A53C3958BE05D /* Pods_MobileNewsAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEAA3E88429F8186911C01C /* Pods_MobileNewsAppUITests.framework */; };
 		F0152C6C1E88C9ED00E2DF31 /* BadgeSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0152C6B1E88C9ED00E2DF31 /* BadgeSwift.swift */; };
 		F0476C111E6B67D200CC34CE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */; };
+		F0621CD21E91A54300DD04E1 /* BBBadgeBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F0621CD11E91A54300DD04E1 /* BBBadgeBarButtonItem.m */; };
 		F085397A1E6CB2E200AEF2D8 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08539791E6CB2E200AEF2D8 /* LogoutButton.swift */; };
 		F085397C1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = F085397B1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h */; };
 		F085397F1E6CB37F00AEF2D8 /* FXBlurView.h in Sources */ = {isa = PBXBuildFile; fileRef = F085397D1E6CB37F00AEF2D8 /* FXBlurView.h */; };
@@ -166,6 +167,8 @@
 		F0152C6B1E88C9ED00E2DF31 /* BadgeSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeSwift.swift; sourceTree = "<group>"; };
 		F01B73DD1E6B338600728C35 /* MobileNewsApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileNewsApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		F0621CD01E91A51100DD04E1 /* BBBadgeBarButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBBadgeBarButtonItem.h; sourceTree = "<group>"; };
+		F0621CD11E91A54300DD04E1 /* BBBadgeBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeBarButtonItem.m; sourceTree = "<group>"; };
 		F08539791E6CB2E200AEF2D8 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 		F085397B1E6CB33600AEF2D8 /* TB_TwitterHeader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TB_TwitterHeader-Bridging-Header.h"; sourceTree = "<group>"; };
 		F085397D1E6CB37F00AEF2D8 /* FXBlurView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
@@ -428,6 +431,8 @@
 				F08539811E6CB3DA00AEF2D8 /* ProfileViewController.swift */,
 				F0476C101E6B67D200CC34CE /* ProfileTableViewCell.swift */,
 				F0152C6B1E88C9ED00E2DF31 /* BadgeSwift.swift */,
+				F0621CD01E91A51100DD04E1 /* BBBadgeBarButtonItem.h */,
+				F0621CD11E91A54300DD04E1 /* BBBadgeBarButtonItem.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -764,6 +769,7 @@
 				071A23061E6A30D500260D81 /* StoryJoinViewController.swift in Sources */,
 				15119CDE1E652AA6006CDDFC /* CollapsibleTableViewHeader.swift in Sources */,
 				07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */,
+				F0621CD21E91A54300DD04E1 /* BBBadgeBarButtonItem.m in Sources */,
 				0778E89F1E6F0D3B0061898B /* CompletedStoryTableViewController.swift in Sources */,
 				076D78461E6A397000387D6A /* StoryViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,

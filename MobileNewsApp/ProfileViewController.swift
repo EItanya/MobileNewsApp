@@ -3,6 +3,8 @@
 import UIKit
 import Parse
 import QuartzCore
+import AVFoundation
+import BBBadgeBarButtonItem
 
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
 let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
@@ -22,9 +24,11 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var profileTableView: UITableView!
     @IBOutlet weak var profileControl: UISegmentedControl!
     @IBOutlet weak var profileName: UILabel!
-    @IBOutlet weak var notificationCount: BadgeSwift!
-    @IBOutlet weak var notificationImage: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
 
+    @IBOutlet weak var notificationImage: UIBarButtonItem!
+
+    
     
     //current checked filters
     var genre = [false, false, false, false]
@@ -52,7 +56,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     var entryArray = [Entry]()
     var userImageDict: [String: UIImage] = [:]
-    @IBOutlet weak var profileImage: AvatarImageView!
 
     
     
@@ -66,8 +69,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.estimatedRowHeight = 140
         
-        
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,9 +111,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let invites = [Invite]()
         let numInvites = invites.count
         print("This is the number of invites i have \(numInvites)")
-        self.notificationCount.text = String(numInvites)
-        self.notificationImage.setImage(#imageLiteral(resourceName: "Invite"), for: UIControlState.normal)
-        self.notificationImage.setTitle("", for: UIControlState.normal)
+        //self.notificationCount.text = String(numInvites)
+        //self.notificationImage.setImage(#imageLiteral(resourceName: "Invite"), for: UIControlState.normal)
+        //self.notificationImage.setTitle("", for: UIControlState.normal)
         
         //let img = userImageDict[user]
         
@@ -143,17 +145,55 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
                     print("Couldn't get response code for some reason")
                 }
             }
+            
+            DispatchQueue.main.async {
+                if let imageData = data {
+                    self.profileImage.contentMode = .scaleAspectFill
+                    self.profileImage.image = UIImage(data: imageData)
+                    print("image refreshed")
+                }
+            }
         })
         downloadPicTask.resume()
+        
+        
+//        var image = UIImage(named: "Invites")
+//        var button = UIButton(type: .custom)
+//        button.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(image!.size.width), height: CGFloat((image?.size.height)!))
+//        button.addTarget(self, action: #selector(self.buttonPress), for: .touchDown)
+//        button.setBackgroundImage(image, for: .normal)
+//        // Make BarButton Item
+//        var navLeftButton = UIBarButtonItem(customView: button)
+//        navigationItem.leftBarButtonItem = navLeftButton
+//        navigationItem.leftBarButtonItem?.badgeValue = "1"
+//
+//        
+//        let navRightButton = BBBadgeBarButtonItem(customUIButton: notification)
+//        //let button = UIButton(type: .custom)
+//        //button.setAttributedTitle(notificationImage.attributedString(), for: .Normal)
+//        let notification = BBBadgeBarButtonItem(customUIButton: notificationImage)
+//        notificationImage.frame = CGRect(x:0, y:0, width:44, height:44)
+//        //notification?.badgeValue = "\(numInvites)"
+//        notification?.badgeValue = "1"
+//
+//        //notification?.shouldHideBadgeAtZero = false
+//        //notification?.shouldAnimateBadge = true
+//        notification?.badgeOriginX = 5
+//        notification?.badgeOriginY = 5
+//        self.navigationItem.rightBarButtonItem = notification
 
-        
-        
-        
+
 //        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 //        imageView.image = UIImage(data: data!)
         
         //header.clipsToBounds = true
     }
+    
+
+
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -165,16 +205,16 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
         UIApplication.shared.keyWindow?.rootViewController = viewController
         
-        
         //self.performSegue(withIdentifier: "logoutSegue", sender: self)
         PFUser.logOutInBackground()
     }
 
-    @IBAction func notification(_ sender: Any) {
-        self.performSegue(withIdentifier: "manageInviteSegue", sender: self)
-    }
 
     
+    @IBAction func manageInvite(_ sender: Any) {
+        self.performSegue(withIdentifier: "manageInvitesSegue", sender: self)
+    }
+
 
     @IBAction func profileTabSwitch(_ sender: UISegmentedControl) {
         if profileControl.selectedSegmentIndex == 0 {
@@ -302,3 +342,23 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
 }
+
+//extension ProfileViewController {
+//    func setupNotification() {
+//        let button = UIButton(type: .custom)
+//        let notificationImage = "Invite"
+//        let image = UIImage(named: notificationImage)
+//        let imageView = UIImageView(image: image!)
+//        imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+//        view.addSubview(imageView)
+//
+//        //button.setAttributedTitle(imageView.attributedString(), for: .Normal)
+//        button.addTarget(self, action: Selector(("buttonClicked")), for: UIControlEvents.touchUpInside)
+//        let notification = BBBadgeBarButtonItem(customUIButton: button)
+//        button.frame = CGRect(x:0, y:0, width:44, height:44)
+//        notification?.badgeValue = num.
+//        
+//        self.navigationItem.rightBarButtonItem = notification
+//        
+//    }
+//}
