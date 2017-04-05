@@ -14,6 +14,8 @@ class ManageInviteTableViewController: UITableViewController {
     @IBOutlet var inviteTableView: UITableView!
     var user = PFUser.current()
     var invites = [Invite]()
+    var stories:[String: PFObject] = [:]
+    var fromUsers:[String:PFObject] = [:]
     
     
     
@@ -39,19 +41,41 @@ class ManageInviteTableViewController: UITableViewController {
             }
             else {
                 self.invites = invites!
-                self.inviteTableView.reloadData()
-                /*var idArray = [String]()
-                for invite in invites! {
-                    idArray.append(invite.from)
-                }
-                
-                Invite.getUsers(usersIds: idArray, completion: {(users: [PFObject]?, error: Error?) -> Void in
-                    for user in users! {
-                        print(user.objectId)
-                    }
-                })*/
+                self.getAssociatedStoryandUser()
             }
         })
+    }
+    
+    func getAssociatedStoryandUser() {
+        let myGroup = DispatchGroup()
+        for invite in self.invites {
+            myGroup.enter()
+            let storyQuery = PFQuery(className: "Story")
+            storyQuery.getObjectInBackground(withId: invite.story, block: {(story: PFObject?, error: Error?) -> Void in
+                if error != nil {
+                    print("Error getting story")
+                }
+                else {
+                    self.stories[invite.id] = story
+                    let userQuery = PFUser.query()!
+                    myGroup.enter()
+                    userQuery.getObjectInBackground(withId: invite.from, block: {(user: PFObject?, err: Error?) -> Void in
+                        if err != nil {
+                            print("Error getting user")
+                        }
+                        else {
+                            self.fromUsers[invite.id] = user
+                        }
+                        myGroup.leave()
+                    })
+                }
+                myGroup.leave()
+            })
+        }
+        
+        myGroup.notify(queue: .main) {
+            self.inviteTableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +87,19 @@ class ManageInviteTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        var numSections = 0
+        if invites.count > 0 {
+            numSections = 1
+        }
+        else {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.inviteTableView.bounds.size.width, height: self.inviteTableView.bounds.size.height))
+            noDataLabel.text = "You have no invites!"
+            noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+            noDataLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = noDataLabel
+        }
+        
+        return numSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,13 +112,10 @@ class ManageInviteTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InviteCell", for: indexPath) as! ManageInviteTableViewCell
         let invite = invites[indexPath.row]
         
-
-        // Configure the cell...
-        cell.titleLabel.text = invite.story
+        cell.titleLabel.text = stories[invite.id]?.object(forKey: "title") as! String
+        cell.storyId = stories[invite.id]?.objectId
         cell.inviteId = invite.id
-        cell.storyId = invite.story
         
-
         return cell
     }
     
