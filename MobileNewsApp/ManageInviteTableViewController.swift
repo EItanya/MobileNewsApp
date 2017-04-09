@@ -16,16 +16,17 @@ class ManageInviteTableViewController: UITableViewController {
     var invites = [Invite]()
     var stories:[String: PFObject] = [:]
     var fromUsers:[String:PFObject] = [:]
+    var userImageDict = [String: UIImage]()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getInviteList()
+//        getInviteList()
         
         inviteTableView.rowHeight = UITableViewAutomaticDimension
-        inviteTableView.estimatedRowHeight = 85
+        inviteTableView.estimatedRowHeight = 155
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,6 +35,9 @@ class ManageInviteTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getInviteList()
+    }
     func getInviteList() {
         Invite.getInvitesByUser(userId: (self.user?.objectId)!, completion: {(invites: [Invite]?, error: Error?) -> Void in
             if error != nil {
@@ -47,6 +51,7 @@ class ManageInviteTableViewController: UITableViewController {
     }
     
     func getAssociatedStoryandUser() {
+        let session = URLSession(configuration: .default)
         let myGroup = DispatchGroup()
         for invite in self.invites {
             myGroup.enter()
@@ -65,6 +70,29 @@ class ManageInviteTableViewController: UITableViewController {
                         }
                         else {
                             self.fromUsers[invite.id] = user
+                            let url = user?.object(forKey: "fb_profile_picture") as! String
+                            myGroup.enter()
+                            let pictureUrl = URL(string: url)
+                            let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
+                                if error != nil {
+                                    print ("Error in downloading image")
+                                }
+                                else {
+                                    if let res = response as? HTTPURLResponse {
+                                        print("Downloaded profile picture with response code \(res.statusCode)")
+                                        if let imageData = data {
+                                            self.userImageDict[invite.id] = UIImage(data: imageData)
+                                        } else {
+                                            print("Couldn't get image: Image is nil")
+                                        }
+                                    } else {
+                                        print("Couldn't get response code for some reason")
+                                    }
+                                }
+                                myGroup.leave()
+                            })
+                            downloadPicTask.resume()
+
                         }
                         myGroup.leave()
                     })
@@ -90,6 +118,7 @@ class ManageInviteTableViewController: UITableViewController {
         var numSections = 0
         if invites.count > 0 {
             numSections = 1
+            self.tableView.backgroundView = nil
         }
         else {
             let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.inviteTableView.bounds.size.width, height: self.inviteTableView.bounds.size.height))
@@ -112,57 +141,23 @@ class ManageInviteTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InviteCell", for: indexPath) as! ManageInviteTableViewCell
         let invite = invites[indexPath.row]
         
+        cell.avatarImageView.image = userImageDict[invite.id]
         cell.titleLabel.text = stories[invite.id]?.object(forKey: "title") as! String
+        cell.authorLabel.text = "\(fromUsers[invite.id]?.object(forKey: "first_name") as! String) \(fromUsers[invite.id]?.object(forKey: "last_name") as! String)"
         cell.storyId = stories[invite.id]?.objectId
         cell.inviteId = invite.id
-        
+        cell.infoLabel.text = stories[invite.id]?.object(forKey: "prompt") as! String
+
+        cell.delegate = self
         return cell
     }
     
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+extension ManageInviteTableViewController: expandInviteDelegate {
+    
+    func showStoryInfo() {
+        inviteTableView.beginUpdates()
+        inviteTableView.endUpdates()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

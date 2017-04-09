@@ -9,6 +9,12 @@
 import UIKit
 import Parse
 
+protocol expandInviteDelegate {
+    
+    func showStoryInfo()
+    
+}
+
 class ManageInviteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var initialView: UIView!
@@ -28,6 +34,8 @@ class ManageInviteTableViewCell: UITableViewCell {
     var inviteId: String?
     var storyId: String?
     
+    var delegate: ManageInviteTableViewController?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +48,11 @@ class ManageInviteTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func storyInfoBtn(_ sender: UIButton) {
+        hiddenView.isHidden = !hiddenView.isHidden
+        delegate?.showStoryInfo()
+    }
+    
     @IBAction func acceptInviteBtn(_ sender: UIButton) {
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: storyId!, block: {(story: PFObject?, error: Error?) -> Void in
@@ -49,11 +62,16 @@ class ManageInviteTableViewCell: UITableViewCell {
             else {
                 let story = Story.convertToStory(story: story!)
                 story.addUser(completion: nil)
+                self.deleteInvite()
             }
         })
     }
     
     @IBAction func rejectInviteBtn(_ sender: UIButton) {
+        deleteInvite()
+    }
+    
+    func deleteInvite() {
         let query = PFQuery(className: "Invite")
         query.getObjectInBackground(withId: inviteId!, block: {(invite: PFObject?, error: Error?) -> Void in
             if error != nil {
@@ -64,5 +82,4 @@ class ManageInviteTableViewCell: UITableViewCell {
             }
         })
     }
-    
 }
