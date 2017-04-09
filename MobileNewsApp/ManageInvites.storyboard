@@ -127,6 +127,13 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3h-It-XnT">
+                                            <rect key="frame" x="288" y="58" width="79" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="9cN-zb-y97" firstAttribute="top" secondItem="l7P-67-UUN" secondAttribute="topMargin" id="Oq5-rH-ezz"/>
@@ -136,8 +143,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="acceptBtn" destination="Z0K-9f-cNe" id="dFN-Pa-IBM"/>
                                     <outlet property="authorLabel" destination="PtA-rK-F6P" id="AUm-Ur-Ob2"/>
                                     <outlet property="avatarImageView" destination="wba-YF-zyr" id="8Tc-5C-x90"/>
+                                    <outlet property="decisionLabel" destination="Y3h-It-XnT" id="d08-5a-ov3"/>
+                                    <outlet property="deleteBtn" destination="unx-xe-B78" id="s8x-JT-n21"/>
                                     <outlet property="hiddenView" destination="lSW-Tm-CHh" id="Pcf-PO-kXD"/>
                                     <outlet property="infoLabel" destination="kRQ-kD-uCm" id="1lr-KX-Jhy"/>
                                     <outlet property="initialView" destination="3pZ-dm-EPJ" id="iYf-yJ-OsB"/>

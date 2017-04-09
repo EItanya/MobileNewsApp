@@ -30,6 +30,14 @@ class ManageInviteTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet var acceptBtn: UIButton!
+    @IBOutlet var deleteBtn: UIButton!
+    
+    @IBOutlet var decisionLabel: UILabel! {
+        didSet {
+            decisionLabel.isHidden = true
+        }
+    }
     
     var inviteId: String?
     var storyId: String?
@@ -61,7 +69,12 @@ class ManageInviteTableViewCell: UITableViewCell {
             }
             else {
                 let story = Story.convertToStory(story: story!)
-                story.addUser(completion: nil)
+                story.addUser(completion: { (error) -> Void in
+                    self.acceptBtn.isHidden = true
+                    self.deleteBtn.isHidden = true
+                    self.decisionLabel.text = "Accepted"
+                    self.decisionLabel.isHidden = false
+                })
                 self.deleteInvite()
             }
         })
@@ -79,6 +92,10 @@ class ManageInviteTableViewCell: UITableViewCell {
             }
             else {
                 invite?.deleteInBackground()
+                self.acceptBtn.isHidden = true
+                self.deleteBtn.isHidden = true
+                self.decisionLabel.text = "Declined"
+                self.decisionLabel.isHidden = false
             }
         })
     }
