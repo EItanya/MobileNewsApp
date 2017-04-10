@@ -184,7 +184,7 @@
                         <outlet property="profileName" destination="RV2-FL-Jan" id="2VH-Nb-VDY"/>
                         <outlet property="profileTableView" destination="jba-e0-D8Z" id="xGy-gh-gET"/>
                         <segue destination="8Qa-XT-zHz" kind="show" identifier="logoutSegue" id="Zku-Vx-iCg"/>
-                        <segue destination="yVK-EL-UbC" kind="showDetail" identifier="manageInvitesSegue" id="jTp-B1-c9Z"/>
+                        <segue destination="yVK-EL-UbC" kind="push" identifier="manageInvitesSegue" id="jTp-B1-c9Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Zl-gJ-7y6" sceneMemberID="firstResponder"/>
@@ -194,7 +194,9 @@
         <!--ManageInvites-->
         <scene sceneID="dc1-hA-1B2">
             <objects>
-                <viewControllerPlaceholder storyboardName="ManageInvites" id="yVK-EL-UbC" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ManageInvites" id="yVK-EL-UbC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5MG-fl-p6g"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rb-UJ-DQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3929" y="56"/>

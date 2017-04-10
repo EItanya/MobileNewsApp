@@ -162,6 +162,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
     func manageInviteSegue(_ sender: UIButton)
     {
+        //self.performSegue(withIdentifier: "logoutSegue", sender: self)
         self.performSegue(withIdentifier: "manageInvitesSegue", sender: self)
     }
     
@@ -190,6 +191,11 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
     }
+    
+    
+    
+    
+    
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
