@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="center" horizontalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9AI-x9-fLe">
-                                <rect key="frame" x="20" y="192" width="560" height="31"/>
+                                <rect key="frame" x="20" y="193" width="560" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cPG-Sp-wWi"/>
@@ -33,8 +33,9 @@
                                     <segment title="Incomplete"/>
                                     <segment title="Completed"/>
                                 </segments>
+                                <color key="tintColor" red="0.93057365240000001" green="0.50300402340000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
-                                    <action selector="profileTabSwitch:" destination="FDg-m8-75h" eventType="touchUpInside" id="1TH-Gm-FfC"/>
+                                    <action selector="profileTabSwitch:" destination="FDg-m8-75h" eventType="valueChanged" id="FW2-CQ-Z02"/>
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3zs-yv-dyX">

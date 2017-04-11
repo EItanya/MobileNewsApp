@@ -6,7 +6,6 @@ import QuartzCore
 import AVFoundation
 import BBBadgeBarButtonItem
 
-
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
 let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
@@ -23,10 +22,13 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var turnSign: UIImageView!
     @IBOutlet weak var profileTableView: UITableView!
+    
     @IBOutlet weak var profileControl: UISegmentedControl!
+    
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var notificationImage: UIBarButtonItem!
+    
 
     
     
@@ -68,11 +70,30 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         Story.getUserStoriesArray { (stories, Error) in
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
-            self.stories = self.unfinishedStories + self.completedStories
+            
+            if self.profileControl.selectedSegmentIndex == 0 {
+                print("All is selected in viewDidLoad")
+                self.stories = self.completedStories + self.unfinishedStories
+            }
+            else if self.profileControl.selectedSegmentIndex == 1 {
+                print("Incomplete is selected in viewDidLoad")
+
+                self.stories = self.unfinishedStories
+            }
+            else
+            {
+                print("Completed is selected in viewDidLoad")
+                self.stories = self.completedStories
+            }
             self.profileTableView.reloadData()
         }
-
     }
+
+
+    
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
 
@@ -83,12 +104,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         print("my id is \(id)")
         print("my userId is \(userId)")
         
-        Story.getUserStoriesArray { (stories, Error) in
-            self.unfinishedStories = stories!.filter { $0.completed == false }
-            self.completedStories = stories!.filter { $0.completed == true }
-            self.stories = self.unfinishedStories + self.completedStories
-            self.profileTableView.reloadData()
-        }
 
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
@@ -146,6 +161,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
 
     
+    ////////////////
+    
+
+
+    
+    ///////////////
+    
+    
+    
+ 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -172,20 +198,27 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     }
 
 
-    @IBAction func profileTabSwitch(_ sender: UISegmentedControl) {
+    // Switching between stories all, completed, incomplete
+
+    @IBAction func profileTabSwitch(_ sender: Any) {
         if profileControl.selectedSegmentIndex == 0 {
+            print("did change it to all")
             stories = completedStories + unfinishedStories
         }
         else if profileControl.selectedSegmentIndex == 1
         {
+            print("did change it to incomplete")
             stories = unfinishedStories
         }
         else
         {
+            print("did change it to completed")
+            
             stories = completedStories
         }
         profileTableView.reloadData()
     }
+    
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -209,6 +242,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         print("Number of stories: \(stories.count)")
         return stories.count
     }
+    
+    
+    
+    
+    
+    
+    
+    
+
     
     func tableView(_ profileTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -236,5 +278,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         self.show(vc, sender: self)
     }
+    
+    
+    
+    
+    
+    
 
 }
