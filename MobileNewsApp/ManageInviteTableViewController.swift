@@ -11,7 +11,6 @@ import Parse
 
 class ManageInviteTableViewController: UITableViewController {
 
-    @IBOutlet var inviteTableView: UITableView!
     var user = PFUser.current()
     var invites = [Invite]()
     var stories:[String: PFObject] = [:]
@@ -24,9 +23,6 @@ class ManageInviteTableViewController: UITableViewController {
         super.viewDidLoad()
         
 //        getInviteList()
-        
-        inviteTableView.rowHeight = UITableViewAutomaticDimension
-        inviteTableView.estimatedRowHeight = 155
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -102,7 +98,7 @@ class ManageInviteTableViewController: UITableViewController {
         }
         
         myGroup.notify(queue: .main) {
-            self.inviteTableView.reloadData()
+            self.tableView.reloadData()
         }
     }
 
@@ -121,7 +117,7 @@ class ManageInviteTableViewController: UITableViewController {
             self.tableView.backgroundView = nil
         }
         else {
-            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.inviteTableView.bounds.size.width, height: self.inviteTableView.bounds.size.height))
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
             noDataLabel.text = "You have no invites!"
             noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
             noDataLabel.textAlignment = NSTextAlignment.center
@@ -141,23 +137,28 @@ class ManageInviteTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InviteCell", for: indexPath) as! ManageInviteTableViewCell
         let invite = invites[indexPath.row]
         
-        cell.avatarImageView.image = userImageDict[invite.id]
+        cell.avatarImg.image = userImageDict[invite.id]
         cell.titleLabel.text = stories[invite.id]?.object(forKey: "title") as! String
         cell.authorLabel.text = "\(fromUsers[invite.id]?.object(forKey: "first_name") as! String) \(fromUsers[invite.id]?.object(forKey: "last_name") as! String)"
         cell.storyId = stories[invite.id]?.objectId
         cell.inviteId = invite.id
-        cell.infoLabel.text = stories[invite.id]?.object(forKey: "prompt") as! String
-
+        
         cell.delegate = self
+
         return cell
     }
     
 }
 
-extension ManageInviteTableViewController: expandInviteDelegate {
-    
-    func showStoryInfo() {
-        inviteTableView.beginUpdates()
-        inviteTableView.endUpdates()
+extension ManageInviteTableViewController: StoryInfoDelegate {
+    func presentStoryInfo(inviteId: String, cell: ManageInviteTableViewCell) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "ManageInvites", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "InviteStoryInfo") as! InviteStoryInfoViewController
+        
+        vc.delegate = cell
+        
+        vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        present(vc, animated: true, completion: nil)
     }
+    
 }

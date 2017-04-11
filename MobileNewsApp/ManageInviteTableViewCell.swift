@@ -9,41 +9,27 @@
 import UIKit
 import Parse
 
-protocol expandInviteDelegate {
-    
-    func showStoryInfo()
-    
+protocol StoryInfoDelegate {
+    func presentStoryInfo(inviteId: String, cell: ManageInviteTableViewCell)
 }
 
-class ManageInviteTableViewCell: UITableViewCell {
+class ManageInviteTableViewCell: UITableViewCell, InviteStoryInfoDelegate {
 
-    @IBOutlet weak var initialView: UIView!
-    @IBOutlet weak var hiddenView: UIView! {
-        didSet {
-            hiddenView.isHidden = true
-        }
-    }
+    var inviteId: String?
+    var storyId: String?
     
-    
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    
-    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet var avatarImg: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
     @IBOutlet var acceptBtn: UIButton!
-    @IBOutlet var deleteBtn: UIButton!
-    
+    @IBOutlet var declineBtn: UIButton!
     @IBOutlet var decisionLabel: UILabel! {
         didSet {
             decisionLabel.isHidden = true
         }
     }
     
-    var inviteId: String?
-    var storyId: String?
-    
     var delegate: ManageInviteTableViewController?
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,12 +42,11 @@ class ManageInviteTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func storyInfoBtn(_ sender: UIButton) {
-        hiddenView.isHidden = !hiddenView.isHidden
-        delegate?.showStoryInfo()
+    @IBAction func acceptBtnClk(_ sender: UIButton) {
+        acceptInvite()
     }
     
-    @IBAction func acceptInviteBtn(_ sender: UIButton) {
+    func acceptInvite() {
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: storyId!, block: {(story: PFObject?, error: Error?) -> Void in
             if error != nil {
@@ -71,7 +56,7 @@ class ManageInviteTableViewCell: UITableViewCell {
                 let story = Story.convertToStory(story: story!)
                 story.addUser(completion: { (error) -> Void in
                     self.acceptBtn.isHidden = true
-                    self.deleteBtn.isHidden = true
+                    self.declineBtn.isHidden = true
                     self.decisionLabel.text = "Accepted"
                     self.decisionLabel.isHidden = false
                 })
@@ -79,9 +64,18 @@ class ManageInviteTableViewCell: UITableViewCell {
             }
         })
     }
+
+    @IBAction func declineBtnClk(_ sender: UIButton) {
+        declineInvite()
+    }
     
-    @IBAction func rejectInviteBtn(_ sender: UIButton) {
+    func declineInvite() {
         deleteInvite()
+        self.decisionLabel.text = "Declined"
+    }
+    
+    @IBAction func storyInfoBtnClk(_ sender: UIButton) {
+        delegate?.presentStoryInfo(inviteId: inviteId!, cell: self)
     }
     
     func deleteInvite() {
@@ -93,10 +87,10 @@ class ManageInviteTableViewCell: UITableViewCell {
             else {
                 invite?.deleteInBackground()
                 self.acceptBtn.isHidden = true
-                self.deleteBtn.isHidden = true
-                self.decisionLabel.text = "Declined"
+                self.declineBtn.isHidden = true
                 self.decisionLabel.isHidden = false
             }
         })
     }
+    
 }
