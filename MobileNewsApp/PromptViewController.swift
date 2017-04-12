@@ -15,6 +15,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     var timeLimit: Double = 300.0
     var maxWords: Int = 100
+    var maxTurns: Int = 100
     var participants: Int =  5
     var selecedPrompt: String = ""
     let genres : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
@@ -148,7 +149,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let user: PFUser = PFUser.current()!
         
         //
-        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, maxWordCount: 100, timeLimit: self.timeLimit, participants: 10, totalTurns: 100, currentEntry: 1)
+        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, maxWordCount: 100, timeLimit: self.timeLimit, participants: self.participants, totalTurns: self.maxTurns, currentEntry: 1)
         self.story = currentStory
         
         self.performSegue(withIdentifier: "beginStorySegue", sender: self)
@@ -167,10 +168,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         var error = false
         if Util.checkEmpty(textField: titleField) {
             print("Title Field is empty")
-            error = true
-        }
-        if Util.checkEmpty(textField: genreField) {
-            print("genre field is empty")
             error = true
         }
 //        if checkEmptyView(textField: storyField) {
@@ -213,11 +210,13 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             //Logic for # of participants
             currentVal = Int(slider.value)
             participantSliderLabel.text = String(currentVal)
+            self.participants = currentVal
         } else if slider == totalTurnsSlider {
             //Logic for total # of turns
             currentVal = Int(slider.value)
             currentVal = (currentVal / 5)*5
             totalTurnsSliderLabel.text = String(currentVal)
+            self.maxTurns = currentVal
         } else {
             return
         }

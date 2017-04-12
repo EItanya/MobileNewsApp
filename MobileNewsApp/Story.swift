@@ -440,16 +440,17 @@ class Story {
     static func getUserStoriesArray(completion:  ((_ stories: [Story]?, _ error: Error?) -> Void)?) {
         let query = PFQuery(className: "Story")
         let user = PFUser.current()
-        var storyIds = [String]()
-        if let completeStories = user?.object(forKey: "complete_stories") as! [String]? {
-            storyIds += completeStories
-        }
-        if let activeStories = user?.object(forKey: "active_stories") as! [String]? {
-            storyIds += activeStories
-        }
-            
-        query.whereKey("objectId", containedIn: storyIds)
+//        var storyIds = [String]()
+//        if let completeStories = user?.object(forKey: "complete_stories") as! [String]? {
+//            storyIds += completeStories
+//        }
+//        if let activeStories = user?.object(forKey: "active_stories") as! [String]? {
+//            storyIds += activeStories
+//        }
+//            
+//        query.whereKey("objectId", containedIn: storyIds)
         //        query.whereKey("created_by", equalTo: userId)
+        query.whereKey("users", equalTo: user?.objectId ?? "")
         query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
             var returnError: Error? = nil
             var storyArray : [Story]?
