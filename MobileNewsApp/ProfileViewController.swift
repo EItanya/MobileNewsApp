@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         profileTableView.delegate = self
         profileTableView.dataSource = self
         profileTableView.rowHeight = UITableViewAutomaticDimension
-        profileTableView.estimatedRowHeight = 140
+        profileTableView.estimatedRowHeight = 50
       
         Story.getUserStoriesArray { (stories, Error) in
             self.unfinishedStories = stories!.filter { $0.completed == false }
@@ -257,7 +257,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = profileTableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileTableViewCell
         cell.titleLabel.text = stories[indexPath.row].title
         cell.genreLabel.text = stories[indexPath.row].genre
-        cell.promptLabel.text = stories[indexPath.row].prompt
+        //cell.promptLabel.text = stories[indexPath.row].prompt
         if(stories[indexPath.row].currentUser! == userId)
         {
             cell.imgMyTurn.image = #imageLiteral(resourceName: "check_mark")
