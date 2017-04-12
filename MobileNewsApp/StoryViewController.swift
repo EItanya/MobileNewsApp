@@ -20,6 +20,7 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     var user: PFUser?
     var turnOngoing : Bool = false
     var numberOfChars: Int = 0
+    var moveDistance: CGFloat?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -86,6 +87,54 @@ class StoryViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
+    }
+    
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            print(keyboardHeight)
+            let keyboardMinY = self.view.frame.height - keyboardHeight
+            let textViewBottom = self.storyField.frame.maxY
+            
+            if (keyboardMinY <= textViewBottom) {
+                let distance = textViewBottom - keyboardMinY
+                if distance >= CGFloat(0) {
+                    self.moveDistance = distance
+                    self.view.frame.origin.y -= self.moveDistance!
+                }
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        if self.moveDistance != nil {
+            if self.moveDistance! >= CGFloat(0) {
+                self.view.frame.origin.y += self.moveDistance!
+            }
+        }
+        //Once keyboard disappears, restore original positions
+        //        self.view.frame.origin.y += 150
+    }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
