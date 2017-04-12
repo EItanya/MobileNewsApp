@@ -29,16 +29,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var notificationImage: UIBarButtonItem!
     
+    @IBOutlet weak var logoutButton: LogoutButton!
 
     
     
     //current checked filters
-    var genre = [false, false, false, false]
+    //var genre = [false, false, false, false]
     var wordCount = [false, false, false]
     var numPeople = [false, false, false]
     
     //index of genres
-    let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
+    //let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
     
     //unfinished stories
     var unfinishedStories = [Story]()
@@ -66,7 +67,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         profileTableView.dataSource = self
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.estimatedRowHeight = 50
-      
+        logoutButton.contentEdgeInsets = UIEdgeInsetsMake(5,5,5,5)
+
+        
         Story.getUserStoriesArray { (stories, Error) in
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
@@ -90,9 +93,91 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     }
 
 
-    
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        Story.getUserStoriesArray { (stories, Error) in
+            self.unfinishedStories = stories!.filter { $0.completed == false }
+            self.completedStories = stories!.filter { $0.completed == true }
+            
+            if self.profileControl.selectedSegmentIndex == 0 {
+                print("All is selected in viewDidLoad")
+                self.stories = self.completedStories + self.unfinishedStories
+            }
+            else if self.profileControl.selectedSegmentIndex == 1 {
+                print("Incomplete is selected in viewDidLoad")
+                
+                self.stories = self.unfinishedStories
+            }
+            else
+            {
+                print("Completed is selected in viewDidLoad")
+                self.stories = self.completedStories
+            }
+            self.profileTableView.reloadData()
+        }
+
+        
+        let user = PFUser.current()
+        let id = user?.objectId
+        userId = id!
+        
+        print("my id is \(id)")
+        print("my userId is \(userId)")
+        
+        
+        let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
+        self.profileName.text = profileName
+        let invites = [Invite]()
+        let numInvites = invites.count
+        print("This is the number of invites i have \(numInvites)")
+        
+        let session = URLSession(configuration: .default)
+        let url = user!["fb_profile_picture"] as? String
+        let pictureUrl = URL(string: url!)
+        
+        let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
+            if error != nil {
+                print ("Error in downloading image")
+            }
+            else {
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded profile picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        self.profileImage.image = UIImage(data: imageData)
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+            
+            DispatchQueue.main.async {
+                if let imageData = data {
+                    self.profileImage.contentMode = .scaleAspectFill
+                    self.profileImage.image = UIImage(data: imageData)
+                    print("image refreshed")
+                }
+            }
+        })
+        downloadPicTask.resume()
+        
+        
+        let image = UIImage(named: "Invite")
+        
+        let button = UIButton(type: .custom)
+        button.tag = 5
+        button.frame = CGRect(x:0, y:0, width:30, height:30)
+        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
+        button.setBackgroundImage(image, for: .normal)
+        
+        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+        rightButton?.badgeValue = "\(numInvites)"
+        rightButton?.badgeOriginX = 20
+        rightButton?.badgeOriginY = -5
+        navigationItem.rightBarButtonItem = rightButton
+        
+
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -257,7 +342,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = profileTableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileTableViewCell
         cell.titleLabel.text = stories[indexPath.row].title
-        cell.genreLabel.text = stories[indexPath.row].genre
+        //cell.genreLabel.text = stories[indexPath.row].genre
         //cell.promptLabel.text = stories[indexPath.row].prompt
         if(stories[indexPath.row].currentUser! == userId)
         {
