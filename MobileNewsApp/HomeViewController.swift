@@ -105,7 +105,7 @@ class HomeViewController: UIViewController {
     //Action to take when story read/join segment control changed value
     @IBAction func storyTypeSegmentChosen(_ sender: UISegmentedControl) {
         //Switches to show completed stories
-        if storyCompletionControl.selectedSegmentIndex == 0 {
+        if storyCompletionControl.selectedSegmentIndex == 1 {
             stories = completedStories
             filteredStories = completedFilteredStories
         }

@@ -16,8 +16,11 @@ class StoryJoinViewController: UIViewController {
     var entry: PFObject?
 
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var authorLabel: UILabel!
-    @IBOutlet var previousEntryLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var turnsLeftLabel: UILabel!
+    @IBOutlet var promptTextView: UITextView!
+    @IBOutlet var previousEntryTextView: UITextView!
+    @IBOutlet var peopleAheadLabel: UILabel!
     
     var joined = false
     
@@ -25,8 +28,26 @@ class StoryJoinViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let min = Int(story!.timeLimit! / 60)
+        let seconds = Int(story!.timeLimit!) % 60
+        if min == 0 {
+            timeLabel.text = "\(seconds) s. per turn"
+        }
+        else if seconds == 0 {
+            timeLabel.text = "\(min) m. per turn"
+        }
+        else {
+            timeLabel.text = "\(min) m. \(seconds) s. per turn"
+        }
+        turnsLeftLabel.text = "\(story!.currentEntry!)/\(story!.totalTurns!) turns"
+        let currentUserId = story?.currentUser
+        var peopleInLine = 0
+        if currentUserId != "" {
+            peopleInLine = (story?.users.count)! - (story?.users.index(of: currentUserId!)!)!
+        }
+        peopleAheadLabel.text = "\(peopleInLine) people ahead"
         titleLabel.text = story?.title
-        authorLabel.text = story?.createdBy
+        promptTextView.text = story?.prompt!
         let query = PFQuery(className: "Entry")
         query.getObjectInBackground(withId: (self.story?.previousEntry)!, block: {(entry: PFObject?, error: Error?) -> Void in
             if error != nil {
@@ -34,9 +55,14 @@ class StoryJoinViewController: UIViewController {
             }
             else {
                 self.entry = entry
-                self.previousEntryLabel.text! = entry?["text"] as! String
+                self.previousEntryTextView.text = entry?["text"] as! String
             }
         })
+        
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(x: promptTextView.frame.minX, y: promptTextView.frame.minY - 55, width: self.view.frame.size.width - (promptTextView.frame.minX*2), height: 1.0)
+        topBorder.backgroundColor = UIColor.lightGray.cgColor
+        self.view.layer.addSublayer(topBorder)
     }
 
     override func didReceiveMemoryWarning() {
