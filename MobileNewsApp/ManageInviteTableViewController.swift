@@ -156,6 +156,8 @@ extension ManageInviteTableViewController: StoryInfoDelegate {
         let vc = storyboard.instantiateViewController(withIdentifier: "InviteStoryInfo") as! InviteStoryInfoViewController
         
         vc.delegate = cell
+        vc.story = Story.convertToStory(story: self.stories[inviteId]!)
+        
         
         vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         present(vc, animated: true, completion: nil)
