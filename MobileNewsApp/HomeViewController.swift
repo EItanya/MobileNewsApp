@@ -80,7 +80,7 @@ class HomeViewController: UIViewController {
             self.unfinishedFilteredStories = self.unfinishedStories
             self.completedStories = (stories?.filter { $0.completed == true })!
             self.completedFilteredStories = self.completedStories
-            if self.storyCompletionControl.selectedSegmentIndex == 0 {
+            if self.storyCompletionControl.selectedSegmentIndex == 1 {
                 self.stories = self.completedStories
                 self.filteredStories = self.completedFilteredStories
             }
@@ -219,7 +219,7 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ storyTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if storyCompletionControl.selectedSegmentIndex == 0 {
+        if storyCompletionControl.selectedSegmentIndex == 1 {
             let cell = storyTableView.dequeueReusableCell(withIdentifier: "readStoryCell", for: indexPath) as! ReadStoryTableViewCell
             
             let currentStory = filteredStories[indexPath.row]
@@ -251,7 +251,7 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     //Shows the StoryJoinView Controller particular to the story cell clicked when joined
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentStory = filteredStories[indexPath.row]
-        if storyCompletionControl.selectedSegmentIndex == 0 {
+        if storyCompletionControl.selectedSegmentIndex == 1 {
             let storyboard: UIStoryboard = UIStoryboard(name: "CompletedStory", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ReadStoryViewController") as! CompletedStoryTableViewController
             vc.story = currentStory
