@@ -79,7 +79,7 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
             let keyboardHeight = keyboardSize.height
             print(keyboardHeight)
             let keyboardMinY = self.view.frame.height - keyboardHeight
-            let textViewBottom = self.storyField.frame.maxY
+            let textViewBottom = self.storyText.frame.maxY
             
             if (keyboardMinY <= textViewBottom && !self.keyboardShowing) {
                 let distance = textViewBottom - keyboardMinY
