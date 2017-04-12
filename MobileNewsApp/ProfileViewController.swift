@@ -194,6 +194,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func manageInvite(_ sender: Any) {
+        
         self.performSegue(withIdentifier: "manageInvitesSegue", sender: self)
     }
 
