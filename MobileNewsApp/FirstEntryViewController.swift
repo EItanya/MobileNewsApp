@@ -20,6 +20,7 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
     var effectView: UIVisualEffectView?
     var numberOfChars = 0
     var moveDistance: CGFloat?
+    var keyboardShowing = false
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -78,12 +79,13 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
             let keyboardHeight = keyboardSize.height
             print(keyboardHeight)
             let keyboardMinY = self.view.frame.height - keyboardHeight
-            let textViewBottom = self.storyText.frame.maxY
+            let textViewBottom = self.storyField.frame.maxY
             
-            if (keyboardMinY <= textViewBottom) {
+            if (keyboardMinY <= textViewBottom && !self.keyboardShowing) {
                 let distance = textViewBottom - keyboardMinY
                 if distance >= CGFloat(0) {
                     self.moveDistance = distance
+                    self.keyboardShowing = true
                     self.view.frame.origin.y -= self.moveDistance!
                 }
             }
@@ -91,9 +93,10 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
     }
     
     func keyboardWillBeHidden(notification: NSNotification){
-        if self.moveDistance != nil {
+        if self.moveDistance != nil && self.keyboardShowing {
             if self.moveDistance! >= CGFloat(0) {
                 self.view.frame.origin.y += self.moveDistance!
+                self.keyboardShowing = false
             }
         }
         //Once keyboard disappears, restore original positions

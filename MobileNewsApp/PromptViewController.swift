@@ -27,7 +27,6 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let whiteBorder : CALayer? = nil
     
     @IBOutlet weak var titleField: UITextField!
-    @IBOutlet weak var genreField: UITextField!
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var timeLimitSlider: UISlider!
     @IBOutlet weak var timeLimitSliderValue: UILabel!
@@ -41,9 +40,9 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         
         titleField.delegate = self
-        genreField.delegate = self
+//        genreField.delegate = self
 
-        setUpPicker()
+//        setUpPicker()
         setupSliders()
         
 
@@ -60,38 +59,37 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
 
     
-    //Function to set up genrePicker
-    func setUpPicker() {
-        genrePicker.delegate = self
-        genrePicker.dataSource = self
-        genrePicker.showsSelectionIndicator = true
-        genreField.inputView = genrePicker
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-//        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PromptViewController.donePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PromptViewController.donePicker))
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        
-        genreField.inputAccessoryView = toolBar
-        
-
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == genreField {
-            return false
-        } else {
-            return true
-        }
-    }
+//    //Function to set up genrePicker
+//    func setUpPicker() {
+//        genrePicker.delegate = self
+//        genrePicker.dataSource = self
+//        genrePicker.showsSelectionIndicator = true
+//        
+//        let toolBar = UIToolbar()
+//        toolBar.barStyle = UIBarStyle.default
+//        toolBar.isTranslucent = true
+////        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+//        toolBar.sizeToFit()
+//        
+//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PromptViewController.donePicker))
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PromptViewController.donePicker))
+//        
+//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+//        toolBar.isUserInteractionEnabled = true
+//        
+//        genreField.inputAccessoryView = toolBar
+//        
+//
+//    }
+//    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if textField == genreField {
+//            return false
+//        } else {
+//            return true
+//        }
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -149,7 +147,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let user: PFUser = PFUser.current()!
         
         //
-        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: genreField.text!, prompt: self.selecedPrompt, maxWordCount: 100, timeLimit: self.timeLimit, participants: self.participants, totalTurns: self.maxTurns, currentEntry: 1)
+        let currentStory = Story(creator: user.objectId! as String, title: titleField.text!, genre: "", prompt: self.selecedPrompt, maxWordCount: 100, timeLimit: self.timeLimit, participants: self.participants, totalTurns: self.maxTurns, currentEntry: 1)
         self.story = currentStory
         
         self.performSegue(withIdentifier: "beginStorySegue", sender: self)
@@ -242,11 +240,11 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     //Code to set up Genre Picker
-    func donePicker() {
-        
-        genreField.resignFirstResponder()
-        
-    }
+//    func donePicker() {
+//        
+//        genreField.resignFirstResponder()
+//        
+//    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -260,10 +258,10 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return self.genres[row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.genreField.text = genres[row]
-    }
-    
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        self.genreField.text = genres[row]
+//    }
+//    
     
 
     
