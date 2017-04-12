@@ -21,6 +21,7 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     var turnOngoing : Bool = false
     var numberOfChars: Int = 0
     var moveDistance: CGFloat?
+    var keyboardShowing = false
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -116,10 +117,11 @@ class StoryViewController: UIViewController, UITextViewDelegate {
             let keyboardMinY = self.view.frame.height - keyboardHeight
             let textViewBottom = self.storyField.frame.maxY
             
-            if (keyboardMinY <= textViewBottom) {
+            if (keyboardMinY <= textViewBottom && !self.keyboardShowing) {
                 let distance = textViewBottom - keyboardMinY
                 if distance >= CGFloat(0) {
                     self.moveDistance = distance
+                    self.keyboardShowing = true
                     self.view.frame.origin.y -= self.moveDistance!
                 }
             }
@@ -127,9 +129,10 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     }
     
     func keyboardWillBeHidden(notification: NSNotification){
-        if self.moveDistance != nil {
+        if self.moveDistance != nil && self.keyboardShowing {
             if self.moveDistance! >= CGFloat(0) {
                 self.view.frame.origin.y += self.moveDistance!
+                self.keyboardShowing = false
             }
         }
         //Once keyboard disappears, restore original positions
