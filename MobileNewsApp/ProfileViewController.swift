@@ -132,35 +132,42 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let session = URLSession(configuration: .default)
         let url = user!["fb_profile_picture"] as? String
-        let pictureUrl = URL(string: url!)
+        print("WHAT IS MY URL RIGHT HERE \(url)")
+        if url != nil
+        {
+            let pictureUrl = URL(string: url!)
         
-        let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
-            if error != nil {
-                print ("Error in downloading image")
-            }
-            else {
-                if let res = response as? HTTPURLResponse {
-                    print("Downloaded profile picture with response code \(res.statusCode)")
-                    if let imageData = data {
-                        self.profileImage.image = UIImage(data: imageData)
+            let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
+                if error != nil {
+                    print ("Error in downloading image")
+                }
+                else {
+                    if let res = response as? HTTPURLResponse {
+                        print("Downloaded profile picture with response code \(res.statusCode)")
+                        if let imageData = data {
+                            self.profileImage.image = UIImage(data: imageData)
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
                     } else {
-                        print("Couldn't get image: Image is nil")
+                        print("Couldn't get response code for some reason")
                     }
-                } else {
-                    print("Couldn't get response code for some reason")
                 }
-            }
             
-            DispatchQueue.main.async {
-                if let imageData = data {
-                    self.profileImage.contentMode = .scaleAspectFill
-                    self.profileImage.image = UIImage(data: imageData)
-                    print("image refreshed")
+                DispatchQueue.main.async {
+                    if let imageData = data {
+                        self.profileImage.contentMode = .scaleAspectFill
+                        self.profileImage.image = UIImage(data: imageData)
+                        print("image refreshed")
+                    }
                 }
-            }
-        })
-        downloadPicTask.resume()
-        
+            })
+            downloadPicTask.resume()
+        }
+        else
+        {
+            self.profileImage.image = #imageLiteral(resourceName: "default-avatar")
+        }
         
         let image = UIImage(named: "Invite")
         
@@ -198,35 +205,41 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
         let session = URLSession(configuration: .default)
         let url = user!["fb_profile_picture"] as? String
-        let pictureUrl = URL(string: url!)
-        
-        let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
-            if error != nil {
-                print ("Error in downloading image")
-            }
-            else {
-                if let res = response as? HTTPURLResponse {
-                    print("Downloaded profile picture with response code \(res.statusCode)")
-                    if let imageData = data {
-                        self.profileImage.image = UIImage(data: imageData)
-                    } else {
-                        print("Couldn't get image: Image is nil")
-                    }
-                } else {
-                    print("Couldn't get response code for some reason")
-                }
-            }
+        if url != nil
+        {
+            let pictureUrl = URL(string: url!)
             
-            DispatchQueue.main.async {
-                if let imageData = data {
-                    self.profileImage.contentMode = .scaleAspectFill
-                    self.profileImage.image = UIImage(data: imageData)
-                    print("image refreshed")
+            let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
+                if error != nil {
+                    print ("Error in downloading image")
                 }
-            }
-        })
-        downloadPicTask.resume()
-        
+                else {
+                    if let res = response as? HTTPURLResponse {
+                        print("Downloaded profile picture with response code \(res.statusCode)")
+                        if let imageData = data {
+                            self.profileImage.image = UIImage(data: imageData)
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code for some reason")
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    if let imageData = data {
+                        self.profileImage.contentMode = .scaleAspectFill
+                        self.profileImage.image = UIImage(data: imageData)
+                        print("image refreshed")
+                    }
+                }
+            })
+            downloadPicTask.resume()
+        }
+        else
+        {
+            self.profileImage.image = #imageLiteral(resourceName: "default-avatar")
+        }
         
         let image = UIImage(named: "Invite")
 
