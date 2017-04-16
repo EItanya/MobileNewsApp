@@ -255,7 +255,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         
         let user = PFUser.current()
         
-        if user?.objectId != nil {
+        if user?.objectId != nil && user?.object(forKey: "fb_profile_picture") != nil {
             self.loginModalOut()
             self.segueToMainApp()
             return
@@ -317,7 +317,9 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                         }
                     })
                     self.subscribeToPush()
-                    self.segueToMainApp()
+                    self.performSegue(withIdentifier: "LicenseSegue", sender: self)
+
+//                    self.segueToMainApp()
                     
                 } else {
                     self.subscribeToPush()
@@ -392,7 +394,8 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                 print("Error is ", error ?? "")
                 return
             }
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            self.performSegue(withIdentifier: "LicenseSegue", sender: self)
+//            self.performSegue(withIdentifier: "loginSegue", sender: self)
             print("User is added successfully")
         })
     }

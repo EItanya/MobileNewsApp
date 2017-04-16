@@ -152,7 +152,7 @@ class StoryInfoViewController: UIViewController {
     
 
     @IBAction func leaveStory(_ sender: Any) {
-        var title = "Alert"
+        var title = "Delete"
         var message = "Are you sure you want to delete this story?"
         if admin == false {
             message = "Are you sure you want to leave this story"

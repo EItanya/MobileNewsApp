@@ -127,6 +127,7 @@
                         <outlet property="registerFormView" destination="fNG-v8-VI0" id="l2w-2E-ObS"/>
                         <outlet property="usernameLogo" destination="8rI-aO-QEC" id="ygn-2d-UUH"/>
                         <segue destination="ryt-YT-ud1" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="qRn-aO-Qiy"/>
+                        <segue destination="dfh-b1-t5n" kind="presentation" identifier="LicenseSegue" modalPresentationStyle="overFullScreen" id="4DH-oR-0sd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7S0-cS-NBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -297,6 +298,76 @@
             </objects>
             <point key="canvasLocation" x="-18.399999999999999" y="115.59220389805098"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="3IB-jh-bby">
+            <objects>
+                <viewController id="dfh-b1-t5n" customClass="EULAViewController" customModule="MobileNewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oKY-XY-SA0"/>
+                        <viewControllerLayoutGuide type="bottom" id="UuJ-1o-tc4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gL4-Tk-6gj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qYN-gp-iiy">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Snowball – Collaborative Storytelling App End User License Agreement
+This End User License Agreement (“Agreement”) is between you and Snowball – Collaborative Storytelling (“Snowball”) and governs use of this app made available through the Apple App Store. By installing the Snowball App, you agree to be bound by this Agreement and understand that there is no tolerance for objectionable content. If you do not agree with the terms and conditions of this Agreement, you are not entitled to use the Snowball App.
+In order to ensure Snowball provides the best experience possible for everyone, we strongly enforce a no tolerance policy for objectionable content. If you see inappropriate content, please use the “Report as offensive” feature found under each post.
+1. Parties
+This Agreement is between you and Snowball only, and not Apple, Inc. (“Apple”). Notwithstanding the foregoing, you acknowledge that Apple and its subsidiaries are third party beneficiaries of this Agreement and Apple has the right to enforce this Agreement against you. Snowball, not Apple, is solely responsible for the Snowball App and its content.
+2. Privacy
+Snowball may collect and use information about your usage of the Snowball App, including certain types of information from and about your device. Snowball may use this information, as long as it is in a form that does not personally identify you, to measure the use and performance of the Snowball App.
+3. Limited License
+Snowball grants you a limited, non-exclusive, non-transferable, revocable license to use the Snowball App for your personal, non-commercial purposes. You may only use the Snowball App on Apple devices that you own or control and as permitted by the App Store Terms of Service.
+4. Age Restrictions
+By using the Snowball App, you represent and warrant that (a) you are 17 years of age or older and you agree to be bound by this Agreement; (b) if you are under 17 years of age, you have obtained verifiable consent from a parent or legal guardian; and (c) your use of the Snowball App does not violate any applicable law or regulation. Your access to the Snowball App may be terminated without warning if Snowball believes, in its sole discretion, that you are under the age of 17 years and have not obtained verifiable consent from a parent or legal guardian. If you are a parent or legal guardian and you provide your consent to your child’s use of the Snowball App, you agree to be bound by this Agreement in respect to your child’s use of the Snowball App.
+5. Objectionable Content Policy
+Content may not be submitted to Snowball, who will moderate all content and ultimately decide whether or not to post a submission to the extent such content includes, is in conjunction with, or alongside any, Objectionable Content. Objectionable Content includes, but is not limited to: (i) sexually explicit materials; (ii) obscene, defamatory, libelous, slanderous, violent and/or unlawful content or profanity; (iii) content that infringes upon the rights of any third party, including copyright, trademark, privacy, publicity or other personal or proprietary right, or that is deceptive or fraudulent; (iv) content that promotes the use or sale of illegal or regulated substances, tobacco products, ammunition and/or firearms; and (v) gambling, including without limitation, any online casino, sports books, bingo or poker.
+6. Warranty
+ Snowball disclaims all warranties about the Snowball App to the fullest extent permitted by law. To the extent any warranty exists under law that cannot be disclaimed, Snowball, not Apple, shall be solely responsible for such warranty.
+7. Maintenance and Support
+ Snowball does provide minimal maintenance or support for it but not to the extent that any maintenance or support is required by applicable law, Snowball, not Apple, shall be obligated to furnish any such maintenance or support.
+8. Product Claims
+ Snowball, not Apple, is responsible for addressing any claims by you relating to the Snowball App or use of it, including, but not limited to: (i) any product liability claim; (ii) any claim that the  Snowball App fails to conform to any applicable legal or regulatory requirement; and (iii) any claim arising under consumer protection or similar legislation. Nothing in this Agreement shall be deemed an admission that you may have such claims.
+9. Third Party Intellectual Property Claims
+ Snowball shall not be obligated to indemnify or defend you with respect to any third party claim arising out or relating to the Snowball App. To the extent Snowball is required to provide indemnification by applicable law, Snowball, not Apple, shall be solely responsible for the investigation, defense, settlement and discharge of any claim that the Snowball App or your use of it infringes any third party intellectual property right.
+
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iU5-HC-ysu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="License Agreement" id="jXj-DT-zmk">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="ocw-SH-N4T">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="doneButton:" destination="dfh-b1-t5n" id="BIP-bi-gvz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="ryt-YT-ud1" kind="presentation" identifier="agreeSegue" modalPresentationStyle="fullScreen" id="1O4-p3-FEA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3b4-YP-4H8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="588" y="887.40629685157433"/>
+        </scene>
         <!--User-->
         <scene sceneID="Ej5-nl-a2d">
             <objects>
@@ -306,4 +377,7 @@
             <point key="canvasLocation" x="770" y="115"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1O4-p3-FEA"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		071A23061E6A30D500260D81 /* StoryJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071A23051E6A30D500260D81 /* StoryJoinViewController.swift */; };
 		07452F3B1E595BAD00B187C3 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07452F3A1E595BAD00B187C3 /* CreateViewController.swift */; };
+		074D4C2A1EA40DA200045561 /* EULAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D4C291EA40DA200045561 /* EULAViewController.swift */; };
 		07579B331E762D800021AF85 /* ManageInvites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07579B321E762D800021AF85 /* ManageInvites.storyboard */; };
 		07579B351E762D990021AF85 /* ManageInviteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07579B341E762D990021AF85 /* ManageInviteTableViewCell.swift */; };
 		07579B371E762DAE0021AF85 /* ManageInviteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07579B361E762DAE0021AF85 /* ManageInviteTableViewController.swift */; };
@@ -98,6 +99,7 @@
 		071A23051E6A30D500260D81 /* StoryJoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryJoinViewController.swift; sourceTree = "<group>"; };
 		072F3D0D1E86E2FE007356DB /* MobileNewsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileNewsApp.entitlements; sourceTree = "<group>"; };
 		07452F3A1E595BAD00B187C3 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		074D4C291EA40DA200045561 /* EULAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EULAViewController.swift; sourceTree = "<group>"; };
 		07579B321E762D800021AF85 /* ManageInvites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ManageInvites.storyboard; sourceTree = "<group>"; };
 		07579B341E762D990021AF85 /* ManageInviteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageInviteTableViewCell.swift; sourceTree = "<group>"; };
 		07579B361E762DAE0021AF85 /* ManageInviteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageInviteTableViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				15E99A4F1E4E9F6100B736B4 /* RegistrationViewController.swift */,
 				15422E761E590278002C9BD4 /* LoginViewController.swift */,
 				07FA13991E5E5EC30075F857 /* LoginScreenButton.swift */,
+				074D4C291EA40DA200045561 /* EULAViewController.swift */,
 			);
 			name = Login/Registration;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				F0621CD21E91A54300DD04E1 /* BBBadgeBarButtonItem.m in Sources */,
 				0778E89F1E6F0D3B0061898B /* CompletedStoryTableViewController.swift in Sources */,
 				076D78461E6A397000387D6A /* StoryViewController.swift in Sources */,
+				074D4C2A1EA40DA200045561 /* EULAViewController.swift in Sources */,
 				07FA139A1E5E5EC30075F857 /* LoginScreenButton.swift in Sources */,
 				07579B391E76E5A00021AF85 /* Invite.swift in Sources */,
 				077CCC5D1E6C858E0010B0DC /* LoadingModalView.swift in Sources */,

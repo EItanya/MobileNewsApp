@@ -298,11 +298,11 @@ class Story {
     //This function works
     func deleteStory(completion: ((_ error: Error?) -> Void)?) {
         
-        let userObj = PFUser.current()
-        var activeStories = userObj?.object(forKey: "active_stories") as! [String]
-        let index = activeStories.index(of: self.id!)
-        activeStories.remove(at: index!)
-        userObj?.setObject(activeStories, forKey: "active_stories")
+//        let userObj = PFUser.current()
+//        var activeStories = userObj?.object(forKey: "active_stories") as! [String]
+//        let index = activeStories.index(of: self.id!)
+//        activeStories.remove(at: index!)
+//        userObj?.setObject(activeStories, forKey: "active_stories")
         
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
@@ -314,7 +314,7 @@ class Story {
             }
             else
             {
-                userObj?.saveInBackground()
+//                userObj?.saveInBackground()
                 story?.deleteInBackground()
             }
             completion!(returnError)
