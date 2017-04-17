@@ -18,6 +18,7 @@ class CompletedStoryTableViewController: UITableViewController {
     var entryArray = [Entry]()
     var effectView: UIVisualEffectView?
     var userImageDict: [String: UIImage] = [:]
+    var currentUser: User?
     
     @IBOutlet weak var headerView: UIView!
 
@@ -27,7 +28,7 @@ class CompletedStoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 75
         self.tableView.separatorStyle = .none
@@ -54,6 +55,7 @@ class CompletedStoryTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,21 +63,34 @@ class CompletedStoryTableViewController: UITableViewController {
     
     func getEntryData() {
         //loadingModalIn()
-        story?.getEntries(completion: {(error: Error?) -> Void in
-            if error != nil
-            {
-                print("Error getting Entries")
+        let myGroup = DispatchGroup()
+        myGroup.enter()
+        PFUser.current()?.fetchInBackground(block: {(object, error) -> Void in
+            if (error != nil) {
+                print(error)
             }
-            else
-            {
-                //Code to populate list
-                //Right now just points to same data, might need to update later
-                self.entryArray = (self.story?.entries)!
-                self.entryArray.sort(by: {$0.number! < $1.number! })
+            else {
+                self.currentUser = User(pfobject: object!)
             }
-            //self.loadingModalOut()
-            self.tableView.reloadData()
+            myGroup.leave()
         })
+        myGroup.notify(queue: .main) {
+           self.story?.getEntries(completion: {(error: Error?) -> Void in
+                if error != nil
+                {
+                    print("Error getting Entries")
+                }
+                else
+                {
+                    //Code to populate list
+                    //Right now just points to same data, might need to update later
+                    self.entryArray = (self.story?.entries)!
+                    self.entryArray.sort(by: {$0.number! < $1.number! })
+                }
+                //self.loadingModalOut()
+                self.tableView.reloadData()
+            })
+        }
     }
 
     // MARK: - Table view data source
@@ -93,12 +108,9 @@ class CompletedStoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! CompletedStoryTableViewCell
-
+        
         let currentEntry = entryArray[indexPath.row]
         
-        // Configure the cell...
-        cell.entryLabel.text = currentEntry.text
-        cell.userProfileImage.image = userImageDict[currentEntry.createdBy!]
         let reportButton = MGSwipeButton(title: "Report", backgroundColor: UIColor.red)
         {
             (sender: MGSwipeTableCell!) in
@@ -108,13 +120,88 @@ class CompletedStoryTableViewController: UITableViewController {
             
         }
         reportButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
-        cell.rightButtons = [reportButton]
-        cell.rightSwipeSettings.transition = .rotate3D
+
+        if (currentUser?.blockedUsers?.contains(currentEntry.createdBy!))! {
+            cell.entryLabel.text = "Blocked user content"
+            cell.userProfileImage.image = #imageLiteral(resourceName: "logo-1")
+            
+            let unblockButton = MGSwipeButton(title: "Unblock", backgroundColor: UIColor.blue)
+            {
+                (sender: MGSwipeTableCell!) in
+
+                let currentUser = PFUser.current()
+                var blockedUsers = currentUser?.value(forKey: "blocked_users") as! [String]
+                if let index = blockedUsers.index(of: currentEntry.createdBy!) {
+                    blockedUsers.remove(at: index)
+                }
+
+                currentUser?["blocked_users"] = blockedUsers
+                
+                currentUser?.saveInBackground(block: {(succeeded:Bool, error:Error?) -> Void in
+                    if succeeded {
+                        var pfuser = PFUser.current()?.fetchInBackground(block: {(object, error) -> Void in
+                            if (error != nil) {
+                                print(error)
+                            }
+                            else {
+                                
+                                self.currentUser = User(pfobject: PFUser.current()!)
+                                self.tableView.reloadData()
+                            }
+                        })
+                    }
+                    else {
+                        print(error!)
+                    }
+                })
+                
+                return true
+            }
+            
+            unblockButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
+            cell.rightButtons = [reportButton, unblockButton]
+            cell.rightSwipeSettings.transition = .rotate3D
+        }
+        // Configure the cell...
+        else {
+            cell.entryLabel.text = currentEntry.text
+            cell.userProfileImage.image = userImageDict[currentEntry.createdBy!]
+            let blockButton = MGSwipeButton(title: "Block", backgroundColor: UIColor.blue)
+            {
+                (sender: MGSwipeTableCell!) in
+            
+                print("\(currentEntry.author!), \(currentEntry.number!)")
+                let currentUser = PFUser.current()
+                var blockedUsers = currentUser?.value(forKey: "blocked_users") as! [String]
+                blockedUsers.append(currentEntry.createdBy!)
+                currentUser?["blocked_users"] = blockedUsers
+            
+                currentUser?.saveInBackground(block: {(succeeded:Bool, error:Error?) -> Void in
+                    if succeeded {
+                        var pfuser = PFUser.current()?.fetchInBackground(block: {(object, error) -> Void in
+                            if (error != nil) {
+                                print(error)
+                            }
+                            else {
+                                
+                                self.currentUser = User(pfobject: PFUser.current()!)
+                                self.tableView.reloadData()
+                            }
+                        })
+                    }
+                    else {
+                        print(error!)
+                    }
+                })
+            return true
+            
+            }
+            blockButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
+            cell.rightButtons = [reportButton, blockButton]
+            cell.rightSwipeSettings.transition = .rotate3D
+        }
         return cell
     }
-    
-    
-    
     
 
     /*

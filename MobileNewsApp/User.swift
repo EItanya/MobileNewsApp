@@ -21,6 +21,7 @@ class User {
     var activeStoryIds: [String]?
     var fb_id: String?
     var fb_profile_picture: String?
+    var blockedUsers: [String]?
     
     
 
@@ -51,6 +52,16 @@ class User {
         self.id = id
         self.comletedStoryIds = completedStories
         self.activeStoryIds = activeStories
+    }
+    
+    init (pfobject: PFObject) {
+        self.email = pfobject.value(forKey: "email") as! String?
+        self.firstName = pfobject.value(forKey: "first_name") as! String?
+        self.lastName = pfobject.value(forKey: "last_name") as! String?
+        self.id = pfobject.objectId
+        self.comletedStoryIds = pfobject.value(forKey: "completed_stories") as! [String]?
+        self.activeStoryIds = pfobject.value(forKey: "active_stories") as! [String]?
+        self.blockedUsers = pfobject.value(forKey: "blocked_users") as! [String]?
     }
     
     
