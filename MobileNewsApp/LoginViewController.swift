@@ -41,6 +41,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         super.viewDidLoad()
                 
         emailField.delegate = self
+        emailField.autocorrectionType = .no
         passwordField.delegate = self
         firstNameField.delegate = self
         lastNameField.delegate = self
@@ -304,6 +305,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
                             if(userEmail != nil) { myUser.setValue(userEmail, forKey: "email") }
                             myUser.setValue([], forKey: "completed_stories")
                             myUser.setValue([], forKey: "active_stories")
+                            myUser.setValue([], forKey: "blocked_users")
                             //Save User data back to Parse
                             myUser.saveInBackground(block: {(success: Bool, error: Error?) -> Void in
                                 if error != nil {
@@ -381,13 +383,15 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 //            print("User is added successfully")
 //        })
         let user = PFUser()
+        let email = passwordField.text! as String
         user.username = emailField.text! as String
-        user.password = passwordField.text! as String
+        user.password = email.lowercased()
         user.email = emailField.text! as String
         user["first_name"] = firstNameField.text! as String
         user["last_name"] = lastNameField.text! as String
         user.setValue([], forKey: "completed_stories")
         user.setValue([], forKey: "active_stories")
+        user.setValue([], forKey: "blocked_users")
         
         user.signUpInBackground(block: {(succeeded: Bool, error: Error?) -> Void in
             if error != nil {
