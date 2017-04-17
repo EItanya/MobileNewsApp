@@ -17,6 +17,7 @@ target 'MobileNewsApp' do
     pod 'AWSCore'
     pod 'AWSS3'
     pod 'BBBadgeBarButtonItem'
+    pod "SwiftSpinner"
     
   target 'MobileNewsAppTests' do
     inherit! :search_paths

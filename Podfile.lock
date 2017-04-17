@@ -26,6 +26,7 @@ PODS:
     - FBSDKTVOSKit (~> 4.10)
     - Parse (~> 1.12)
   - SkyFloatingLabelTextField (2.0.1)
+  - SwiftSpinner (1.2.1)
 
 DEPENDENCIES:
   - AWSCore
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - Parse
   - ParseFacebookUtilsV4
   - SkyFloatingLabelTextField (~> 2.0.0)
+  - SwiftSpinner
 
 SPEC CHECKSUMS:
   AWSCore: 344e21892790650cf902246d436402257a545bde
@@ -53,7 +55,8 @@ SPEC CHECKSUMS:
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
+  SwiftSpinner: 62a28bbb4035f252a1e91b0e17fc40bdbbfa0aab
 
-PODFILE CHECKSUM: b440beba816fdee435a9035e471745de886e8350
+PODFILE CHECKSUM: c470b920b1864f3600b6350fb38c467e46e81089
 
 COCOAPODS: 1.2.0
