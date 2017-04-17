@@ -12,6 +12,7 @@ import Parse
 class StoryViewController: UIViewController, UITextViewDelegate {
 
     
+    
     var story: Story?
     var entry: PFObject?
     var timer: Timer?
@@ -29,6 +30,7 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var characterCountLabel: UILabel!
+    @IBOutlet weak var turnNumber: UILabel!
     
     
     @IBOutlet weak var entryAuthorLabel: UILabel!
@@ -65,6 +67,7 @@ class StoryViewController: UIViewController, UITextViewDelegate {
             //Do Nothing
         }
         
+        turnNumber.text = "Turn: \((self.story?.currentEntry!)!)/\(((self.story?.totalTurns!)!)) "
         
         
         // Do any additional setup after loading the view.

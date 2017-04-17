@@ -269,7 +269,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8K-1X-u4t">
-                            <rect key="frame" x="57" y="179" width="186" height="30"/>
+                            <rect key="frame" x="40" y="179" width="220" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="iFa-Bu-Lfh"/>
                             </constraints>
@@ -286,8 +286,8 @@
                     <constraints>
                         <constraint firstItem="gJa-Xv-mHw" firstAttribute="leading" secondItem="P6F-N4-4eN" secondAttribute="leading" constant="57" id="3dv-cd-moN"/>
                         <constraint firstItem="c8K-1X-u4t" firstAttribute="top" secondItem="KA3-VZ-m4h" secondAttribute="bottom" constant="41" id="CJE-Zp-smD"/>
-                        <constraint firstAttribute="trailing" secondItem="c8K-1X-u4t" secondAttribute="trailing" constant="57" id="JeV-0X-VFb"/>
-                        <constraint firstItem="c8K-1X-u4t" firstAttribute="leading" secondItem="P6F-N4-4eN" secondAttribute="leading" constant="57" id="KpK-1f-Pcx"/>
+                        <constraint firstAttribute="trailing" secondItem="c8K-1X-u4t" secondAttribute="trailing" constant="40" id="JeV-0X-VFb"/>
+                        <constraint firstItem="c8K-1X-u4t" firstAttribute="leading" secondItem="P6F-N4-4eN" secondAttribute="leading" constant="40" id="KpK-1f-Pcx"/>
                         <constraint firstItem="KA3-VZ-m4h" firstAttribute="top" secondItem="gJa-Xv-mHw" secondAttribute="bottom" constant="38" id="LGM-Ks-rwM"/>
                         <constraint firstItem="gJa-Xv-mHw" firstAttribute="top" secondItem="P6F-N4-4eN" secondAttribute="top" constant="20" id="jgi-cE-W4Q"/>
                         <constraint firstItem="KA3-VZ-m4h" firstAttribute="leading" secondItem="P6F-N4-4eN" secondAttribute="leading" constant="57" id="mfN-US-dE4"/>
@@ -378,6 +378,6 @@ Content may not be submitted to Snowball, who will moderate all content and ulti
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1O4-p3-FEA"/>
+        <segue reference="qRn-aO-Qiy"/>
     </inferredMetricsTieBreakers>
 </document>
