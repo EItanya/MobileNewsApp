@@ -41,6 +41,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         super.viewDidLoad()
                 
         emailField.delegate = self
+        emailField.autocorrectionType = .no
         passwordField.delegate = self
         firstNameField.delegate = self
         lastNameField.delegate = self
@@ -381,8 +382,9 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
 //            print("User is added successfully")
 //        })
         let user = PFUser()
+        let email = passwordField.text! as String
         user.username = emailField.text! as String
-        user.password = passwordField.text! as String
+        user.password = email.lowercased()
         user.email = emailField.text! as String
         user["first_name"] = firstNameField.text! as String
         user["last_name"] = lastNameField.text! as String
