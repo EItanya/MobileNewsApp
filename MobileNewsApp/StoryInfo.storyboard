@@ -87,8 +87,8 @@
                                     <action selector="leaveStory:" destination="o83-GH-fEZ" eventType="touchUpInside" id="Bfr-yr-Kbx"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-ha-AtO">
-                                <rect key="frame" x="16" y="53" width="174" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-ha-AtO">
+                                <rect key="frame" x="16" y="53" width="343" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="f5Q-kZ-kUs"/>
                                     <constraint firstAttribute="height" constant="28" id="oKL-mL-krb"/>
@@ -97,8 +97,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DQ-KE-sPr">
-                                <rect key="frame" x="16" y="89" width="174" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DQ-KE-sPr">
+                                <rect key="frame" x="16" y="89" width="343" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="95K-9m-pbX"/>
                                 </constraints>
