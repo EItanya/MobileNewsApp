@@ -31,7 +31,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var logoutButton: LogoutButton!
 
+    @IBOutlet weak var emailField: UITextField!
     
+    @IBOutlet weak var settingOutlet: UIButton!
     
     //current checked filters
     //var genre = [false, false, false, false]
@@ -68,6 +70,10 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.estimatedRowHeight = 50
         logoutButton.contentEdgeInsets = UIEdgeInsetsMake(5,5,5,5)
+        //settingOutlet.contentEdgeInsets = UIEdgeInsetsMake(5,5,5,5)
+        //self.settingOutlet.layer.cornerRadius = 5.0
+        //self.settingOutlet.layer.borderWidth = 1.0
+        //self.settingOutlet.layer.borderColor = UIColor(red: 85.0/255.0, green: 172.0/255.0, blue: 238.0/255.0, alpha: 1.0).cgColor
 
         
         Story.getUserStoriesArray { (stories, Error) in
@@ -83,10 +89,14 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
                 self.stories = self.unfinishedStories
             }
-            else
+            else if self.profileControl.selectedSegmentIndex == 2
             {
                 print("Completed is selected in viewDidLoad")
                 self.stories = self.completedStories
+            }
+            else
+            {
+                    
             }
             self.profileTableView.reloadData()
         }
@@ -107,10 +117,14 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
                 
                 self.stories = self.unfinishedStories
             }
-            else
+            else if self.profileControl.selectedSegmentIndex == 2
             {
                 print("Completed is selected in viewDidLoad")
                 self.stories = self.completedStories
+            }
+            else
+            {
+                
             }
             self.profileTableView.reloadData()
         }
@@ -133,10 +147,52 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let session = URLSession(configuration: .default)
         let url = user!["fb_profile_picture"] as? String
         print("WHAT IS MY URL RIGHT HERE \(url)")
-        if url != nil
-        {
-            let pictureUrl = URL(string: url!)
+        let urlProfile = user!["profile_image"] as? String
         
+        print("IS MY PROFILE IMAGE URL NIL? \(urlProfile)")
+        print("IS MY FB IMAGE URL NIL? \(url)")
+
+        if(urlProfile == nil)
+        {
+            if url != nil
+            {
+                let pictureUrl = URL(string: url!)
+        
+                let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
+                    if error != nil {
+                        print ("Error in downloading image")
+                    }
+                    else {
+                        if let res = response as? HTTPURLResponse {
+                            print("Downloaded profile picture with response code \(res.statusCode)")
+                            if let imageData = data {
+                                self.profileImage.image = UIImage(data: imageData)
+                            } else {
+                                print("Couldn't get image: Image is nil")
+                            }
+                        } else {
+                            print("Couldn't get response code for some reason")
+                        }
+                    }
+            
+                    DispatchQueue.main.async {
+                        if let imageData = data {
+                            self.profileImage.contentMode = .scaleAspectFill
+                            self.profileImage.image = UIImage(data: imageData)
+                            print("image refreshed")
+                        }
+                    }
+                })
+                downloadPicTask.resume()
+            }
+            else
+            {
+                self.profileImage.image = #imageLiteral(resourceName: "default-avatar")
+            }
+        }
+        else {
+            let pictureUrl = URL(string: urlProfile!)
+            
             let downloadPicTask = session.dataTask(with: pictureUrl!, completionHandler: { (data, response, error) in
                 if error != nil {
                     print ("Error in downloading image")
@@ -153,7 +209,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
                         print("Couldn't get response code for some reason")
                     }
                 }
-            
+                
                 DispatchQueue.main.async {
                     if let imageData = data {
                         self.profileImage.contentMode = .scaleAspectFill
@@ -163,10 +219,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
                 }
             })
             downloadPicTask.resume()
-        }
-        else
-        {
-            self.profileImage.image = #imageLiteral(resourceName: "default-avatar")
         }
         
         let image = UIImage(named: "Invite")
@@ -196,7 +248,24 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         print("my id is \(id)")
         print("my userId is \(userId)")
         
-
+//        let setting = UIImage(named: "setting")
+//        let imageView1 = UIImageView(image:setting)
+//        
+//        //let banner = UIImage(named: "banner.png")
+//        //let imageView = UIImageView(image:banner)
+//        let bannerWidth = navigationController?.navigationBar.frame.size.width
+//        let bannerHeight = navigationController?.navigationBar.frame.size.height
+//        let bannerx = bannerWidth! / 2 - setting!.size.width / 2
+//        let bannery = bannerHeight! / 2 - setting!.size.height / 2
+//        imageView1.frame = CGRect(x: bannerx, y: bannery, width: bannerWidth!, height: bannerHeight!)
+//        imageView1.contentMode = UIViewContentMode.scaleAspectFit
+//        self.navigationItem.titleView = imageView1
+    
+        
+        
+        let email = (user?.object(forKey: "email") as! String)
+        self.emailField.text = email
+        
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
         let invites = [Invite]()
@@ -267,7 +336,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     ///////////////
     
     
-    
  
     
     override func didReceiveMemoryWarning() {
@@ -296,7 +364,12 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         self.performSegue(withIdentifier: "manageInvitesSegue", sender: self)
     }
 
+    @IBAction func settingSegue(_ sender: Any) {
+        self.performSegue(withIdentifier: "settingSegue", sender: self)
+    }
 
+
+    
     // Switching between stories all, completed, incomplete
 
     @IBAction func profileTabSwitch(_ sender: Any) {
