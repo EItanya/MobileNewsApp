@@ -43,7 +43,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
     func fetchData() {
         let config = URLSessionConfiguration.default // Session Configuration
         let session = URLSession(configuration: config) // Load configuration into Session
-        let url = URL(string: "https://www.reddit.com/r/writingprompts/top.json?limit=8")!
+        let url = URL(string: "https://www.reddit.com/r/writingprompts/top.json?limit=9")!
         
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in

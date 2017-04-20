@@ -29,8 +29,9 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var turnButton: UIButton!
     @IBOutlet weak var storyField: UITextView!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var characterCountLabel: UILabel!
     @IBOutlet weak var turnNumber: UILabel!
+    @IBOutlet weak var placeholderText: UILabel!
+    @IBOutlet weak var characterCountLabel: UILabel!
     
     
     @IBOutlet weak var entryAuthorLabel: UILabel!
@@ -51,6 +52,7 @@ class StoryViewController: UIViewController, UITextViewDelegate {
         setupTextView()
         setupPreviousEntry()
         user = PFUser.current()
+        storyField.delegate = self
   
         
         titleLabel.text = story?.title
@@ -89,6 +91,26 @@ class StoryViewController: UIViewController, UITextViewDelegate {
             setupSpectator()
         }
         
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if storyField.hasText {
+            placeholderText.isHidden = true
+        } else {
+            placeholderText.isHidden = false
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        numberOfChars = newText.characters.count
+        updateCharacterCount()
+        return numberOfChars <= 250
+    }
+    
+    
+    func updateCharacterCount() {
+        characterCountLabel.text = "\(numberOfChars)/250"
     }
     
     
@@ -142,21 +164,6 @@ class StoryViewController: UIViewController, UITextViewDelegate {
         //        self.view.frame.origin.y += 150
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-        numberOfChars = newText.characters.count
-        updateCharacterCount()
-        return numberOfChars <= 250
-    }
-    
-    
-    func updateCharacterCount() {
-        if numberOfChars == 0 {
-            characterCountLabel.text = ""
-        } else {
-            characterCountLabel.text = "\(self.numberOfChars)/250"
-        }
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

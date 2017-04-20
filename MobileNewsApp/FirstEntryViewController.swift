@@ -114,6 +114,12 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
         return numberOfChars <= 250
     }
     
+
+    
+    func updateCharacterCount() {
+        characterCountLabel.text = "\(numberOfChars)/250"
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         if storyText.hasText {
             placeHolderLabel.isHidden = true
@@ -121,12 +127,6 @@ class FirstEntryViewController: UIViewController, UITextViewDelegate {
             placeHolderLabel.isHidden = false
         }
     }
-    
-    func updateCharacterCount() {
-        characterCountLabel.text = "\(numberOfChars)/250"
-    }
-    
-    
     
 
     //Loads current story info to screen
