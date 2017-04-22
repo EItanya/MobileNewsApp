@@ -224,6 +224,14 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
             
             let currentStory = filteredStories[indexPath.row]
             cell.titleLabel.text = currentStory.title
+            cell.numTurnsLabel.text = "\(currentStory.totalTurns!) turns"
+            if currentStory.users.count == 1 {
+                cell.numWritersLabel.text = "\(currentStory.users.count) writer"
+            }
+            else {
+                cell.numWritersLabel.text = "\(currentStory.users.count) writers"
+            }
+            cell.promptLabel.text = currentStory.prompt
             
             return cell
         }
