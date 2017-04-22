@@ -234,13 +234,18 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
         
         cell.titleLabel.text = currentStory.title
         cell.promptLabel.text = currentStory.prompt
-        cell.genreLabel.text = currentStory.genre
+        cell.spotsLabel.text = "\(currentStory.participants - currentStory.users.count) spots remaining"
         let currentUserId = currentStory.currentUser
         var peopleInLine = 0
         if currentUserId != "" {
             peopleInLine = currentStory.users.count - currentStory.users.index(of: currentUserId!)!
         }
-        cell.peopleAheadLabel.text = "\(peopleInLine) people ahead"
+        if peopleInLine == 1 {
+                cell.peopleAheadLabel.text = "\(peopleInLine) person ahead"
+        }
+        else {
+            cell.peopleAheadLabel.text = "\(peopleInLine) people ahead"
+        }
         cell.turnCountLabel.text = "\(currentStory.currentEntry!)/\(currentStory.totalTurns!) turns"
 
         

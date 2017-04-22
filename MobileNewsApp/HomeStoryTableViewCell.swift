@@ -11,10 +11,10 @@ import UIKit
 class HomeStoryTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var genreLabel: UILabel!
     @IBOutlet var promptLabel: UILabel!
     @IBOutlet var peopleAheadLabel: UILabel!
     @IBOutlet var turnCountLabel: UILabel!
+    @IBOutlet var spotsLabel: UILabel!
     
     
     override func awakeFromNib() {
