@@ -129,29 +129,22 @@ class CompletedStoryTableViewController: UITableViewController {
             {
                 (sender: MGSwipeTableCell!) in
 
-                let currentUser = PFUser.current()
-                var blockedUsers = currentUser?.value(forKey: "blocked_users") as! [String]
-                if let index = blockedUsers.index(of: currentEntry.createdBy!) {
-                    blockedUsers.remove(at: index)
-                }
-
-                currentUser?["blocked_users"] = blockedUsers
-                
-                currentUser?.saveInBackground(block: {(succeeded:Bool, error:Error?) -> Void in
-                    if succeeded {
-                        var pfuser = PFUser.current()?.fetchInBackground(block: {(object, error) -> Void in
-                            if (error != nil) {
-                                print(error)
+                let pfUser = PFUser.current()
+                self.currentUser = User(pfobject: pfUser!)
+                self.currentUser?.unblockUser(user: currentEntry.createdBy!, completion: {(error: Error?) -> Void in
+                    if error != nil {
+                        print(error!)
+                    }
+                    else {
+                        pfUser?.fetchInBackground(block: {(object, error) -> Void in
+                            if error != nil {
+                                print(error!)
                             }
                             else {
-                                
-                                self.currentUser = User(pfobject: PFUser.current()!)
+                                self.currentUser = User(pfobject: object!)
                                 self.tableView.reloadData()
                             }
                         })
-                    }
-                    else {
-                        print(error!)
                     }
                 })
                 
@@ -170,30 +163,25 @@ class CompletedStoryTableViewController: UITableViewController {
             {
                 (sender: MGSwipeTableCell!) in
             
-                print("\(currentEntry.author!), \(currentEntry.number!)")
-                let currentUser = PFUser.current()
-                var blockedUsers = currentUser?.value(forKey: "blocked_users") as! [String]
-                blockedUsers.append(currentEntry.createdBy!)
-                currentUser?["blocked_users"] = blockedUsers
-            
-                currentUser?.saveInBackground(block: {(succeeded:Bool, error:Error?) -> Void in
-                    if succeeded {
-                        var pfuser = PFUser.current()?.fetchInBackground(block: {(object, error) -> Void in
-                            if (error != nil) {
-                                print(error)
+                let pfUser = PFUser.current()
+                self.currentUser = User(pfobject: pfUser!)
+                self.currentUser?.blockUser(user: currentEntry.createdBy!, completion: {(error: Error?) -> Void in
+                    if error != nil {
+                        print(error!)
+                    }
+                    else {
+                        pfUser?.fetchInBackground(block: {(object, error) -> Void in
+                            if error != nil {
+                                print(error!)
                             }
                             else {
-                                
-                                self.currentUser = User(pfobject: PFUser.current()!)
+                                self.currentUser = User(pfobject: object!)
                                 self.tableView.reloadData()
                             }
                         })
                     }
-                    else {
-                        print(error!)
-                    }
                 })
-            return true
+                return true
             
             }
             blockButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
@@ -202,52 +190,6 @@ class CompletedStoryTableViewController: UITableViewController {
         }
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func loadingModalIn () {
         

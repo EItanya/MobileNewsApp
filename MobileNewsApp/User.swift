@@ -157,5 +157,40 @@ class User {
         })
     }
     
+    func unblockUser(user: String, completion: ((_ error: Error?) -> Void)?) {
+        if let index = blockedUsers!.index(of: user) {
+            blockedUsers!.remove(at: index)
+        }
+        
+        PFUser.current()?["blocked_users"] = self.blockedUsers
+        
+        PFUser.current()?.saveInBackground(block: {(succeeded:Bool, error:Error?) -> Void in
+            if succeeded {
+                if completion != nil {
+                    completion!(error)
+                }
+            }
+            else {
+                print(error!)
+            }
+        })
+    }
+    
+    func blockUser(user: String, completion: ((_ error: Error?) -> Void)?) {
+        self.blockedUsers!.append(user)
+        
+        PFUser.current()?["blocked_users"] = blockedUsers
+        
+        PFUser.current()?.saveInBackground(block: {(succeeded:Bool, error:Error?) -> Void in
+            if succeeded {
+                if completion != nil {
+                    completion!(error)
+                }
+            }
+            else {
+                print(error!)
+            }
+        })
+    }
     
 }
