@@ -90,7 +90,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="turn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILk-df-Chr">
                                                     <rect key="frame" x="305" y="32" width="87" height="21"/>
-                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -112,9 +112,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="genreLabel" destination="RJh-5V-sdj" id="fxW-Ub-5nD"/>
                                             <outlet property="peopleAheadLabel" destination="fKA-M3-N4P" id="1SU-xC-I9r"/>
                                             <outlet property="promptLabel" destination="lJ9-JA-uLp" id="UXh-t4-ZDp"/>
+                                            <outlet property="spotsLabel" destination="RJh-5V-sdj" id="Dzi-dI-6Ov"/>
                                             <outlet property="titleLabel" destination="Heu-L9-5Lo" id="Y6X-Wv-wjt"/>
                                             <outlet property="turnCountLabel" destination="ILk-df-Chr" id="Ol2-Z6-jEh"/>
                                         </connections>
@@ -126,16 +126,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ic-PS-Ljc">
-                                                    <rect key="frame" x="8" y="25" width="359" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ic-PS-Ljc">
+                                                    <rect key="frame" x="8" y="8" width="359" height="21"/>
                                                     <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Prompt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVA-Qr-pw4">
+                                                    <rect key="frame" x="8" y="67" width="57" height="21"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="numWriters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmB-Eo-7u4">
+                                                    <rect key="frame" x="8" y="30" width="59" height="21"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="numTurns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gar-ye-e5a">
+                                                    <rect key="frame" x="317" y="30" width="50" height="21"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hVA-Qr-pw4" secondAttribute="bottom" id="0p4-eA-GZK"/>
+                                                <constraint firstItem="hVA-Qr-pw4" firstAttribute="top" secondItem="BmB-Eo-7u4" secondAttribute="bottom" constant="5" id="62w-7s-BQC"/>
+                                                <constraint firstItem="hVA-Qr-pw4" firstAttribute="leading" secondItem="S1L-K6-Rwf" secondAttribute="leadingMargin" id="CXu-d3-gIq"/>
+                                                <constraint firstItem="Gar-ye-e5a" firstAttribute="trailing" secondItem="S1L-K6-Rwf" secondAttribute="trailingMargin" id="TCY-Hg-G2d"/>
+                                                <constraint firstItem="BmB-Eo-7u4" firstAttribute="top" secondItem="1ic-PS-Ljc" secondAttribute="bottom" constant="5" id="Whg-2a-yUv"/>
+                                                <constraint firstItem="1ic-PS-Ljc" firstAttribute="trailing" secondItem="S1L-K6-Rwf" secondAttribute="trailingMargin" id="abn-TJ-GmA"/>
+                                                <constraint firstItem="Gar-ye-e5a" firstAttribute="top" secondItem="1ic-PS-Ljc" secondAttribute="bottom" constant="5" id="jDQ-HX-GWZ"/>
+                                                <constraint firstItem="1ic-PS-Ljc" firstAttribute="leading" secondItem="S1L-K6-Rwf" secondAttribute="leadingMargin" id="q2t-dO-jXe"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hVA-Qr-pw4" secondAttribute="trailing" id="vJm-Kd-aL1"/>
+                                                <constraint firstItem="1ic-PS-Ljc" firstAttribute="top" secondItem="S1L-K6-Rwf" secondAttribute="topMargin" id="xOa-Qk-Ez5"/>
+                                                <constraint firstItem="BmB-Eo-7u4" firstAttribute="leading" secondItem="S1L-K6-Rwf" secondAttribute="leadingMargin" id="y9Y-Ty-KV7"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="numTurnsLabel" destination="Gar-ye-e5a" id="qov-QR-z7X"/>
+                                            <outlet property="numWritersLabel" destination="BmB-Eo-7u4" id="SUk-FN-Ylr"/>
+                                            <outlet property="promptLabel" destination="hVA-Qr-pw4" id="h7d-q6-bwx"/>
                                             <outlet property="titleLabel" destination="1ic-PS-Ljc" id="nZa-Gc-zLG"/>
                                         </connections>
                                     </tableViewCell>

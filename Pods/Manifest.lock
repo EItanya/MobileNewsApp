@@ -1,7 +1,7 @@
 PODS:
-  - AWSCore (2.5.3)
-  - AWSS3 (2.5.3):
-    - AWSCore (= 2.5.3)
+  - AWSCore (2.5.5)
+  - AWSS3 (2.5.5):
+    - AWSCore (= 2.5.5)
   - BBBadgeBarButtonItem (1.2)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
@@ -43,8 +43,8 @@ DEPENDENCIES:
   - SwiftSpinner
 
 SPEC CHECKSUMS:
-  AWSCore: 344e21892790650cf902246d436402257a545bde
-  AWSS3: 88095d68f9d588eaa042d7f502f350234f98f606
+  AWSCore: 665371d51ccdfe62430c586e3cb8e57eff8ce09d
+  AWSS3: 7a910824991e5dc13971f7ae73230d354666880e
   BBBadgeBarButtonItem: c2fbca0bff18e21b70defc9438a8a5048008e7ca
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: c693bad19feb225469eeff14452ba364522ee48b

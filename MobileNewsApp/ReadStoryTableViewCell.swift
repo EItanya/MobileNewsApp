@@ -11,6 +11,9 @@ import UIKit
 class ReadStoryTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var numWritersLabel: UILabel!
+    @IBOutlet var numTurnsLabel: UILabel!
+    @IBOutlet var promptLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
