@@ -30,6 +30,7 @@ class StoryInfoViewController: UIViewController {
     @IBOutlet weak var leaveButton: LoginScreenButton!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var promptView: UITextView!
     
 
     override func viewDidLoad() {
@@ -43,6 +44,7 @@ class StoryInfoViewController: UIViewController {
 //        getListOfUsers()
         setupView()
 //        setupInvite()
+        promptView.text = story?.prompt!
         
         
         
