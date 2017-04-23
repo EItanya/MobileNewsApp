@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class UserTableViewCell: UITableViewCell {
+class UserTableViewCell: MGSwipeTableCell {
 
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet var blockLabel: UILabel!
+   
     var user: User?
     
     

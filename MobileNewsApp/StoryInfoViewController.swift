@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MGSwipeTableCell
 
 class StoryInfoViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class StoryInfoViewController: UIViewController {
     var users = [User]()
     var allUsers = [User]()
     var storyUsers = [String: [User]]()
-    let user: PFUser = PFUser.current()!
+    var user: PFUser = PFUser.current()!
     var admin: Bool = false
     var invited =  [String]()
     
@@ -247,6 +248,87 @@ extension StoryInfoViewController: UITableViewDelegate, UITableViewDataSource {
             cell.avatarImage.image = avatar
             cell.avatarImage.layer.backgroundColor = UIColor.lightGray.cgColor
             cell.avatarImage.layer.cornerRadius = cell.avatarImage.layer.bounds.width/2
+            
+            let reportButton = MGSwipeButton(title: "Report", backgroundColor: UIColor.red)
+            {
+                (sender: MGSwipeTableCell!) in
+                
+                print("Report button clicked")
+                
+                return true
+                
+            }
+            reportButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
+            
+            let pfUser = PFUser.current()
+            var currentUser = User(pfobject: pfUser!)
+
+            if (currentUser.blockedUsers?.contains(user.id!))! {
+                
+                cell.blockLabel.isHidden = false
+                
+                let unblockButton = MGSwipeButton(title: "Unblock", backgroundColor: UIColor.blue)
+                {
+                    (sender: MGSwipeTableCell!) in
+                    
+                    currentUser.unblockUser(user: user.id!, completion: {(error: Error?) -> Void in
+                        if error != nil {
+                            print(error!)
+                        }
+                        else {
+                            pfUser?.fetchInBackground(block: {(object, error) -> Void in
+                                if error != nil {
+                                    print(error!)
+                                }
+                                else {
+                                    self.user = object as! PFUser
+                                    self.userTable.reloadData()
+                                }
+                            })
+                        }
+                    })
+                    
+                    return true
+                }
+                
+                unblockButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
+                cell.rightButtons = [reportButton, unblockButton]
+                cell.rightSwipeSettings.transition = .rotate3D
+            }
+                // Configure the cell...
+            else {
+                
+                cell.blockLabel.isHidden = true
+                
+                let blockButton = MGSwipeButton(title: "Block", backgroundColor: UIColor.blue)
+                {
+                    (sender: MGSwipeTableCell!) in
+                    
+                    let pfUser = PFUser.current()
+                    var currentUser = User(pfobject: pfUser!)
+                    currentUser.blockUser(user: user.id!, completion: {(error: Error?) -> Void in
+                        if error != nil {
+                            print(error!)
+                        }
+                        else {
+                            pfUser?.fetchInBackground(block: {(object, error) -> Void in
+                                if error != nil {
+                                    print(error!)
+                                }
+                                else {
+                                    self.user = object as! PFUser
+                                    self.userTable.reloadData()
+                                }
+                            })
+                        }
+                    })
+                    return true
+                    
+                }
+                blockButton.titleLabel?.font = UIFont(name: "DIN", size: 15)
+                cell.rightButtons = [reportButton, blockButton]
+                cell.rightSwipeSettings.transition = .rotate3D
+            }
         }
         
         return cell
