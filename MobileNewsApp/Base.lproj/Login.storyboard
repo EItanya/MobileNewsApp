@@ -314,7 +314,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Snowball – Collaborative Storytelling App End User License Agreement
+                                <string key="text">Snowball – Collaborative Storytelling App End User License Agreement
 This End User License Agreement (“Agreement”) is between you and Snowball – Collaborative Storytelling (“Snowball”) and governs use of this app made available through the Apple App Store. By installing the Snowball App, you agree to be bound by this Agreement and understand that there is no tolerance for objectionable content. If you do not agree with the terms and conditions of this Agreement, you are not entitled to use the Snowball App.
 In order to ensure Snowball provides the best experience possible for everyone, we strongly enforce a no tolerance policy for objectionable content. If you see inappropriate content, please use the “Report as offensive” feature found under each post.
 1. Parties
@@ -336,7 +336,7 @@ Content may not be submitted to Snowball, who will moderate all content and ulti
 9. Third Party Intellectual Property Claims
  Snowball shall not be obligated to indemnify or defend you with respect to any third party claim arising out or relating to the Snowball App. To the extent Snowball is required to provide indemnification by applicable law, Snowball, not Apple, shall be solely responsible for the investigation, defense, settlement and discharge of any claim that the Snowball App or your use of it infringes any third party intellectual property right.
 
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -366,7 +366,7 @@ Content may not be submitted to Snowball, who will moderate all content and ulti
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3b4-YP-4H8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="887.40629685157433"/>
+            <point key="canvasLocation" x="929" y="360"/>
         </scene>
         <!--User-->
         <scene sceneID="Ej5-nl-a2d">
@@ -374,10 +374,10 @@ Content may not be submitted to Snowball, who will moderate all content and ulti
                 <viewControllerPlaceholder storyboardName="User" id="ryt-YT-ud1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibj-Ja-Ljn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="770" y="115"/>
+            <point key="canvasLocation" x="1566" y="-230"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qRn-aO-Qiy"/>
+        <segue reference="1O4-p3-FEA"/>
     </inferredMetricsTieBreakers>
 </document>
