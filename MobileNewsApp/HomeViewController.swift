@@ -219,31 +219,46 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ storyTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currentStory = filteredStories[indexPath.row]
+        let title = currentStory.title
+        let prompt = currentStory.prompt
+        let totalTurns = currentStory.totalTurns!
+        let numWriters = currentStory.users.count
+        let numMin = (Int) (currentStory.timeLimit! / 60)
+        let numSec = (Int)(currentStory.timeLimit!.truncatingRemainder(dividingBy: 60))
+        var time = ""
+        if numMin != 0 {
+            time.append("\(numMin) min. ")
+        }
+        if numSec != 0 {
+            time.append("\(numSec) sec. ")
+        }
+        time.append("per turn")
+        
+        
         if storyCompletionControl.selectedSegmentIndex == 1 {
             let cell = storyTableView.dequeueReusableCell(withIdentifier: "readStoryCell", for: indexPath) as! ReadStoryTableViewCell
             
-            let currentStory = filteredStories[indexPath.row]
-            cell.titleLabel.text = currentStory.title
-            cell.numTurnsLabel.text = "\(currentStory.totalTurns!) turns"
+            cell.titleLabel.text = title
+            cell.numTurnsLabel.text = "\(totalTurns) turns"
             if currentStory.users.count == 1 {
                 cell.numWritersLabel.text = "\(currentStory.users.count) writer"
             }
             else {
                 cell.numWritersLabel.text = "\(currentStory.users.count) writers"
             }
-            cell.promptLabel.text = currentStory.prompt
+            cell.promptLabel.text = prompt
+            cell.timeLabel.text = time
             
             return cell
         }
         else {
         let cell = storyTableView.dequeueReusableCell(withIdentifier: "joinStoryCell", for: indexPath) as! HomeStoryTableViewCell
         
-        let currentStory = filteredStories[indexPath.row]
-        
-        cell.titleLabel.text = currentStory.title
-        cell.promptLabel.text = currentStory.prompt
-        cell.spotsLabel.text = "\(currentStory.participants - currentStory.users.count) spots remaining"
-        let currentUserId = currentStory.currentUser
+        cell.titleLabel.text = title
+        cell.promptLabel.text = prompt
+        cell.numWritersLabel.text = "\(numWriters)/\(currentStory.participants) writers"
+        /*let currentUserId = currentStory.currentUser
         var peopleInLine = 0
         if currentUserId != "" {
             peopleInLine = currentStory.users.count - currentStory.users.index(of: currentUserId!)!
@@ -253,9 +268,9 @@ extension HomeViewController:  UITableViewDataSource, UITableViewDelegate {
         }
         else {
             cell.peopleAheadLabel.text = "\(peopleInLine) people ahead"
-        }
-        cell.turnCountLabel.text = "\(currentStory.currentEntry!)/\(currentStory.totalTurns!) turns"
-
+        }*/
+        cell.turnCountLabel.text = "\(currentStory.currentEntry!)/\(totalTurns) turns"
+            cell.timeLabel.text = time
         
         return cell
         }
