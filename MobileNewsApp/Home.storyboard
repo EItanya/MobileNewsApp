@@ -76,13 +76,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJh-5V-sdj">
-                                                    <rect key="frame" x="8" y="32" width="56" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="numWriters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJh-5V-sdj">
+                                                    <rect key="frame" x="8" y="32" width="59" height="21"/>
                                                     <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="people ahead" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-M3-N4P">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-M3-N4P">
                                                     <rect key="frame" x="145" y="32" width="104" height="21"/>
                                                     <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
                                                     <nil key="textColor"/>
@@ -112,11 +112,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="peopleAheadLabel" destination="fKA-M3-N4P" id="1SU-xC-I9r"/>
+                                            <outlet property="numWritersLabel" destination="RJh-5V-sdj" id="7A3-NX-IoH"/>
                                             <outlet property="promptLabel" destination="lJ9-JA-uLp" id="UXh-t4-ZDp"/>
-                                            <outlet property="spotsLabel" destination="RJh-5V-sdj" id="Dzi-dI-6Ov"/>
+                                            <outlet property="timeLabel" destination="fKA-M3-N4P" id="SI1-mF-los"/>
                                             <outlet property="titleLabel" destination="Heu-L9-5Lo" id="Y6X-Wv-wjt"/>
-                                            <outlet property="turnCountLabel" destination="ILk-df-Chr" id="Ol2-Z6-jEh"/>
+                                            <outlet property="turnCountLabel" destination="ILk-df-Chr" id="LDG-np-8rC"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="readStoryCell" rowHeight="128" id="bhb-cd-sYo" customClass="ReadStoryTableViewCell" customModule="MobileNewsApp" customModuleProvider="target">
@@ -150,12 +150,20 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XX-mg-cuy">
+                                                    <rect key="frame" x="141" y="30" width="140" height="21"/>
+                                                    <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="0XX-mg-cuy" firstAttribute="leading" secondItem="BmB-Eo-7u4" secondAttribute="trailing" constant="80" id="00u-i1-BUp"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="hVA-Qr-pw4" secondAttribute="bottom" id="0p4-eA-GZK"/>
                                                 <constraint firstItem="hVA-Qr-pw4" firstAttribute="top" secondItem="BmB-Eo-7u4" secondAttribute="bottom" constant="5" id="62w-7s-BQC"/>
                                                 <constraint firstItem="hVA-Qr-pw4" firstAttribute="leading" secondItem="S1L-K6-Rwf" secondAttribute="leadingMargin" id="CXu-d3-gIq"/>
                                                 <constraint firstItem="Gar-ye-e5a" firstAttribute="trailing" secondItem="S1L-K6-Rwf" secondAttribute="trailingMargin" id="TCY-Hg-G2d"/>
+                                                <constraint firstItem="0XX-mg-cuy" firstAttribute="top" secondItem="1ic-PS-Ljc" secondAttribute="bottom" constant="5" id="TUc-Ff-Wm6"/>
                                                 <constraint firstItem="BmB-Eo-7u4" firstAttribute="top" secondItem="1ic-PS-Ljc" secondAttribute="bottom" constant="5" id="Whg-2a-yUv"/>
                                                 <constraint firstItem="1ic-PS-Ljc" firstAttribute="trailing" secondItem="S1L-K6-Rwf" secondAttribute="trailingMargin" id="abn-TJ-GmA"/>
                                                 <constraint firstItem="Gar-ye-e5a" firstAttribute="top" secondItem="1ic-PS-Ljc" secondAttribute="bottom" constant="5" id="jDQ-HX-GWZ"/>
@@ -169,6 +177,7 @@
                                             <outlet property="numTurnsLabel" destination="Gar-ye-e5a" id="qov-QR-z7X"/>
                                             <outlet property="numWritersLabel" destination="BmB-Eo-7u4" id="SUk-FN-Ylr"/>
                                             <outlet property="promptLabel" destination="hVA-Qr-pw4" id="h7d-q6-bwx"/>
+                                            <outlet property="timeLabel" destination="0XX-mg-cuy" id="8dS-i2-Zr4"/>
                                             <outlet property="titleLabel" destination="1ic-PS-Ljc" id="nZa-Gc-zLG"/>
                                         </connections>
                                     </tableViewCell>

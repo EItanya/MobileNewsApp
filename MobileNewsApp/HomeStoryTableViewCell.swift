@@ -12,9 +12,9 @@ class HomeStoryTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var promptLabel: UILabel!
-    @IBOutlet var peopleAheadLabel: UILabel!
+    @IBOutlet var numWritersLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
     @IBOutlet var turnCountLabel: UILabel!
-    @IBOutlet var spotsLabel: UILabel!
     
     
     override func awakeFromNib() {
