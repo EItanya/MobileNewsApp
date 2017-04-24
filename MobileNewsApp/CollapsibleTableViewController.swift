@@ -37,9 +37,9 @@ class CollapsibleTableViewController: UITableViewController {
     var sections = [Section]()
     var delegate: HomeViewController?
     
-    var genreValues: [Bool]?
-    var wordCountValues: [Bool]?
-    var numContValues: [Bool]?
+    var timeValues: [Bool]?
+    var numTurnValues: [Bool]?
+    var numWriterValues: [Bool]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +49,9 @@ class CollapsibleTableViewController: UITableViewController {
         // Initialize the sections array
         // Here we have three sections: Mac, iPad, iPhone
         sections = [
-            Section(name: "Genre", items: ["Horror", "Comedy", "Fiction", "Non-Fiction"]),
-            Section(name: "Total turns", items: ["25-75", "75-125", "125-200"]),
-            Section(name: "Number of Contributors", items: ["1-7", "7-14", "14-20"]),
-            Section(name: "People ahead", items: ["1-7", "7-14", "14-20"])
+            Section(name: "Time per Turn", items: ["30 sec. - 1 min.", "1 min. - 2 min.", "2 min. - 3 min."]),
+            Section(name: "Total Turns", items: ["25-75", "75-125", "125-200"]),
+            Section(name: "Number of Writers", items: ["5-10", "11-15", "16-20"])
         ]
     }
     
@@ -81,13 +80,13 @@ extension CollapsibleTableViewController {
         cell.row = indexPath.row
         var checkedState = M13Checkbox.CheckState.unchecked
         
-        if indexPath.section == 0 && genreValues?[indexPath.row] == true {
+        if indexPath.section == 0 && timeValues?[indexPath.row] == true {
             checkedState = M13Checkbox.CheckState.checked
         }
-        else if indexPath.section == 1 && wordCountValues?[indexPath.row] == true {
+        else if indexPath.section == 1 && numTurnValues?[indexPath.row] == true {
             checkedState = M13Checkbox.CheckState.checked
         }
-        else if indexPath.section == 2 && numContValues?[indexPath.row] == true {
+        else if indexPath.section == 2 && numWriterValues?[indexPath.row] == true {
             checkedState = M13Checkbox.CheckState.checked
         }
         cell.checkboxOutlet.setCheckState(checkedState, animated: true)
