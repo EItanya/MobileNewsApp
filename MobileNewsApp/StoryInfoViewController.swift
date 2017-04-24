@@ -96,6 +96,15 @@ class StoryInfoViewController: UIViewController {
                     return self.story!.users.index(of: user.id!) != nil
                 })
                 
+                let user = PFUser.current()
+                
+                for index in 0...(self.users.count-1) {
+                    if self.users[index].id! == user?.objectId {
+                        self.users.remove(at: index)
+                        break
+                    }
+                }
+                
                 self.userGroups.append(userGroup(sectionName: "Active", sectionObjects: self.users))
                 
                 self.userTable.reloadData()
