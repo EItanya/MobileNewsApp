@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     var entryArray = [Entry]()
     var userImageDict: [String: UIImage] = [:]
-
+    var invites = [Invite]()
     
     
     
@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         Story.getUserStoriesArray { (stories, Error) in
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
-            
+            self.profileControl.selectedSegmentIndex =  1
             if self.profileControl.selectedSegmentIndex == 0 {
                 print("All is selected in viewDidLoad")
                 self.stories = self.completedStories + self.unfinishedStories
@@ -107,7 +107,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         Story.getUserStoriesArray { (stories, Error) in
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
-            
+            self.profileControl.selectedSegmentIndex =  1
+
             if self.profileControl.selectedSegmentIndex == 0 {
                 print("All is selected in viewDidLoad")
                 self.stories = self.completedStories + self.unfinishedStories
@@ -140,8 +141,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
-        let invites = [Invite]()
+        
+        Invite.getInvitesByUser(userId: (PFUser.current()?.objectId)!, completion: {(invites: [Invite]?, error: Error?) -> Void in
+            if error != nil {
+                //Place error code later
+            }
+            else {
+                self.invites = invites!
+            }
+        })
         let numInvites = invites.count
+        
         print("This is the number of invites i have \(numInvites)")
         
         let session = URLSession(configuration: .default)
@@ -268,8 +278,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
-        let invites = [Invite]()
+
+        Invite.getInvitesByUser(userId: (PFUser.current()?.objectId)!, completion: {(invites: [Invite]?, error: Error?) -> Void in
+            if error != nil {
+                //Place error code later
+            }
+            else {
+                self.invites = invites!
+            }
+        })
         let numInvites = invites.count
+        
         print("This is the number of invites i have \(numInvites)")
 
         let session = URLSession(configuration: .default)
@@ -432,11 +451,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         //cell.promptLabel.text = stories[indexPath.row].prompt
         if(stories[indexPath.row].currentUser! == userId)
         {
-            cell.imgMyTurn.image = #imageLiteral(resourceName: "check_mark")
+            cell.imgMyTurn.image = #imageLiteral(resourceName: "check-mark")
+            cell.imgMyTurn.contentMode = .scaleAspectFit
         }
         else
         {
-            cell.imgMyTurn.image = #imageLiteral(resourceName: "x_mark")
+            cell.imgMyTurn.image = #imageLiteral(resourceName: "cancel")
+            cell.imgMyTurn.contentMode = .scaleAspectFit
         }
         
         return cell
