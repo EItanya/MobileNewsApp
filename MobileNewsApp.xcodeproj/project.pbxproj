@@ -279,6 +279,7 @@
 				07E62BAD1E6364FE00B3F3DA /* Story.swift */,
 				076D78431E6A394D00387D6A /* Story.storyboard */,
 				076D78451E6A397000387D6A /* StoryViewController.swift */,
+				15FBA2011E4E80FB00DDEEB7 /* Assets.xcassets */,
 			);
 			name = Story;
 			sourceTree = "<group>";
@@ -375,7 +376,6 @@
 				15E99A4E1E4E9F3500B736B4 /* Login/Registration */,
 				15422E711E58FEA3002C9BD4 /* User Interface */,
 				07E62BA81E610B4400B3F3DA /* Story */,
-				15FBA2011E4E80FB00DDEEB7 /* Assets.xcassets */,
 				15FBA2061E4E80FB00DDEEB7 /* Info.plist */,
 				15FBA1FE1E4E80FB00DDEEB7 /* MobileNewsApp.xcdatamodeld */,
 			);

@@ -188,6 +188,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         let user = PFUser.current()
         
         if user?.objectId != nil {
+            user?.fetchInBackground()
             self.loginModalOut()
             self.segueToMainApp()
             return
@@ -257,6 +258,7 @@ class LoginViewController: UIViewController, UIViewControllerTransitioningDelega
         let user = PFUser.current()
         
         if user?.objectId != nil && user?.object(forKey: "fb_profile_picture") != nil {
+            user?.fetchInBackground()
             self.loginModalOut()
             self.segueToMainApp()
             return

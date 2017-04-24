@@ -77,7 +77,6 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     
     
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -116,6 +115,18 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         registerForKeyboardNotifications()
+        let user = PFUser.current()
+        user?.fetchInBackground(block: {(response: PFObject?, error: Error?) -> Void in
+            if error != nil {
+                print(error ?? "")
+            }
+            else {
+                self.setupPreviousEntry()
+            }
+        })
+        
+            
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -213,8 +224,19 @@ class StoryViewController: UIViewController, UITextViewDelegate {
     
     
     func setupPreviousEntry() {
+        
+        let user = PFUser.current()
+        
         if let lastEntry = self.entry {
-            entryTextView.text = lastEntry.object(forKey: "text") as! String?
+            let previousAuthorId = lastEntry.object(forKey: "created_by") as! String?
+            let blockedArray = user?.object(forKey: "blocked_users") as! [String]
+            if blockedArray.contains(previousAuthorId!) {
+                entryTextView.text = "Meanwhile..."
+            }
+            else {
+                entryTextView.text = lastEntry.object(forKey: "text") as! String?
+            }
+            
             entryAuthorLabel.text = lastEntry.object(forKey: "author") as! String?
         } else {
             //Must make DB call to get Entry
