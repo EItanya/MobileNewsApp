@@ -17,12 +17,14 @@ class HomeViewController: UIViewController {
     var applyFilters = 0
     
     //current checked filters
-    var genre = [false, false, false, false]
-    var wordCount = [false, false, false]
-    var numPeople = [false, false, false]
+    var timeFilter = [false, false, false]
+    var numTurnFilter = [false, false, false]
+    var numWriterFilter = [false, false, false]
     
     //index of genres
-    let genreCategories : [String] = ["Horror", "Comedy", "Fiction", "Non-Fiction"]
+    let timeCategories : [[Int]] = [[30, 60], [60, 120], [120, 180]]
+    let numTurnCategories : [[Int]] = [[25, 75], [75, 125], [125, 200]]
+    let numWriterCategories : [[Int]] = [[5, 10], [11, 15], [16, 20]]
     
     //unfinished stories
     var unfinishedStories = [Story]()
@@ -119,27 +121,46 @@ class HomeViewController: UIViewController {
     
     //Populates the filtered stories array which is used to fill in table view
     func applyStoryFilters() {
+        var tempFilteredStories = stories
         //apply filters
         if applyFilters > 0 {
-            filteredStories.removeAll()
-            var genreStories = [Story]()
-            for (index, value) in genre.enumerated() {
-                if value == true {
-                    genreStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
+            var timeStories = [Story]()
+            if timeFilter.contains(true) {
+                for (index, value) in timeFilter.enumerated() {
+                    if value == true {
+                        let timeFilterStories = tempFilteredStories.filter {Int($0.timeLimit!) >= timeCategories[index][0] && Int($0.timeLimit!) <= timeCategories[index][1]}
+                        timeStories.append(contentsOf: timeFilterStories)
+                    }
                 }
+                tempFilteredStories = timeStories
             }
-//            var genreStories = [Story]()
-//            for (index, value) in genre.enumerated() {
-//                if value == true {
-//                    genreStories.append(contentsOf: stories.filter({$0.genre! == genreCategories[index] }))
-//                }
-//            }
-            
+            var turnStories = [Story]()
+            if numTurnFilter.contains(true) {
+                for (index, value) in numTurnFilter.enumerated() {
+                    if value == true {
+                        let turnFilterStories = tempFilteredStories.filter {$0.totalTurns! >= numTurnCategories[index][0] && $0.totalTurns! <= numTurnCategories[index][1]}
+                        turnStories.append(contentsOf: turnFilterStories)
+                    }
+                }
+                tempFilteredStories = turnStories
+            }
+            var writerStories = [Story]()
+            if numWriterFilter.contains(true) {
+                for (index, value) in numTurnFilter.enumerated() {
+                    if value == true {
+                        let writerFilterStories = tempFilteredStories.filter {$0.participants >= numWriterCategories[index][0] && $0.participants <= numTurnCategories[index][1]}
+                        writerStories.append(contentsOf: writerFilterStories)
+                    }
+                }
+                tempFilteredStories = writerStories
+            }
+            filteredStories = tempFilteredStories
         }
         //no filters
         else {
             filteredStories = stories
         }
+        self.storyTableView.reloadData()
     }
 }
 
@@ -152,9 +173,9 @@ extension HomeViewController: UIPopoverPresentationControllerDelegate {
         let vc = storyboard.instantiateViewController(withIdentifier: "filter") as! CollapsibleTableViewController
         
         //sets chosen filter values for filterPopupController
-        vc.genreValues = genre
-        vc.wordCountValues = wordCount
-        vc.numContValues = numPeople
+        vc.timeValues = timeFilter
+        vc.numTurnValues = numTurnFilter
+        vc.numWriterValues = numWriterFilter
         
         vc.modalPresentationStyle = .popover
         vc.delegate = self
@@ -194,14 +215,15 @@ extension HomeViewController: FilterTableViewDelegate {
         
         //updates filter values
         if section == 0 {
-            self.genre[row] = value.toBool()!
+            self.timeFilter[row] = value.toBool()!
         }
         else if section == 1 {
-            self.wordCount[row] = value.toBool()!
+            self.numTurnFilter[row] = value.toBool()!
         }
         else {
-            self.numPeople[row] = value.toBool()!
+            self.numWriterFilter[row] = value.toBool()!
         }
+        applyStoryFilters()
     }
 }
 
