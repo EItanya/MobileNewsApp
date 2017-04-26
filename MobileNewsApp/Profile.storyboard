@@ -209,15 +209,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvX-RP-tyE">
-                                <rect key="frame" x="108" y="72" width="187" height="40"/>
-                                <state key="normal" title="Change profile picture">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="profileChange:" destination="q1E-QS-bJh" eventType="touchUpInside" id="lVH-OF-7LF"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MBr-l2-LPS" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="13" y="180" width="291" height="30"/>
                                 <color key="tintColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -266,13 +257,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-hx-AVP">
-                                <rect key="frame" x="13" y="72" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="nVD-Pd-zHZ"/>
-                                    <constraint firstAttribute="height" constant="100" id="tef-pa-Upm"/>
-                                </constraints>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Retype New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Hx-n3-fry" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="13" y="332" width="291" height="30"/>
                                 <color key="tintColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -298,16 +282,22 @@
                                     <action selector="saveProfile:" destination="q1E-QS-bJh" eventType="touchUpInside" id="x04-iS-7Zg"/>
                                 </connections>
                             </button>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-hx-AVP">
+                                <rect key="frame" x="110" y="72" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="nVD-Pd-zHZ"/>
+                                    <constraint firstAttribute="height" constant="100" id="tef-pa-Upm"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="dJt-0S-Crw" secondAttribute="trailing" constant="8" id="03F-mO-SN8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FvX-RP-tyE" secondAttribute="trailing" constant="8" id="3n2-XW-UQL"/>
                             <constraint firstItem="MBr-l2-LPS" firstAttribute="leading" secondItem="ORT-f2-1rz" secondAttribute="leadingMargin" constant="-3" id="5aI-3A-6Mp"/>
                             <constraint firstItem="dJt-0S-Crw" firstAttribute="leading" secondItem="ORT-f2-1rz" secondAttribute="leadingMargin" constant="-3" id="63o-H8-uN5"/>
                             <constraint firstItem="Sk3-Mf-KKc" firstAttribute="width" secondItem="MBr-l2-LPS" secondAttribute="width" id="Ak6-Sn-hK1"/>
+                            <constraint firstItem="Wh6-hx-AVP" firstAttribute="top" secondItem="Mci-07-G9l" secondAttribute="bottom" constant="8" id="Alk-IZ-1LE"/>
                             <constraint firstItem="1Hx-n3-fry" firstAttribute="top" secondItem="Sk3-Mf-KKc" secondAttribute="bottom" constant="8" id="BHK-oE-UTZ"/>
-                            <constraint firstItem="FvX-RP-tyE" firstAttribute="leading" secondItem="Wh6-hx-AVP" secondAttribute="trailing" constant="3" id="EOd-3B-JGQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sfT-nX-7Rk" secondAttribute="trailing" constant="50" id="IAE-gK-KNW"/>
                             <constraint firstItem="bSg-iv-HAN" firstAttribute="leading" secondItem="ORT-f2-1rz" secondAttribute="leadingMargin" constant="-3" id="IN9-0X-I2L"/>
                             <constraint firstItem="le3-BT-OCI" firstAttribute="top" secondItem="sfT-nX-7Rk" secondAttribute="bottom" constant="20" id="JD7-Ed-Lco"/>
@@ -315,7 +305,6 @@
                             <constraint firstItem="Sk3-Mf-KKc" firstAttribute="top" secondItem="bSg-iv-HAN" secondAttribute="bottom" constant="8" id="PV2-lC-sPT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MBr-l2-LPS" secondAttribute="trailing" constant="8" id="Q4a-tN-93c"/>
                             <constraint firstItem="dJt-0S-Crw" firstAttribute="width" secondItem="MBr-l2-LPS" secondAttribute="width" id="S2I-pD-WXr"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Wh6-hx-AVP" secondAttribute="leading" constant="3" id="SUT-h3-ecA"/>
                             <constraint firstItem="MBr-l2-LPS" firstAttribute="top" secondItem="Wh6-hx-AVP" secondAttribute="bottom" constant="8" id="Vb7-er-pcB"/>
                             <constraint firstItem="dJt-0S-Crw" firstAttribute="top" secondItem="MBr-l2-LPS" secondAttribute="bottom" constant="8" id="WDi-nX-Wkl"/>
                             <constraint firstItem="bSg-iv-HAN" firstAttribute="width" secondItem="MBr-l2-LPS" secondAttribute="width" id="XV0-rO-Cea"/>
@@ -326,7 +315,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Sk3-Mf-KKc" secondAttribute="trailing" constant="8" id="ol6-9A-OuH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bSg-iv-HAN" secondAttribute="trailing" constant="8" id="oqm-wO-NJI"/>
                             <constraint firstItem="1Hx-n3-fry" firstAttribute="leading" secondItem="ORT-f2-1rz" secondAttribute="leadingMargin" constant="-3" id="vCt-1m-uwJ"/>
-                            <constraint firstItem="FvX-RP-tyE" firstAttribute="centerY" secondItem="Wh6-hx-AVP" secondAttribute="centerY" id="y3G-OI-ipH"/>
+                            <constraint firstItem="Wh6-hx-AVP" firstAttribute="centerX" secondItem="ORT-f2-1rz" secondAttribute="centerX" id="xVp-2Z-p03"/>
                             <constraint firstItem="Wh6-hx-AVP" firstAttribute="top" secondItem="Mci-07-G9l" secondAttribute="bottom" constant="8" id="ybn-E2-id4"/>
                         </constraints>
                     </view>

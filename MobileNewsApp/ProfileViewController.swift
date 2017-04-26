@@ -250,6 +250,32 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        Story.getUserStoriesArray { (stories, Error) in
+            self.unfinishedStories = stories!.filter { $0.completed == false }
+            self.completedStories = stories!.filter { $0.completed == true }
+            self.profileControl.selectedSegmentIndex =  1
+            
+            if self.profileControl.selectedSegmentIndex == 0 {
+                print("All is selected in viewDidLoad")
+                self.stories = self.completedStories + self.unfinishedStories
+            }
+            else if self.profileControl.selectedSegmentIndex == 1 {
+                print("Incomplete is selected in viewDidLoad")
+                
+                self.stories = self.unfinishedStories
+            }
+            else if self.profileControl.selectedSegmentIndex == 2
+            {
+                print("Completed is selected in viewDidLoad")
+                self.stories = self.completedStories
+            }
+            else
+            {
+                
+            }
+            self.profileTableView.reloadData()
+        }
 
         let user = PFUser.current()
         let id = user?.objectId
