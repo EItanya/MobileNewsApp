@@ -100,6 +100,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
             }
             self.profileTableView.reloadData()
         }
+        print("VIEW DIDLOAD RUN")
     }
 
 
@@ -142,17 +143,36 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
         
+        //////////////////////
+        
         Invite.getInvitesByUser(userId: (PFUser.current()?.objectId)!, completion: {(invites: [Invite]?, error: Error?) -> Void in
             if error != nil {
                 //Place error code later
             }
             else {
                 self.invites = invites!
+                let numInvites = invites?.count
+
+                let image = UIImage(named: "Invite")
+                
+                let button = UIButton(type: .custom)
+                button.tag = 5
+                button.frame = CGRect(x:0, y:0, width:30, height:30)
+                button.addTarget(self, action:#selector(self.manageInviteSegue), for: .touchUpInside)
+                button.setBackgroundImage(image, for: .normal)
+                
+                let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+                rightButton?.badgeValue = "\(numInvites!)"
+                rightButton?.badgeOriginX = 20
+                rightButton?.badgeOriginY = -5
+                self.navigationItem.rightBarButtonItem = rightButton
             }
         })
-        let numInvites = invites.count
         
-        print("This is the number of invites i have \(numInvites)")
+        //print("This is the number of invites i have \(numInvites)")
+        
+
+        /////////////////
         
         let session = URLSession(configuration: .default)
         let url = user!["fb_profile_picture"] as? String
@@ -231,19 +251,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
             downloadPicTask.resume()
         }
         
-        let image = UIImage(named: "Invite")
-        
-        let button = UIButton(type: .custom)
-        button.tag = 5
-        button.frame = CGRect(x:0, y:0, width:30, height:30)
-        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
-        button.setBackgroundImage(image, for: .normal)
-        
-        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
-        rightButton?.badgeValue = "\(numInvites)"
-        rightButton?.badgeOriginX = 20
-        rightButton?.badgeOriginY = -5
-        navigationItem.rightBarButtonItem = rightButton
+        print("VIEW WILLAPPEAR RUN")
+
         
 
     }
@@ -305,17 +314,49 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
 
+        //////////////////////
         Invite.getInvitesByUser(userId: (PFUser.current()?.objectId)!, completion: {(invites: [Invite]?, error: Error?) -> Void in
             if error != nil {
                 //Place error code later
             }
             else {
                 self.invites = invites!
+                
+                let numInvites = invites?.count
+                
+                let image = UIImage(named: "Invite")
+                
+                let button = UIButton(type: .custom)
+                button.tag = 5
+                button.frame = CGRect(x:0, y:0, width:30, height:30)
+                button.addTarget(self, action:#selector(self.manageInviteSegue), for: .touchUpInside)
+                button.setBackgroundImage(image, for: .normal)
+                
+                let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+                rightButton?.badgeValue = "\(numInvites!)"
+                rightButton?.badgeOriginX = 20
+                rightButton?.badgeOriginY = -5
+                self.navigationItem.rightBarButtonItem = rightButton
             }
         })
         let numInvites = invites.count
-        
         print("This is the number of invites i have \(numInvites)")
+        
+        let image = UIImage(named: "Invite")
+        
+        let button = UIButton(type: .custom)
+        button.tag = 5
+        button.frame = CGRect(x:0, y:0, width:30, height:30)
+        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
+        button.setBackgroundImage(image, for: .normal)
+        
+        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+        rightButton?.badgeValue = "\(numInvites)"
+        rightButton?.badgeOriginX = 20
+        rightButton?.badgeOriginY = -5
+        navigationItem.rightBarButtonItem = rightButton
+        /////////////////////////
+        
 
         let session = URLSession(configuration: .default)
         let url = user!["fb_profile_picture"] as? String
@@ -354,21 +395,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         {
             self.profileImage.image = #imageLiteral(resourceName: "default-avatar")
         }
-        
-        let image = UIImage(named: "Invite")
+        print("VIEW DIDAPPEAR RUN")
 
-        let button = UIButton(type: .custom)
-        button.tag = 5
-        button.frame = CGRect(x:0, y:0, width:30, height:30)
-        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
-        button.setBackgroundImage(image, for: .normal)
-        
-        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
-        rightButton?.badgeValue = "\(numInvites)"
-        rightButton?.badgeOriginX = 20
-        rightButton?.badgeOriginY = -5
-        navigationItem.rightBarButtonItem = rightButton
-        
+ 
     }
     
 
