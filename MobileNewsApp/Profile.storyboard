@@ -37,7 +37,6 @@
                                     <constraint firstAttribute="height" constant="30" id="cPG-Sp-wWi"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="All"/>
                                     <segment title="Incomplete"/>
                                     <segment title="Completed"/>
                                 </segments>
