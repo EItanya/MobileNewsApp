@@ -79,27 +79,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         Story.getUserStoriesArray { (stories, Error) in
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
-            self.profileControl.selectedSegmentIndex =  1
-            if self.profileControl.selectedSegmentIndex == 0 {
-                print("All is selected in viewDidLoad")
-                self.stories = self.completedStories + self.unfinishedStories
-            }
-            else if self.profileControl.selectedSegmentIndex == 1 {
-                print("Incomplete is selected in viewDidLoad")
+            self.profileControl.selectedSegmentIndex =  0
 
+            if self.profileControl.selectedSegmentIndex == 0 {
                 self.stories = self.unfinishedStories
             }
-            else if self.profileControl.selectedSegmentIndex == 2
-            {
-                print("Completed is selected in viewDidLoad")
+            else {
                 self.stories = self.completedStories
-            }
-            else
-            {
-                    
             }
             self.profileTableView.reloadData()
         }
+        print("VIEW DIDLOAD RUN")
     }
 
 
@@ -107,26 +97,15 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         Story.getUserStoriesArray { (stories, Error) in
             self.unfinishedStories = stories!.filter { $0.completed == false }
             self.completedStories = stories!.filter { $0.completed == true }
-            self.profileControl.selectedSegmentIndex =  1
+            self.profileControl.selectedSegmentIndex =  0
 
             if self.profileControl.selectedSegmentIndex == 0 {
-                print("All is selected in viewDidLoad")
-                self.stories = self.completedStories + self.unfinishedStories
-            }
-            else if self.profileControl.selectedSegmentIndex == 1 {
-                print("Incomplete is selected in viewDidLoad")
-                
                 self.stories = self.unfinishedStories
             }
-            else if self.profileControl.selectedSegmentIndex == 2
-            {
-                print("Completed is selected in viewDidLoad")
+            else {
                 self.stories = self.completedStories
             }
-            else
-            {
-                
-            }
+
             self.profileTableView.reloadData()
         }
 
@@ -142,17 +121,36 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
         
+        //////////////////////
+        
         Invite.getInvitesByUser(userId: (PFUser.current()?.objectId)!, completion: {(invites: [Invite]?, error: Error?) -> Void in
             if error != nil {
                 //Place error code later
             }
             else {
                 self.invites = invites!
+                let numInvites = invites?.count
+
+                let image = UIImage(named: "Invite")
+                
+                let button = UIButton(type: .custom)
+                button.tag = 5
+                button.frame = CGRect(x:0, y:0, width:30, height:30)
+                button.addTarget(self, action:#selector(self.manageInviteSegue), for: .touchUpInside)
+                button.setBackgroundImage(image, for: .normal)
+                
+                let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+                rightButton?.badgeValue = "\(numInvites!)"
+                rightButton?.badgeOriginX = 20
+                rightButton?.badgeOriginY = -5
+                self.navigationItem.rightBarButtonItem = rightButton
             }
         })
-        let numInvites = invites.count
         
-        print("This is the number of invites i have \(numInvites)")
+        //print("This is the number of invites i have \(numInvites)")
+        
+
+        /////////////////
         
         let session = URLSession(configuration: .default)
         let url = user!["fb_profile_picture"] as? String
@@ -231,25 +229,29 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
             downloadPicTask.resume()
         }
         
-        let image = UIImage(named: "Invite")
-        
-        let button = UIButton(type: .custom)
-        button.tag = 5
-        button.frame = CGRect(x:0, y:0, width:30, height:30)
-        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
-        button.setBackgroundImage(image, for: .normal)
-        
-        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
-        rightButton?.badgeValue = "\(numInvites)"
-        rightButton?.badgeOriginX = 20
-        rightButton?.badgeOriginY = -5
-        navigationItem.rightBarButtonItem = rightButton
+        print("VIEW WILLAPPEAR RUN")
+
         
 
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        Story.getUserStoriesArray { (stories, Error) in
+            self.unfinishedStories = stories!.filter { $0.completed == false }
+            self.completedStories = stories!.filter { $0.completed == true }
+            self.profileControl.selectedSegmentIndex =  0
+            
+
+            if self.profileControl.selectedSegmentIndex == 0 {
+                self.stories = self.unfinishedStories
+            }
+            else {
+                self.stories = self.completedStories
+            }
+            self.profileTableView.reloadData()
+        }
 
         let user = PFUser.current()
         let id = user?.objectId
@@ -279,17 +281,49 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let profileName = (user?.object(forKey: "first_name") as! String) + " " + (user?.object(forKey: "last_name") as! String)
         self.profileName.text = profileName
 
+        //////////////////////
         Invite.getInvitesByUser(userId: (PFUser.current()?.objectId)!, completion: {(invites: [Invite]?, error: Error?) -> Void in
             if error != nil {
                 //Place error code later
             }
             else {
                 self.invites = invites!
+                
+                let numInvites = invites?.count
+                
+                let image = UIImage(named: "Invite")
+                
+                let button = UIButton(type: .custom)
+                button.tag = 5
+                button.frame = CGRect(x:0, y:0, width:30, height:30)
+                button.addTarget(self, action:#selector(self.manageInviteSegue), for: .touchUpInside)
+                button.setBackgroundImage(image, for: .normal)
+                
+                let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+                rightButton?.badgeValue = "\(numInvites!)"
+                rightButton?.badgeOriginX = 20
+                rightButton?.badgeOriginY = -5
+                self.navigationItem.rightBarButtonItem = rightButton
             }
         })
         let numInvites = invites.count
-        
         print("This is the number of invites i have \(numInvites)")
+        
+        let image = UIImage(named: "Invite")
+        
+        let button = UIButton(type: .custom)
+        button.tag = 5
+        button.frame = CGRect(x:0, y:0, width:30, height:30)
+        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
+        button.setBackgroundImage(image, for: .normal)
+        
+        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
+        rightButton?.badgeValue = "\(numInvites)"
+        rightButton?.badgeOriginX = 20
+        rightButton?.badgeOriginY = -5
+        navigationItem.rightBarButtonItem = rightButton
+        /////////////////////////
+        
 
         let session = URLSession(configuration: .default)
         let url = user!["fb_profile_picture"] as? String
@@ -328,21 +362,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         {
             self.profileImage.image = #imageLiteral(resourceName: "default-avatar")
         }
-        
-        let image = UIImage(named: "Invite")
+        print("VIEW DIDAPPEAR RUN")
 
-        let button = UIButton(type: .custom)
-        button.tag = 5
-        button.frame = CGRect(x:0, y:0, width:30, height:30)
-        button.addTarget(self, action:#selector(manageInviteSegue), for: .touchUpInside)
-        button.setBackgroundImage(image, for: .normal)
-        
-        let rightButton = BBBadgeBarButtonItem(customUIButton: button)
-        rightButton?.badgeValue = "\(numInvites)"
-        rightButton?.badgeOriginX = 20
-        rightButton?.badgeOriginY = -5
-        navigationItem.rightBarButtonItem = rightButton
-        
+ 
     }
     
 
@@ -392,19 +414,12 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     // Switching between stories all, completed, incomplete
 
     @IBAction func profileTabSwitch(_ sender: Any) {
-        if profileControl.selectedSegmentIndex == 0 {
-            print("did change it to all")
-            stories = completedStories + unfinishedStories
-        }
-        else if profileControl.selectedSegmentIndex == 1
+
+        if profileControl.selectedSegmentIndex == 0
         {
-            print("did change it to incomplete")
             stories = unfinishedStories
         }
-        else
-        {
-            print("did change it to completed")
-            
+        else {
             stories = completedStories
         }
         profileTableView.reloadData()
@@ -435,14 +450,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    
-    
-    
-    
-    
-    
-
-    
     func tableView(_ profileTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = profileTableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileTableViewCell
@@ -463,19 +470,24 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    
+    // Table for Incomplete Stories / Complete Stories
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
-        vc.story = stories[indexPath.row]
         
-        self.show(vc, sender: self)
+        if profileControl.selectedSegmentIndex == 0 {
+            let storyboard: UIStoryboard = UIStoryboard(name: "Story", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "Story") as! StoryViewController
+            vc.story = stories[indexPath.row]
+            
+            self.show(vc, sender: self)
+        }
+        else {
+            let storyboard: UIStoryboard = UIStoryboard(name: "CompletedStory", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ReadStoryViewController") as! CompletedStoryTableViewController
+            vc.story = stories[indexPath.row]
+            
+            self.show(vc, sender: self)
+        }
     }
-    
-    
-    
-    
-    
-    
 
+    // END OF FILE
 }

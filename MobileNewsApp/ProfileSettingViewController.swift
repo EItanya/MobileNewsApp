@@ -119,12 +119,6 @@ class ProfileSettingViewController: UIViewController, UIImagePickerControllerDel
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func profileChange(_ sender: Any) {
-        let pick = UIImagePickerController()
-        pick.delegate = self
-        pick.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        self.present(pick, animated:true, completion:nil)
-    }
     
     @IBAction func saveProfile(_ sender: Any) {
         let user:PFUser = PFUser.current()!
@@ -235,14 +229,7 @@ class ProfileSettingViewController: UIViewController, UIImagePickerControllerDel
             }
         }
     }
-    
 
-    
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        profileImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        self.dismiss(animated: true, completion: nil)
-    }
     
     
     
