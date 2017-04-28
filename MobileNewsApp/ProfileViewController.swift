@@ -367,15 +367,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
  
     }
     
-
-    
-    ////////////////
-    
-
-
-    
-    ///////////////
-    
     
  
     
