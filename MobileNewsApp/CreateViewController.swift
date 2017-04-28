@@ -66,7 +66,7 @@ class CreateViewController: UIViewController, UITableViewDataSource, UITableView
                             
                             self.prompts.append(promptString)
                         }
-                        self.prompts.append("Create Your Own Story...")
+//                        self.prompts.append("Create Your Own Story...")
                         DispatchQueue.main.async {
                             if !self.viewHasLoaded {
                                 self.animateTable()
