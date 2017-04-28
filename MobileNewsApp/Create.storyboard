@@ -107,12 +107,12 @@
                         <viewControllerLayoutGuide type="top" id="bwh-jn-Wwn"/>
                         <viewControllerLayoutGuide type="bottom" id="L4B-u1-DOz"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="3ud-ZO-frS">
+                    <view key="view" contentMode="scaleToFill" id="3ud-ZO-frS">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mJA-b4-HW4" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="75.333333333333343" y="63" width="263.66666666666663" height="20"/>
+                                <rect key="frame" x="73.333333333333343" y="63" width="267.66666666666663" height="21"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -132,19 +132,19 @@
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KjA-TK-6lX">
-                                <rect key="frame" x="73.333333333333343" y="144" width="267.66666666666663" height="31"/>
+                                <rect key="frame" x="71.333333333333343" y="145" width="271.66666666666663" height="31"/>
                                 <connections>
                                     <action selector="timeLimitUpdate:" destination="flp-WY-o5I" eventType="valueChanged" id="bp2-2d-Svz"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Turn Time Limit: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-Hy-Hna">
-                                <rect key="frame" x="75.333333333333343" y="113" width="149.66666666666669" height="24"/>
+                                <rect key="frame" x="73.333333333333343" y="114" width="153.66666666666669" height="24"/>
                                 <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpR-Yo-4Z0">
-                                <rect key="frame" x="276" y="112" width="63" height="26"/>
+                                <rect key="frame" x="278" y="113" width="63" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="RX8-pb-3Hd"/>
                                     <constraint firstAttribute="width" constant="63" id="vNp-NH-Thm"/>
@@ -154,13 +154,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Participants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6l-4S-XEa">
-                                <rect key="frame" x="75.333333333333343" y="192" width="150.66666666666669" height="28"/>
+                                <rect key="frame" x="73.333333333333343" y="193" width="154.66666666666669" height="28"/>
                                 <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ota-Lj-zgZ">
-                                <rect key="frame" x="276" y="193" width="63" height="26"/>
+                                <rect key="frame" x="278" y="194" width="63" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="ZO8-kc-nsn"/>
                                 </constraints>
@@ -169,19 +169,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dxb-pM-Iht">
-                                <rect key="frame" x="73.333333333333343" y="228" width="267.66666666666663" height="31"/>
+                                <rect key="frame" x="71.333333333333343" y="229" width="271.66666666666663" height="31"/>
                                 <connections>
                                     <action selector="timeLimitUpdate:" destination="flp-WY-o5I" eventType="valueChanged" id="sg8-4N-WgJ"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total Turns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61C-0t-EKw">
-                                <rect key="frame" x="75.333333333333343" y="268" width="150.66666666666669" height="24"/>
+                                <rect key="frame" x="73.333333333333343" y="269" width="154.66666666666669" height="24"/>
                                 <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6Y-KX-jea">
-                                <rect key="frame" x="276" y="266" width="63" height="26"/>
+                                <rect key="frame" x="278" y="267" width="63" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="RHr-AK-f0k"/>
                                 </constraints>
@@ -190,7 +190,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nvk-Uv-jt3">
-                                <rect key="frame" x="73.333333333333343" y="303" width="267.66666666666663" height="31"/>
+                                <rect key="frame" x="71.333333333333343" y="304" width="271.66666666666663" height="31"/>
                                 <connections>
                                     <action selector="timeLimitUpdate:" destination="flp-WY-o5I" eventType="valueChanged" id="HnY-Hb-WVk"/>
                                 </connections>
@@ -279,7 +279,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="KlH-b1-19w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KlH-b1-19w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.38823529410000002" green="0.81568627449999997" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -443,7 +443,7 @@
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for Writing!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXf-Oe-PdQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for writing!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXf-Oe-PdQ">
                                 <rect key="frame" x="63" y="152" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5u0-5J-w1s"/>
@@ -461,7 +461,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The story it is your turn." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkc-M6-a2H">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="it is your turn." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkc-M6-a2H">
                                 <rect key="frame" x="63" y="228" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="oAE-8i-ACp"/>
@@ -476,14 +476,14 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slick the home screen to see" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvo-Gu-MFH">
-                                <rect key="frame" x="64" y="321.66666666666669" width="286" height="20.666666666666629"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the home screen to see" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvo-Gu-MFH">
+                                <rect key="frame" x="64" y="321.66666666666669" width="286" height="21"/>
                                 <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more stories for you to join!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTs-49-ar7">
-                                <rect key="frame" x="64" y="350.33333333333326" width="286" height="20.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more stories to join!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTs-49-ar7">
+                                <rect key="frame" x="64" y="350.33333333333331" width="286" height="21"/>
                                 <fontDescription key="fontDescription" name="DIN-RegularAlternate" family="DIN" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

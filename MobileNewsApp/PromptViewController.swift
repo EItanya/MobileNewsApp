@@ -229,7 +229,7 @@ class PromptViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         timeLimitSliderValue.text = "2:00"
         
         
-        participantSlider.minimumValue = 5
+        participantSlider.minimumValue = 2
         participantSlider.maximumValue = 20
         participantSlider.value = 10
         

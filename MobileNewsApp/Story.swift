@@ -303,10 +303,9 @@ class Story {
 //        let index = activeStories.index(of: self.id!)
 //        activeStories.remove(at: index!)
 //        userObj?.setObject(activeStories, forKey: "active_stories")
-        
+        var returnError: Error? = nil
         let query = PFQuery(className: "Story")
         query.getObjectInBackground(withId: self.id!, block: {(story: PFObject?, error: Error?) -> Void in
-            var returnError: Error? = nil
             if error != nil
             {
                 print("could not retrieve story from DB")
@@ -317,8 +316,28 @@ class Story {
 //                userObj?.saveInBackground()
                 story?.deleteInBackground()
             }
-            completion!(returnError)
         })
+        
+        let inviteQuery = PFQuery(className: "Invite")
+        inviteQuery.whereKey("story", equalTo: self.id!)
+        inviteQuery.findObjectsInBackground(block: {(invites: [PFObject]?, error: Error?) -> Void in
+            if error != nil
+            {
+                print("could not retrieve story from DB")
+                returnError = error!
+            }
+            else
+            {
+                for invite in invites! {
+                    invite.deleteInBackground()
+                }
+            }
+            
+        })
+        
+        if completion != nil && returnError != nil{
+            completion!(returnError)
+        }
     }
     
     func removeUser(user: String, completion: ((_ error: Error?) -> Void)?) {
